@@ -75,6 +75,29 @@ function doGet(e) {
   ).setMimeType(ContentService.MimeType.JSON);
 }
 
+// TEST FUNCTION: Select "testLead" in the editor dropdown and click "▷ Run" to authorize permissions
+function testLead() {
+  const fakeEvent = {
+    postData: {
+      contents: JSON.stringify({
+        leadType: "Student Loan Application",
+        name: "Test Verification Student",
+        phone: "9876543210",
+        email: "test@udaanloans.com",
+        country: "United States",
+        course: "MS in Computer Science",
+        amount: "4500000",
+        loanType: "collateral-free",
+        coApplicant: "salaried-parent",
+        partnerRef: "Direct (Organic)",
+        sourceUrl: "https://udaanloans.com/apply"
+      })
+    }
+  };
+  const result = doPost(fakeEvent);
+  Logger.log(result.getContent());
+}
+
 function appendStudentLead(ss, data) {
   const sheetName = "Student Leads";
   let sheet = ss.getSheetByName(sheetName);
