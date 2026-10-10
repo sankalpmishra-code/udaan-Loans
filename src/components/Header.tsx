@@ -10,12 +10,12 @@ export default function Header() {
 
   const navLinks = [
     { name: "Bank Matcher", href: "/match" },
+    { name: "Universities", href: "/universities" },
     { name: "Loans", href: "/loans" },
-    { name: "EMI Calculator", href: "/calculator" },
-    { name: "Destinations", href: "/destinations" },
+    { name: "EMI Calc", href: "/calculator" },
+    { name: "80E Tax", href: "/tax-calculator" },
     { name: "Lenders", href: "/lenders" },
-    { name: "Eligibility", href: "/eligibility" },
-    { name: "Process", href: "/process" },
+    { name: "Partners", href: "/partners" },
     { name: "About", href: "/about" },
   ];
 

@@ -296,16 +296,25 @@ export default function BankMatcherPage() {
               </div>
 
               {/* Status Counters */}
-              <div style={{ display: "flex", gap: "14px", marginTop: "20px", flexWrap: "wrap" }}>
-                <span className="badge" style={{ background: "#dcfce7", color: "#166534", border: "1px solid #bbf7d0", fontSize: "0.88rem" }}>
-                  🟢 {potentialCount} Potential Fit
-                </span>
-                <span className="badge" style={{ background: "#fef3c7", color: "#92400e", border: "1px solid #fde68a", fontSize: "0.88rem" }}>
-                  🟡 {verificationCount} Needs Verification
-                </span>
-                <span className="badge" style={{ background: "#fee2e2", color: "#991b1b", border: "1px solid #fecaca", fontSize: "0.88rem" }}>
-                  🔴 {unlikelyCount} Unlikely Fit
-                </span>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "14px", marginTop: "20px" }}>
+                <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+                  <span className="badge" style={{ background: "#dcfce7", color: "#166534", border: "1px solid #bbf7d0", fontSize: "0.88rem" }}>
+                    🟢 {potentialCount} Potential Fit
+                  </span>
+                  <span className="badge" style={{ background: "#fef3c7", color: "#92400e", border: "1px solid #fde68a", fontSize: "0.88rem" }}>
+                    🟡 {verificationCount} Needs Verification
+                  </span>
+                  <span className="badge" style={{ background: "#fee2e2", color: "#991b1b", border: "1px solid #fecaca", fontSize: "0.88rem" }}>
+                    🔴 {unlikelyCount} Unlikely Fit
+                  </span>
+                </div>
+                <Link
+                  href={`/assessment?dest=${encodeURIComponent(profile.country)}&loan=${profile.loanAmount}&collateral=${profile.hasCollateral ? "yes" : "no"}&degree=${encodeURIComponent(profile.degreeLevel)}`}
+                  className="btn btn-accent"
+                  style={{ padding: "8px 18px", fontSize: "0.88rem", display: "flex", alignItems: "center", gap: "6px" }}
+                >
+                  📄 View Preliminary Funding Assessment →
+                </Link>
               </div>
             </div>
 
@@ -412,9 +421,14 @@ export default function BankMatcherPage() {
                 Our Senior Education Loan Specialists cross-verify borderline CIBIL scores, property chain of titles,
                 and negotiate rate spreads with banks at zero fee.
               </p>
-              <Link href="/apply" className="btn btn-primary">
-                Book Free Advisor Review →
-              </Link>
+              <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
+                <Link href="/apply" className="btn btn-primary">
+                  Book Free Advisor Review →
+                </Link>
+                <Link href="/tax-calculator" className="btn btn-outline">
+                  Calculate Section 80E Tax Savings
+                </Link>
+              </div>
             </div>
           </div>
         )}

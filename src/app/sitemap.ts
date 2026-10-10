@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { siteConfig } from "@/data/siteConfig";
+import { universities } from "@/data/universities";
 
 /**
  * Next.js Dynamic XML Sitemap Generator
@@ -26,6 +27,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: changeFrequencies.calculator,
     },
     {
+      path: "/tax-calculator",
+      priority: 0.9,
+      changeFrequency: "weekly" as const,
+    },
+    {
       path: "/loans",
       priority: priorities.loans,
       changeFrequency: changeFrequencies.loans,
@@ -34,6 +40,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       path: "/destinations",
       priority: priorities.destinations,
       changeFrequency: changeFrequencies.destinations,
+    },
+    {
+      path: "/universities",
+      priority: 0.9,
+      changeFrequency: "weekly" as const,
     },
     {
       path: "/lenders",
@@ -77,6 +88,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
+  // Add all 20 curated university dynamic landing pages
+  universities.forEach((u) => {
+    routes.push({
+      path: `/universities/${u.country}/${u.slug}`,
+      priority: 0.85,
+      changeFrequency: "weekly" as const,
+    });
+  });
+
   return routes.map((route) => ({
     url: `${baseUrl}${route.path}`,
     lastModified: now,
@@ -84,3 +104,4 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route.priority,
   }));
 }
+

@@ -28,13 +28,14 @@ export default function Footer() {
           <div className="footer-col">
             <h3>Explore Loans</h3>
             <ul>
+              <li><Link href="/match">60-Second Bank Matcher</Link></li>
               <li><Link href="/loans">Secured Loans (Property/FD)</Link></li>
               <li><Link href="/loans">Collateral-Free Loans (up to ₹75L)</Link></li>
               <li><Link href="/calculator">Overseas Loan EMI Calculator</Link></li>
+              <li><Link href="/tax-calculator">Section 80E Tax Savings Calculator</Link></li>
+              <li><Link href="/assessment">Preliminary Funding Assessment</Link></li>
               <li><Link href="/eligibility">Eligibility & Documents Checklist</Link></li>
-              <li><Link href="/process">5-Step Sanction & Disbursal Process</Link></li>
               <li><Link href="/lenders">Compare 30+ Banks & NBFCs</Link></li>
-              <li><Link href="/apply">Apply Online / Request Callback</Link></li>
             </ul>
           </div>
 
@@ -42,12 +43,12 @@ export default function Footer() {
           <div className="footer-col">
             <h3>Study Destinations</h3>
             <ul>
+              <li><Link href="/universities">Top 20 Universities Guide (US & Germany)</Link></li>
               <li><Link href="/destinations#usa">Education Loan for USA (I-20 Support)</Link></li>
               <li><Link href="/destinations#uk">Education Loan for UK (CAS & 28-Day Rule)</Link></li>
               <li><Link href="/destinations#canada">Education Loan for Canada (GIC Coverage)</Link></li>
               <li><Link href="/destinations#germany">Education Loan for Germany (Blocked Account)</Link></li>
               <li><Link href="/destinations#australia">Education Loan for Australia</Link></li>
-              <li><Link href="/destinations#ireland">Education Loan for Ireland</Link></li>
               <li><Link href="/destinations">All 40+ Supported Countries</Link></li>
             </ul>
           </div>
@@ -77,7 +78,8 @@ export default function Footer() {
             <p>© {new Date().getFullYear()} Udaan Loans. All Rights Reserved.</p>
             <div className="legal-links">
               <Link href="/about">About Us</Link>
-              <Link href="/eligibility">Tax Benefits (80E)</Link>
+              <Link href="/partners">Partner Program</Link>
+              <Link href="/tax-calculator">Tax Benefits (80E)</Link>
               <Link href="/privacy">Privacy Policy</Link>
               <Link href="/terms">Terms of Service</Link>
             </div>

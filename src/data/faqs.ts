@@ -199,3 +199,37 @@ export const aboutFaqs: FAQItem[] = [
       "We adhere to strict data security standards with 256-bit SSL encryption. Your personal, academic, and financial documents are shared only with the specific lenders you authorize after evaluating preliminary loan quotes."
   }
 ];
+
+export const taxFaqs: FAQItem[] = [
+  {
+    question: "Is Section 80E tax deduction available under the New Tax Regime?",
+    answer:
+      "No. Under the default New Tax Regime (Section 115BAC of the Income Tax Act), deductions under Chapter VI-A—including Section 80E for education loan interest—are disallowed. To claim Section 80E deductions, the taxpayer must actively opt for the Old Tax Regime when filing their annual Income Tax Return (ITR)."
+  },
+  {
+    question: "Is there a maximum cap on the amount of interest deductible under Section 80E?",
+    answer:
+      "Unlike Section 80C which has a ₹1.5 Lakh limit, Section 80E has NO upper monetary limit. You can deduct 100% of the entire interest amount paid during the financial year from your gross total income, whether it is ₹1 Lakh, ₹5 Lakhs, or ₹10 Lakhs."
+  },
+  {
+    question: "For how many years can I claim Section 80E deduction?",
+    answer:
+      "Section 80E deduction is available for a maximum period of 8 consecutive assessment years, starting from the assessment year in which you first start repaying the interest, or until the interest is paid off in full, whichever is earlier. After 8 years, no further interest deduction can be claimed under this section."
+  },
+  {
+    question: "Can parents claim the Section 80E tax benefit if the loan is taken for a child's study abroad?",
+    answer:
+      "Yes. The individual who takes the loan and pays the interest out of their taxable income can claim the deduction. If a parent (father or mother) is the primary borrower or co-borrower and pays the EMIs/interest, they can claim the full deduction against their salary or business income."
+  },
+  {
+    question: "Do loans from foreign banks or fintechs qualify for Section 80E?",
+    answer:
+      "To qualify for Section 80E, the education loan must be sanctioned by an Indian banking company governed by the Banking Regulation Act, 1949, or any other financial institution notified by the Central Government of India, or an approved charitable institution. Loans taken from unregulated foreign lenders, employers, friends, or family members do NOT qualify."
+  },
+  {
+    question: "Can principal repayment of an education loan be claimed under Section 80C?",
+    answer:
+      "No. Section 80C allows deductions for home loan principal repayment, PPF, ELSS, and tuition fees for full-time education in Indian schools/universities, but it does NOT cover education loan principal repayments. Section 80E exclusively covers the interest component."
+  }
+];
+
