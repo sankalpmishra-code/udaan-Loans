@@ -76,6 +76,8 @@ export const metadata: Metadata = {
   },
 };
 
+import WhatsAppWidget from "@/components/WhatsAppWidget";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -171,6 +173,7 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
+        <WhatsAppWidget />
       </body>
     </html>
   );

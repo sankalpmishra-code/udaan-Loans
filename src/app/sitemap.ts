@@ -56,6 +56,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: changeFrequencies.apply,
     },
     {
+      path: "/match",
+      priority: 0.95,
+      changeFrequency: "daily" as const,
+    },
+    {
       path: "/about",
       priority: priorities.about,
       changeFrequency: changeFrequencies.about,
