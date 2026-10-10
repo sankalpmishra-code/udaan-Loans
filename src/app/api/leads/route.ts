@@ -57,24 +57,28 @@ export async function POST(request: Request) {
       additionalNotes,
     };
 
+    // 1. Direct Google Sheets API via Service Account Private Key (Preferred)
+    let sheetUpdated = false;
+    try {
+      const { appendLeadToGoogleSheet } = await import("@/lib/googleSheets");
+      sheetUpdated = await appendLeadToGoogleSheet(payload);
+    } catch (sheetErr) {
+      console.error("Direct Google Sheets API error:", sheetErr);
+    }
+
+    // 2. Webhook fallback (if configured)
     const webhookUrl = process.env.GOOGLE_SHEET_WEBHOOK_URL;
-
-    if (webhookUrl) {
-      // Forward payload to Google Apps Script Webhook
-      const response = await fetch(webhookUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-        redirect: "follow",
-      });
-
-      if (!response.ok) {
-        console.warn("Google Sheet Webhook returned non-200 status:", response.status);
+    if (!sheetUpdated && webhookUrl) {
+      try {
+        await fetch(webhookUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+          redirect: "follow",
+        });
+      } catch (webhookErr) {
+        console.error("Webhook fallback error:", webhookErr);
       }
-    } else {
-      console.log("ℹ️ GOOGLE_SHEET_WEBHOOK_URL not configured. Lead payload logged to console:", payload);
     }
 
     return NextResponse.json({
