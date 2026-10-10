@@ -44,9 +44,42 @@ export default function PartnersPage() {
     }
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const [submittingPartner, setSubmittingPartner] = useState(false);
+  const [partnerError, setPartnerError] = useState("");
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setFormSubmitted(true);
+    setPartnerError("");
+    setSubmittingPartner(true);
+
+    try {
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          leadType: "Partner Registration",
+          agency: formData.agency,
+          contactPerson: formData.contactPerson,
+          email: formData.email,
+          phone: formData.phone.replace(/\D/g, ""),
+          city: formData.city,
+          monthlyStudents: formData.monthlyStudents,
+          sourceUrl: typeof window !== "undefined" ? window.location.href : "/partners",
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || "Failed to submit partner application");
+      }
+
+      setFormSubmitted(true);
+    } catch (err) {
+      console.error(err);
+      setPartnerError("Unable to submit registration. Please try again or message our partnership desk on WhatsApp.");
+    } finally {
+      setSubmittingPartner(false);
+    }
   };
 
   return (
@@ -322,9 +355,20 @@ export default function PartnersPage() {
                   </div>
                 </div>
 
+                {partnerError && (
+                  <div style={{ marginTop: "14px", color: "var(--danger)", fontSize: "0.88rem" }}>
+                    ⚠️ {partnerError}
+                  </div>
+                )}
+
                 <div style={{ marginTop: "20px" }}>
-                  <button type="submit" className="btn btn-accent full-width" style={{ padding: "12px", fontSize: "1rem" }}>
-                    Submit Partner Registration →
+                  <button
+                    type="submit"
+                    className="btn btn-accent full-width"
+                    style={{ padding: "12px", fontSize: "1rem" }}
+                    disabled={submittingPartner}
+                  >
+                    {submittingPartner ? "Registering Agency..." : "Submit Partner Registration →"}
                   </button>
                 </div>
               </form>

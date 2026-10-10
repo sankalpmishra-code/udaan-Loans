@@ -20,7 +20,6 @@ export default function LeadForm() {
   const [submitted, setSubmitted] = useState(false);
   const [serverError, setServerError] = useState("");
 
-  const SHEET_URL = ""; // Optional: Paste your Google Apps Script Webhook URL
 
   // Helper to format live amount preview
   const formatAmountPreview = (num: number) => {
@@ -78,26 +77,33 @@ export default function LeadForm() {
     setSubmitting(true);
 
     try {
-      if (SHEET_URL) {
-        await fetch(SHEET_URL, {
-          method: "POST",
-          mode: "no-cors",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-          body: new URLSearchParams({
-            name: formData.name,
-            phone: formData.phone.replace(/\D/g, ""),
-            email: formData.email,
-            country: formData.country,
-            course: formData.course,
-            amount: formData.amount,
-            loanType: formData.loanType,
-            coApplicant: formData.coApplicant,
-            source: typeof window !== "undefined" ? window.location.href : "Website",
-            timestamp: new Date().toISOString(),
-          }),
-        });
+      let partnerRef = "";
+      if (typeof window !== "undefined") {
+        const urlParams = new URLSearchParams(window.location.search);
+        partnerRef = urlParams.get("ref") || urlParams.get("partner") || "";
+      }
+
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          leadType: "Student Loan Application",
+          name: formData.name,
+          phone: formData.phone.replace(/\D/g, ""),
+          email: formData.email,
+          country: formData.country,
+          course: formData.course,
+          amount: formData.amount,
+          loanType: formData.loanType,
+          coApplicant: formData.coApplicant,
+          partnerRef,
+          sourceUrl: typeof window !== "undefined" ? window.location.href : "Website",
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || "Failed to submit application");
       }
 
       setSubmitted(true);
