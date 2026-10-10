@@ -293,6 +293,25 @@ section {
   color: var(--accent);
 }
 
+.brand-logo-flex {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-icon-svg {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.brand-logo-flex:hover .brand-icon-svg {
+  transform: rotate(-5deg) scale(1.05);
+}
+
+.accent-dot {
+  color: var(--accent);
+}
+
 .desktop-nav {
   display: flex;
   align-items: center;
@@ -331,17 +350,90 @@ section {
   padding: 8px;
   flex-direction: column;
   gap: 5px;
+  z-index: 101;
 }
 
 .hamburger-bar {
   width: 24px;
   height: 2px;
   background: var(--ink);
-  transition: var(--transition);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.hamburger-bar.open-1 {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger-bar.open-2 {
+  opacity: 0;
+}
+
+.hamburger-bar.open-3 {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.mobile-backdrop {
+  position: fixed;
+  inset: 0;
+  top: 72px;
+  background: rgba(8, 33, 42, 0.45);
+  backdrop-filter: blur(4px);
+  z-index: 85;
 }
 
 .mobile-drawer {
   display: none;
+  position: fixed;
+  top: 72px;
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  padding: 24px;
+  z-index: 95;
+  box-shadow: var(--shadow-lg);
+}
+
+.mobile-drawer nav {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mobile-drawer a {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--ink);
+  padding: 6px 0;
+}
+
+.mobile-drawer a.active-mobile {
+  color: var(--brand);
+}
+
+/* Calculator Presets */
+.preset-chip {
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-full);
+  padding: 4px 14px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--ink-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.preset-chip:hover {
+  background: var(--soft-alt);
+  border-color: var(--brand-light);
+  color: var(--brand);
+}
+
+.preset-chip.chip-active {
+  background: var(--brand);
+  color: var(--brand-ink);
+  border-color: var(--brand);
 }
 
 /* ==========================================================================
@@ -1118,9 +1210,17 @@ select.input-err {
 
   .mobile-drawer {
     display: block;
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
     background: var(--surface);
-    border-top: 1px solid var(--line);
-    padding: 20px 24px;
+    border-bottom: 1px solid var(--line);
+    padding: 24px;
+    z-index: 95;
+    max-height: calc(100vh - 72px);
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
   }
 
   .mobile-drawer nav {

@@ -77,8 +77,9 @@ export default function Footer() {
             <p>© {new Date().getFullYear()} Udaan Loans. All Rights Reserved.</p>
             <div className="legal-links">
               <Link href="/about">About Us</Link>
-              <Link href="/eligibility">Tax Benefits (Section 80E)</Link>
-              <Link href="/apply">Privacy Policy & Terms</Link>
+              <Link href="/eligibility">Tax Benefits (80E)</Link>
+              <Link href="/privacy">Privacy Policy</Link>
+              <Link href="/terms">Terms of Service</Link>
             </div>
           </div>
         </div>

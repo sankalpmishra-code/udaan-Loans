@@ -34,9 +34,21 @@ export default function Calculator({
     return "₹" + (n / 1e5).toFixed(1).replace(/\.0$/, "") + " Lakh";
   };
 
+  // Quick Amount Presets
+  const amountPresets = [
+    { label: "₹25L", value: 2500000 },
+    { label: "₹35L", value: 3500000 },
+    { label: "₹50L", value: 5000000 },
+    { label: "₹75L", value: 7500000 },
+    { label: "₹1.2 Cr", value: 12000000 },
+  ];
+
+  // Quick Tenure Presets
+  const tenurePresets = [5, 7, 10, 12, 15];
+
   // Calculations
   const calculations = useMemo(() => {
-    const P = amount;
+    const P = Math.max(100000, amount);
     const r = rate / 1200; // Monthly interest rate
     const m = moratoriumMonths;
     const n = tenureYears * 12; // Total repayment months
@@ -53,6 +65,11 @@ export default function Calculator({
     const totalRepaidPostMoratorium = emi * n;
     const totalInterest = totalRepaidPostMoratorium - P;
     const totalPayable = totalRepaidPostMoratorium;
+
+    // Percentages for visual bar
+    const principalPct = Math.round((P / totalPayable) * 100);
+    const preInterestPct = Math.round((preInterest / totalPayable) * 100);
+    const postInterestPct = Math.max(0, 100 - principalPct - preInterestPct);
 
     // Generate year-by-year amortization breakdown
     const schedule: Array<{
@@ -92,6 +109,9 @@ export default function Calculator({
       totalInterest,
       totalPayable,
       adjustedPrincipal,
+      principalPct,
+      preInterestPct,
+      postInterestPct,
       schedule,
     };
   }, [amount, rate, tenureYears, moratoriumMonths]);
@@ -100,16 +120,17 @@ export default function Calculator({
     <div className="calculator-wrapper">
       <div className="calc-card" role="group" aria-labelledby="calc-heading">
         <div className="calc-header">
+          <div className="badge" style={{ marginBottom: "8px" }}>Live Financial Modeling</div>
           <h2 id="calc-heading">Overseas Education Loan EMI Calculator</h2>
           <p className="calc-sub">
-            Calculates post-graduation EMIs factoring in simple interest accrued during the study & grace moratorium period.
+            Calculates exact post-graduation EMIs factoring in simple interest accrued during course moratorium.
           </p>
         </div>
 
         <div className="calc-body">
           {/* Controls column */}
           <div className="calc-controls">
-            {/* Amount Slider */}
+            {/* Amount Slider & Presets */}
             <div className="calc-field">
               <div className="field-label-group">
                 <label htmlFor="amt">Required Loan Amount</label>
@@ -130,6 +151,18 @@ export default function Calculator({
               <div className="range-bounds">
                 <span>₹5 Lakh</span>
                 <span>₹1.5 Crore</span>
+              </div>
+              <div className="preset-chip-group" style={{ display: "flex", gap: "8px", marginTop: "8px", flexWrap: "wrap" }}>
+                {amountPresets.map((p) => (
+                  <button
+                    key={p.label}
+                    type="button"
+                    className={`preset-chip ${amount === p.value ? "chip-active" : ""}`}
+                    onClick={() => setAmount(p.value)}
+                  >
+                    {p.label}
+                  </button>
+                ))}
               </div>
             </div>
 
@@ -152,12 +185,12 @@ export default function Calculator({
                 aria-valuenow={rate}
               />
               <div className="range-bounds">
-                <span>7.0% (Secured Bank)</span>
-                <span>14.0% (Unsecured NBFC)</span>
+                <span>7.0% (Public Banks)</span>
+                <span>14.0% (NBFC Unsecured)</span>
               </div>
             </div>
 
-            {/* Repayment Tenure Slider */}
+            {/* Repayment Tenure Slider & Presets */}
             <div className="calc-field">
               <div className="field-label-group">
                 <label htmlFor="ten">Repayment Tenure Post-Course</label>
@@ -178,6 +211,18 @@ export default function Calculator({
               <div className="range-bounds">
                 <span>3 Years</span>
                 <span>15 Years</span>
+              </div>
+              <div className="preset-chip-group" style={{ display: "flex", gap: "8px", marginTop: "8px" }}>
+                {tenurePresets.map((t) => (
+                  <button
+                    key={t}
+                    type="button"
+                    className={`preset-chip ${tenureYears === t ? "chip-active" : ""}`}
+                    onClick={() => setTenureYears(t)}
+                  >
+                    {t}Y
+                  </button>
+                ))}
               </div>
             </div>
 
@@ -211,7 +256,21 @@ export default function Calculator({
             <div className="result-highlight-box" aria-live="polite">
               <span className="result-caption">Monthly EMI After Graduation</span>
               <div className="result-emi-amount">{formatINR(calculations.emi)}</div>
-              <p className="result-note">Per month for {tenureYears} years ({tenureYears * 12} installments)</p>
+              <p className="result-note">Payable for {tenureYears} years ({tenureYears * 12} monthly installments)</p>
+
+              {/* Visual Breakdown Bar */}
+              <div style={{ margin: "16px 0 20px" }}>
+                <div style={{ display: "flex", height: "10px", borderRadius: "5px", overflow: "hidden", background: "rgba(255,255,255,0.2)" }}>
+                  <div style={{ width: `${calculations.principalPct}%`, background: "#F59E0B" }} title={`Principal: ${calculations.principalPct}%`} />
+                  <div style={{ width: `${calculations.preInterestPct}%`, background: "#60A5FA" }} title={`Study Interest: ${calculations.preInterestPct}%`} />
+                  <div style={{ width: `${calculations.postInterestPct}%`, background: "#34D399" }} title={`Repayment Interest: ${calculations.postInterestPct}%`} />
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.76rem", opacity: 0.85, marginTop: "6px" }}>
+                  <span>🟡 Principal ({calculations.principalPct}%)</span>
+                  <span>🔵 Study Int. ({calculations.preInterestPct}%)</span>
+                  <span>🟢 Repay Int. ({calculations.postInterestPct}%)</span>
+                </div>
+              </div>
 
               <div className="result-stats-grid">
                 <div className="stat-item">
@@ -234,12 +293,13 @@ export default function Calculator({
 
               <div className="calc-cta-group">
                 <Link href="/apply" className="btn btn-accent full-width">
-                  Get Pre-Approved at this EMI
+                  Lock In This EMI Quote →
                 </Link>
                 <button
                   type="button"
                   className="btn btn-outline full-width"
                   onClick={() => setViewSchedule(!viewSchedule)}
+                  style={{ background: "rgba(255,255,255,0.12)", color: "#fff", borderColor: "rgba(255,255,255,0.25)" }}
                 >
                   {viewSchedule ? "Hide Amortization Table" : "View Year-by-Year Amortization"}
                 </button>
