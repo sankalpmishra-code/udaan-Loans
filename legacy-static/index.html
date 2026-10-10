@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Udaan Education Loans: Fund your study abroad</title>
+  <meta name="description" content="Compare education loans from 30+ lenders for studying in the USA, UK, Canada, Australia, Germany, and 40+ countries. Calculate EMI and check eligibility.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header>
+    <div class="wrap">
+      <a class="logo" href="#top">Udaan<span>.</span>Loans</a>
+      <nav aria-label="Main">
+        <a href="#loans">Loans</a>
+        <a href="#countries">Countries</a>
+        <a href="#process">Process</a>
+        <a href="#eligibility">Eligibility</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn" href="#apply">Apply now</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero Section with EMI Calculator -->
+    <section class="hero">
+      <div class="wrap grid">
+        <div>
+          <h1>Your admission letter is in. Let's fund the rest.</h1>
+          <p class="lead">
+            Udaan Loans is a loan facilitator for Indian students heading to the USA, UK, Canada, Australia, Germany and 40+ other countries. We help you compare lenders, prepare your documents and apply, with indicative rates from 7.5% to 12.5%.
+          </p>
+          <a class="btn" href="#apply">Check my eligibility</a>
+          <ul class="trust">
+            <li>Rates from 7.5%</li>
+            <li>Up to ₹1.5 crore</li>
+            <li>Collateral-free options</li>
+            <li>Help with every document</li>
+            <li>Compare many lenders</li>
+          </ul>
+        </div>
+
+        <!-- EMI Calculator Widget -->
+        <div class="calc" role="group" aria-labelledby="ch">
+          <h2 id="ch">Estimate your monthly EMI</h2>
+          
+          <div class="field">
+            <label for="amt">Loan amount <output id="amtO"></output></label>
+            <input id="amt" type="range" min="500000" max="15000000" step="100000" value="3500000">
+          </div>
+          
+          <div class="field">
+            <label for="rate">Interest rate (per year) <output id="rateO"></output></label>
+            <input id="rate" type="range" min="7.5" max="12.5" step="0.1" value="9.5">
+          </div>
+          
+          <div class="field">
+            <label for="ten">Repayment period <output id="tenO"></output></label>
+            <input id="ten" type="range" min="3" max="15" step="1" value="10">
+          </div>
+          
+          <div class="field">
+            <label for="mor">Course length plus grace <output id="morO"></output></label>
+            <input id="mor" type="range" min="12" max="60" step="6" value="30">
+          </div>
+          
+          <div class="result" aria-live="polite">
+            <div>Monthly EMI after your course</div>
+            <div class="emi" id="emi"></div>
+            <dl>
+              <div>
+                <dt>Interest during study</dt>
+                <dd id="pre"></dd>
+              </div>
+              <div>
+                <dt>Total interest</dt>
+                <dd id="int"></dd>
+              </div>
+              <div>
+                <dt>Total payable</dt>
+                <dd id="tot"></dd>
+              </div>
+            </dl>
+          </div>
+          <p class="note">Illustrative only. Interest during the study period is treated as simple interest and added to the principal. Your actual rate is set by the lender and depends on profile, university and collateral.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Statistics -->
+    <div class="stats">
+      <div class="wrap">
+        <div><b>7.5% to 12.5%</b>indicative interest rates</div>
+        <div><b>₹1.5 crore</b>typical maximum loan</div>
+        <div><b>40+</b>study destinations</div>
+        <div><b>30+</b>lenders compared</div>
+      </div>
+    </div>
+
+    <!-- Loan Options & Coverage -->
+    <section class="alt-bg" id="loans">
+      <div class="wrap">
+        <h2>Loan options we help you apply for</h2>
+        <p>Udaan Loans is a loan facilitator, not a lender. Loans are sanctioned and paid out by the lenders. We guide you from comparison to paperwork.</p>
+        
+        <div class="cols">
+          <div class="card">
+            <h3>Secured loan</h3>
+            <p>Backed by property or fixed deposits. Lowest rates and the highest limits, up to ₹1.5 crore.</p>
+          </div>
+          <div class="card">
+            <h3>Collateral-free loan</h3>
+            <p>Up to ₹75 lakh based on your admission, academic record and a co-applicant's income.</p>
+          </div>
+          <div class="card">
+            <h3>Short-term top-up</h3>
+            <p>Extra funds for a semester abroad, test fees, or a laptop and housing deposit.</p>
+          </div>
+        </div>
+
+        <h3 style="margin-top:40px">What the loan covers</h3>
+        <div class="cols">
+          <div class="card">
+            <h3>Tuition and fees</h3>
+            <p>Paid straight to your university.</p>
+          </div>
+          <div class="card">
+            <h3>Living costs</h3>
+            <p>Rent, food and local travel for the full course.</p>
+          </div>
+          <div class="card">
+            <h3>Travel and visa</h3>
+            <p>Flights, visa fees and health insurance.</p>
+          </div>
+          <div class="card">
+            <h3>Books and equipment</h3>
+            <p>Laptop, lab kit and course material.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Supported Destinations -->
+    <section id="countries">
+      <div class="wrap">
+        <h2>Study almost anywhere safe, we fund it</h2>
+        <p>These are the most chosen destinations for Indian students. We do not fund courses in active conflict zones.</p>
+        
+        <h3 class="grp">North America</h3>
+        <ul class="countries">
+          <li>United States</li>
+          <li>Canada</li>
+        </ul>
+        
+        <h3 class="grp">Europe</h3>
+        <ul class="countries">
+          <li>United Kingdom</li><li>Ireland</li><li>Germany</li><li>France</li><li>Netherlands</li>
+          <li>Italy</li><li>Spain</li><li>Sweden</li><li>Switzerland</li><li>Denmark</li>
+          <li>Finland</li><li>Norway</li><li>Austria</li><li>Belgium</li><li>Poland</li>
+          <li>Portugal</li><li>Czech Republic</li><li>Hungary</li><li>Lithuania</li><li>Latvia</li>
+          <li>Estonia</li><li>Malta</li><li>Cyprus</li><li>Georgia</li>
+        </ul>
+        
+        <h3 class="grp">Asia Pacific</h3>
+        <ul class="countries">
+          <li>Australia</li><li>New Zealand</li><li>Singapore</li><li>Japan</li><li>South Korea</li>
+          <li>Hong Kong</li><li>Malaysia</li><li>Philippines</li><li>Uzbekistan</li><li>Kazakhstan</li>
+          <li>Kyrgyzstan</li>
+        </ul>
+        
+        <h3 class="grp">Middle East and Africa</h3>
+        <ul class="countries">
+          <li>United Arab Emirates</li><li>Mauritius</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Partner Lenders -->
+    <section class="alt-bg" id="lenders">
+      <div class="wrap">
+        <h2>Compare offers from major lenders</h2>
+        <p>We help you compare education loan offers from public banks, private banks and specialist lenders, so you pick the best rate for your profile.</p>
+        
+        <h3 class="grp">Public sector banks</h3>
+        <ul class="lenders">
+          <li>State Bank of India</li><li>Bank of Baroda</li><li>Punjab National Bank</li><li>Canara Bank</li>
+          <li>Union Bank of India</li><li>Bank of India</li><li>Indian Bank</li><li>Central Bank of India</li>
+          <li>Indian Overseas Bank</li><li>Bank of Maharashtra</li><li>UCO Bank</li><li>Punjab & Sind Bank</li>
+        </ul>
+
+        <h3 class="grp">Private banks</h3>
+        <ul class="lenders">
+          <li>HDFC Bank</li><li>ICICI Bank</li><li>Axis Bank</li><li>Kotak Mahindra Bank</li>
+          <li>IDFC FIRST Bank</li><li>Federal Bank</li><li>South Indian Bank</li><li>Karnataka Bank</li>
+          <li>Yes Bank</li><li>IndusInd Bank</li><li>RBL Bank</li><li>Bandhan Bank</li>
+        </ul>
+
+        <h3 class="grp">NBFCs and international lenders</h3>
+        <ul class="lenders">
+          <li>HDFC Credila</li><li>Avanse Financial Services</li><li>Auxilo Finance</li><li>InCred Finance</li>
+          <li>MPOWER Financing</li><li>Propelld</li><li>Tata Capital</li><li>Bajaj Finserv</li><li>Poonawalla Fincorp</li>
+        </ul>
+        <p class="note">Lender names are listed for reference only. Udaan Loans is a loan facilitator, not a bank or lender. Lenders decide eligibility, rates and sanction.</p>
+      </div>
+    </section>
+
+    <!-- 5-Step Application Process -->
+    <section class="alt-bg" id="process">
+      <div class="wrap">
+        <h2>From application to disbursal in five steps</h2>
+        <ol class="steps">
+          <li>
+            <h3>Share your plan</h3>
+            <p>Tell us your course, university and the amount you need. This takes about five minutes.</p>
+          </li>
+          <li>
+            <h3>Get a provisional offer</h3>
+            <p>A loan advisor calls you within one working day and shortlists lenders that suit your profile.</p>
+          </li>
+          <li>
+            <h3>Upload documents</h3>
+            <p>Send KYC, admission letter, cost estimate and your co-applicant's income proof.</p>
+          </li>
+          <li>
+            <h3>Get your sanction letter</h3>
+            <p>Your chosen lender issues it. Use it for your visa interview and proof of funds.</p>
+          </li>
+          <li>
+            <h3>Disbursal by the lender</h3>
+            <p>The lender pays tuition to your university and releases living costs as per its terms.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Testimonials & Reviews -->
+    <section id="stories">
+      <div class="wrap">
+        <h2>Students who made it abroad</h2>
+        <div class="cols">
+          <figure class="card quote">
+            <div class="stars" aria-label="5 out of 5">★★★★★</div>
+            <blockquote>I had my sanction letter before my visa slot. The advisor explained the moratorium clearly, so there were no surprises.</blockquote>
+            <cite>Rahul S.</cite>
+            <small>MS Computer Science, Canada</small>
+          </figure>
+          <figure class="card quote">
+            <div class="stars" aria-label="5 out of 5">★★★★★</div>
+            <blockquote>Comparing lenders in one place saved me weeks. I got a lower rate than the first bank I had approached.</blockquote>
+            <cite>Ananya M.</cite>
+            <small>MSc Finance, United Kingdom</small>
+          </figure>
+          <figure class="card quote">
+            <div class="stars" aria-label="5 out of 5">★★★★★</div>
+            <blockquote>My parents were nervous about collateral. The team walked them through every document, step by step.</blockquote>
+            <cite>Karan P.</cite>
+            <small>MBA, Germany</small>
+          </figure>
+          <figure class="card quote">
+            <div class="stars" aria-label="5 out of 5">★★★★★</div>
+            <blockquote>Disbursal went straight to the university and living costs came in instalments. Simple and transparent.</blockquote>
+            <cite>Sneha R.</cite>
+            <small>MBBS, Georgia</small>
+          </figure>
+        </div>
+        <p class="note">Sample stories for design preview. Replace with real, consented student reviews before launch.</p>
+        
+        <div class="cta" style="margin-top:36px">
+          <h2>Your dream university is waiting</h2>
+          <p>Check your eligibility in 5 minutes. No impact on your credit score.</p>
+          <a class="btn" href="#apply">Apply now</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Eligibility & Documents Table -->
+    <section class="alt-bg" id="eligibility">
+      <div class="wrap">
+        <h2>Eligibility and documents</h2>
+        <div class="scroll">
+          <table>
+            <thead>
+              <tr><th>You need</th><th>Details</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Age and citizenship</td><td>Indian citizen, 18 years or older</td></tr>
+              <tr><td>Admission</td><td>Confirmed or conditional offer from a recognised university</td></tr>
+              <tr><td>Co-applicant</td><td>Parent, guardian or spouse with a regular income</td></tr>
+              <tr><td>Student documents</td><td>Aadhaar, PAN, passport, mark sheets, test scores (GRE, GMAT, IELTS, TOEFL)</td></tr>
+              <tr><td>Co-applicant documents</td><td>KYC, last 6 months bank statements, salary slips or ITR for 2 years</td></tr>
+              <tr><td>Collateral (if secured)</td><td>Property papers or deposit certificates</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Frequently Asked Questions -->
+    <section id="faq">
+      <div class="wrap">
+        <h2>Questions students ask us</h2>
+        <details>
+          <summary>Do I start repaying while I study?</summary>
+          <p>No. You pay only the interest or nothing during the course and a grace period, depending on the lender and plan. Full EMIs begin after that.</p>
+        </details>
+        <details>
+          <summary>Can I apply before I get my admission letter?</summary>
+          <p>Yes. We can check your profile and shortlist lenders early. The final sanction needs the offer letter.</p>
+        </details>
+        <details>
+          <summary>Is there a tax benefit?</summary>
+          <p>Interest paid on an education loan can be claimed as a deduction under Section 80E of the Income Tax Act. Please check current rules with a tax advisor.</p>
+        </details>
+        <details>
+          <summary>What if my visa is rejected?</summary>
+          <p>Tell your lender and us immediately. Undisbursed amounts are usually cancelled, and we help you coordinate refunds with the lender and university.</p>
+        </details>
+        <details>
+          <summary>Can I repay early?</summary>
+          <p>Most education loans allow part or full prepayment, and many lenders charge no penalty. Check your lender's terms.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- Lead Capture Form -->
+    <section id="apply">
+      <div class="wrap">
+        <h2>Start your application</h2>
+        <p>Fill this in and an advisor will call you within one working day.</p>
+        
+        <form id="f" novalidate>
+          <div>
+            <label for="n">Full name</label>
+            <input id="n" type="text" autocomplete="name" placeholder="Your full name">
+            <p class="err" id="nE"></p>
+          </div>
+          <div>
+            <label for="p">Mobile number</label>
+            <input id="p" type="tel" inputmode="numeric" autocomplete="tel" placeholder="10-digit number">
+            <p class="err" id="pE"></p>
+          </div>
+          <div>
+            <label for="e">Email</label>
+            <input id="e" type="email" autocomplete="email" placeholder="you@example.com">
+            <p class="err" id="eE"></p>
+          </div>
+          <div>
+            <label for="c">Study destination</label>
+            <select id="c">
+              <option value="">Select a country</option>
+              <option>United States</option>
+              <option>United Kingdom</option>
+              <option>Canada</option>
+              <option>Australia</option>
+              <option>Germany</option>
+              <option>Ireland</option>
+              <option>Other</option>
+            </select>
+            <p class="err" id="cE"></p>
+          </div>
+          <div>
+            <label for="u">University and course</label>
+            <input id="u" type="text" placeholder="e.g. MS Data Science, University of Toronto">
+          </div>
+          <div>
+            <label for="a">Loan needed (₹)</label>
+            <input id="a" type="number" min="100000" step="50000" placeholder="e.g. 3500000">
+            <p class="err" id="aE"></p>
+          </div>
+          <div class="full">
+            <label style="font-weight:400">
+              <input type="checkbox" id="k"> I agree to be contacted by Udaan Loans, and to my details being shared with lenders relevant to my request.
+            </label>
+            <p class="err" id="kE"></p>
+          </div>
+          <div class="full">
+            <button class="btn alt" type="submit">Request a call back</button>
+          </div>
+        </form>
+
+        <div id="done" role="status" tabindex="-1">
+          <h3>Thank you, <span id="dn"></span>.</h3>
+          <p id="dm"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="wrap">
+      <strong>Udaan Loans</strong>
+      <p>Udaan Loans is a loan facilitation service. We are not a bank, NBFC or lender, and we do not sanction or disburse loans. Loans are provided by lenders, subject to their credit approval, terms, rates and fees. Rates, limits and timelines shown are indicative and vary by lender and applicant. Lender names are for reference and do not imply affiliation. Add your business registration, grievance contact and privacy policy before launch.</p>
+    </div>
+  </footer>
+
+  <!-- Application Scripts -->
+  <script src="js/calculator.js"></script>
+  <script src="js/form.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

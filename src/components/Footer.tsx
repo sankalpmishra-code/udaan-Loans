@@ -1,0 +1,88 @@
+import React from "react";
+import Link from "next/link";
+import { siteConfig } from "@/data/siteConfig";
+
+export default function Footer() {
+  return (
+    <footer className="site-footer">
+      <div className="wrap">
+        <div className="footer-grid">
+          {/* Brand info */}
+          <div className="footer-col brand-col">
+            <Link href="/" className="logo">
+              Udaan<span>.</span>Loans
+            </Link>
+            <p className="footer-tagline">
+              India&apos;s leading education loan facilitation platform for overseas studies.
+              Matching aspiring students with 30+ RBI-recognized banks & NBFCs for collateral-free
+              and secured loans up to ₹1.5 Crore.
+            </p>
+            <div className="contact-details">
+              <p><strong>Toll-Free:</strong> <a href={`tel:${siteConfig.telephone}`}>{siteConfig.telephone}</a></p>
+              <p><strong>Email:</strong> <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></p>
+              <p><strong>Headquarters:</strong> {siteConfig.address.streetAddress}, {siteConfig.address.addressLocality}, {siteConfig.address.addressRegion} - {siteConfig.address.postalCode}</p>
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div className="footer-col">
+            <h3>Explore Loans</h3>
+            <ul>
+              <li><Link href="/loans">Secured Loans (Property/FD)</Link></li>
+              <li><Link href="/loans">Collateral-Free Loans (up to ₹75L)</Link></li>
+              <li><Link href="/calculator">Overseas Loan EMI Calculator</Link></li>
+              <li><Link href="/eligibility">Eligibility & Documents Checklist</Link></li>
+              <li><Link href="/process">5-Step Sanction & Disbursal Process</Link></li>
+              <li><Link href="/lenders">Compare 30+ Banks & NBFCs</Link></li>
+              <li><Link href="/apply">Apply Online / Request Callback</Link></li>
+            </ul>
+          </div>
+
+          {/* Popular Study Destinations */}
+          <div className="footer-col">
+            <h3>Study Destinations</h3>
+            <ul>
+              <li><Link href="/destinations#usa">Education Loan for USA (I-20 Support)</Link></li>
+              <li><Link href="/destinations#uk">Education Loan for UK (CAS & 28-Day Rule)</Link></li>
+              <li><Link href="/destinations#canada">Education Loan for Canada (GIC Coverage)</Link></li>
+              <li><Link href="/destinations#germany">Education Loan for Germany (Blocked Account)</Link></li>
+              <li><Link href="/destinations#australia">Education Loan for Australia</Link></li>
+              <li><Link href="/destinations#ireland">Education Loan for Ireland</Link></li>
+              <li><Link href="/destinations">All 40+ Supported Countries</Link></li>
+            </ul>
+          </div>
+
+          {/* Regional Hubs / GEO Targeting */}
+          <div className="footer-col">
+            <h3>Serving Students Pan-India</h3>
+            <p className="geo-text">
+              Doorstep document pickup, specialized processing branches, and dedicated loan advisors active across:
+            </p>
+            <ul className="geo-list">
+              {siteConfig.geoHubsServed.map((city) => (
+                <li key={city}>📍 {city}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Regulatory Disclaimer for Trust, Compliance & AEO */}
+        <div className="footer-bottom">
+          <div className="disclaimer-box">
+            <p>
+              <strong>Regulatory & Compliance Notice:</strong> Udaan Loans ({siteConfig.legalName}) is a premier digital loan facilitation and student advisory service. We are not a bank, non-banking financial company (NBFC), or money lender under Indian law. We do not underwrite, sanction, or disburse loans. All loan applications are subject to the independent credit evaluation, underwriting policies, margin money rules, terms, and conditions of our partnering RBI-regulated scheduled commercial banks and NBFCs. Rates (7.5% - 13.5%), processing fees, and sanction amounts shown across the website are indicative and vary according to university ranking, student academic record, co-applicant financial strength, and collateral quality.
+            </p>
+          </div>
+          <div className="copyright-bar">
+            <p>© {new Date().getFullYear()} Udaan Loans. All Rights Reserved.</p>
+            <div className="legal-links">
+              <Link href="/about">About Us</Link>
+              <Link href="/eligibility">Tax Benefits (Section 80E)</Link>
+              <Link href="/apply">Privacy Policy & Terms</Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}

@@ -1,0 +1,175 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import FAQSection from "@/components/FAQSection";
+import { lendersList } from "@/data/lenders";
+import { lendersFaqs } from "@/data/faqs";
+
+export const metadata: Metadata = {
+  title: "Compare 30+ Study Abroad Education Loan Lenders: SBI, HDFC Credila, Avanse",
+  description:
+    "Compare education loan interest rates, collateral requirements, and processing times across 30+ Indian public banks, private banks, and NBFCs for overseas studies.",
+  keywords: [
+    "compare study abroad education loans India",
+    "SBI vs HDFC Credila education loan",
+    "Bank of Baroda education loan interest rate",
+    "best NBFC for abroad education loan",
+    "unsecured education loan lenders list",
+    "Avanse vs Auxilo education loan",
+  ],
+  alternates: {
+    canonical: "/lenders",
+  },
+};
+
+export default function LendersPage() {
+  const publicBanks = [
+    "State Bank of India (SBI)", "Bank of Baroda", "Punjab National Bank (PNB)",
+    "Canara Bank", "Union Bank of India", "Bank of India", "Indian Bank",
+    "Central Bank of India", "Indian Overseas Bank", "Bank of Maharashtra",
+    "UCO Bank", "Punjab & Sind Bank"
+  ];
+
+  const privateBanks = [
+    "HDFC Bank", "ICICI Bank", "Axis Bank", "Kotak Mahindra Bank",
+    "IDFC FIRST Bank", "Federal Bank", "South Indian Bank", "Karnataka Bank",
+    "Yes Bank", "IndusInd Bank", "RBL Bank", "Bandhan Bank"
+  ];
+
+  const nbfcs = [
+    "HDFC Credila", "Avanse Financial Services", "Auxilo Finserve",
+    "InCred Finance", "MPOWER Financing", "Propelld", "Tata Capital",
+    "Bajaj Finserv", "Poonawalla Fincorp"
+  ];
+
+  return (
+    <>
+      <Breadcrumbs items={[{ name: "Compare Lenders", url: "/lenders" }]} />
+
+      <section className="hero" style={{ padding: "48px 0 64px" }}>
+        <div className="wrap">
+          <div className="section-head text-center">
+            <span className="badge">Transparent Lending Network</span>
+            <h1>Compare Education Loan Offers from 30+ Major Lenders</h1>
+            <p className="lead">
+              Udaan Loans partners with leading Indian scheduled commercial banks and specialized education NBFCs.
+              Compare interest rates, loan ceilings, margin money rules, and speed to secure the ideal financial partner.
+            </p>
+          </div>
+
+          {/* Master Comparison Table */}
+          <div className="data-table-wrapper" style={{ marginTop: "20px" }}>
+            <table className="data-table">
+              <thead>
+                <tr>
+                  <th>Lending Institution</th>
+                  <th>Category</th>
+                  <th>Interest Rate (p.a.)</th>
+                  <th>Collateral-Free Limit</th>
+                  <th>Secured Limit</th>
+                  <th>Processing Time</th>
+                  <th>Margin Money</th>
+                </tr>
+              </thead>
+              <tbody>
+                {lendersList.map((lender) => (
+                  <tr key={lender.name}>
+                    <td>
+                      <strong>{lender.name}</strong>
+                      <div style={{ fontSize: "0.82rem", color: "var(--muted)", marginTop: "4px" }}>
+                        {lender.highlights.join(" • ")}
+                      </div>
+                    </td>
+                    <td><span className="badge" style={{ marginBottom: "0", fontSize: "0.78rem" }}>{lender.category}</span></td>
+                    <td className="text-green" style={{ fontWeight: "700" }}>{lender.interestRate}</td>
+                    <td>{lender.maxUnsecured}</td>
+                    <td>{lender.maxSecured}</td>
+                    <td>{lender.processingTime}</td>
+                    <td>{lender.marginMoney}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* Categorized Directory */}
+      <section className="section-alt">
+        <div className="wrap">
+          <div className="section-head text-center">
+            <span className="badge">Institutions by Type</span>
+            <h2>Our Comprehensive Banking & NBFC Network</h2>
+            <p className="lead">
+              Whether you need public sector subsidies or private fintech agility, we have direct integrations.
+            </p>
+          </div>
+
+          <div className="grid-3">
+            <div className="card">
+              <div className="card-icon">🏛️</div>
+              <h3>12 Public Sector Banks</h3>
+              <p style={{ fontSize: "0.92rem", color: "var(--muted)" }}>
+                Government-backed safety, lowest floating rates, and Central Scheme for Interest Subsidy (CSIS) eligibility:
+              </p>
+              <ul className="badge-pill-list" style={{ marginTop: "16px" }}>
+                {publicBanks.map((b) => (
+                  <li key={b} className="badge-pill">{b}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="card">
+              <div className="card-icon">💼</div>
+              <h3>12 Private Commercial Banks</h3>
+              <p style={{ fontSize: "0.92rem", color: "var(--muted)" }}>
+                Fast turnaround times, digital KYC, pre-visa sanction letters, and competitive unsecured limits:
+              </p>
+              <ul className="badge-pill-list" style={{ marginTop: "16px" }}>
+                {privateBanks.map((b) => (
+                  <li key={b} className="badge-pill">{b}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="card">
+              <div className="card-icon">🚀</div>
+              <h3>9 Leading NBFCs & Fintechs</h3>
+              <p style={{ fontSize: "0.92rem", color: "var(--muted)" }}>
+                Specialized overseas underwriting, up to ₹75L collateral-free loans, 0% margin money, and USD disbursement:
+              </p>
+              <ul className="badge-pill-list" style={{ marginTop: "16px" }}>
+                {nbfcs.map((b) => (
+                  <li key={b} className="badge-pill">{b}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Lenders FAQ Section */}
+      <FAQSection
+        title="Frequently Asked Questions: Banks & Lenders"
+        subtitle="Evaluating credit scores, CIBIL inquiries, branch interactions, and rate negotiations."
+        faqs={lendersFaqs}
+        id="lenders-faq"
+      />
+
+      {/* Bottom CTA */}
+      <section>
+        <div className="wrap">
+          <div className="result-highlight-box text-center" style={{ padding: "40px 24px", borderRadius: "var(--radius-lg)" }}>
+            <h2>Get Multi-Bank Sanction Letters in One Go</h2>
+            <p className="lead" style={{ color: "#fff", maxWidth: "600px", margin: "0 auto 20px" }}>
+              Submit one application with Udaan. We negotiate with multiple lenders simultaneously to get you the lowest interest rate.
+            </p>
+            <Link href="/apply" className="btn btn-accent">
+              Compare Your Real Bank Quotes Free →
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
