@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 import { siteConfig } from "@/data/siteConfig";
 import { universities } from "@/data/universities";
+import { destinationsList } from "@/data/destinations";
 
 /**
  * Next.js Dynamic XML Sitemap Generator
@@ -87,6 +88,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
     },
   ];
+
+  // Add all country-specific study abroad loan landing pages
+  destinationsList.forEach((d) => {
+    routes.push({
+      path: `/destinations/${d.id}`,
+      priority: 0.9,
+      changeFrequency: "weekly" as const,
+    });
+  });
 
   // Add all partner university and pathway college dynamic landing pages
   universities.forEach((u) => {

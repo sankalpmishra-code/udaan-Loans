@@ -32,11 +32,14 @@ export default function HomePage() {
             </p>
 
             <div className="hero-actions" style={{ display: "flex", gap: "14px", flexWrap: "wrap", marginTop: "24px" }}>
-              <Link href="/apply" className="btn btn-accent">
-                Check My Loan Eligibility
+              <Link href="/match" className="btn btn-accent" style={{ padding: "12px 24px", fontSize: "1rem" }}>
+                ⚡ Run 60s Bank Matcher
               </Link>
-              <Link href="/calculator" className="btn btn-outline">
-                Use Detailed EMI Calculator
+              <Link href="/apply" className="btn btn-outline" style={{ padding: "12px 22px", fontSize: "1rem" }}>
+                Check Eligibility & Apply
+              </Link>
+              <Link href="/calculator" className="btn btn-outline" style={{ padding: "12px 20px", fontSize: "1rem" }}>
+                EMI Calculator
               </Link>
             </div>
 
@@ -150,10 +153,14 @@ export default function HomePage() {
                 <h3>{dest.country}</h3>
                 <p><strong>Avg. Living Cost:</strong> {dest.avgLivingCost}</p>
                 <p><strong>Typical Loan:</strong> {dest.typicalLoanAmount}</p>
-                <p style={{ fontSize: "0.88rem", color: "var(--muted)" }}>{dest.visaFundRequirements}</p>
-                <Link href={`/destinations#${dest.id}`} className="btn btn-outline full-width" style={{ marginTop: "16px" }}>
-                  View {dest.country} Guide →
-                </Link>
+                <div style={{ display: "flex", gap: "10px", marginTop: "16px" }}>
+                  <Link href={`/destinations/${dest.id}`} className="btn btn-primary" style={{ flex: 1, padding: "8px 12px", fontSize: "0.85rem", textAlign: "center" }}>
+                    {dest.country} Guide →
+                  </Link>
+                  <Link href={`/match?country=${encodeURIComponent(dest.country)}`} className="btn btn-outline" style={{ padding: "8px 12px", fontSize: "0.85rem" }}>
+                    Match
+                  </Link>
+                </div>
               </div>
             ))}
           </div>

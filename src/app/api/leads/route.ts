@@ -21,6 +21,13 @@ export async function POST(request: Request) {
       partnerRef = "",
       sourceUrl = "",
       additionalNotes = "",
+      utmSource = "",
+      utmMedium = "",
+      utmCampaign = "",
+      utmTerm = "",
+      utmContent = "",
+      gclid = "",
+      landingPage = "",
     } = body;
 
     // Basic validation
@@ -55,6 +62,13 @@ export async function POST(request: Request) {
       partnerRef,
       sourceUrl,
       additionalNotes,
+      utmSource,
+      utmMedium,
+      utmCampaign,
+      utmTerm,
+      utmContent,
+      gclid,
+      landingPage,
     };
 
     // 1. Direct Google Sheets API via Service Account Private Key (Preferred)

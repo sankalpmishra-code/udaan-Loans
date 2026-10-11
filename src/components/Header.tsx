@@ -10,6 +10,7 @@ export default function Header() {
 
   const navLinks = [
     { name: "Bank Matcher", href: "/match" },
+    { name: "Destinations", href: "/destinations" },
     { name: "Universities", href: "/universities" },
     { name: "Loans", href: "/loans" },
     { name: "EMI Calc", href: "/calculator" },

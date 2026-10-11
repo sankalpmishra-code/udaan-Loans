@@ -77,6 +77,7 @@ export const metadata: Metadata = {
 };
 
 import WhatsAppWidget from "@/components/WhatsAppWidget";
+import Analytics from "@/components/Analytics";
 
 export default function RootLayout({
   children,
@@ -177,6 +178,7 @@ export default function RootLayout({
         <JsonLd data={graphSchema} />
       </head>
       <body>
+        <Analytics />
         <Header />
         <main>{children}</main>
         <Footer />

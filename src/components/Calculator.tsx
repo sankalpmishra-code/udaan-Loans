@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
+import { trackCalculatorUse } from "@/lib/analytics";
 
 interface CalculatorProps {
   initialAmount?: number;
@@ -291,18 +292,28 @@ export default function Calculator({
                 </div>
               </div>
 
-              <div className="calc-cta-group">
-                <Link href="/apply" className="btn btn-accent full-width">
-                  Lock In This EMI Quote →
-                </Link>
-                <button
-                  type="button"
-                  className="btn btn-outline full-width"
-                  onClick={() => setViewSchedule(!viewSchedule)}
-                  style={{ background: "rgba(255,255,255,0.12)", color: "#fff", borderColor: "rgba(255,255,255,0.25)" }}
+              <div className="calc-cta-group" style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                <Link
+                  href={`/match?amount=${amount}`}
+                  className="btn btn-accent full-width"
+                  onClick={() => trackCalculatorUse(amount, tenureYears, calculations.emi)}
+                  style={{ textAlign: "center" }}
                 >
-                  {viewSchedule ? "Hide Amortization Table" : "View Year-by-Year Amortization"}
-                </button>
+                  ⚡ Match 30+ Banks for {formatLakhCrore(amount)} →
+                </Link>
+                <div style={{ display: "flex", gap: "8px" }}>
+                  <Link href="/apply" className="btn btn-outline" style={{ flex: 1, textAlign: "center", background: "rgba(255,255,255,0.08)", color: "#fff", borderColor: "rgba(255,255,255,0.25)" }}>
+                    Apply with Advisor
+                  </Link>
+                  <button
+                    type="button"
+                    className="btn btn-outline"
+                    onClick={() => setViewSchedule(!viewSchedule)}
+                    style={{ flex: 1, background: "rgba(255,255,255,0.08)", color: "#fff", borderColor: "rgba(255,255,255,0.25)" }}
+                  >
+                    {viewSchedule ? "Hide Schedule" : "Amortization Table"}
+                  </button>
+                </div>
               </div>
             </div>
           </div>

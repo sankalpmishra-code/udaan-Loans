@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { getStoredAttribution, trackLeadSubmission } from "@/lib/analytics";
 
 export default function LeadForm() {
   const [formData, setFormData] = useState({
@@ -77,11 +78,7 @@ export default function LeadForm() {
     setSubmitting(true);
 
     try {
-      let partnerRef = "";
-      if (typeof window !== "undefined") {
-        const urlParams = new URLSearchParams(window.location.search);
-        partnerRef = urlParams.get("ref") || urlParams.get("partner") || "";
-      }
+      const attribution = getStoredAttribution();
 
       const res = await fetch("/api/leads", {
         method: "POST",
@@ -96,7 +93,14 @@ export default function LeadForm() {
           amount: formData.amount,
           loanType: formData.loanType,
           coApplicant: formData.coApplicant,
-          partnerRef,
+          partnerRef: attribution.partnerRef || "",
+          utmSource: attribution.utm_source || "",
+          utmMedium: attribution.utm_medium || "",
+          utmCampaign: attribution.utm_campaign || "",
+          utmTerm: attribution.utm_term || "",
+          utmContent: attribution.utm_content || "",
+          gclid: attribution.gclid || "",
+          landingPage: attribution.landingPage || "",
           sourceUrl: typeof window !== "undefined" ? window.location.href : "Website",
         }),
       });
@@ -105,6 +109,15 @@ export default function LeadForm() {
       if (!res.ok || !data.success) {
         throw new Error(data.error || "Failed to submit application");
       }
+
+      // Fire conversion event for Google Analytics 4 & Ads
+      trackLeadSubmission("Student Loan Application", {
+        amount: formData.amount,
+        country: formData.country,
+        loan_type: formData.loanType,
+        utm_source: attribution.utm_source,
+        utm_campaign: attribution.utm_campaign,
+      });
 
       setSubmitted(true);
     } catch (err) {

@@ -78,9 +78,17 @@ export default function DestinationsPage() {
                       <span className="badge" style={{ marginBottom: "0" }}>Recognized for Student Visa</span>
                     </div>
                   </div>
-                  <Link href={`/apply?destination=${encodeURIComponent(dest.country)}`} className="btn btn-accent">
-                    Apply for {dest.country} Loan →
-                  </Link>
+                  <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+                    <Link href={`/destinations/${dest.id}`} className="btn btn-primary" style={{ padding: "8px 16px", fontSize: "0.9rem" }}>
+                      View Full {dest.country} Guide →
+                    </Link>
+                    <Link href={`/match?country=${encodeURIComponent(dest.country)}`} className="btn btn-outline" style={{ padding: "8px 16px", fontSize: "0.9rem" }}>
+                      Run Matcher
+                    </Link>
+                    <Link href={`/apply?destination=${encodeURIComponent(dest.country)}`} className="btn btn-accent" style={{ padding: "8px 16px", fontSize: "0.9rem" }}>
+                      Apply
+                    </Link>
+                  </div>
                 </div>
 
                 <div className="grid-3" style={{ marginTop: "20px" }}>

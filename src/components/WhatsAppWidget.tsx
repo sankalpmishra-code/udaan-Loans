@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/data/siteConfig";
+import { trackWhatsAppClick } from "@/lib/analytics";
 
 export default function WhatsAppWidget() {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,6 +35,8 @@ export default function WhatsAppWidget() {
 
     const whatsappNumber = siteConfig.whatsappNumber || "917303200803";
     const url = `https://wa.me/${whatsappNumber}?text=${message}`;
+
+    trackWhatsAppClick(pathname, country);
 
     window.open(url, "_blank", "noopener,noreferrer");
     setIsOpen(false);
