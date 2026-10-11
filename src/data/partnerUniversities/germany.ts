@@ -10,6 +10,7 @@ export const germanyUniversities: UniversityData[] = [
     shortName: "TUM",
     country: "germany",
     countryName: "Germany",
+    region: "europe",
     city: "Munich, Bavaria",
     qsRank: 28,
     currency: "EUR",
@@ -20,8 +21,8 @@ export const germanyUniversities: UniversityData[] = [
     livingCostINR: "₹10.8 Lakh – ₹12.5 Lakh / year (Munich Living)",
     totalAnnualCostINR: "₹14 Lakh – ₹18 Lakh / year",
     primeTierCategory: "Germany #1 University (TUM TU9 Excellence)",
-    partnerNetwork: "Premier Direct Partner",
-    portalType: "direct",
+    institutionType: "Russell Group / Global Top 100",
+    partnerNetwork: "TU9 German Excellence",
     verifiedDate: "2026-03-01",
     overview:
       "TUM is Germany's top-ranked university and an undisputed global research leader in engineering, informatics, and management. Situated in Bavaria's high-tech innovation cluster.",
@@ -41,14 +42,6 @@ export const germanyUniversities: UniversityData[] = [
         indicativeRate: "10.25% - 11.50%",
         primeListStatus: "Credila Preferred Germany Hub",
         specialBenefit: "Covers non-EU tuition fees, blocked account €11,904, and flight tickets.",
-      },
-      {
-        name: "Avanse Financial Services",
-        maxUnsecuredINR: "₹40 Lakhs",
-        maxSecuredINR: "₹80 Lakhs",
-        indicativeRate: "10.50% - 11.75%",
-        primeListStatus: "Germany Fast-Track Program",
-        specialBenefit: "Direct integration with Coracle and Expatrio for blocked account setup.",
       },
     ],
     visaRequirements: {
@@ -70,10 +63,6 @@ export const germanyUniversities: UniversityData[] = [
         question: "Can an education loan disburse funds directly into a German Blocked Account for TUM?",
         answer: "Yes. Our partner banks transfer the required €11,904 directly into your blocked account provider (Coracle, Expatrio, or Fintiba) using outward SWIFT remittance to fulfill German visa requirements.",
       },
-      {
-        question: "Does TUM charge tuition fees for non-EU international students?",
-        answer: "Yes, starting from 2024, TUM introduced tuition fees for non-EU students ranging between €2,000 and €3,000 per semester (€4,000–€6,000/year). Education loans cover both this fee and the blocked account living costs.",
-      },
     ],
   },
   {
@@ -82,6 +71,7 @@ export const germanyUniversities: UniversityData[] = [
     shortName: "RWTH Aachen",
     country: "germany",
     countryName: "Germany",
+    region: "europe",
     city: "Aachen, North Rhine-Westphalia",
     qsRank: 99,
     currency: "EUR",
@@ -92,8 +82,8 @@ export const germanyUniversities: UniversityData[] = [
     livingCostINR: "₹10.8 Lakh / year (German Statutory Blocked Account)",
     totalAnnualCostINR: "₹11.5 Lakh – ₹13.5 Lakh / year",
     primeTierCategory: "TU9 Premier Public Engineering Institute",
-    partnerNetwork: "Premier Direct Partner",
-    portalType: "direct",
+    institutionType: "Russell Group / Global Top 100",
+    partnerNetwork: "TU9 German Excellence",
     verifiedDate: "2026-03-01",
     overview:
       "RWTH Aachen is Germany's largest technical university and a founding member of the TU9 alliance. Zero tuition fees for all international students, with world-class mechanical, automotive, and electrical engineering labs.",
@@ -125,7 +115,6 @@ export const germanyUniversities: UniversityData[] = [
     popularPrograms: [
       { name: "M.Sc. in Mechanical Engineering", degree: "Master of Science", duration: "2 Years", estimatedCostINR: "₹24 Lakhs" },
       { name: "M.Sc. in Automotive Engineering", degree: "Master of Science", duration: "2 Years", estimatedCostINR: "₹24 Lakhs" },
-      { name: "M.Sc. in Electrical Engineering & IT", degree: "Master of Science", duration: "2 Years", estimatedCostINR: "₹24 Lakhs" },
     ],
     faqs: [
       {
@@ -140,6 +129,7 @@ export const germanyUniversities: UniversityData[] = [
     shortName: "TU Berlin",
     country: "germany",
     countryName: "Germany",
+    region: "europe",
     city: "Berlin",
     qsRank: 147,
     currency: "EUR",
@@ -150,8 +140,8 @@ export const germanyUniversities: UniversityData[] = [
     livingCostINR: "₹10.8 Lakh – ₹12 Lakh / year",
     totalAnnualCostINR: "₹11.5 Lakh – ₹13 Lakh / year",
     primeTierCategory: "TU9 Capital Tech University",
-    partnerNetwork: "Premier Direct Partner",
-    portalType: "direct",
+    institutionType: "Premier Research University",
+    partnerNetwork: "TU9 German Excellence",
     verifiedDate: "2026-03-01",
     overview:
       "Located in the vibrant capital of Germany, TU Berlin is renowned for Computer Science, Architecture, and Industrial Engineering. Students benefit from Berlin's thriving startup ecosystem.",
@@ -164,26 +154,15 @@ export const germanyUniversities: UniversityData[] = [
         primeListStatus: "Baroda Scholar TU9 List",
         specialBenefit: "Low interest rates for secured loans with zero prepayment penalty.",
       },
-      {
-        name: "Avanse Financial Services",
-        maxUnsecuredINR: "₹35 Lakhs",
-        maxSecuredINR: "₹75 Lakhs",
-        indicativeRate: "10.50% - 11.75%",
-        primeListStatus: "Avanse Germany Track",
-        specialBenefit: "Express sanction for blocked account remittance.",
-      },
     ],
     visaRequirements: {
       documentName: "German Student Visa Sperrkonto",
       requiredFundsINR: "€11,904 in Blocked Account",
-      guidelines: [
-        "Blocked account release schedule is €992/month during your stay in Berlin.",
-      ],
+      guidelines: ["Blocked account release schedule is €992/month during your stay in Berlin."],
     },
     popularPrograms: [
       { name: "M.Sc. in Computer Science", degree: "Master of Science", duration: "2 Years", estimatedCostINR: "₹24 Lakhs" },
       { name: "M.Sc. in Information Systems Management", degree: "Master of Science", duration: "2 Years", estimatedCostINR: "₹24 Lakhs" },
-      { name: "M.Sc. in Innovation Management & Entrepreneurship", degree: "Master of Science", duration: "2 Years", estimatedCostINR: "₹25 Lakhs" },
     ],
     faqs: [
       {
@@ -198,6 +177,7 @@ export const germanyUniversities: UniversityData[] = [
     shortName: "Uni Stuttgart",
     country: "germany",
     countryName: "Germany",
+    region: "europe",
     city: "Stuttgart, Baden-Württemberg",
     qsRank: 312,
     currency: "EUR",
@@ -208,8 +188,8 @@ export const germanyUniversities: UniversityData[] = [
     livingCostINR: "₹10.8 Lakh / year",
     totalAnnualCostINR: "₹13.5 Lakh – ₹15 Lakh / year",
     primeTierCategory: "Baden-Württemberg Automotive & Engineering Hub",
-    partnerNetwork: "Premier Direct Partner",
-    portalType: "direct",
+    institutionType: "Premier Research University",
+    partnerNetwork: "TU9 German Excellence",
     verifiedDate: "2026-03-01",
     overview:
       "Situated in the industrial heartland of Mercedes-Benz, Porsche, and Bosch, University of Stuttgart offers unmatched industrial collaborations for mechanical, automotive, and aerospace engineering.",
@@ -222,26 +202,15 @@ export const germanyUniversities: UniversityData[] = [
         primeListStatus: "Credila Germany Tech Hub",
         specialBenefit: "Covers the €3,000 non-EU state tuition + blocked account living funds.",
       },
-      {
-        name: "State Bank of India (SBI)",
-        maxUnsecuredINR: "₹30 Lakhs",
-        maxSecuredINR: "₹1.50 Crore",
-        indicativeRate: "8.15% - 9.15%",
-        primeListStatus: "SBI Ed-Vantage List",
-        specialBenefit: "Low-interest collateralized funding.",
-      },
     ],
     visaRequirements: {
       documentName: "German Student Visa (Sperrkonto & APS)",
       requiredFundsINR: "€11,904 in Blocked Account + €3,000 1st year tuition",
-      guidelines: [
-        "State of Baden-Württemberg charges non-EU students €1,500 per semester. The loan sanction covers both tuition and blocked account.",
-      ],
+      guidelines: ["State of Baden-Württemberg charges non-EU students €1,500 per semester."],
     },
     popularPrograms: [
       { name: "M.Sc. in Computational Mechanics of Materials", degree: "Master of Science", duration: "2 Years", estimatedCostINR: "₹28 Lakhs" },
       { name: "M.Sc. in Automotive & Engine Technology", degree: "Master of Science", duration: "2 Years", estimatedCostINR: "₹28 Lakhs" },
-      { name: "M.Sc. in Electrical Engineering", degree: "Master of Science", duration: "2 Years", estimatedCostINR: "₹27 Lakhs" },
     ],
     faqs: [
       {
@@ -256,6 +225,7 @@ export const germanyUniversities: UniversityData[] = [
     shortName: "KIT",
     country: "germany",
     countryName: "Germany",
+    region: "europe",
     city: "Karlsruhe, Baden-Württemberg",
     qsRank: 102,
     currency: "EUR",
@@ -266,8 +236,8 @@ export const germanyUniversities: UniversityData[] = [
     livingCostINR: "₹10.8 Lakh / year",
     totalAnnualCostINR: "₹13.5 Lakh – ₹15 Lakh / year",
     primeTierCategory: "TU9 National Research Center",
-    partnerNetwork: "Premier Direct Partner",
-    portalType: "direct",
+    institutionType: "Premier Research University",
+    partnerNetwork: "TU9 German Excellence",
     verifiedDate: "2026-03-01",
     overview:
       "KIT is both a university with prestigious research tradition and a national research center in the Helmholtz Association. World leader in optics, photonics, and computer engineering.",
@@ -280,26 +250,15 @@ export const germanyUniversities: UniversityData[] = [
         primeListStatus: "SBI Prime Germany",
         specialBenefit: "Secured and unsecured loan options for top-ranked German research institute.",
       },
-      {
-        name: "Avanse Financial Services",
-        maxUnsecuredINR: "₹40 Lakhs",
-        maxSecuredINR: "₹80 Lakhs",
-        indicativeRate: "10.40% - 11.65%",
-        primeListStatus: "KIT Fast Track",
-        specialBenefit: "Direct blocked account deposit within 5 working days.",
-      },
     ],
     visaRequirements: {
       documentName: "German Student Visa Sperrkonto & APS",
       requiredFundsINR: "€11,904 Blocked Account",
-      guidelines: [
-        "KIT admits require standard German blocked account certification plus APS certificate.",
-      ],
+      guidelines: ["KIT admits require standard German blocked account certification plus APS certificate."],
     },
     popularPrograms: [
       { name: "M.Sc. in Computer Science", degree: "Master of Science", duration: "2 Years", estimatedCostINR: "₹28 Lakhs" },
       { name: "M.Sc. in Mechanical Engineering", degree: "Master of Science", duration: "2 Years", estimatedCostINR: "₹28 Lakhs" },
-      { name: "M.Sc. in Energy Technologies", degree: "Master of Science", duration: "2 Years", estimatedCostINR: "₹28 Lakhs" },
     ],
     faqs: [
       {
@@ -314,6 +273,7 @@ export const germanyUniversities: UniversityData[] = [
     shortName: "TUD",
     country: "germany",
     countryName: "Germany",
+    region: "europe",
     city: "Dresden, Saxony",
     qsRank: 234,
     currency: "EUR",
@@ -324,8 +284,8 @@ export const germanyUniversities: UniversityData[] = [
     livingCostINR: "₹10.8 Lakh / year (Extremely Affordable City)",
     totalAnnualCostINR: "₹11 Lakh – ₹12.5 Lakh / year",
     primeTierCategory: "TU9 German University of Excellence (Silicon Saxony)",
-    partnerNetwork: "Premier Direct Partner",
-    portalType: "direct",
+    institutionType: "Premier Research University",
+    partnerNetwork: "TU9 German Excellence",
     verifiedDate: "2026-03-01",
     overview:
       "TU Dresden is located in 'Silicon Saxony', Europe's largest microelectronics cluster with TSMC, Infineon, and Bosch chip fabrication plants. Zero tuition fees and low cost of living.",
@@ -338,26 +298,15 @@ export const germanyUniversities: UniversityData[] = [
         primeListStatus: "Baroda Scholar TU9",
         specialBenefit: "Full financing for blocked account and travel expenses.",
       },
-      {
-        name: "HDFC Credila",
-        maxUnsecuredINR: "₹35 Lakhs",
-        maxSecuredINR: "₹75 Lakhs",
-        indicativeRate: "10.45% - 11.60%",
-        primeListStatus: "Preferred European Tech",
-        specialBenefit: "Speedy paperless processing.",
-      },
     ],
     visaRequirements: {
       documentName: "German Student Visa Sperrkonto",
       requiredFundsINR: "€11,904 Blocked Account",
-      guidelines: [
-        "Dresden living expenses are modest; €992/month blocked payout provides a very comfortable student lifestyle.",
-      ],
+      guidelines: ["Dresden living expenses are modest; €992/month blocked payout provides a very comfortable student lifestyle."],
     },
     popularPrograms: [
       { name: "M.Sc. in Nanoelectronic Systems", degree: "Master of Science", duration: "2 Years", estimatedCostINR: "₹23 Lakhs" },
       { name: "M.Sc. in Computational Modeling and Simulation", degree: "Master of Science", duration: "2 Years", estimatedCostINR: "₹23 Lakhs" },
-      { name: "M.Sc. in Distributed Systems Engineering", degree: "Master of Science", duration: "2 Years", estimatedCostINR: "₹23 Lakhs" },
     ],
     faqs: [
       {
@@ -372,6 +321,7 @@ export const germanyUniversities: UniversityData[] = [
     shortName: "LMU Munich",
     country: "germany",
     countryName: "Germany",
+    region: "europe",
     city: "Munich, Bavaria",
     qsRank: 59,
     currency: "EUR",
@@ -382,8 +332,8 @@ export const germanyUniversities: UniversityData[] = [
     livingCostINR: "₹11 Lakh – ₹13 Lakh / year",
     totalAnnualCostINR: "₹12 Lakh – ₹14 Lakh / year",
     primeTierCategory: "Global Top 60 Excellence University",
-    partnerNetwork: "Premier Direct Partner",
-    portalType: "direct",
+    institutionType: "Russell Group / Global Top 100",
+    partnerNetwork: "German Excellence Initiative",
     verifiedDate: "2026-03-01",
     overview:
       "LMU Munich is one of Europe's premier academic and research institutions, producing 43 Nobel laureates. Globally respected for Data Science, Physics, Economics, and Life Sciences.",
@@ -396,31 +346,20 @@ export const germanyUniversities: UniversityData[] = [
         primeListStatus: "SBI Ed-Vantage List A",
         specialBenefit: "Tier A rates for premier top 60 global university.",
       },
-      {
-        name: "HDFC Credila",
-        maxUnsecuredINR: "₹45 Lakhs",
-        maxSecuredINR: "₹1.00 Crore",
-        indicativeRate: "10.25% - 11.40%",
-        primeListStatus: "Elite European Academy",
-        specialBenefit: "Unsecured funding covers 2-year Munich living costs.",
-      },
     ],
     visaRequirements: {
       documentName: "German Student Visa Sperrkonto & APS",
       requiredFundsINR: "€11,904 Blocked Account",
-      guidelines: [
-        "LMU admits require statutory €11,904 blocked account and valid health insurance for visa.",
-      ],
+      guidelines: ["LMU admits require statutory €11,904 blocked account and valid health insurance for visa."],
     },
     popularPrograms: [
       { name: "M.Sc. in Data Science (Elite Master)", degree: "Master of Science", duration: "2 Years", estimatedCostINR: "₹25 Lakhs" },
       { name: "M.Sc. in Economics", degree: "Master of Science", duration: "2 Years", estimatedCostINR: "₹24 Lakhs" },
-      { name: "M.Sc. in Physics", degree: "Master of Science", duration: "2 Years", estimatedCostINR: "₹24 Lakhs" },
     ],
     faqs: [
       {
         question: "Does LMU Munich charge tuition fees?",
-        answer: "No, LMU Munich charges zero tuition fees for both EU and non-EU students for most programs, requiring only a nominal semester fee of ~€152.",
+        answer: "No, LMU Munich charges zero tuition fees for both EU and non-EU students for most programs.",
       },
     ],
   },
@@ -430,6 +369,7 @@ export const germanyUniversities: UniversityData[] = [
     shortName: "Frankfurt School",
     country: "germany",
     countryName: "Germany",
+    region: "europe",
     city: "Frankfurt am Main, Hesse",
     qsRank: "Top European Business School",
     currency: "EUR",
@@ -440,8 +380,8 @@ export const germanyUniversities: UniversityData[] = [
     livingCostINR: "₹11 Lakh – ₹13.5 Lakh / year (Frankfurt Financial Center)",
     totalAnnualCostINR: "₹27 Lakh – ₹34 Lakh / year",
     primeTierCategory: "Triple-Accredited Business School (AACSB, AMBA, EQUIS)",
-    partnerNetwork: "Premier Direct Partner",
-    portalType: "direct",
+    institutionType: "Triple-Accredited Business School",
+    partnerNetwork: "Triple Crown Business School",
     verifiedDate: "2026-03-01",
     overview:
       "Frankfurt School of Finance & Management is Germany's top-tier private business school, positioned at the headquarters of the European Central Bank and Deutsche Bank. High finance placement record.",
@@ -454,52 +394,30 @@ export const germanyUniversities: UniversityData[] = [
         primeListStatus: "Credila Elite Business School List",
         specialBenefit: "High unsecured limit up to ₹55 Lakhs for Master in Finance & MBA.",
       },
-      {
-        name: "ICICI Bank",
-        maxUnsecuredINR: "₹45 Lakhs",
-        maxSecuredINR: "₹1.00 Crore",
-        indicativeRate: "10.10% - 11.15%",
-        primeListStatus: "Premier Global Management List",
-        specialBenefit: "Direct wire transfer in Euros for tuition tranches and blocked account.",
-      },
-      {
-        name: "State Bank of India (SBI)",
-        maxUnsecuredINR: "₹35 Lakhs",
-        maxSecuredINR: "₹1.50 Crore",
-        indicativeRate: "8.15% - 9.15%",
-        primeListStatus: "SBI Global Ed-Vantage Approved",
-        specialBenefit: "Low interest rate with property collateral.",
-      },
     ],
     visaRequirements: {
       documentName: "German Student Visa (Tuition Deposit + Sperrkonto)",
       requiredFundsINR: "€11,904 in Blocked Account + 1st Semester Tuition Receipt",
-      guidelines: [
-        "Applicants must demonstrate both the paid tuition deposit and €11,904 deposited into a registered German Sperrkonto.",
-      ],
+      guidelines: ["Applicants must demonstrate paid tuition deposit and €11,904 in German Sperrkonto."],
     },
     popularPrograms: [
       { name: "Master in Finance (M.Sc.)", degree: "Master of Science", duration: "2 Years", estimatedCostINR: "₹45 Lakhs" },
       { name: "Full-Time MBA", degree: "Master of Business Admin", duration: "1 Year", estimatedCostINR: "₹42 Lakhs" },
-      { name: "Master in Applied Data Science", degree: "Master of Science", duration: "2 Years", estimatedCostINR: "₹40 Lakhs" },
     ],
     faqs: [
       {
         question: "Can I get an education loan for Frankfurt School of Finance?",
-        answer: "Yes. Due to Frankfurt School's triple-crown accreditation and stellar corporate finance placements, Indian lenders provide up to ₹55 Lakhs collateral-free.",
+        answer: "Yes, lenders provide up to ₹55 Lakhs collateral-free for Frankfurt School finance degrees.",
       },
     ],
   },
-
-  // ==========================================
-  // NAVITAS GERMANY PARTNER
-  // ==========================================
   {
     slug: "lancaster-university-leipzig",
     name: "Lancaster University Leipzig",
     shortName: "Lancaster Leipzig",
     country: "germany",
     countryName: "Germany",
+    region: "europe",
     city: "Leipzig, Saxony",
     qsRank: 141,
     currency: "EUR",
@@ -509,19 +427,19 @@ export const germanyUniversities: UniversityData[] = [
     livingCostAnnual: 11904,
     livingCostINR: "₹10.8 Lakh / year (German Sperrkonto)",
     totalAnnualCostINR: "₹25.8 Lakh – ₹27.6 Lakh / year",
-    primeTierCategory: "Navitas European Hub (UK Degree in Germany)",
-    partnerNetwork: "Navitas Pathway Partner",
-    portalType: "navitas",
+    primeTierCategory: "British University European Branch Campus (Global Top 150)",
+    institutionType: "Premier Research University",
+    partnerNetwork: "UK Branch Campus in Germany",
     verifiedDate: "2026-03-01",
     overview:
-      "Lancaster University Leipzig is the first British university branch campus in mainland Germany, operated in partnership with Navitas. Students receive a degree from UK top-15 Lancaster University (QS #141) while enjoying Germany's 18-month post-study work visa rights.",
+      "Lancaster University Leipzig is the first British university branch campus in mainland Germany. Students receive an official degree from UK top-15 Lancaster University (QS #141) while enjoying Germany's 18-month post-study work visa rights.",
     lenderPolicies: [
       {
         name: "HDFC Credila",
         maxUnsecuredINR: "₹50 Lakhs",
         maxSecuredINR: "₹1.50 Crore",
         indicativeRate: "10.00% - 11.25%",
-        primeListStatus: "Navitas Premier European Partner",
+        primeListStatus: "Tier-1 European Hub",
         specialBenefit: "Recognizes Lancaster University's top-150 global ranking with premier interest rates.",
       },
       {
@@ -532,38 +450,24 @@ export const germanyUniversities: UniversityData[] = [
         primeListStatus: "SBI Global Ed-Vantage Approved",
         specialBenefit: "Direct outward SWIFT remittance into German Sperrkonto and university account.",
       },
-      {
-        name: "ICICI Bank",
-        maxUnsecuredINR: "₹45 Lakhs",
-        maxSecuredINR: "₹1.00 Crore",
-        indicativeRate: "10.10% - 11.20%",
-        primeListStatus: "Prime Institutional List",
-        specialBenefit: "Pre-visa disbursement to Coracle/Expatrio blocked account.",
-      },
     ],
     visaRequirements: {
       documentName: "German Student Visa (Sperrkonto & Tuition Deposit)",
       requiredFundsINR: "€11,904 in Blocked Account + 1st Year Tuition Receipt",
       guidelines: [
-        "Applicants must show proof of €11,904 deposited into a registered German Sperrkonto (Coracle, Expatrio, or Fintiba).",
-        "Official receipt for paid tuition deposit to Lancaster University Leipzig.",
-        "APS Certificate issued by the German Academic Evaluation Centre in New Delhi.",
+        "Proof of €11,904 deposited into a registered German Sperrkonto.",
+        "Official receipt for paid tuition deposit.",
+        "APS Certificate issued by the German Academic Evaluation Centre.",
       ],
     },
     popularPrograms: [
       { name: "M.Sc. Data Science", degree: "Master of Science", duration: "1 Year", estimatedCostINR: "₹16.5 Lakhs" },
       { name: "M.Sc. Cyber Security", degree: "Master of Science", duration: "1 Year", estimatedCostINR: "₹16.5 Lakhs" },
-      { name: "M.Sc. Management", degree: "Master of Science", duration: "1 Year", estimatedCostINR: "₹16.0 Lakhs" },
-      { name: "B.Sc. (Hons) Computer Science", degree: "Bachelor of Science", duration: "3 Years", estimatedCostINR: "₹49.5 Lakhs" },
     ],
     faqs: [
       {
         question: "Can I get an education loan for Lancaster University Leipzig?",
-        answer: "Yes. Because students graduate with an official degree from Lancaster University UK (QS #141), top Indian lenders provide unsecured loans up to ₹50 Lakhs covering both tuition and the €11,904 German Sperrkonto.",
-      },
-      {
-        question: "Do I get German post-study work visa rights after Lancaster Leipzig?",
-        answer: "Yes, graduates are eligible for Germany's 18-month job seeker / post-study work visa and EU Blue Card pathways.",
+        answer: "Yes, students receive an official degree from Lancaster University UK (QS #141), and Indian lenders provide unsecured loans up to ₹50 Lakhs.",
       },
     ],
   },

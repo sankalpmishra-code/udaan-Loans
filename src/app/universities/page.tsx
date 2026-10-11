@@ -2,18 +2,24 @@
 
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
-import { universities, UniversityData, CountryCode, PortalType } from "@/data/universities";
+import { universities, UniversityData, CountryCode, Region, InstitutionType } from "@/data/universities";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 export default function UniversitiesDirectoryPage() {
+  const [selectedRegion, setSelectedRegion] = useState<"all" | Region>("all");
   const [selectedCountry, setSelectedCountry] = useState<"all" | CountryCode>("all");
-  const [selectedPortal, setSelectedPortal] = useState<"all" | PortalType>("all");
+  const [selectedType, setSelectedType] = useState<"all" | InstitutionType>("all");
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredUniversities = useMemo(() => {
     return universities.filter((u) => {
+      const matchesRegion =
+        selectedRegion === "all" ||
+        (selectedRegion === "europe" ? u.region === "europe" || u.region === "uk" : u.region === selectedRegion);
+
       const matchesCountry = selectedCountry === "all" || u.country === selectedCountry;
-      const matchesPortal = selectedPortal === "all" || u.portalType === selectedPortal;
+      const matchesType = selectedType === "all" || u.institutionType === selectedType;
+
       const query = searchQuery.toLowerCase().trim();
       const matchesSearch =
         !query ||
@@ -24,65 +30,87 @@ export default function UniversitiesDirectoryPage() {
         u.partnerNetwork.toLowerCase().includes(query) ||
         u.primeTierCategory.toLowerCase().includes(query);
 
-      return matchesCountry && matchesPortal && matchesSearch;
+      return matchesRegion && matchesCountry && matchesType && matchesSearch;
     });
-  }, [selectedCountry, selectedPortal, searchQuery]);
+  }, [selectedRegion, selectedCountry, selectedType, searchQuery]);
 
   const counts = useMemo(() => {
     return {
       total: universities.length,
-      applyboard: universities.filter((u) => u.portalType === "applyboard").length,
-      navitas: universities.filter((u) => u.portalType === "navitas").length,
-      direct: universities.filter((u) => u.portalType === "direct").length,
-      usa: universities.filter((u) => u.country === "usa").length,
-      canada: universities.filter((u) => u.country === "canada").length,
+      europeTotal: universities.filter((u) => u.region === "europe" || u.region === "uk").length,
+      northAmericaTotal: universities.filter((u) => u.region === "north-america").length,
+      australiaTotal: universities.filter((u) => u.region === "australia").length,
       uk: universities.filter((u) => u.country === "uk").length,
-      australia: universities.filter((u) => u.country === "australia").length,
       germany: universities.filter((u) => u.country === "germany").length,
       ireland: universities.filter((u) => u.country === "ireland").length,
+      netherlands: universities.filter((u) => u.country === "netherlands").length,
+      france: universities.filter((u) => u.country === "france").length,
+      sweden: universities.filter((u) => u.country === "sweden").length,
+      italy: universities.filter((u) => u.country === "italy").length,
+      switzerland: universities.filter((u) => u.country === "switzerland").length,
+      canada: universities.filter((u) => u.country === "canada").length,
+      australia: universities.filter((u) => u.country === "australia").length,
+      usa: universities.filter((u) => u.country === "usa").length,
     };
   }, []);
 
   const getCountryFlag = (country: CountryCode) => {
     switch (country) {
-      case "usa":
-        return "🇺🇸";
-      case "canada":
-        return "🇨🇦";
       case "uk":
         return "🇬🇧";
-      case "australia":
-        return "🇦🇺";
       case "germany":
         return "🇩🇪";
       case "ireland":
         return "🇮🇪";
+      case "netherlands":
+        return "🇳🇱";
+      case "france":
+        return "🇫🇷";
+      case "sweden":
+        return "🇸🇪";
+      case "italy":
+        return "🇮🇹";
+      case "switzerland":
+        return "🇨🇭";
+      case "usa":
+        return "🇺🇸";
+      case "canada":
+        return "🇨🇦";
+      case "australia":
+        return "🇦🇺";
       default:
         return "🌐";
     }
   };
 
-  const getNetworkBadgeStyle = (network: string) => {
-    if (network.includes("ApplyBoard")) {
-      return { background: "#e0f2fe", color: "#0369a1", border: "1px solid #bae6fd" };
+  const getBadgeStyle = (type: InstitutionType) => {
+    switch (type) {
+      case "Russell Group / Global Top 100":
+        return { background: "#eff6ff", color: "#1d4ed8", border: "1px solid #bfdbfe" };
+      case "Triple-Accredited Business School":
+        return { background: "#faf5ff", color: "#7e22ce", border: "1px solid #e9d5ff" };
+      case "Premier Research University":
+        return { background: "#f0fdf4", color: "#15803d", border: "1px solid #bbf7d0" };
+      case "Applied Sciences & Polytechnic":
+        return { background: "#fff7ed", color: "#c2410c", border: "1px solid #fed7aa" };
+      case "University Pathway College":
+        return { background: "#fef3c7", color: "#92400e", border: "1px solid #fde68a" };
+      default:
+        return { background: "#f1f5f9", color: "#334155", border: "1px solid #cbd5e1" };
     }
-    if (network.includes("Navitas")) {
-      return { background: "#fef3c7", color: "#92400e", border: "1px solid #fde68a" };
-    }
-    return { background: "#ecfdf5", color: "#065f46", border: "1px solid #a7f3d0" };
   };
 
   return (
     <>
       <Breadcrumbs items={[{ name: "Universities", url: "/universities" }]} />
 
-      <section className="hero" style={{ padding: "40px 0 30px" }}>
+      <section className="hero" style={{ padding: "40px 0 28px" }}>
         <div className="wrap">
           <div className="section-head text-center">
-            <span className="badge">Global Partner Institution Directory</span>
-            <h1>Overseas Education Loan Guides by University</h1>
-            <p className="lead" style={{ maxWidth: "820px", margin: "0 auto" }}>
-              Explore lender-specific eligibility rules, public bank Prime Tier concessions (up to 0.50% interest discount), realistic cost-of-attendance budgets, and visa fund requirements across ApplyBoard partner institutions, Navitas pathway colleges, and premier direct global hubs.
+            <span className="badge">Global University Directory</span>
+            <h1>International Education Loan Guides by University</h1>
+            <p className="lead" style={{ maxWidth: "840px", margin: "0 auto" }}>
+              Explore lender-specific eligibility rules, public bank Prime Tier concessions (up to 0.50% interest discount), realistic cost-of-attendance budgets, and visa fund requirements across leading universities in the UK, Europe, North America, and Australia.
             </p>
           </div>
 
@@ -94,17 +122,17 @@ export default function UniversitiesDirectoryPage() {
               padding: "24px",
               borderRadius: "16px",
               boxShadow: "0 4px 20px rgba(0,0,0,0.06)",
-              marginTop: "25px",
+              marginTop: "24px",
               display: "flex",
               flexDirection: "column",
-              gap: "18px",
+              gap: "16px",
             }}
           >
             {/* Search Input */}
             <div style={{ position: "relative", width: "100%" }}>
               <input
                 type="text"
-                placeholder="Search by university name, city, program, or partner portal (e.g. Seneca, Conestoga, Navitas, Coventry, UOW, TUM)..."
+                placeholder="Search by university name, city, program, or tier (e.g. Oxford, Imperial, TU Delft, INSEAD, TUM, KTH, Waterloo, PoliMi)..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 style={{
@@ -138,117 +166,170 @@ export default function UniversitiesDirectoryPage() {
               )}
             </div>
 
-            {/* Portal Network Tabs */}
+            {/* Region Tabs */}
             <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
               <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "#64748b", marginRight: "4px" }}>
-                Partner Network:
+                Region:
               </span>
               <button
                 type="button"
-                className={`preset-chip ${selectedPortal === "all" ? "chip-active" : ""}`}
+                className={`preset-chip ${selectedRegion === "all" ? "chip-active" : ""}`}
                 style={{ padding: "6px 14px", fontSize: "0.88rem" }}
-                onClick={() => setSelectedPortal("all")}
+                onClick={() => {
+                  setSelectedRegion("all");
+                  setSelectedCountry("all");
+                }}
               >
-                All Portals ({counts.total})
+                All Regions ({counts.total})
               </button>
               <button
                 type="button"
-                className={`preset-chip ${selectedPortal === "applyboard" ? "chip-active" : ""}`}
+                className={`preset-chip ${selectedRegion === "europe" ? "chip-active" : ""}`}
                 style={{ padding: "6px 14px", fontSize: "0.88rem" }}
-                onClick={() => setSelectedPortal("applyboard")}
+                onClick={() => {
+                  setSelectedRegion("europe");
+                  setSelectedCountry("all");
+                }}
               >
-                ✨ ApplyBoard Partners ({counts.applyboard})
+                🇬🇧 UK & 🇪🇺 Europe ({counts.europeTotal})
               </button>
               <button
                 type="button"
-                className={`preset-chip ${selectedPortal === "navitas" ? "chip-active" : ""}`}
+                className={`preset-chip ${selectedRegion === "north-america" ? "chip-active" : ""}`}
                 style={{ padding: "6px 14px", fontSize: "0.88rem" }}
-                onClick={() => setSelectedPortal("navitas")}
+                onClick={() => {
+                  setSelectedRegion("north-america");
+                  setSelectedCountry("all");
+                }}
               >
-                🎓 Navitas Pathway Colleges ({counts.navitas})
+                🇺🇸 North America ({counts.northAmericaTotal})
               </button>
               <button
                 type="button"
-                className={`preset-chip ${selectedPortal === "direct" ? "chip-active" : ""}`}
+                className={`preset-chip ${selectedRegion === "australia" ? "chip-active" : ""}`}
                 style={{ padding: "6px 14px", fontSize: "0.88rem" }}
-                onClick={() => setSelectedPortal("direct")}
+                onClick={() => {
+                  setSelectedRegion("australia");
+                  setSelectedCountry("all");
+                }}
               >
-                🏛️ Premier Direct Hubs ({counts.direct})
+                🇦🇺 Australia ({counts.australiaTotal})
               </button>
             </div>
 
-            {/* Country Tabs */}
+            {/* Destination Country Chips */}
             <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap", paddingTop: "8px", borderTop: "1px dashed #e2e8f0" }}>
               <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "#64748b", marginRight: "4px" }}>
-                Destination:
+                Country:
               </span>
               <button
                 type="button"
                 className={`preset-chip ${selectedCountry === "all" ? "chip-active" : ""}`}
-                style={{ padding: "6px 14px", fontSize: "0.88rem" }}
+                style={{ padding: "5px 12px", fontSize: "0.84rem" }}
                 onClick={() => setSelectedCountry("all")}
               >
                 All Countries
               </button>
               <button
                 type="button"
-                className={`preset-chip ${selectedCountry === "canada" ? "chip-active" : ""}`}
-                style={{ padding: "6px 14px", fontSize: "0.88rem" }}
-                onClick={() => setSelectedCountry("canada")}
-              >
-                🇨🇦 Canada ({counts.canada})
-              </button>
-              <button
-                type="button"
                 className={`preset-chip ${selectedCountry === "uk" ? "chip-active" : ""}`}
-                style={{ padding: "6px 14px", fontSize: "0.88rem" }}
+                style={{ padding: "5px 12px", fontSize: "0.84rem" }}
                 onClick={() => setSelectedCountry("uk")}
               >
                 🇬🇧 UK ({counts.uk})
               </button>
               <button
                 type="button"
-                className={`preset-chip ${selectedCountry === "australia" ? "chip-active" : ""}`}
-                style={{ padding: "6px 14px", fontSize: "0.88rem" }}
-                onClick={() => setSelectedCountry("australia")}
-              >
-                🇦🇺 Australia ({counts.australia})
-              </button>
-              <button
-                type="button"
-                className={`preset-chip ${selectedCountry === "usa" ? "chip-active" : ""}`}
-                style={{ padding: "6px 14px", fontSize: "0.88rem" }}
-                onClick={() => setSelectedCountry("usa")}
-              >
-                🇺🇸 USA ({counts.usa})
-              </button>
-              <button
-                type="button"
                 className={`preset-chip ${selectedCountry === "germany" ? "chip-active" : ""}`}
-                style={{ padding: "6px 14px", fontSize: "0.88rem" }}
+                style={{ padding: "5px 12px", fontSize: "0.84rem" }}
                 onClick={() => setSelectedCountry("germany")}
               >
                 🇩🇪 Germany ({counts.germany})
               </button>
               <button
                 type="button"
+                className={`preset-chip ${selectedCountry === "netherlands" ? "chip-active" : ""}`}
+                style={{ padding: "5px 12px", fontSize: "0.84rem" }}
+                onClick={() => setSelectedCountry("netherlands")}
+              >
+                🇳🇱 Netherlands ({counts.netherlands})
+              </button>
+              <button
+                type="button"
+                className={`preset-chip ${selectedCountry === "france" ? "chip-active" : ""}`}
+                style={{ padding: "5px 12px", fontSize: "0.84rem" }}
+                onClick={() => setSelectedCountry("france")}
+              >
+                🇫🇷 France ({counts.france})
+              </button>
+              <button
+                type="button"
                 className={`preset-chip ${selectedCountry === "ireland" ? "chip-active" : ""}`}
-                style={{ padding: "6px 14px", fontSize: "0.88rem" }}
+                style={{ padding: "5px 12px", fontSize: "0.84rem" }}
                 onClick={() => setSelectedCountry("ireland")}
               >
                 🇮🇪 Ireland ({counts.ireland})
+              </button>
+              <button
+                type="button"
+                className={`preset-chip ${selectedCountry === "sweden" ? "chip-active" : ""}`}
+                style={{ padding: "5px 12px", fontSize: "0.84rem" }}
+                onClick={() => setSelectedCountry("sweden")}
+              >
+                🇸🇪 Sweden ({counts.sweden})
+              </button>
+              <button
+                type="button"
+                className={`preset-chip ${selectedCountry === "italy" ? "chip-active" : ""}`}
+                style={{ padding: "5px 12px", fontSize: "0.84rem" }}
+                onClick={() => setSelectedCountry("italy")}
+              >
+                🇮🇹 Italy ({counts.italy})
+              </button>
+              <button
+                type="button"
+                className={`preset-chip ${selectedCountry === "switzerland" ? "chip-active" : ""}`}
+                style={{ padding: "5px 12px", fontSize: "0.84rem" }}
+                onClick={() => setSelectedCountry("switzerland")}
+              >
+                🇨🇭 Switzerland ({counts.switzerland})
+              </button>
+              <button
+                type="button"
+                className={`preset-chip ${selectedCountry === "usa" ? "chip-active" : ""}`}
+                style={{ padding: "5px 12px", fontSize: "0.84rem" }}
+                onClick={() => setSelectedCountry("usa")}
+              >
+                🇺🇸 USA ({counts.usa})
+              </button>
+              <button
+                type="button"
+                className={`preset-chip ${selectedCountry === "canada" ? "chip-active" : ""}`}
+                style={{ padding: "5px 12px", fontSize: "0.84rem" }}
+                onClick={() => setSelectedCountry("canada")}
+              >
+                🇨🇦 Canada ({counts.canada})
+              </button>
+              <button
+                type="button"
+                className={`preset-chip ${selectedCountry === "australia" ? "chip-active" : ""}`}
+                style={{ padding: "5px 12px", fontSize: "0.84rem" }}
+                onClick={() => setSelectedCountry("australia")}
+              >
+                🇦🇺 Australia ({counts.australia})
               </button>
             </div>
           </div>
 
           <div style={{ marginTop: "14px", display: "flex", justifyContent: "space-between", alignItems: "center", color: "#64748b", fontSize: "0.9rem" }}>
-            <span>Showing <strong>{filteredUniversities.length}</strong> matching institutions</span>
-            {(selectedCountry !== "all" || selectedPortal !== "all" || searchQuery) && (
+            <span>Showing <strong>{filteredUniversities.length}</strong> institutions</span>
+            {(selectedRegion !== "all" || selectedCountry !== "all" || selectedType !== "all" || searchQuery) && (
               <button
                 type="button"
                 onClick={() => {
+                  setSelectedRegion("all");
                   setSelectedCountry("all");
-                  setSelectedPortal("all");
+                  setSelectedType("all");
                   setSearchQuery("");
                 }}
                 style={{ background: "none", border: "none", color: "#094754", fontWeight: 600, cursor: "pointer", textDecoration: "underline" }}
@@ -293,7 +374,7 @@ export default function UniversitiesDirectoryPage() {
                           fontWeight: 700,
                           padding: "4px 8px",
                           borderRadius: "6px",
-                          ...getNetworkBadgeStyle(uni.partnerNetwork),
+                          ...getBadgeStyle(uni.institutionType),
                         }}
                       >
                         {uni.partnerNetwork}
@@ -332,7 +413,7 @@ export default function UniversitiesDirectoryPage() {
                       </div>
                       <div style={{ display: "flex", justifyContent: "space-between" }}>
                         <span style={{ color: "#64748b" }}>Verified Rates:</span>
-                        <strong style={{ color: "#059669" }}>From 8.15% p.a.</strong>
+                        <strong style={{ color: "#059669" }}>From 7.75% p.a.</strong>
                       </div>
                     </div>
                   </div>
@@ -369,8 +450,9 @@ export default function UniversitiesDirectoryPage() {
                   type="button"
                   className="btn btn-outline"
                   onClick={() => {
+                    setSelectedRegion("all");
                     setSelectedCountry("all");
-                    setSelectedPortal("all");
+                    setSelectedType("all");
                     setSearchQuery("");
                   }}
                 >
@@ -389,9 +471,9 @@ export default function UniversitiesDirectoryPage() {
       <section>
         <div className="wrap">
           <div className="result-highlight-box text-center" style={{ padding: "40px 24px", borderRadius: "var(--radius-lg)" }}>
-            <h2>Have an Admit from Another Global University or Pathway?</h2>
+            <h2>Have an Admit from Another Global University?</h2>
             <p className="lead" style={{ color: "#fff", maxWidth: "680px", margin: "0 auto 20px" }}>
-              Our 30+ partnering RBI-recognized banks and NBFCs fund higher education institutions across 40+ countries. We help you secure sanctions with zero collateral, GIC funding, and CAS/DHA compliance.
+              Our 30+ partnering RBI-recognized banks and NBFCs fund higher education institutions across 40+ countries. We help you secure sanctions with zero collateral, GIC/Sperrkonto funding, and CAS/DHA compliance.
             </p>
             <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
               <Link href="/match" className="btn btn-accent">

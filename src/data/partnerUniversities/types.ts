@@ -1,8 +1,25 @@
-export type CountryCode = "usa" | "canada" | "uk" | "australia" | "germany" | "ireland";
+export type CountryCode =
+  | "usa"
+  | "canada"
+  | "uk"
+  | "australia"
+  | "germany"
+  | "ireland"
+  | "netherlands"
+  | "france"
+  | "sweden"
+  | "italy"
+  | "switzerland";
 
-export type PartnerNetwork = "ApplyBoard Partner" | "Navitas Pathway Partner" | "Premier Direct Partner";
+export type Region = "uk" | "europe" | "north-america" | "australia";
 
-export type PortalType = "applyboard" | "navitas" | "direct";
+export type InstitutionType =
+  | "Russell Group / Global Top 100"
+  | "Premier Research University"
+  | "Top Public University"
+  | "Applied Sciences & Polytechnic"
+  | "Triple-Accredited Business School"
+  | "University Pathway College";
 
 export interface UniversityProgram {
   name: string;
@@ -26,18 +43,19 @@ export interface UniversityData {
   shortName: string;
   country: CountryCode;
   countryName: string;
+  region: Region;
   city: string;
   qsRank: number | string;
-  currency: "USD" | "EUR" | "CAD" | "GBP" | "AUD";
-  currencySymbol: "$" | "€" | "C$" | "£" | "A$";
+  currency: "USD" | "EUR" | "CAD" | "GBP" | "AUD" | "CHF" | "SEK";
+  currencySymbol: "$" | "€" | "C$" | "£" | "A$" | "CHF" | "SEK";
   tuitionAnnual: number; // in native currency
   tuitionRangeINR: string;
   livingCostAnnual: number; // in native currency
   livingCostINR: string;
   totalAnnualCostINR: string;
   primeTierCategory: string;
-  partnerNetwork: PartnerNetwork;
-  portalType: PortalType;
+  institutionType: InstitutionType;
+  partnerNetwork: string; // Clean badge e.g. "Russell Group", "Global Top 50", "TU9 Excellence", "Premier Public DLI"
   verifiedDate: string;
   overview: string;
   lenderPolicies: UniversityLenderPolicy[];

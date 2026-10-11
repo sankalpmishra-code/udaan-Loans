@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       `HDFC Credila loan for ${uni.name}`,
       `collateral free loan ${uni.name}`,
       `${uni.name} cost of attendance in INR`,
-      `${uni.partnerNetwork} loan funding`,
+      `${uni.institutionType} loan funding`,
       `${uni.countryName} student visa loan proof ${uni.shortName}`,
     ],
     alternates: {
@@ -61,18 +61,28 @@ export default async function UniversityPage({ params }: PageProps) {
 
   const getCountryFlag = (country: string) => {
     switch (country) {
-      case "usa":
-        return "🇺🇸";
-      case "canada":
-        return "🇨🇦";
       case "uk":
         return "🇬🇧";
-      case "australia":
-        return "🇦🇺";
       case "germany":
         return "🇩🇪";
       case "ireland":
         return "🇮🇪";
+      case "netherlands":
+        return "🇳🇱";
+      case "france":
+        return "🇫🇷";
+      case "sweden":
+        return "🇸🇪";
+      case "italy":
+        return "🇮🇹";
+      case "switzerland":
+        return "🇨🇭";
+      case "usa":
+        return "🇺🇸";
+      case "canada":
+        return "🇨🇦";
+      case "australia":
+        return "🇦🇺";
       default:
         return "🌐";
     }
@@ -297,7 +307,7 @@ export default async function UniversityPage({ params }: PageProps) {
                 ))}
               </ul>
               <div style={{ marginTop: "20px", background: "var(--soft)", padding: "12px 16px", borderRadius: "8px", fontSize: "0.85rem" }}>
-                💡 <strong>Udaan Assistance:</strong> We coordinate with banks to provide embassy-compliant pre-visa disbursement, Canadian GIC remittance, German Sperrkonto transfers, or unencumbered CAS/DHA sanction letters within 3–5 working days.
+                💡 <strong>Udaan Assistance:</strong> We coordinate with banks to provide embassy-compliant pre-visa disbursement, Canadian GIC remittance, German Sperrkonto transfers, or unencumbered CAS/DHA/IND sanction letters within 3–5 working days.
               </div>
             </div>
 
@@ -340,7 +350,7 @@ export default async function UniversityPage({ params }: PageProps) {
       {/* University Specific FAQs */}
       <FAQSection
         title={`Frequently Asked Questions: Education Loans for ${uni.name}`}
-        subtitle={`Key queries regarding lender eligibility, visa fund proof, blocked accounts, GIC, and collateral for ${uni.shortName}.`}
+        subtitle={`Key queries regarding lender eligibility, visa fund proof, blocked accounts, and collateral for ${uni.shortName}.`}
         faqs={uni.faqs}
         id="uni-faqs"
       />
