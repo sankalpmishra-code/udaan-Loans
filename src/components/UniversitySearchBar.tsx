@@ -3,103 +3,10 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import Link from "next/link";
 import { universities, UniversityData, CountryCode } from "@/data/universities";
-
-// Additional world-class institutions for global query coverage
-const additionalGlobalUniversities = [
-  {
-    name: "Harvard University",
-    shortName: "Harvard",
-    countryName: "United States",
-    country: "usa",
-    city: "Cambridge, Massachusetts",
-    qsRank: 4,
-    tuitionRangeINR: "₹45 Lakh – ₹55 Lakh / year",
-    livingCostINR: "₹20 Lakh – ₹24 Lakh / year",
-    totalAnnualCostINR: "₹65 Lakh – ₹79 Lakh / year",
-    primeTierCategory: "Ivy League Tier AAA (0.50% Concession + Max Loan)",
-    maxUnsecuredINR: "₹75 Lakhs",
-    maxSecuredINR: "₹1.50 Crore",
-    rates: "From 7.75% p.a.",
-    visaInfo: "Form I-20 financial proof ($82,000/yr) required for US F-1 visa.",
-    popularPrograms: ["MBA (Harvard Business School)", "MS in Data Science", "Master in Public Policy"],
-    slug: "",
-  },
-  {
-    name: "Stanford University",
-    shortName: "Stanford",
-    countryName: "United States",
-    country: "usa",
-    city: "Stanford, Silicon Valley, California",
-    qsRank: 5,
-    tuitionRangeINR: "₹46 Lakh – ₹56 Lakh / year",
-    livingCostINR: "₹22 Lakh – ₹26 Lakh / year",
-    totalAnnualCostINR: "₹68 Lakh – ₹82 Lakh / year",
-    primeTierCategory: "Silicon Valley Tier AAA (0.50% Concession)",
-    maxUnsecuredINR: "₹75 Lakhs",
-    maxSecuredINR: "₹1.50 Crore",
-    rates: "From 7.75% p.a.",
-    visaInfo: "Form I-20 certification of funds ($85,000/yr) for US F-1 visa.",
-    popularPrograms: ["MS in Computer Science", "Stanford GSB MBA", "MS in Electrical Engineering"],
-    slug: "",
-  },
-  {
-    name: "Massachusetts Institute of Technology (MIT)",
-    shortName: "MIT",
-    countryName: "United States",
-    country: "usa",
-    city: "Cambridge, Massachusetts",
-    qsRank: 1,
-    tuitionRangeINR: "₹47 Lakh – ₹58 Lakh / year",
-    livingCostINR: "₹21 Lakh – ₹25 Lakh / year",
-    totalAnnualCostINR: "₹68 Lakh – ₹83 Lakh / year",
-    primeTierCategory: "Global #1 University (Tier AAA Elite)",
-    maxUnsecuredINR: "₹75 Lakhs",
-    maxSecuredINR: "₹1.50 Crore",
-    rates: "From 7.75% p.a.",
-    visaInfo: "Form I-20 financial proof ($86,000/yr) for US F-1 visa.",
-    popularPrograms: ["Master of Science in EECS", "Master of Finance (Sloan)", "MS in Computational Science"],
-    slug: "",
-  },
-  {
-    name: "University of Toronto",
-    shortName: "U of T",
-    countryName: "Canada",
-    country: "canada",
-    city: "Toronto, Ontario",
-    qsRank: 21,
-    tuitionRangeINR: "₹32 Lakh – ₹42 Lakh / year",
-    livingCostINR: "₹13.0 Lakh / year (IRCC GIC)",
-    totalAnnualCostINR: "₹45 Lakh – ₹55 Lakh / year",
-    primeTierCategory: "Canada #1 University (Prime Tier A+)",
-    maxUnsecuredINR: "₹60 Lakhs",
-    maxSecuredINR: "₹1.50 Crore",
-    rates: "From 8.15% p.a.",
-    visaInfo: "C$20,635 Canadian GIC deposit + 1st year paid tuition receipt.",
-    popularPrograms: ["Master of Science in Applied Computing (MScAC)", "Rotman Full-Time MBA", "Master of Engineering (MEng)"],
-    slug: "",
-  },
-  {
-    name: "University of Melbourne",
-    shortName: "Melbourne",
-    countryName: "Australia",
-    country: "australia",
-    city: "Melbourne, Victoria",
-    qsRank: 13,
-    tuitionRangeINR: "₹26 Lakh – ₹34 Lakh / year",
-    livingCostINR: "₹16.5 Lakh / year (DHA Guideline)",
-    totalAnnualCostINR: "₹42 Lakh – ₹50 Lakh / year",
-    primeTierCategory: "Group of Eight #1 (Prime Tier A)",
-    maxUnsecuredINR: "₹50 Lakhs",
-    maxSecuredINR: "₹1.50 Crore",
-    rates: "From 8.25% p.a.",
-    visaInfo: "AUD $29,710 living fund proof + 1st year tuition + OSHC insurance.",
-    popularPrograms: ["Master of Information Technology", "Master of Management", "Master of Engineering"],
-    slug: "",
-  },
-];
+import { globalUniversitiesDatabase, GlobalUniversityEntry } from "@/data/globalUniversitiesDatabase";
 
 export const COUNTRY_OPTIONS = [
-  { value: "all", label: "🌐 All Countries" },
+  { value: "all", label: "🌐 All Countries (Global)" },
   { value: "uk", label: "🇬🇧 United Kingdom" },
   { value: "usa", label: "🇺🇸 United States" },
   { value: "canada", label: "🇨🇦 Canada" },
@@ -143,13 +50,19 @@ export interface QuickDetailData {
   slug?: string;
   overview?: string;
   selectedCourseLabel?: string;
+  isCuratedGuide?: boolean;
 }
 
 interface UniversitySearchBarProps {
   initialSearch?: string;
   initialCountry?: string;
   initialCourse?: string;
-  onFilterChange?: (filters: { query: string; country: string; course: string }) => void;
+  onFilterChange?: (filters: {
+    query: string;
+    country: string;
+    course: string;
+    globalMatches?: QuickDetailData[];
+  }) => void;
   onSelectUniversity?: (uni: QuickDetailData) => void;
   showPopularChips?: boolean;
 }
@@ -168,6 +81,10 @@ export default function UniversitySearchBar({
   const [isOpen, setIsOpen] = useState(false);
   const [selectedUni, setSelectedUni] = useState<QuickDetailData | null>(null);
 
+  // Live remote search state
+  const [remoteResults, setRemoteResults] = useState<QuickDetailData[]>([]);
+  const [isSearchingOnline, setIsSearchingOnline] = useState(false);
+
   const searchContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -183,13 +100,6 @@ export default function UniversitySearchBar({
   useEffect(() => {
     if (initialCourse !== undefined) setSelectedCourse(initialCourse);
   }, [initialCourse]);
-
-  // Notify parent of filter changes in real-time
-  const notifyFilterChange = (query: string, country: string, course: string) => {
-    if (onFilterChange) {
-      onFilterChange({ query, country, course });
-    }
-  };
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -268,51 +178,52 @@ export default function UniversitySearchBar({
     };
   };
 
-  // Filtered autocomplete search results
+  // Live remote search debounced query to `/api/universities/search`
+  useEffect(() => {
+    const q = searchTerm.trim();
+    if (q.length < 2) {
+      setRemoteResults([]);
+      setIsSearchingOnline(false);
+      return;
+    }
+
+    const timer = setTimeout(async () => {
+      setIsSearchingOnline(true);
+      try {
+        const res = await fetch(
+          `/api/universities/search?q=${encodeURIComponent(q)}&country=${encodeURIComponent(selectedCountry)}&course=${encodeURIComponent(selectedCourse)}`
+        );
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data.results)) {
+            setRemoteResults(data.results);
+          }
+        }
+      } catch {
+        // Fallback to local
+      } finally {
+        setIsSearchingOnline(false);
+      }
+    }, 150);
+
+    return () => clearTimeout(timer);
+  }, [searchTerm, selectedCountry, selectedCourse]);
+
+  // Combined searchable catalogue (Curated + Global Database + Live Remote)
   const searchResults = useMemo(() => {
     const q = searchTerm.toLowerCase().trim();
 
-    // Base universities
+    // 1. Curated list
     const curatedMatches: QuickDetailData[] = universities
       .filter((u) => {
-        // Country filter
-        if (selectedCountry !== "all" && u.country !== selectedCountry) {
-          return false;
-        }
-
-        // Query filter
-        if (q) {
-          const nameMatch =
-            u.name.toLowerCase().includes(q) ||
-            u.shortName.toLowerCase().includes(q) ||
-            u.city.toLowerCase().includes(q) ||
-            u.countryName.toLowerCase().includes(q);
-          if (!nameMatch) return false;
-        }
-
-        // Course filter
-        if (selectedCourse !== "all") {
-          const courseKeywords: Record<string, string[]> = {
-            stem: ["computer", "data", "software", "artificial", "cyber", "computing", "technology"],
-            mba: ["mba", "business", "management", "consulting", "executive"],
-            engineering: ["engineering", "mechanical", "electrical", "civil", "robotics", "aerospace"],
-            finance: ["finance", "fintech", "economics", "accounting", "banking"],
-            health: ["health", "biotech", "biomedical", "medical", "pharmacy", "medicine"],
-            law: ["law", "llm", "policy", "legal", "justice"],
-            undergrad: ["bachelor", "undergraduate", "b.sc", "b.eng", "ba"],
-          };
-          const keywords = courseKeywords[selectedCourse] || [];
-          const hasCourse =
-            u.popularPrograms.some((p) => keywords.some((k) => p.name.toLowerCase().includes(k))) ||
-            keywords.some((k) => u.overview.toLowerCase().includes(k));
-          if (!hasCourse && q) {
-            // allow lenient match if user specifically searched by name
-          } else if (!hasCourse && !q) {
-            return false;
-          }
-        }
-
-        return true;
+        if (selectedCountry !== "all" && u.country !== selectedCountry) return false;
+        if (!q) return true;
+        return (
+          u.name.toLowerCase().includes(q) ||
+          u.shortName.toLowerCase().includes(q) ||
+          u.city.toLowerCase().includes(q) ||
+          u.countryName.toLowerCase().includes(q)
+        );
       })
       .map((u) => {
         const bestUnsecured = u.lenderPolicies.reduce((max, policy) => {
@@ -338,10 +249,12 @@ export default function UniversitySearchBar({
           popularPrograms: u.popularPrograms.map((p) => p.name),
           slug: u.slug,
           overview: u.overview,
+          isCuratedGuide: true,
         };
       });
 
-    const additionalMatches: QuickDetailData[] = additionalGlobalUniversities
+    // 2. Global Database list
+    const globalMatches: QuickDetailData[] = globalUniversitiesDatabase
       .filter((u) => {
         if (selectedCountry !== "all" && u.country !== selectedCountry) return false;
         if (!q) return false;
@@ -353,26 +266,36 @@ export default function UniversitySearchBar({
         );
       })
       .map((u) => ({
-        name: u.name,
-        shortName: u.shortName,
-        countryName: u.countryName,
-        country: u.country,
-        city: u.city,
-        qsRank: u.qsRank,
-        tuitionRangeINR: u.tuitionRangeINR,
-        livingCostINR: u.livingCostINR,
-        totalAnnualCostINR: u.totalAnnualCostINR,
-        primeTierCategory: u.primeTierCategory,
-        maxUnsecuredINR: u.maxUnsecuredINR,
-        maxSecuredINR: u.maxSecuredINR,
-        indicativeRate: u.rates,
-        visaInfo: u.visaInfo,
-        popularPrograms: u.popularPrograms,
-        slug: "",
+        ...u,
+        isCuratedGuide: Boolean(u.slug),
       }));
 
-    return [...curatedMatches, ...additionalMatches].slice(0, 8);
-  }, [searchTerm, selectedCountry, selectedCourse]);
+    // Deduplicate and combine with remoteResults
+    const seen = new Set<string>();
+    const combined: QuickDetailData[] = [];
+
+    for (const item of [...curatedMatches, ...globalMatches, ...remoteResults]) {
+      const key = item.name.toLowerCase().trim();
+      if (!seen.has(key)) {
+        seen.add(key);
+        combined.push(item);
+      }
+    }
+
+    return combined.slice(0, 15);
+  }, [searchTerm, selectedCountry, selectedCourse, remoteResults]);
+
+  // Notify parent of filter changes in real-time, including discovered matches
+  useEffect(() => {
+    if (onFilterChange) {
+      onFilterChange({
+        query: searchTerm,
+        country: selectedCountry,
+        course: selectedCourse,
+        globalMatches: searchResults,
+      });
+    }
+  }, [searchTerm, selectedCountry, selectedCourse, searchResults, onFilterChange]);
 
   const handleSelectUniversity = (uni: QuickDetailData) => {
     const customized = getCourseAdjustedDetails(uni, selectedCourse);
@@ -413,6 +336,7 @@ export default function UniversitySearchBar({
           popularPrograms: ["Master of Science (STEM)", "MBA / Business Management", "Postgraduate Diploma"],
           slug: "",
           overview: `Automated loan eligibility mapped for ${searchTerm.trim()}. Our 30+ partnering scheduled banks and NBFCs fund all accredited programs here with full living expense coverage.`,
+          isCuratedGuide: false,
         },
         selectedCourse
       );
@@ -423,15 +347,16 @@ export default function UniversitySearchBar({
   };
 
   const popularChips = [
+    { label: "🇦🇺 Deakin", name: "Deakin University" },
+    { label: "🇺🇸 Cornell", name: "Cornell University" },
     { label: "🇬🇧 Oxford", name: "University of Oxford" },
     { label: "🇳🇱 TU Delft", name: "Delft University of Technology" },
     { label: "🇩🇪 TUM Munich", name: "Technical University of Munich" },
     { label: "🇨🇦 Waterloo", name: "University of Waterloo" },
     { label: "🇫🇷 INSEAD", name: "INSEAD" },
-    { label: "🇮🇹 PoliMi", name: "Politecnico di Milano" },
-    { label: "🇨🇭 ETH Zurich", name: "ETH Zurich" },
-    { label: "🇺🇸 Northeastern", name: "Northeastern University" },
+    { label: "🇺🇸 Purdue", name: "Purdue University" },
     { label: "🇦🇺 Melbourne", name: "University of Melbourne" },
+    { label: "🇨🇦 York (Canada)", name: "York University" },
   ];
 
   return (
@@ -459,7 +384,6 @@ export default function UniversitySearchBar({
               const val = e.target.value;
               setSearchTerm(val);
               setIsOpen(true);
-              notifyFilterChange(val, selectedCountry, selectedCourse);
             }}
             onFocus={() => setIsOpen(true)}
             onKeyDown={(e) => {
@@ -467,7 +391,7 @@ export default function UniversitySearchBar({
                 handleSearchSubmit();
               }
             }}
-            placeholder="Search university or campus (e.g. Oxford, TU Delft, TUM, Harvard, Waterloo)..."
+            placeholder="Search ANY university in the world (e.g. Deakin, Cornell, Purdue, Oxford, Wollongong, Waterloo)..."
             aria-label="Search university name"
           />
           {searchTerm && (
@@ -476,7 +400,6 @@ export default function UniversitySearchBar({
               onClick={() => {
                 setSearchTerm("");
                 setIsOpen(false);
-                notifyFilterChange("", selectedCountry, selectedCourse);
               }}
               style={{
                 background: "none",
@@ -500,7 +423,6 @@ export default function UniversitySearchBar({
             onChange={(e) => {
               const val = e.target.value;
               setSelectedCountry(val);
-              notifyFilterChange(searchTerm, val, selectedCourse);
             }}
             aria-label="Filter by country"
           >
@@ -519,7 +441,6 @@ export default function UniversitySearchBar({
             onChange={(e) => {
               const val = e.target.value;
               setSelectedCourse(val);
-              notifyFilterChange(searchTerm, selectedCountry, val);
             }}
             aria-label="Filter by course or degree"
           >
@@ -537,7 +458,7 @@ export default function UniversitySearchBar({
           onClick={handleSearchSubmit}
           className="btn btn-accent search-action-btn"
         >
-          Get Details →
+          {isSearchingOnline ? "Searching..." : "Get Details →"}
         </button>
       </div>
 
@@ -558,10 +479,13 @@ export default function UniversitySearchBar({
                   borderBottom: "1px solid var(--line)",
                   display: "flex",
                   justifyContent: "space-between",
+                  alignItems: "center",
                 }}
               >
                 <span>Matching Institutions ({searchResults.length})</span>
-                <span style={{ fontSize: "0.72rem", fontWeight: 500, color: "var(--muted)" }}>Click to view loan details</span>
+                <span style={{ fontSize: "0.72rem", fontWeight: 500, color: "var(--muted)" }}>
+                  {isSearchingOnline ? "⚡ Searching global databases..." : "Click to view loan & visa breakdown"}
+                </span>
               </div>
               {searchResults.map((uni, idx) => (
                 <div
@@ -619,7 +543,7 @@ export default function UniversitySearchBar({
                   Get automated loan eligibility for &ldquo;{searchTerm}&rdquo;
                 </div>
                 <div style={{ fontSize: "0.82rem", color: "var(--ink-secondary)", marginTop: "2px" }}>
-                  Click to calculate real-time loan limits, interest rates, and living cost proof.
+                  Click to calculate real-time loan limits, interest rates, and living cost proof across 30+ lenders.
                 </div>
               </div>
               <span className="btn btn-accent" style={{ padding: "6px 14px", fontSize: "0.82rem" }}>
@@ -634,7 +558,7 @@ export default function UniversitySearchBar({
       {showPopularChips && (
         <div style={{ marginTop: "12px", display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
           <span style={{ fontSize: "0.82rem", fontWeight: 700, color: "var(--ink-secondary)" }}>
-            Popular Universities:
+            Popular Global Lookups:
           </span>
           {popularChips.map((chip, idx) => (
             <button
@@ -642,32 +566,39 @@ export default function UniversitySearchBar({
               type="button"
               onClick={() => {
                 setSearchTerm(chip.name);
-                notifyFilterChange(chip.name, selectedCountry, selectedCourse);
-                const found = universities.find((u) => u.name === chip.name);
+                // Search in curated or global
+                const found =
+                  universities.find((u) => u.name === chip.name) ||
+                  globalUniversitiesDatabase.find((u) => u.name === chip.name);
                 if (found) {
-                  const bestUnsecured = found.lenderPolicies.reduce((max, policy) => {
-                    const num = parseInt(policy.maxUnsecuredINR.replace(/[^0-9]/g, ""), 10) || 0;
-                    return num > max ? num : max;
-                  }, 0);
-                  handleSelectUniversity({
-                    name: found.name,
-                    shortName: found.shortName,
-                    countryName: found.countryName,
-                    country: found.country,
-                    city: found.city,
-                    qsRank: found.qsRank,
-                    tuitionRangeINR: found.tuitionRangeINR,
-                    livingCostINR: found.livingCostINR,
-                    totalAnnualCostINR: found.totalAnnualCostINR,
-                    primeTierCategory: found.primeTierCategory,
-                    maxUnsecuredINR: `Up to ₹${bestUnsecured} Lakhs`,
-                    maxSecuredINR: "Up to ₹1.50 Crore",
-                    indicativeRate: found.lenderPolicies[0]?.indicativeRate || "8.15% - 9.15%",
-                    visaInfo: `${found.visaRequirements.documentName}: ${found.visaRequirements.requiredFundsINR}`,
-                    popularPrograms: found.popularPrograms.map((p) => p.name),
-                    slug: found.slug,
-                    overview: found.overview,
-                  });
+                  if ("lenderPolicies" in found) {
+                    const bestUnsecured = (found as UniversityData).lenderPolicies.reduce((max, policy) => {
+                      const num = parseInt(policy.maxUnsecuredINR.replace(/[^0-9]/g, ""), 10) || 0;
+                      return num > max ? num : max;
+                    }, 0);
+                    handleSelectUniversity({
+                      name: found.name,
+                      shortName: found.shortName,
+                      countryName: found.countryName,
+                      country: found.country,
+                      city: found.city,
+                      qsRank: found.qsRank,
+                      tuitionRangeINR: found.tuitionRangeINR,
+                      livingCostINR: found.livingCostINR,
+                      totalAnnualCostINR: found.totalAnnualCostINR,
+                      primeTierCategory: found.primeTierCategory,
+                      maxUnsecuredINR: `Up to ₹${bestUnsecured} Lakhs`,
+                      maxSecuredINR: "Up to ₹1.50 Crore",
+                      indicativeRate: (found as UniversityData).lenderPolicies[0]?.indicativeRate || "8.15% - 9.15%",
+                      visaInfo: `${(found as UniversityData).visaRequirements.documentName}: ${(found as UniversityData).visaRequirements.requiredFundsINR}`,
+                      popularPrograms: (found as UniversityData).popularPrograms.map((p) => p.name),
+                      slug: found.slug,
+                      overview: found.overview,
+                      isCuratedGuide: true,
+                    });
+                  } else {
+                    handleSelectUniversity(found as QuickDetailData);
+                  }
                 }
               }}
               style={{
