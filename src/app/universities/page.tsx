@@ -6,6 +6,7 @@ import { universities, UniversityData, CountryCode, Region, InstitutionType } fr
 import { globalUniversitiesDatabase, GlobalUniversityEntry } from "@/data/globalUniversitiesDatabase";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import UniversitySearchBar, { QuickDetailData } from "@/components/UniversitySearchBar";
+import { isIndianInstitution, isIndianInstitutionQuery } from "@/lib/institutionFilters";
 
 export interface DisplayCardData {
   name: string;
@@ -42,12 +43,18 @@ export default function UniversitiesDirectoryPage() {
   const [activeModalUni, setActiveModalUni] = useState<DisplayCardData | null>(null);
 
   // Combine curated + global universities and filter
+  // STRICTLY EXCLUDES DOMESTIC INDIAN INSTITUTIONS
   const displayedUniversities = useMemo(() => {
     const query = searchQuery.toLowerCase().trim();
+
+    if (isIndianInstitutionQuery(query)) {
+      return [];
+    }
 
     // 1. Filter curated universities
     const curatedMatches: DisplayCardData[] = universities
       .filter((u) => {
+        if (isIndianInstitution(u.name, u.countryName, u.country)) return false;
         // Region filter
         const matchesRegion =
           selectedRegion === "all" ||
@@ -123,6 +130,7 @@ export default function UniversitiesDirectoryPage() {
     const globalMatches: DisplayCardData[] = [];
     if (query) {
       for (const gu of globalUniversitiesDatabase) {
+        if (isIndianInstitution(gu.name, gu.countryName, gu.country)) continue;
         if (selectedCountry !== "all" && gu.country !== selectedCountry) continue;
         const matches =
           gu.name.toLowerCase().includes(query) ||
@@ -155,13 +163,50 @@ export default function UniversitiesDirectoryPage() {
           });
         }
       }
+
+      // If user typed a query but 0 results in selectedCountry, search globally across all foreign countries
+      if (globalMatches.length === 0 && selectedCountry !== "all") {
+        for (const gu of globalUniversitiesDatabase) {
+          if (isIndianInstitution(gu.name, gu.countryName, gu.country)) continue;
+          const matches =
+            gu.name.toLowerCase().includes(query) ||
+            gu.shortName.toLowerCase().includes(query) ||
+            gu.city.toLowerCase().includes(query) ||
+            gu.countryName.toLowerCase().includes(query);
+
+          if (matches) {
+            globalMatches.push({
+              name: gu.name,
+              shortName: gu.shortName,
+              country: gu.country,
+              countryName: gu.countryName,
+              city: gu.city,
+              badge: "Global Higher Education Partner",
+              badgeClass: "inst-badge inst-badge-research",
+              primeTierCategory: gu.primeTierCategory,
+              totalAnnualCostINR: gu.totalAnnualCostINR,
+              tuitionRangeINR: gu.tuitionRangeINR,
+              livingCostINR: gu.livingCostINR,
+              maxUnsecuredINR: gu.maxUnsecuredINR,
+              maxSecuredINR: gu.maxSecuredINR,
+              indicativeRate: gu.indicativeRate,
+              visaInfo: gu.visaInfo,
+              popularPrograms: gu.popularPrograms,
+              slug: gu.slug,
+              overview: gu.overview,
+              isCuratedGuide: Boolean(gu.slug),
+              qsRank: gu.qsRank,
+            });
+          }
+        }
+      }
     }
 
     // 3. Include any live discovered universities from online search
     const remoteMatches: DisplayCardData[] = [];
     if (query) {
       for (const ru of discoveredUniversities) {
-        if (selectedCountry !== "all" && ru.country !== selectedCountry) continue;
+        if (isIndianInstitution(ru.name, ru.countryName, ru.country)) continue;
         const matches =
           ru.name.toLowerCase().includes(query) ||
           ru.shortName.toLowerCase().includes(query) ||
@@ -630,16 +675,59 @@ export default function UniversitiesDirectoryPage() {
                 color: "var(--ink)",
               }}
             >
-              <h3 style={{ color: "var(--ink)" }}>Looking for &ldquo;{searchQuery}&rdquo;?</h3>
-              <p style={{ color: "var(--ink-secondary)", maxWidth: "540px", margin: "10px auto 20px" }}>
-                Our 30+ partnering public and private lenders approve collateral-free overseas education loans for students heading to any recognized university worldwide.
-              </p>
-              <Link
-                href={`/apply?university=${encodeURIComponent(searchQuery)}`}
-                className="btn btn-primary"
-              >
-                Apply for Loan for {searchQuery} →
-              </Link>
+              {isIndianInstitutionQuery(searchQuery) ? (
+                <>
+                  <div style={{ fontSize: "2rem", marginBottom: "8px" }}>ℹ️</div>
+                  <h3 style={{ color: "#ef4444", marginBottom: "8px" }}>Domestic Indian Institutions Not Eligible</h3>
+                  <p style={{ color: "var(--ink-secondary)", maxWidth: "580px", margin: "10px auto 20px", lineHeight: "1.6" }}>
+                    Udaan Loans facilitates collateral-free education loans exclusively for students admitted to recognized overseas / foreign universities (USA, UK, Canada, Australia, Germany, Ireland, Europe). Domestic Indian institutions are not eligible for our overseas study loan schemes.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSearchQuery("");
+                      setSelectedCountry("all");
+                    }}
+                    className="btn btn-outline"
+                    style={{ margin: "0 auto" }}
+                  >
+                    Explore Overseas Universities Directory →
+                  </button>
+                </>
+              ) : searchQuery ? (
+                <>
+                  <h3 style={{ color: "var(--ink)" }}>Looking for &ldquo;{searchQuery}&rdquo;?</h3>
+                  <p style={{ color: "var(--ink-secondary)", maxWidth: "560px", margin: "10px auto 20px", lineHeight: "1.6" }}>
+                    Our 30+ partnering public and private lenders approve collateral-free overseas education loans for students heading to any recognized accredited institution worldwide.
+                  </p>
+                  <Link
+                    href={`/apply?university=${encodeURIComponent(searchQuery)}`}
+                    className="btn btn-primary"
+                  >
+                    Apply for Overseas Loan for {searchQuery} →
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <h3 style={{ color: "var(--ink)" }}>No universities match your filters</h3>
+                  <p style={{ color: "var(--ink-secondary)", maxWidth: "540px", margin: "10px auto 20px" }}>
+                    Try resetting your selected region, country, or course filters to view available overseas universities.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSelectedRegion("all");
+                      setSelectedCountry("all");
+                      setSelectedType("all");
+                      setSelectedCourse("all");
+                      setSearchQuery("");
+                    }}
+                    className="btn btn-outline"
+                  >
+                    Reset All Filters
+                  </button>
+                </>
+              )}
             </div>
           )}
         </div>

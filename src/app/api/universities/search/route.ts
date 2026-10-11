@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { universities } from "@/data/universities";
 import { globalUniversitiesDatabase, GlobalUniversityEntry } from "@/data/globalUniversitiesDatabase";
+import { isIndianInstitution, isIndianInstitutionQuery } from "@/lib/institutionFilters";
 
 interface HipolabsUniversity {
   name: string;
@@ -10,6 +11,7 @@ interface HipolabsUniversity {
   domains: string[];
   web_pages: string[];
 }
+
 
 export async function GET(request: Request) {
   try {
@@ -22,12 +24,22 @@ export async function GET(request: Request) {
       return NextResponse.json({ results: [] });
     }
 
+    // STRICT FILTER: If user searched an Indian college or "india", return empty immediately
+    if (isIndianInstitutionQuery(query)) {
+      return NextResponse.json({
+        results: [],
+        isIndianQuery: true,
+        notice: "Udaan Loans facilitates financing exclusively for foreign/overseas education (USA, UK, Canada, Australia, Germany, Ireland, Europe). Domestic Indian institutions are not eligible for overseas education loan programs."
+      });
+    }
+
     const qLower = query.toLowerCase();
 
-    // 1. Search in local curated universities (with deep guides)
-    const localCuratedMatches: GlobalUniversityEntry[] = universities
+    // 1. Search in local curated universities (with deep guides) - STRICTLY EXCLUDE INDIA
+    const matchCurated = (filterCountry: boolean) => universities
       .filter((u) => {
-        if (country !== "all" && u.country !== country) return false;
+        if (isIndianInstitution(u.name, u.countryName, u.country)) return false;
+        if (filterCountry && country !== "all" && u.country !== country) return false;
         if (!qLower) return true;
         return (
           u.name.toLowerCase().includes(qLower) ||
@@ -63,9 +75,10 @@ export async function GET(request: Request) {
         };
       });
 
-    // 2. Search in global universities database (instant hundreds of world universities)
-    const globalMatches: GlobalUniversityEntry[] = globalUniversitiesDatabase.filter((u) => {
-      if (country !== "all" && u.country !== country) return false;
+    // 2. Search in global universities database (hundreds of foreign world universities)
+    const matchGlobal = (filterCountry: boolean) => globalUniversitiesDatabase.filter((u) => {
+      if (isIndianInstitution(u.name, u.countryName, u.country)) return false;
+      if (filterCountry && country !== "all" && u.country !== country) return false;
       if (!qLower) return false;
       return (
         u.name.toLowerCase().includes(qLower) ||
@@ -74,6 +87,15 @@ export async function GET(request: Request) {
         u.countryName.toLowerCase().includes(qLower)
       );
     });
+
+    let localCuratedMatches = matchCurated(true);
+    let globalMatches = matchGlobal(true);
+
+    // If no results found with specific country filter, retry search globally across all foreign countries
+    if (localCuratedMatches.length === 0 && globalMatches.length === 0 && country !== "all") {
+      localCuratedMatches = matchCurated(false);
+      globalMatches = matchGlobal(false);
+    }
 
     // Combine local results and deduplicate by lowercased university name
     const seenNames = new Set<string>();
@@ -87,30 +109,30 @@ export async function GET(request: Request) {
       }
     }
 
-    // 3. If query has at least 3 letters and we have few results, query live Hipo World Universities API
-    if (qLower.length >= 3 && combinedResults.length < 12) {
+    // 3. Query external live world universities database for any unlisted foreign college
+    if (qLower.length >= 2 && combinedResults.length < 15) {
       try {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 2000);
+        const timeoutId = setTimeout(() => controller.abort(), 2600);
 
         let hipoUrl = `http://universities.hipolabs.com/search?name=${encodeURIComponent(query)}`;
-        if (country !== "all") {
-          const countryMap: Record<string, string> = {
-            uk: "United Kingdom",
-            usa: "United States",
-            canada: "Canada",
-            australia: "Australia",
-            germany: "Germany",
-            ireland: "Ireland",
-            netherlands: "Netherlands",
-            france: "France",
-            sweden: "Sweden",
-            italy: "Italy",
-            switzerland: "Switzerland",
-          };
-          if (countryMap[country]) {
-            hipoUrl += `&country=${encodeURIComponent(countryMap[country])}`;
-          }
+        const countryMap: Record<string, string> = {
+          uk: "United Kingdom",
+          usa: "United States",
+          canada: "Canada",
+          australia: "Australia",
+          germany: "Germany",
+          ireland: "Ireland",
+          netherlands: "Netherlands",
+          france: "France",
+          sweden: "Sweden",
+          italy: "Italy",
+          switzerland: "Switzerland",
+          "new-zealand": "New Zealand",
+        };
+
+        if (country !== "all" && countryMap[country]) {
+          hipoUrl += `&country=${encodeURIComponent(countryMap[country])}`;
         }
 
         const res = await fetch(hipoUrl, {
@@ -122,55 +144,62 @@ export async function GET(request: Request) {
         if (res.ok) {
           const remoteList: HipolabsUniversity[] = await res.json();
 
-          for (const r of remoteList.slice(0, 15)) {
+          for (const r of remoteList.slice(0, 20)) {
+            const cName = r.country || "Overseas";
+            const cNameLower = cName.toLowerCase();
+
+            // STRICT FILTER: EXCLUDE INDIA
+            if (isIndianInstitution(r.name, cName, r.alpha_two_code)) {
+              continue;
+            }
+
             const key = r.name.toLowerCase().trim();
             if (!seenNames.has(key)) {
               seenNames.add(key);
 
               // Derive country code and realistic loan/visa parameters
-              const cName = r.country || "Overseas";
-              const cNameLower = cName.toLowerCase();
               let derivedCountryCode = "global";
-              let tuition = "₹20 Lakh – ₹35 Lakh / year";
+              let tuition = "₹18 Lakh – ₹32 Lakh / year";
               let living = "₹12 Lakh – ₹16 Lakh / year";
-              let total = "₹32 Lakh – ₹51 Lakh / year";
+              let total = "₹30 Lakh – ₹48 Lakh / year";
               let maxUnsec = "Up to ₹50 Lakhs";
               let rates = "From 8.15% p.a.";
               let visa = "Pre-visa loan sanction letter acceptable by foreign embassies.";
-              let tier = "Accredited International Higher Education Institution";
+              let tier = "Accredited Overseas Higher Education Institution";
 
               if (cNameLower.includes("united states") || r.alpha_two_code === "US") {
                 derivedCountryCode = "usa";
-                tuition = "₹35 Lakh – ₹52 Lakh / year";
+                tuition = "₹32 Lakh – ₹48 Lakh / year";
                 living = "₹18 Lakh – ₹22 Lakh / year";
-                total = "₹53 Lakh – ₹74 Lakh / year";
+                total = "₹50 Lakh – ₹70 Lakh / year";
                 maxUnsec = "Up to ₹75 Lakhs";
                 rates = "From 7.75% p.a.";
-                visa = "Form I-20 financial solvency proof ($60,000–$85,000/yr) required for US F-1 visa.";
-                tier = "US Public/Private Accredited Institution (Tier A)";
+                visa = "Form I-20 financial solvency proof ($55,000–$80,000/yr) required for US F-1 visa.";
+                tier = "US Public / Private Accredited Institution (SEVP Certified)";
               } else if (cNameLower.includes("united kingdom") || r.alpha_two_code === "GB") {
                 derivedCountryCode = "uk";
-                tuition = "₹20 Lakh – ₹34 Lakh / year";
+                tuition = "₹16 Lakh – ₹28 Lakh / year";
                 living = "₹12 Lakh – ₹16 Lakh / year (UKVI)";
-                total = "₹32 Lakh – ₹50 Lakh / year";
+                total = "₹28 Lakh – ₹44 Lakh / year";
                 maxUnsec = "Up to ₹50 Lakhs";
                 rates = "From 8.15% p.a.";
                 visa = "UKVI 28-day bank balance maintenance rule (£9,207–£12,006).";
                 tier = "UK Tier 4 / Student Visa Sponsor DLI";
               } else if (cNameLower.includes("canada") || r.alpha_two_code === "CA") {
                 derivedCountryCode = "canada";
-                tuition = "₹18 Lakh – ₹30 Lakh / year";
-                living = "₹13.0 Lakh / year (IRCC GIC)";
-                total = "₹31 Lakh – ₹43 Lakh / year";
-                maxUnsec = "Up to ₹50 Lakhs";
+                const isCollege = r.name.toLowerCase().includes("college") || r.name.toLowerCase().includes("polytechnic");
+                tuition = isCollege ? "₹11 Lakh – ₹16 Lakh / year" : "₹18 Lakh – ₹32 Lakh / year";
+                living = "₹13.0 Lakh / year (IRCC GIC C$20,635)";
+                total = isCollege ? "₹24 Lakh – ₹29 Lakh / year" : "₹31 Lakh – ₹45 Lakh / year";
+                maxUnsec = isCollege ? "Up to ₹45 Lakhs" : "Up to ₹50 Lakhs";
                 rates = "From 8.15% p.a.";
                 visa = "IRCC Canadian SDS / Study Permit: C$20,635 GIC deposit + 1st year tuition receipt.";
-                tier = "Canadian Designated Learning Institution (DLI)";
+                tier = isCollege ? "Canadian Public DLI College (Post-Grad Work Permit Approved)" : "Canadian Designated Learning Institution (DLI)";
               } else if (cNameLower.includes("australia") || r.alpha_two_code === "AU") {
                 derivedCountryCode = "australia";
-                tuition = "₹22 Lakh – ₹36 Lakh / year";
+                tuition = "₹20 Lakh – ₹34 Lakh / year";
                 living = "₹16.5 Lakh / year (DHA AUD $29,710)";
-                total = "₹38 Lakh – ₹52 Lakh / year";
+                total = "₹36.5 Lakh – ₹50.5 Lakh / year";
                 maxUnsec = "Up to ₹50 Lakhs";
                 rates = "From 8.25% p.a.";
                 visa = "Australian Subclass 500: AUD $29,710 living fund proof + 1st year tuition + OSHC.";
@@ -186,18 +215,18 @@ export async function GET(request: Request) {
                 tier = "German State Accredited Institution (Anabin H+)";
               } else if (cNameLower.includes("ireland") || r.alpha_two_code === "IE") {
                 derivedCountryCode = "ireland";
-                tuition = "₹16 Lakh – ₹25 Lakh / year";
+                tuition = "₹14 Lakh – ₹24 Lakh / year";
                 living = "₹10.0 Lakh / year (ISD €10,000)";
-                total = "₹26 Lakh – ₹35 Lakh / year";
+                total = "₹24 Lakh – ₹34 Lakh / year";
                 maxUnsec = "Up to ₹45 Lakhs";
                 rates = "From 8.20% p.a.";
                 visa = "Irish ISD Student Visa: €10,000 living expense proof in personal bank account.";
                 tier = "Irish National Framework of Qualifications (NFQ) Partner";
               } else if (cNameLower.includes("netherlands") || r.alpha_two_code === "NL") {
                 derivedCountryCode = "netherlands";
-                tuition = "₹15 Lakh – ₹24 Lakh / year";
+                tuition = "₹14 Lakh – ₹24 Lakh / year";
                 living = "₹13.5 Lakh / year (Dutch IND €14,615)";
-                total = "₹28 Lakh – ₹37 Lakh / year";
+                total = "₹27.5 Lakh – ₹37.5 Lakh / year";
                 maxUnsec = "Up to ₹45 Lakhs";
                 rates = "From 8.15% p.a.";
                 visa = "Dutch IND MVV Visa: €14,615 living funds guarantee.";
@@ -211,6 +240,42 @@ export async function GET(request: Request) {
                 rates = "From 8.15% p.a.";
                 visa = "Campus France VLS-TS Visa: Proof of minimum €615/month living funds.";
                 tier = "French State Recognized Institution";
+              } else if (cNameLower.includes("new zealand") || r.alpha_two_code === "NZ") {
+                derivedCountryCode = "new-zealand";
+                tuition = "₹18 Lakh – ₹28 Lakh / year";
+                living = "₹12.0 Lakh / year (INZ NZ$20,000)";
+                total = "₹30 Lakh – ₹40 Lakh / year";
+                maxUnsec = "Up to ₹45 Lakhs";
+                rates = "From 8.20% p.a.";
+                visa = "Immigration New Zealand (INZ): Proof of NZ$20,000/year living expenses.";
+                tier = "New Zealand Accredited Higher Education Institution";
+              } else if (cNameLower.includes("sweden") || r.alpha_two_code === "SE") {
+                derivedCountryCode = "sweden";
+                tuition = "₹12 Lakh – ₹22 Lakh / year";
+                living = "₹11.0 Lakh / year (Migrationsverket)";
+                total = "₹23 Lakh – ₹33 Lakh / year";
+                maxUnsec = "Up to ₹45 Lakhs";
+                rates = "From 8.15% p.a.";
+                visa = "Swedish Migration Agency: Proof of SEK 10,314/month living balance.";
+                tier = "Swedish Higher Education Authority (UKÄ) Recognized";
+              } else if (cNameLower.includes("italy") || r.alpha_two_code === "IT") {
+                derivedCountryCode = "italy";
+                tuition = "₹2.5 Lakh – ₹5.0 Lakh / year";
+                living = "₹9.5 Lakh / year";
+                total = "₹12 Lakh – ₹14.5 Lakh / year";
+                maxUnsec = "Up to ₹45 Lakhs";
+                rates = "From 8.20% p.a.";
+                visa = "Italian National Visa (Type D): Proof of €6,000/year living maintenance.";
+                tier = "Italian Ministry of University and Research (MUR) Recognized";
+              } else if (cNameLower.includes("switzerland") || r.alpha_two_code === "CH") {
+                derivedCountryCode = "switzerland";
+                tuition = "₹2 Lakh – ₹8 Lakh / year";
+                living = "₹18 Lakh – ₹24 Lakh / year (CHF 21,000)";
+                total = "₹20 Lakh – ₹32 Lakh / year";
+                maxUnsec = "Up to ₹50 Lakhs";
+                rates = "From 8.15% p.a.";
+                visa = "Swiss Student Visa: Mandatory proof of CHF 21,000 living expenses.";
+                tier = "Swiss Federal / Cantonal Accredited Higher Education Institution";
               }
 
               combinedResults.push({
@@ -228,7 +293,7 @@ export async function GET(request: Request) {
                 maxSecuredINR: "Up to ₹1.50 Crore",
                 indicativeRate: rates,
                 visaInfo: visa,
-                popularPrograms: ["Master of Science (STEM)", "MBA / Management", "Postgraduate Studies"],
+                popularPrograms: ["Master of Science (STEM)", "MBA / Management", "Postgraduate Certificate"],
                 slug: "",
                 overview: `Verified institutional degree program mapped for ${r.name}. 30+ partnering public and private lenders approve collateral-free overseas education loans for students heading here.`,
               });
@@ -236,12 +301,17 @@ export async function GET(request: Request) {
           }
         }
       } catch {
-        // Fallback gracefully to local curated + global database
+        // Fallback gracefully
       }
     }
 
+    // Final safety filter: strictly exclude any Indian institution
+    const foreignOnlyResults = combinedResults.filter(
+      (u) => !isIndianInstitution(u.name, u.countryName, u.country)
+    );
+
     return NextResponse.json(
-      { results: combinedResults.slice(0, 16) },
+      { results: foreignOnlyResults.slice(0, 16) },
       {
         headers: {
           "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",

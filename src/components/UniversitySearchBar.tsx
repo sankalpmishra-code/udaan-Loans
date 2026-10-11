@@ -2,11 +2,12 @@
 
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import Link from "next/link";
-import { universities, UniversityData, CountryCode } from "@/data/universities";
-import { globalUniversitiesDatabase, GlobalUniversityEntry } from "@/data/globalUniversitiesDatabase";
+import { universities, UniversityData } from "@/data/universities";
+import { globalUniversitiesDatabase } from "@/data/globalUniversitiesDatabase";
+import { isIndianInstitution, isIndianInstitutionQuery } from "@/lib/institutionFilters";
 
 export const COUNTRY_OPTIONS = [
-  { value: "all", label: "🌐 All Countries (Global)" },
+  { value: "all", label: "🌐 All Foreign Countries" },
   { value: "uk", label: "🇬🇧 United Kingdom" },
   { value: "usa", label: "🇺🇸 United States" },
   { value: "canada", label: "🇨🇦 Canada" },
@@ -18,6 +19,7 @@ export const COUNTRY_OPTIONS = [
   { value: "sweden", label: "🇸🇪 Sweden" },
   { value: "italy", label: "🇮🇹 Italy" },
   { value: "switzerland", label: "🇨🇭 Switzerland" },
+  { value: "new-zealand", label: "🇳🇿 New Zealand" },
 ];
 
 export const COURSE_OPTIONS = [
@@ -80,6 +82,10 @@ export default function UniversitySearchBar({
   const [selectedCourse, setSelectedCourse] = useState(initialCourse);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedUni, setSelectedUni] = useState<QuickDetailData | null>(null);
+
+  // Status notices
+  const [indianQueryNotice, setIndianQueryNotice] = useState(false);
+  const [noMatchNotice, setNoMatchNotice] = useState(false);
 
   // Live remote search state
   const [remoteResults, setRemoteResults] = useState<QuickDetailData[]>([]);
@@ -159,14 +165,14 @@ export default function UniversitySearchBar({
       extraAdvice = "High earning potential guarantees premium lender concessions with SBI Scholar / BoB Baroda Scholar schemes offering zero margin money.";
     } else if (courseKey === "stem") {
       adjustedUnsecured = "Up to ₹60 Lakhs (STEM Priority)";
-      extraAdvice = "Eligible for extended 3-year post-study OPT work permits (USA) and specialized collateral-free US-dollar student loans.";
+      extraAdvice = "Eligible for extended 3-year post-study OPT work permits (USA) and specialized collateral-free foreign currency student loans.";
     } else if (courseKey === "engineering") {
       adjustedUnsecured = "Up to ₹50 Lakhs (Collateral-Free)";
       extraAdvice = "High global employer demand across automotive, semiconductor, and robotics hubs.";
     } else if (courseKey === "undergrad") {
       adjustedTuition = "₹18 Lakh – ₹38 Lakh / year";
       adjustedUnsecured = "Up to ₹35 Lakhs (Cosigner Required)";
-      extraAdvice = "Undergraduate degree loans usually require a strong parent/guardian financial co-signer with proven ITR.";
+      extraAdvice = "Undergraduate degree loans usually require a parent/guardian financial co-signer with proven ITR.";
     }
 
     return {
@@ -181,6 +187,17 @@ export default function UniversitySearchBar({
   // Live remote search debounced query to `/api/universities/search`
   useEffect(() => {
     const q = searchTerm.trim();
+
+    if (isIndianInstitutionQuery(q)) {
+      setIndianQueryNotice(true);
+      setNoMatchNotice(false);
+      setRemoteResults([]);
+      setIsSearchingOnline(false);
+      return;
+    } else {
+      setIndianQueryNotice(false);
+    }
+
     if (q.length < 2) {
       setRemoteResults([]);
       setIsSearchingOnline(false);
@@ -195,12 +212,18 @@ export default function UniversitySearchBar({
         );
         if (res.ok) {
           const data = await res.json();
-          if (Array.isArray(data.results)) {
+          if (data.isIndianQuery) {
+            setIndianQueryNotice(true);
+            setRemoteResults([]);
+          } else if (Array.isArray(data.results)) {
             setRemoteResults(data.results);
+            if (data.results.length > 0) {
+              setNoMatchNotice(false);
+            }
           }
         }
       } catch {
-        // Fallback to local
+        // Fallback gracefully
       } finally {
         setIsSearchingOnline(false);
       }
@@ -210,12 +233,17 @@ export default function UniversitySearchBar({
   }, [searchTerm, selectedCountry, selectedCourse]);
 
   // Combined searchable catalogue (Curated + Global Database + Live Remote)
+  // Strictly foreign institutions only - zero domestic Indian colleges
   const searchResults = useMemo(() => {
     const q = searchTerm.toLowerCase().trim();
+
+    if (!q && selectedCountry === "all") return [];
+    if (isIndianInstitutionQuery(q)) return [];
 
     // 1. Curated list
     const curatedMatches: QuickDetailData[] = universities
       .filter((u) => {
+        if (isIndianInstitution(u.name, u.countryName, u.country)) return false;
         if (selectedCountry !== "all" && u.country !== selectedCountry) return false;
         if (!q) return true;
         return (
@@ -256,6 +284,7 @@ export default function UniversitySearchBar({
     // 2. Global Database list
     const globalMatches: QuickDetailData[] = globalUniversitiesDatabase
       .filter((u) => {
+        if (isIndianInstitution(u.name, u.countryName, u.country)) return false;
         if (selectedCountry !== "all" && u.country !== selectedCountry) return false;
         if (!q) return false;
         return (
@@ -275,6 +304,7 @@ export default function UniversitySearchBar({
     const combined: QuickDetailData[] = [];
 
     for (const item of [...curatedMatches, ...globalMatches, ...remoteResults]) {
+      if (isIndianInstitution(item.name, item.countryName, item.country)) continue;
       const key = item.name.toLowerCase().trim();
       if (!seen.has(key)) {
         seen.add(key);
@@ -282,8 +312,8 @@ export default function UniversitySearchBar({
       }
     }
 
-    return combined.slice(0, 15);
-  }, [searchTerm, selectedCountry, selectedCourse, remoteResults]);
+    return combined.slice(0, 16);
+  }, [searchTerm, selectedCountry, remoteResults]);
 
   // Notify parent of filter changes in real-time, including discovered matches
   useEffect(() => {
@@ -299,64 +329,138 @@ export default function UniversitySearchBar({
 
   const handleSelectUniversity = (uni: QuickDetailData) => {
     const customized = getCourseAdjustedDetails(uni, selectedCourse);
-    setSelectedUni(customized);
     setIsOpen(false);
-    if (onSelectUniversity) onSelectUniversity(customized);
+    setIndianQueryNotice(false);
+    setNoMatchNotice(false);
+    if (onSelectUniversity) {
+      onSelectUniversity(customized);
+    } else {
+      setSelectedUni(customized);
+    }
   };
 
-  const handleSearchSubmit = () => {
-    if (!searchTerm.trim()) {
+  const handleSearchSubmit = async () => {
+    const q = searchTerm.trim();
+    if (!q) {
       if (searchResults.length > 0) {
         handleSelectUniversity(searchResults[0]);
       }
       return;
     }
 
+    // 1. Strict check: Indian domestic institution
+    if (isIndianInstitutionQuery(q)) {
+      setIndianQueryNotice(true);
+      setNoMatchNotice(false);
+      setIsOpen(false);
+      return;
+    }
+    setIndianQueryNotice(false);
+
+    // 2. If we already have matching search results, select the top real institution
     if (searchResults.length > 0) {
       handleSelectUniversity(searchResults[0]);
-    } else {
-      // Dynamic profile generator for any unlisted university globally
-      const countryLabel = COUNTRY_OPTIONS.find((c) => c.value === selectedCountry)?.label || "Overseas";
-      const customized = getCourseAdjustedDetails(
-        {
-          name: searchTerm.trim(),
-          shortName: searchTerm.trim().split(" ")[0],
-          countryName: selectedCountry !== "all" ? countryLabel.replace(/^[^\w\s]+\s*/, "") : "International Campus",
-          country: selectedCountry !== "all" ? selectedCountry : "global",
-          city: "International University Hub",
-          qsRank: "Recognized Accredited University",
-          tuitionRangeINR: "₹18 Lakh – ₹32 Lakh / year (Estimated)",
-          livingCostINR: "₹10 Lakh – ₹15 Lakh / year (Estimated)",
-          totalAnnualCostINR: "₹28 Lakh – ₹47 Lakh / year",
-          primeTierCategory: "Public / Private Bank Underwritten Institution",
-          maxUnsecuredINR: "Up to ₹50 Lakhs",
-          maxSecuredINR: "Up to ₹1.50 Crore",
-          indicativeRate: "8.15% - 10.25%",
-          visaInfo: "Embassy accepted pre-visa loan sanction letters with zero upfront collateral.",
-          popularPrograms: ["Master of Science (STEM)", "MBA / Business Management", "Postgraduate Diploma"],
-          slug: "",
-          overview: `Automated loan eligibility mapped for ${searchTerm.trim()}. Our 30+ partnering scheduled banks and NBFCs fund all accredited programs here with full living expense coverage.`,
-          isCuratedGuide: false,
-        },
-        selectedCourse
-      );
-      setSelectedUni(customized);
-      setIsOpen(false);
-      if (onSelectUniversity) onSelectUniversity(customized);
+      return;
     }
+
+    // 3. Check local database ignoring selected country filter (e.g. if user selected "UK" but searched "Purdue" or "Deakin")
+    const ql = q.toLowerCase();
+    const foundCurated = universities.find((u) => {
+      if (isIndianInstitution(u.name, u.countryName, u.country)) return false;
+      return (
+        u.name.toLowerCase().includes(ql) ||
+        u.shortName.toLowerCase().includes(ql) ||
+        u.city.toLowerCase().includes(ql)
+      );
+    });
+
+    if (foundCurated) {
+      const bestUnsecured = foundCurated.lenderPolicies.reduce((max, policy) => {
+        const num = parseInt(policy.maxUnsecuredINR.replace(/[^0-9]/g, ""), 10) || 0;
+        return num > max ? num : max;
+      }, 0);
+      handleSelectUniversity({
+        name: foundCurated.name,
+        shortName: foundCurated.shortName,
+        countryName: foundCurated.countryName,
+        country: foundCurated.country,
+        city: foundCurated.city,
+        qsRank: foundCurated.qsRank,
+        tuitionRangeINR: foundCurated.tuitionRangeINR,
+        livingCostINR: foundCurated.livingCostINR,
+        totalAnnualCostINR: foundCurated.totalAnnualCostINR,
+        primeTierCategory: foundCurated.primeTierCategory,
+        maxUnsecuredINR: `Up to ₹${bestUnsecured} Lakhs`,
+        maxSecuredINR: "Up to ₹1.50 Crore",
+        indicativeRate: foundCurated.lenderPolicies[0]?.indicativeRate || "8.15% - 9.15%",
+        visaInfo: `${foundCurated.visaRequirements.documentName}: ${foundCurated.visaRequirements.requiredFundsINR}`,
+        popularPrograms: foundCurated.popularPrograms.map((p) => p.name),
+        slug: foundCurated.slug,
+        overview: foundCurated.overview,
+        isCuratedGuide: true,
+      });
+      return;
+    }
+
+    const foundGlobal = globalUniversitiesDatabase.find((u) => {
+      if (isIndianInstitution(u.name, u.countryName, u.country)) return false;
+      return (
+        u.name.toLowerCase().includes(ql) ||
+        u.shortName.toLowerCase().includes(ql) ||
+        u.city.toLowerCase().includes(ql)
+      );
+    });
+
+    if (foundGlobal) {
+      handleSelectUniversity({
+        ...foundGlobal,
+        isCuratedGuide: Boolean(foundGlobal.slug),
+      });
+      return;
+    }
+
+    // 4. Perform immediate live lookup from server endpoint
+    setIsSearchingOnline(true);
+    try {
+      const res = await fetch(
+        `/api/universities/search?q=${encodeURIComponent(q)}&country=${encodeURIComponent(selectedCountry)}&course=${encodeURIComponent(selectedCourse)}`
+      );
+      if (res.ok) {
+        const data = await res.json();
+        if (data.isIndianQuery) {
+          setIndianQueryNotice(true);
+          setIsOpen(false);
+          return;
+        }
+        if (Array.isArray(data.results) && data.results.length > 0) {
+          handleSelectUniversity(data.results[0]);
+          return;
+        }
+      }
+    } catch {
+      // ignore
+    } finally {
+      setIsSearchingOnline(false);
+    }
+
+    // 5. If no foreign university found:
+    // DO NOT OPEN A DUMMY MODAL WITH "International Campus"!
+    setNoMatchNotice(true);
+    setIsOpen(false);
   };
 
   const popularChips = [
-    { label: "🇦🇺 Deakin", name: "Deakin University" },
-    { label: "🇺🇸 Cornell", name: "Cornell University" },
-    { label: "🇬🇧 Oxford", name: "University of Oxford" },
-    { label: "🇳🇱 TU Delft", name: "Delft University of Technology" },
-    { label: "🇩🇪 TUM Munich", name: "Technical University of Munich" },
-    { label: "🇨🇦 Waterloo", name: "University of Waterloo" },
-    { label: "🇫🇷 INSEAD", name: "INSEAD" },
     { label: "🇺🇸 Purdue", name: "Purdue University" },
+    { label: "🇦🇺 Deakin", name: "Deakin University" },
+    { label: "🇨🇦 Fanshawe", name: "Fanshawe College of Applied Arts and Technology" },
+    { label: "🇨🇦 Seneca", name: "Seneca Polytechnic (Seneca College)" },
+    { label: "🇨🇦 Humber", name: "Humber College Institute of Technology" },
+    { label: "🇬🇧 Oxford", name: "University of Oxford" },
+    { label: "🇩🇪 TUM Munich", name: "Technical University of Munich" },
+    { label: "🇳🇱 TU Delft", name: "Delft University of Technology" },
+    { label: "🇨🇦 Waterloo", name: "University of Waterloo" },
     { label: "🇦🇺 Melbourne", name: "University of Melbourne" },
-    { label: "🇨🇦 York (Canada)", name: "York University" },
+    { label: "🇺🇸 Cornell", name: "Cornell University" },
   ];
 
   return (
@@ -368,7 +472,7 @@ export default function UniversitySearchBar({
           <span
             style={{
               position: "absolute",
-              left: "10px",
+              left: "14px",
               fontSize: "1.1rem",
               color: "var(--brand-light, #48bbcc)",
               pointerEvents: "none",
@@ -384,15 +488,20 @@ export default function UniversitySearchBar({
               const val = e.target.value;
               setSearchTerm(val);
               setIsOpen(true);
+              setNoMatchNotice(false);
             }}
             onFocus={() => setIsOpen(true)}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
+                e.preventDefault();
                 handleSearchSubmit();
               }
             }}
-            placeholder="Search ANY university in the world (e.g. Deakin, Cornell, Purdue, Oxford, Wollongong, Waterloo)..."
-            aria-label="Search university name"
+            placeholder="Search ANY overseas university or college (e.g. Purdue, Fanshawe, Seneca, Deakin, Oxford)..."
+            aria-label="Search overseas university name"
+            style={{
+              color: "var(--ink, #0f172a)",
+            }}
           />
           {searchTerm && (
             <button
@@ -400,6 +509,8 @@ export default function UniversitySearchBar({
               onClick={() => {
                 setSearchTerm("");
                 setIsOpen(false);
+                setNoMatchNotice(false);
+                setIndianQueryNotice(false);
               }}
               style={{
                 background: "none",
@@ -423,8 +534,12 @@ export default function UniversitySearchBar({
             onChange={(e) => {
               const val = e.target.value;
               setSelectedCountry(val);
+              setNoMatchNotice(false);
             }}
             aria-label="Filter by country"
+            style={{
+              color: "var(--ink, #0f172a)",
+            }}
           >
             {COUNTRY_OPTIONS.map((opt) => (
               <option key={opt.value} value={opt.value}>
@@ -443,6 +558,9 @@ export default function UniversitySearchBar({
               setSelectedCourse(val);
             }}
             aria-label="Filter by course or degree"
+            style={{
+              color: "var(--ink, #0f172a)",
+            }}
           >
             {COURSE_OPTIONS.map((opt) => (
               <option key={opt.value} value={opt.value}>
@@ -484,7 +602,7 @@ export default function UniversitySearchBar({
               >
                 <span>Matching Institutions ({searchResults.length})</span>
                 <span style={{ fontSize: "0.72rem", fontWeight: 500, color: "var(--muted)" }}>
-                  {isSearchingOnline ? "⚡ Searching global databases..." : "Click to view loan & visa breakdown"}
+                  Click to view verified loan & visa details
                 </span>
               </div>
               {searchResults.map((uni, idx) => (
@@ -526,31 +644,69 @@ export default function UniversitySearchBar({
                 </div>
               ))}
             </div>
-          ) : searchTerm.trim().length > 0 ? (
-            <div
-              onClick={handleSearchSubmit}
-              style={{
-                padding: "16px",
-                cursor: "pointer",
-                background: "var(--soft)",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <div>
-                <div style={{ fontWeight: 700, color: "var(--ink)", fontSize: "0.98rem" }}>
-                  Get automated loan eligibility for &ldquo;{searchTerm}&rdquo;
-                </div>
-                <div style={{ fontSize: "0.82rem", color: "var(--ink-secondary)", marginTop: "2px" }}>
-                  Click to calculate real-time loan limits, interest rates, and living cost proof across 30+ lenders.
-                </div>
+          ) : indianQueryNotice ? (
+            <div style={{ padding: "16px", background: "var(--soft)", color: "var(--ink)" }}>
+              <div style={{ fontWeight: 700, fontSize: "0.92rem", color: "#ef4444", marginBottom: "4px" }}>
+                ℹ️ Domestic Indian Institution Detected
               </div>
-              <span className="btn btn-accent" style={{ padding: "6px 14px", fontSize: "0.82rem" }}>
-                Generate Details →
-              </span>
+              <div style={{ fontSize: "0.82rem", color: "var(--ink-secondary)", lineHeight: "1.4" }}>
+                Udaan Loans provides financing exclusively for foreign/overseas education (USA, UK, Canada, Australia, Germany, Ireland, Europe). Domestic Indian institutions are not eligible for overseas education loan programs.
+              </div>
+            </div>
+          ) : searchTerm.trim().length >= 2 ? (
+            <div style={{ padding: "16px", background: "var(--soft)", color: "var(--ink)" }}>
+              <div style={{ fontWeight: 700, fontSize: "0.92rem", color: "var(--ink)", marginBottom: "4px" }}>
+                {isSearchingOnline ? "Searching institutions..." : `No foreign institution matching "${searchTerm}"`}
+              </div>
+              <div style={{ fontSize: "0.82rem", color: "var(--ink-secondary)", lineHeight: "1.4" }}>
+                Please check the spelling or search by country (e.g. Purdue, Fanshawe, Seneca, Deakin, Oxford).
+              </div>
             </div>
           ) : null}
+        </div>
+      )}
+
+      {/* Indian Institution Alert Banner */}
+      {indianQueryNotice && (
+        <div
+          style={{
+            marginTop: "12px",
+            padding: "14px 18px",
+            borderRadius: "12px",
+            background: "rgba(239, 68, 68, 0.1)",
+            border: "1px solid rgba(239, 68, 68, 0.35)",
+            color: "var(--ink)",
+            display: "flex",
+            alignItems: "center",
+            gap: "12px",
+          }}
+        >
+          <span style={{ fontSize: "1.3rem" }}>ℹ️</span>
+          <div style={{ fontSize: "0.88rem", lineHeight: "1.5" }}>
+            <strong>Overseas Studies Scope:</strong> Udaan Loans exclusively arranges collateral-free education loans for students admitted to recognized overseas / foreign institutions (USA, UK, Canada, Australia, Germany, Ireland, Europe). Domestic Indian institutions are not eligible for overseas education loan programs.
+          </div>
+        </div>
+      )}
+
+      {/* No Match Alert Banner */}
+      {noMatchNotice && (
+        <div
+          style={{
+            marginTop: "12px",
+            padding: "14px 18px",
+            borderRadius: "12px",
+            background: "var(--soft)",
+            border: "1px solid var(--line)",
+            color: "var(--ink)",
+            display: "flex",
+            alignItems: "center",
+            gap: "12px",
+          }}
+        >
+          <span style={{ fontSize: "1.3rem" }}>🔍</span>
+          <div style={{ fontSize: "0.88rem", lineHeight: "1.5" }}>
+            No foreign institution found matching &ldquo;{searchTerm}&rdquo;. Please verify the spelling or select from our verified overseas universities directory below.
+          </div>
         </div>
       )}
 
@@ -566,39 +722,44 @@ export default function UniversitySearchBar({
               type="button"
               onClick={() => {
                 setSearchTerm(chip.name);
+                setIndianQueryNotice(false);
+                setNoMatchNotice(false);
                 // Search in curated or global
-                const found =
-                  universities.find((u) => u.name === chip.name) ||
-                  globalUniversitiesDatabase.find((u) => u.name === chip.name);
-                if (found) {
-                  if ("lenderPolicies" in found) {
-                    const bestUnsecured = (found as UniversityData).lenderPolicies.reduce((max, policy) => {
-                      const num = parseInt(policy.maxUnsecuredINR.replace(/[^0-9]/g, ""), 10) || 0;
-                      return num > max ? num : max;
-                    }, 0);
-                    handleSelectUniversity({
-                      name: found.name,
-                      shortName: found.shortName,
-                      countryName: found.countryName,
-                      country: found.country,
-                      city: found.city,
-                      qsRank: found.qsRank,
-                      tuitionRangeINR: found.tuitionRangeINR,
-                      livingCostINR: found.livingCostINR,
-                      totalAnnualCostINR: found.totalAnnualCostINR,
-                      primeTierCategory: found.primeTierCategory,
-                      maxUnsecuredINR: `Up to ₹${bestUnsecured} Lakhs`,
-                      maxSecuredINR: "Up to ₹1.50 Crore",
-                      indicativeRate: (found as UniversityData).lenderPolicies[0]?.indicativeRate || "8.15% - 9.15%",
-                      visaInfo: `${(found as UniversityData).visaRequirements.documentName}: ${(found as UniversityData).visaRequirements.requiredFundsINR}`,
-                      popularPrograms: (found as UniversityData).popularPrograms.map((p) => p.name),
-                      slug: found.slug,
-                      overview: found.overview,
-                      isCuratedGuide: true,
-                    });
-                  } else {
-                    handleSelectUniversity(found as QuickDetailData);
-                  }
+                const foundCurated = universities.find((u) => u.name === chip.name);
+                if (foundCurated) {
+                  const bestUnsecured = foundCurated.lenderPolicies.reduce((max, policy) => {
+                    const num = parseInt(policy.maxUnsecuredINR.replace(/[^0-9]/g, ""), 10) || 0;
+                    return num > max ? num : max;
+                  }, 0);
+                  handleSelectUniversity({
+                    name: foundCurated.name,
+                    shortName: foundCurated.shortName,
+                    countryName: foundCurated.countryName,
+                    country: foundCurated.country,
+                    city: foundCurated.city,
+                    qsRank: foundCurated.qsRank,
+                    tuitionRangeINR: foundCurated.tuitionRangeINR,
+                    livingCostINR: foundCurated.livingCostINR,
+                    totalAnnualCostINR: foundCurated.totalAnnualCostINR,
+                    primeTierCategory: foundCurated.primeTierCategory,
+                    maxUnsecuredINR: `Up to ₹${bestUnsecured} Lakhs`,
+                    maxSecuredINR: "Up to ₹1.50 Crore",
+                    indicativeRate: foundCurated.lenderPolicies[0]?.indicativeRate || "8.15% - 9.15%",
+                    visaInfo: `${foundCurated.visaRequirements.documentName}: ${foundCurated.visaRequirements.requiredFundsINR}`,
+                    popularPrograms: foundCurated.popularPrograms.map((p) => p.name),
+                    slug: foundCurated.slug,
+                    overview: foundCurated.overview,
+                    isCuratedGuide: true,
+                  });
+                  return;
+                }
+
+                const foundGlobal = globalUniversitiesDatabase.find((u) => u.name === chip.name);
+                if (foundGlobal) {
+                  handleSelectUniversity({
+                    ...foundGlobal,
+                    isCuratedGuide: Boolean(foundGlobal.slug),
+                  });
                 }
               }}
               style={{
@@ -627,8 +788,8 @@ export default function UniversitySearchBar({
         </div>
       )}
 
-      {/* Auto-Details Comprehensive Modal */}
-      {selectedUni && (
+      {/* Auto-Details Comprehensive Modal (Used when onSelectUniversity is not passed) */}
+      {!onSelectUniversity && selectedUni && (
         <div
           role="dialog"
           aria-modal="true"
@@ -817,7 +978,7 @@ export default function UniversitySearchBar({
                 }}
               >
                 <div style={{ fontSize: "0.75rem", textTransform: "uppercase", fontWeight: 700, color: "var(--ink-secondary)" }}>
-                  Verified Rate
+                  Indicative Rates
                 </div>
                 <div style={{ fontSize: "1.15rem", fontWeight: 800, color: "var(--accent, #f59e0b)", marginTop: "4px" }}>
                   {selectedUni.indicativeRate}
@@ -825,19 +986,19 @@ export default function UniversitySearchBar({
               </div>
             </div>
 
-            {/* Prime Tier Public Bank Benefit */}
+            {/* Institutional Tier & Loan Policy */}
             <div
               style={{
-                background: "var(--soft-alt)",
-                border: "1px solid var(--line)",
-                padding: "16px 20px",
+                background: "var(--soft)",
                 borderRadius: "12px",
+                padding: "18px 20px",
+                border: "1px solid var(--line)",
                 marginBottom: "20px",
               }}
             >
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "8px" }}>
                 <div>
-                  <div style={{ fontSize: "0.78rem", fontWeight: 700, textTransform: "uppercase", color: "var(--brand-light, #48bbcc)" }}>
+                  <div style={{ fontSize: "0.76rem", textTransform: "uppercase", fontWeight: 700, color: "var(--ink-secondary)" }}>
                     Lender Underwriting Tier
                   </div>
                   <div style={{ fontSize: "1.05rem", fontWeight: 800, color: "var(--ink)", marginTop: "2px" }}>
