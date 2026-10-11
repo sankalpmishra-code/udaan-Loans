@@ -108,7 +108,7 @@ export const lendersList: Lender[] = [
     interestRate: "10.75% - 13.50%",
     processingTime: "3 - 5 days",
     marginMoney: "0%",
-    highlights: ["Considers non-standard co-applicants", "Doorstep assistance"],
+    highlights: ["Considers non-standard co-applicants", "100% virtual process"],
   },
   {
     name: "MPOWER Financing",

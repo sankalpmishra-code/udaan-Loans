@@ -61,10 +61,10 @@ export default function ProcessPage() {
               </li>
 
               <li className="timeline-step">
-                <h3>Step 3: Document Verification & Doorstep Collection (Day 2 - 3)</h3>
+                <h3>Step 3: 100% Virtual Document Verification (Day 2 - 3)</h3>
                 <p>
-                  Upload digital PDF copies through our 256-bit encrypted portal. For secured loans, our bank relationship officers
-                  schedule doorstep document pickup and coordinate legal search and valuation reports.
+                  Upload digital PDF copies through our 256-bit encrypted portal for a completely paperless, 100% virtual process.
+                  For secured loans, our bank relationship officers coordinate digital title verification, remote legal appraisal, and property valuation.
                 </p>
               </li>
 

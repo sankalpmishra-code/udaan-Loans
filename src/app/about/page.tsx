@@ -87,7 +87,7 @@ export default function AboutPage() {
                 <div style={{ fontSize: "1.5rem", marginBottom: "6px" }}>📍</div>
                 <strong>{city}</strong>
                 <div style={{ fontSize: "0.82rem", color: "var(--muted)", marginTop: "4px" }}>
-                  Digital & Doorstep Support
+                  100% Virtual & Paperless
                 </div>
               </div>
             ))}

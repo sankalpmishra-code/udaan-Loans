@@ -410,7 +410,7 @@ export default async function DestinationDetailPage({ params }: PageProps) {
               className="lead"
               style={{ color: "rgba(255,255,255,0.9)", maxWidth: "650px", margin: "0 auto 24px" }}
             >
-              Get pre-visa sanction letters, transparent interest rate comparisons, and 100% free doorstep document assistance across India.
+              Get pre-visa sanction letters, transparent interest rate comparisons, and 100% virtual, paperless advisory across India.
             </p>
             <div style={{ display: "flex", gap: "14px", justifyContent: "center", flexWrap: "wrap" }}>
               <Link

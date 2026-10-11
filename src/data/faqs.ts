@@ -119,7 +119,7 @@ export const lendersFaqs: FAQItem[] = [
   {
     question: "Do public banks like SBI require in-person branch visits?",
     answer:
-      "While public banks traditionally required multiple branch visits, applying through Udaan Edu Loans streamlines the entire process digitally. Our dedicated bank relationship managers assist with doorstep document pickup and fast-track processing through specialized retail asset branches (RACPC/SMECCC)."
+      "While public banks traditionally required multiple branch visits, applying through Udaan Edu Loans streamlines the entire process into a 100% virtual, digital journey. Our dedicated bank relationship managers assist with paperless document verification and fast-track processing through specialized retail asset branches (RACPC/SMECCC) without requiring you to visit physical bank branches."
   },
   {
     question: "Can I compare multiple bank offers without hurting my CIBIL credit score?",

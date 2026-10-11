@@ -67,7 +67,7 @@ export default function Footer() {
           <div className="footer-col">
             <h3>Serving Students Pan-India</h3>
             <p className="geo-text">
-              Doorstep document pickup, specialized processing branches, and dedicated loan advisors active across:
+              100% virtual process, paperless digital verification, and dedicated loan advisors active across:
             </p>
             <ul className="geo-list">
               {siteConfig.geoHubsServed.map((city) => (
