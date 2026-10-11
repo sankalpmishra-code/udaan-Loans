@@ -33,6 +33,21 @@ export const homeFaqs: FAQItem[] = [
     question: "Are education loan interest payments eligible for tax deductions in India?",
     answer:
       "Yes, under Section 80E of the Indian Income Tax Act, you or your co-applicant can claim a 100% tax deduction on the entire interest amount paid on an education loan for up to 8 consecutive financial years with no upper cap. Loans must be sanctioned by recognized Indian commercial banks or designated financial institutions."
+  },
+  {
+    question: "Does checking my loan options with Udaan Edu Loans affect my CIBIL score?",
+    answer:
+      "No. Exploring loan options and running our preliminary loan matcher does not trigger a hard credit check or affect your or your co-applicant's CIBIL score. A formal credit inquiry is initiated only when you choose to submit a complete loan application to a specific bank or NBFC."
+  },
+  {
+    question: "How are living expenses and German Blocked Account (Sperrkonto) or Canada GIC disbursed?",
+    answer:
+      "Upon loan sanction and visa approval, university tuition fees are wired directly by the lender to your international university's bank account. For living costs, lenders disburse funds directly into your certified German Blocked Account (e.g., Coracle, Expatrio, Fintiba), Canadian GIC account (e.g., CIBC, ICICI Canada), or onto an international student forex card."
+  },
+  {
+    question: "What is the role of a co-applicant or cosigner in an overseas student loan?",
+    answer:
+      "For Indian education loans, lenders require a financial co-applicant—typically a parent, spouse, or sibling with a regular verifiable income (salary or business IT returns) and a healthy credit score (typically 685+ CIBIL). The co-applicant acts as a primary guarantor and can claim Section 80E tax deductions during repayment."
   }
 ];
 
