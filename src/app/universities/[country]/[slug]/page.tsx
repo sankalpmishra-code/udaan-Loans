@@ -30,9 +30,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  const bestUnsecured = uni.lenderPolicies[0]?.maxUnsecuredINR || "45 Lakhs";
+
   return {
     title: `Education Loan for ${uni.name} (${uni.shortName}) | Interest Rates & Eligibility`,
-    description: `Complete guide to financing your degree at ${uni.name}. Compare SBI Prime List discounts, unsecured loans up to ₹${uni.lenderPolicies[0]?.maxUnsecuredINR || "50 Lakhs"}, I-20/Blocked Account proof, and living expenses.`,
+    description: `Complete guide to financing your degree at ${uni.name}. Compare SBI Prime List discounts, unsecured loans up to ${bestUnsecured}, visa fund proof, and realistic living expenses.`,
     keywords: [
       `education loan for ${uni.name}`,
       `${uni.shortName} education loan interest rate`,
@@ -40,7 +42,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       `HDFC Credila loan for ${uni.name}`,
       `collateral free loan ${uni.name}`,
       `${uni.name} cost of attendance in INR`,
-      `${uni.country === "usa" ? "I-20 financial proof" : "Germany blocked account loan"} ${uni.shortName}`,
+      `${uni.partnerNetwork} loan funding`,
+      `${uni.countryName} student visa loan proof ${uni.shortName}`,
     ],
     alternates: {
       canonical: `/universities/${uni.country}/${uni.slug}`,
@@ -55,6 +58,25 @@ export default async function UniversityPage({ params }: PageProps) {
   if (!uni) {
     notFound();
   }
+
+  const getCountryFlag = (country: string) => {
+    switch (country) {
+      case "usa":
+        return "🇺🇸";
+      case "canada":
+        return "🇨🇦";
+      case "uk":
+        return "🇬🇧";
+      case "australia":
+        return "🇦🇺";
+      case "germany":
+        return "🇩🇪";
+      case "ireland":
+        return "🇮🇪";
+      default:
+        return "🌐";
+    }
+  };
 
   // Schema.org Structured Data
   const jsonLdData = {
@@ -113,7 +135,7 @@ export default async function UniversityPage({ params }: PageProps) {
       <Breadcrumbs
         items={[
           { name: "Universities", url: "/universities" },
-          { name: uni.country === "usa" ? "USA" : "Germany", url: "/universities" },
+          { name: `${getCountryFlag(uni.country)} ${uni.countryName}`, url: "/universities" },
           { name: uni.shortName, url: `/universities/${uni.country}/${uni.slug}` },
         ]}
       />
@@ -121,18 +143,25 @@ export default async function UniversityPage({ params }: PageProps) {
       {/* Hero Section */}
       <section className="hero" style={{ padding: "40px 0 50px" }}>
         <div className="wrap">
-          <div style={{ display: "flex", gap: "10px", alignItems: "center", marginBottom: "14px" }}>
+          <div style={{ display: "flex", gap: "10px", alignItems: "center", marginBottom: "14px", flexWrap: "wrap" }}>
             <span className="badge">
-              {uni.country === "usa" ? "🇺🇸 USA Premier Hub" : "🇩🇪 Germany TU9 / Excellence Hub"}
+              {getCountryFlag(uni.country)} {uni.countryName}
             </span>
-            <span className="badge badge-accent">QS Rank #{uni.qsRank}</span>
+            <span className="badge badge-accent">
+              {uni.partnerNetwork}
+            </span>
+            {uni.qsRank && (
+              <span className="badge" style={{ background: "#f1f5f9", color: "#334155" }}>
+                {typeof uni.qsRank === "number" ? `QS Rank #${uni.qsRank}` : uni.qsRank}
+              </span>
+            )}
             <span style={{ fontSize: "0.82rem", color: "#64748b" }}>
               Verified: {uni.verifiedDate}
             </span>
           </div>
 
           <h1>Education Loan for {uni.name}</h1>
-          <p className="lead" style={{ maxWidth: "800px", marginTop: "12px" }}>
+          <p className="lead" style={{ maxWidth: "820px", marginTop: "12px" }}>
             {uni.overview}
           </p>
 
@@ -189,7 +218,7 @@ export default async function UniversityPage({ params }: PageProps) {
 
           <div style={{ marginTop: "24px", display: "flex", gap: "12px", flexWrap: "wrap" }}>
             <Link
-              href={`/match?dest=${uni.country === "usa" ? "USA" : "Germany"}&univ=${encodeURIComponent(uni.name)}`}
+              href={`/match?dest=${encodeURIComponent(uni.countryName)}&univ=${encodeURIComponent(uni.name)}`}
               className="btn btn-accent"
             >
               Match Eligible Banks for {uni.shortName} →
@@ -268,7 +297,7 @@ export default async function UniversityPage({ params }: PageProps) {
                 ))}
               </ul>
               <div style={{ marginTop: "20px", background: "var(--soft)", padding: "12px 16px", borderRadius: "8px", fontSize: "0.85rem" }}>
-                💡 <strong>Udaan Assistance:</strong> We coordinate with banks to provide embassy-compliant pre-visa disbursement or conditional-free loan sanction letters within 3–5 working days.
+                💡 <strong>Udaan Assistance:</strong> We coordinate with banks to provide embassy-compliant pre-visa disbursement, Canadian GIC remittance, German Sperrkonto transfers, or unencumbered CAS/DHA sanction letters within 3–5 working days.
               </div>
             </div>
 
@@ -311,7 +340,7 @@ export default async function UniversityPage({ params }: PageProps) {
       {/* University Specific FAQs */}
       <FAQSection
         title={`Frequently Asked Questions: Education Loans for ${uni.name}`}
-        subtitle={`Key queries regarding lender eligibility, I-20 proof, blocked account deposits, and collateral for ${uni.shortName}.`}
+        subtitle={`Key queries regarding lender eligibility, visa fund proof, blocked accounts, GIC, and collateral for ${uni.shortName}.`}
         faqs={uni.faqs}
         id="uni-faqs"
       />
@@ -326,7 +355,7 @@ export default async function UniversityPage({ params }: PageProps) {
             </p>
             <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
               <Link
-                href={`/apply?country=${uni.country === "usa" ? "USA" : "Germany"}&university=${encodeURIComponent(uni.name)}`}
+                href={`/apply?country=${encodeURIComponent(uni.countryName)}&university=${encodeURIComponent(uni.name)}`}
                 className="btn btn-accent"
               >
                 Apply for {uni.shortName} Loan Now →

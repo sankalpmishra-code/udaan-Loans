@@ -88,7 +88,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // Add all 20 curated university dynamic landing pages
+  // Add all partner university and pathway college dynamic landing pages
   universities.forEach((u) => {
     routes.push({
       path: `/universities/${u.country}/${u.slug}`,
