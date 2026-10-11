@@ -10,17 +10,41 @@ export default function UniversitiesDirectoryPage() {
   const [selectedRegion, setSelectedRegion] = useState<"all" | Region>("all");
   const [selectedCountry, setSelectedCountry] = useState<"all" | CountryCode>("all");
   const [selectedType, setSelectedType] = useState<"all" | InstitutionType>("all");
+  const [selectedCourse, setSelectedCourse] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredUniversities = useMemo(() => {
     return universities.filter((u) => {
+      // 1. Region filter
       const matchesRegion =
         selectedRegion === "all" ||
         (selectedRegion === "europe" ? u.region === "europe" || u.region === "uk" : u.region === selectedRegion);
 
+      // 2. Country filter
       const matchesCountry = selectedCountry === "all" || u.country === selectedCountry;
+
+      // 3. Institution type filter
       const matchesType = selectedType === "all" || u.institutionType === selectedType;
 
+      // 4. Course filter
+      let matchesCourse = true;
+      if (selectedCourse !== "all") {
+        const courseKeywords: Record<string, string[]> = {
+          stem: ["computer", "data", "software", "artificial", "cyber", "computing", "technology", "msc"],
+          mba: ["mba", "business", "management", "consulting", "executive"],
+          engineering: ["engineering", "mechanical", "electrical", "civil", "robotics", "aerospace"],
+          finance: ["finance", "fintech", "economics", "accounting", "banking"],
+          health: ["health", "biotech", "biomedical", "medical", "pharmacy", "medicine"],
+          law: ["law", "llm", "policy", "legal", "justice"],
+          undergrad: ["bachelor", "undergraduate", "b.sc", "b.eng", "ba"],
+        };
+        const keywords = courseKeywords[selectedCourse] || [];
+        matchesCourse =
+          u.popularPrograms.some((p) => keywords.some((k) => p.name.toLowerCase().includes(k))) ||
+          keywords.some((k) => u.overview.toLowerCase().includes(k));
+      }
+
+      // 5. Query filter
       const query = searchQuery.toLowerCase().trim();
       const matchesSearch =
         !query ||
@@ -31,9 +55,9 @@ export default function UniversitiesDirectoryPage() {
         u.partnerNetwork.toLowerCase().includes(query) ||
         u.primeTierCategory.toLowerCase().includes(query);
 
-      return matchesRegion && matchesCountry && matchesType && matchesSearch;
+      return matchesRegion && matchesCountry && matchesType && matchesCourse && matchesSearch;
     });
-  }, [selectedRegion, selectedCountry, selectedType, searchQuery]);
+  }, [selectedRegion, selectedCountry, selectedType, selectedCourse, searchQuery]);
 
   const counts = useMemo(() => {
     return {
@@ -84,22 +108,29 @@ export default function UniversitiesDirectoryPage() {
     }
   };
 
-  const getBadgeStyle = (type: InstitutionType) => {
+  const getBadgeClass = (type: InstitutionType) => {
     switch (type) {
       case "Russell Group / Global Top 100":
-        return { background: "#eff6ff", color: "#1d4ed8", border: "1px solid #bfdbfe" };
+        return "inst-badge inst-badge-russell";
       case "Triple-Accredited Business School":
-        return { background: "#faf5ff", color: "#7e22ce", border: "1px solid #e9d5ff" };
+        return "inst-badge inst-badge-business";
       case "Premier Research University":
-        return { background: "#f0fdf4", color: "#15803d", border: "1px solid #bbf7d0" };
+        return "inst-badge inst-badge-research";
       case "Applied Sciences & Polytechnic":
-        return { background: "#fff7ed", color: "#c2410c", border: "1px solid #fed7aa" };
+        return "inst-badge inst-badge-applied";
       case "University Pathway College":
-        return { background: "#fef3c7", color: "#92400e", border: "1px solid #fde68a" };
+        return "inst-badge inst-badge-pathway";
       default:
-        return { background: "#f1f5f9", color: "#334155", border: "1px solid #cbd5e1" };
+        return "inst-badge inst-badge-default";
     }
   };
+
+  const isAnyFilterActive =
+    selectedRegion !== "all" ||
+    selectedCountry !== "all" ||
+    selectedType !== "all" ||
+    selectedCourse !== "all" ||
+    Boolean(searchQuery);
 
   return (
     <>
@@ -110,77 +141,51 @@ export default function UniversitiesDirectoryPage() {
           <div className="section-head text-center">
             <span className="badge">Global University Directory</span>
             <h1>International Education Loan Guides by University</h1>
-            <p className="lead" style={{ maxWidth: "840px", margin: "0 auto" }}>
+            <p className="lead" style={{ maxWidth: "840px", margin: "0 auto", color: "var(--ink-secondary)" }}>
               Explore lender-specific eligibility rules, public bank Prime Tier concessions (up to 0.50% interest discount), realistic cost-of-attendance budgets, and visa fund requirements across leading universities in the UK, Europe, North America, and Australia.
             </p>
           </div>
 
-          {/* Universal Instant University Intelligence Search Bar */}
-          <div style={{ maxWidth: "860px", margin: "24px auto 8px" }}>
-            <UniversitySearchBar />
+          {/* Unified 3-in-1 Search Bar (University, Country, Course) */}
+          <div style={{ maxWidth: "960px", margin: "24px auto 16px" }}>
+            <UniversitySearchBar
+              initialSearch={searchQuery}
+              initialCountry={selectedCountry}
+              initialCourse={selectedCourse}
+              onFilterChange={({ query, country, course }) => {
+                setSearchQuery(query);
+                setSelectedCountry(country as "all" | CountryCode);
+                setSelectedCourse(course);
+              }}
+              showPopularChips={true}
+            />
           </div>
 
-          {/* Filter Bar */}
+          {/* Secondary Filter Controls Box */}
           <div
             className="filter-controls-box"
             style={{
-              background: "#fff",
-              padding: "24px",
+              background: "var(--surface)",
+              color: "var(--ink)",
+              padding: "20px 24px",
               borderRadius: "16px",
-              boxShadow: "0 4px 20px rgba(0,0,0,0.06)",
-              marginTop: "24px",
+              border: "1px solid var(--line)",
+              boxShadow: "var(--shadow-sm)",
+              marginTop: "16px",
               display: "flex",
               flexDirection: "column",
-              gap: "16px",
+              gap: "14px",
             }}
           >
-            {/* Search Input */}
-            <div style={{ position: "relative", width: "100%" }}>
-              <input
-                type="text"
-                placeholder="Search by university name, city, program, or tier (e.g. Oxford, Imperial, TU Delft, INSEAD, TUM, KTH, Waterloo, PoliMi)..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                style={{
-                  width: "100%",
-                  padding: "14px 20px",
-                  borderRadius: "10px",
-                  border: "1px solid #cbd5e1",
-                  fontSize: "1rem",
-                  boxShadow: "inset 0 1px 3px rgba(0,0,0,0.04)",
-                }}
-              />
-              {searchQuery && (
-                <button
-                  type="button"
-                  onClick={() => setSearchQuery("")}
-                  style={{
-                    position: "absolute",
-                    right: "14px",
-                    top: "50%",
-                    transform: "translateY(-50%)",
-                    background: "none",
-                    border: "none",
-                    cursor: "pointer",
-                    fontSize: "1.1rem",
-                    color: "#64748b",
-                  }}
-                  title="Clear search"
-                >
-                  ✕
-                </button>
-              )}
-            </div>
-
-            {/* Region Tabs */}
+            {/* Region Toggles */}
             <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
-              <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "#64748b", marginRight: "4px" }}>
+              <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--ink-secondary)", marginRight: "4px" }}>
                 Region:
               </span>
               <button
                 type="button"
                 className={`preset-chip ${selectedRegion === "all" ? "chip-active" : ""}`}
-                style={{ padding: "6px 14px", fontSize: "0.88rem" }}
+                style={{ padding: "6px 14px", fontSize: "0.85rem" }}
                 onClick={() => {
                   setSelectedRegion("all");
                   setSelectedCountry("all");
@@ -191,7 +196,7 @@ export default function UniversitiesDirectoryPage() {
               <button
                 type="button"
                 className={`preset-chip ${selectedRegion === "europe" ? "chip-active" : ""}`}
-                style={{ padding: "6px 14px", fontSize: "0.88rem" }}
+                style={{ padding: "6px 14px", fontSize: "0.85rem" }}
                 onClick={() => {
                   setSelectedRegion("europe");
                   setSelectedCountry("all");
@@ -202,7 +207,7 @@ export default function UniversitiesDirectoryPage() {
               <button
                 type="button"
                 className={`preset-chip ${selectedRegion === "north-america" ? "chip-active" : ""}`}
-                style={{ padding: "6px 14px", fontSize: "0.88rem" }}
+                style={{ padding: "6px 14px", fontSize: "0.85rem" }}
                 onClick={() => {
                   setSelectedRegion("north-america");
                   setSelectedCountry("all");
@@ -213,7 +218,7 @@ export default function UniversitiesDirectoryPage() {
               <button
                 type="button"
                 className={`preset-chip ${selectedRegion === "australia" ? "chip-active" : ""}`}
-                style={{ padding: "6px 14px", fontSize: "0.88rem" }}
+                style={{ padding: "6px 14px", fontSize: "0.85rem" }}
                 onClick={() => {
                   setSelectedRegion("australia");
                   setSelectedCountry("all");
@@ -223,122 +228,95 @@ export default function UniversitiesDirectoryPage() {
               </button>
             </div>
 
-            {/* Destination Country Chips */}
-            <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap", paddingTop: "8px", borderTop: "1px dashed #e2e8f0" }}>
-              <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "#64748b", marginRight: "4px" }}>
-                Country:
+            {/* Institution Classification Toggles */}
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap", paddingTop: "8px", borderTop: "1px dashed var(--line)" }}>
+              <span style={{ fontSize: "0.85rem", fontWeight: 700, color: "var(--ink-secondary)", marginRight: "4px" }}>
+                Category:
               </span>
               <button
                 type="button"
-                className={`preset-chip ${selectedCountry === "all" ? "chip-active" : ""}`}
-                style={{ padding: "5px 12px", fontSize: "0.84rem" }}
-                onClick={() => setSelectedCountry("all")}
+                className={`preset-chip ${selectedType === "all" ? "chip-active" : ""}`}
+                style={{ padding: "5px 12px", fontSize: "0.82rem" }}
+                onClick={() => setSelectedType("all")}
               >
-                All Countries
+                All Classifications
               </button>
               <button
                 type="button"
-                className={`preset-chip ${selectedCountry === "uk" ? "chip-active" : ""}`}
-                style={{ padding: "5px 12px", fontSize: "0.84rem" }}
-                onClick={() => setSelectedCountry("uk")}
+                className={`preset-chip ${selectedType === "Russell Group / Global Top 100" ? "chip-active" : ""}`}
+                style={{ padding: "5px 12px", fontSize: "0.82rem" }}
+                onClick={() => setSelectedType("Russell Group / Global Top 100")}
               >
-                🇬🇧 UK ({counts.uk})
+                🏛️ Russell Group / Top 100
               </button>
               <button
                 type="button"
-                className={`preset-chip ${selectedCountry === "germany" ? "chip-active" : ""}`}
-                style={{ padding: "5px 12px", fontSize: "0.84rem" }}
-                onClick={() => setSelectedCountry("germany")}
+                className={`preset-chip ${selectedType === "Triple-Accredited Business School" ? "chip-active" : ""}`}
+                style={{ padding: "5px 12px", fontSize: "0.82rem" }}
+                onClick={() => setSelectedType("Triple-Accredited Business School")}
               >
-                🇩🇪 Germany ({counts.germany})
+                💼 Business Schools
               </button>
               <button
                 type="button"
-                className={`preset-chip ${selectedCountry === "netherlands" ? "chip-active" : ""}`}
-                style={{ padding: "5px 12px", fontSize: "0.84rem" }}
-                onClick={() => setSelectedCountry("netherlands")}
+                className={`preset-chip ${selectedType === "Premier Research University" ? "chip-active" : ""}`}
+                style={{ padding: "5px 12px", fontSize: "0.82rem" }}
+                onClick={() => setSelectedType("Premier Research University")}
               >
-                🇳🇱 Netherlands ({counts.netherlands})
+                🔬 Premier Research
               </button>
               <button
                 type="button"
-                className={`preset-chip ${selectedCountry === "france" ? "chip-active" : ""}`}
-                style={{ padding: "5px 12px", fontSize: "0.84rem" }}
-                onClick={() => setSelectedCountry("france")}
+                className={`preset-chip ${selectedType === "Applied Sciences & Polytechnic" ? "chip-active" : ""}`}
+                style={{ padding: "5px 12px", fontSize: "0.82rem" }}
+                onClick={() => setSelectedType("Applied Sciences & Polytechnic")}
               >
-                🇫🇷 France ({counts.france})
+                ⚙️ Applied Sciences
               </button>
               <button
                 type="button"
-                className={`preset-chip ${selectedCountry === "ireland" ? "chip-active" : ""}`}
-                style={{ padding: "5px 12px", fontSize: "0.84rem" }}
-                onClick={() => setSelectedCountry("ireland")}
+                className={`preset-chip ${selectedType === "University Pathway College" ? "chip-active" : ""}`}
+                style={{ padding: "5px 12px", fontSize: "0.82rem" }}
+                onClick={() => setSelectedType("University Pathway College")}
               >
-                🇮🇪 Ireland ({counts.ireland})
-              </button>
-              <button
-                type="button"
-                className={`preset-chip ${selectedCountry === "sweden" ? "chip-active" : ""}`}
-                style={{ padding: "5px 12px", fontSize: "0.84rem" }}
-                onClick={() => setSelectedCountry("sweden")}
-              >
-                🇸🇪 Sweden ({counts.sweden})
-              </button>
-              <button
-                type="button"
-                className={`preset-chip ${selectedCountry === "italy" ? "chip-active" : ""}`}
-                style={{ padding: "5px 12px", fontSize: "0.84rem" }}
-                onClick={() => setSelectedCountry("italy")}
-              >
-                🇮🇹 Italy ({counts.italy})
-              </button>
-              <button
-                type="button"
-                className={`preset-chip ${selectedCountry === "switzerland" ? "chip-active" : ""}`}
-                style={{ padding: "5px 12px", fontSize: "0.84rem" }}
-                onClick={() => setSelectedCountry("switzerland")}
-              >
-                🇨🇭 Switzerland ({counts.switzerland})
-              </button>
-              <button
-                type="button"
-                className={`preset-chip ${selectedCountry === "usa" ? "chip-active" : ""}`}
-                style={{ padding: "5px 12px", fontSize: "0.84rem" }}
-                onClick={() => setSelectedCountry("usa")}
-              >
-                🇺🇸 USA ({counts.usa})
-              </button>
-              <button
-                type="button"
-                className={`preset-chip ${selectedCountry === "canada" ? "chip-active" : ""}`}
-                style={{ padding: "5px 12px", fontSize: "0.84rem" }}
-                onClick={() => setSelectedCountry("canada")}
-              >
-                🇨🇦 Canada ({counts.canada})
-              </button>
-              <button
-                type="button"
-                className={`preset-chip ${selectedCountry === "australia" ? "chip-active" : ""}`}
-                style={{ padding: "5px 12px", fontSize: "0.84rem" }}
-                onClick={() => setSelectedCountry("australia")}
-              >
-                🇦🇺 Australia ({counts.australia})
+                🎓 Pathway Colleges
               </button>
             </div>
           </div>
 
-          <div style={{ marginTop: "14px", display: "flex", justifyContent: "space-between", alignItems: "center", color: "#64748b", fontSize: "0.9rem" }}>
-            <span>Showing <strong>{filteredUniversities.length}</strong> institutions</span>
-            {(selectedRegion !== "all" || selectedCountry !== "all" || selectedType !== "all" || searchQuery) && (
+          {/* Active Results Summary */}
+          <div
+            style={{
+              marginTop: "14px",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              color: "var(--ink-secondary)",
+              fontSize: "0.9rem",
+            }}
+          >
+            <span>
+              Showing <strong style={{ color: "var(--ink)" }}>{filteredUniversities.length}</strong> of {universities.length} institutions
+            </span>
+            {isAnyFilterActive && (
               <button
                 type="button"
                 onClick={() => {
                   setSelectedRegion("all");
                   setSelectedCountry("all");
                   setSelectedType("all");
+                  setSelectedCourse("all");
                   setSearchQuery("");
                 }}
-                style={{ background: "none", border: "none", color: "#094754", fontWeight: 600, cursor: "pointer", textDecoration: "underline" }}
+                style={{
+                  background: "none",
+                  border: "none",
+                  color: "var(--brand-light, #48bbcc)",
+                  fontWeight: 600,
+                  cursor: "pointer",
+                  textDecoration: "underline",
+                  fontSize: "0.88rem",
+                }}
               >
                 Reset all filters
               </button>
@@ -366,6 +344,8 @@ export default function UniversitiesDirectoryPage() {
                     flexDirection: "column",
                     justifyContent: "space-between",
                     borderRadius: "14px",
+                    background: "var(--surface)",
+                    border: "1px solid var(--line)",
                     transition: "transform 0.18s ease, box-shadow 0.18s ease",
                   }}
                 >
@@ -374,20 +354,12 @@ export default function UniversitiesDirectoryPage() {
                       <span className="badge" style={{ fontSize: "0.76rem" }}>
                         {getCountryFlag(uni.country)} {uni.countryName}
                       </span>
-                      <span
-                        style={{
-                          fontSize: "0.72rem",
-                          fontWeight: 700,
-                          padding: "4px 8px",
-                          borderRadius: "6px",
-                          ...getBadgeStyle(uni.institutionType),
-                        }}
-                      >
+                      <span className={getBadgeClass(uni.institutionType)}>
                         {uni.partnerNetwork}
                       </span>
                     </div>
 
-                    <h3 style={{ fontSize: "1.2rem", marginBottom: "6px", lineHeight: "1.35" }}>
+                    <h3 style={{ fontSize: "1.2rem", marginBottom: "6px", lineHeight: "1.35", color: "var(--ink)" }}>
                       <Link
                         href={`/universities/${uni.country}/${uni.slug}`}
                         style={{ textDecoration: "none", color: "inherit" }}
@@ -395,36 +367,44 @@ export default function UniversitiesDirectoryPage() {
                         {uni.name}
                       </Link>
                     </h3>
-                    <p style={{ fontSize: "0.84rem", color: "#64748b", marginBottom: "14px" }}>
+                    <p style={{ fontSize: "0.84rem", color: "var(--ink-secondary)", marginBottom: "14px" }}>
                       📍 {uni.city}
                     </p>
 
-                    <div style={{ background: "var(--soft)", padding: "12px 14px", borderRadius: "8px", marginBottom: "16px" }}>
-                      <div style={{ fontSize: "0.8rem", color: "#094754", fontWeight: 700, marginBottom: "4px" }}>
+                    <div
+                      style={{
+                        background: "var(--soft)",
+                        border: "1px solid var(--line)",
+                        padding: "12px 14px",
+                        borderRadius: "8px",
+                        marginBottom: "16px",
+                      }}
+                    >
+                      <div style={{ fontSize: "0.8rem", color: "var(--brand-light, #48bbcc)", fontWeight: 700, marginBottom: "4px" }}>
                         {uni.primeTierCategory}
                       </div>
-                      <div style={{ fontSize: "0.85rem", color: "#334155" }}>
+                      <div style={{ fontSize: "0.85rem", color: "var(--ink)" }}>
                         <strong>Estimated Cost:</strong> {uni.totalAnnualCostINR}
                       </div>
                     </div>
 
                     <div style={{ fontSize: "0.86rem", marginBottom: "16px", lineHeight: "1.6" }}>
                       <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px" }}>
-                        <span style={{ color: "#64748b" }}>Max Unsecured Loan:</span>
-                        <strong style={{ color: "#094754" }}>Up to ₹{bestUnsecured} Lakhs</strong>
+                        <span style={{ color: "var(--ink-secondary)" }}>Max Unsecured Loan:</span>
+                        <strong style={{ color: "var(--ink)" }}>Up to ₹{bestUnsecured} Lakhs</strong>
                       </div>
                       <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px" }}>
-                        <span style={{ color: "#64748b" }}>Max Secured Loan:</span>
-                        <strong style={{ color: "#094754" }}>Up to ₹1.5 Crore</strong>
+                        <span style={{ color: "var(--ink-secondary)" }}>Max Secured Loan:</span>
+                        <strong style={{ color: "var(--ink)" }}>Up to ₹1.5 Crore</strong>
                       </div>
                       <div style={{ display: "flex", justifyContent: "space-between" }}>
-                        <span style={{ color: "#64748b" }}>Verified Rates:</span>
-                        <strong style={{ color: "#059669" }}>From 7.75% p.a.</strong>
+                        <span style={{ color: "var(--ink-secondary)" }}>Verified Rates:</span>
+                        <strong style={{ color: "#10b981" }}>From 7.75% p.a.</strong>
                       </div>
                     </div>
                   </div>
 
-                  <div style={{ paddingTop: "14px", borderTop: "1px solid #e2e8f0", display: "flex", gap: "10px" }}>
+                  <div style={{ paddingTop: "14px", borderTop: "1px solid var(--line)", display: "flex", gap: "10px" }}>
                     <Link
                       href={`/universities/${uni.country}/${uni.slug}`}
                       className="btn btn-outline"
@@ -446,50 +426,35 @@ export default function UniversitiesDirectoryPage() {
           </div>
 
           {filteredUniversities.length === 0 && (
-            <div className="card text-center" style={{ padding: "50px 20px", borderRadius: "16px" }}>
-              <h3>No matching institution found</h3>
-              <p style={{ color: "#64748b", margin: "10px auto 24px", maxWidth: "560px" }}>
-                We have over 1,500+ global universities in our lender master catalogue. Even if your institution isn&apos;t listed above, our 30+ partnering banks and NBFCs fund all recognized overseas degrees.
+            <div
+              className="card text-center"
+              style={{
+                padding: "50px 20px",
+                borderRadius: "16px",
+                background: "var(--surface)",
+                border: "1px solid var(--line)",
+                color: "var(--ink)",
+              }}
+            >
+              <h3 style={{ color: "var(--ink)" }}>No matching institutions found</h3>
+              <p style={{ color: "var(--ink-secondary)", maxWidth: "520px", margin: "10px auto 20px" }}>
+                We haven&rsquo;t found an exact match with the selected country, course, and classification filters. However, our 30+ partnering lenders fund 1,500+ overseas institutions.
               </p>
-              <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
-                <button
-                  type="button"
-                  className="btn btn-outline"
-                  onClick={() => {
-                    setSelectedRegion("all");
-                    setSelectedCountry("all");
-                    setSelectedType("all");
-                    setSearchQuery("");
-                  }}
-                >
-                  Clear Filters
-                </button>
-                <Link href="/match" className="btn btn-accent">
-                  Check Bank Eligibility For Any University →
-                </Link>
-              </div>
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={() => {
+                  setSelectedRegion("all");
+                  setSelectedCountry("all");
+                  setSelectedType("all");
+                  setSelectedCourse("all");
+                  setSearchQuery("");
+                }}
+              >
+                Reset All Filters
+              </button>
             </div>
           )}
-        </div>
-      </section>
-
-      {/* Global Coverage Banner */}
-      <section>
-        <div className="wrap">
-          <div className="result-highlight-box text-center" style={{ padding: "40px 24px", borderRadius: "var(--radius-lg)" }}>
-            <h2>Have an Admit from Another Global University?</h2>
-            <p className="lead" style={{ color: "#fff", maxWidth: "680px", margin: "0 auto 20px" }}>
-              Our 30+ partnering RBI-recognized banks and NBFCs fund higher education institutions across 40+ countries. We help you secure sanctions with zero collateral, GIC/Sperrkonto funding, and CAS/DHA compliance.
-            </p>
-            <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
-              <Link href="/match" className="btn btn-accent">
-                Run 60-Second Match Engine →
-              </Link>
-              <Link href="/destinations" className="btn btn-outline" style={{ color: "#fff", borderColor: "#fff" }}>
-                Browse All Destinations
-              </Link>
-            </div>
-          </div>
         </div>
       </section>
     </>

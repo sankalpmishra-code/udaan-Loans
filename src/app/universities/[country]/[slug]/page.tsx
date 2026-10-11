@@ -161,66 +161,66 @@ export default async function UniversityPage({ params }: PageProps) {
               {uni.partnerNetwork}
             </span>
             {uni.qsRank && (
-              <span className="badge" style={{ background: "#f1f5f9", color: "#334155" }}>
+              <span className="badge" style={{ background: "var(--soft)", color: "var(--ink)" }}>
                 {typeof uni.qsRank === "number" ? `QS Rank #${uni.qsRank}` : uni.qsRank}
               </span>
             )}
-            <span style={{ fontSize: "0.82rem", color: "#64748b" }}>
+            <span style={{ fontSize: "0.82rem", color: "var(--ink-secondary)" }}>
               Verified: {uni.verifiedDate}
             </span>
           </div>
 
-          <h1>Education Loan for {uni.name}</h1>
-          <p className="lead" style={{ maxWidth: "820px", marginTop: "12px" }}>
+          <h1 style={{ color: "var(--ink)" }}>Education Loan for {uni.name}</h1>
+          <p className="lead" style={{ maxWidth: "820px", marginTop: "12px", color: "var(--ink-secondary)" }}>
             {uni.overview}
           </p>
 
           {/* Quick Metrics Bar */}
           <div className="stats-grid" style={{ marginTop: "28px" }}>
-            <div className="card text-center" style={{ padding: "20px" }}>
-              <div style={{ fontSize: "0.82rem", color: "#64748b", textTransform: "uppercase", fontWeight: 700 }}>
+            <div className="card text-center" style={{ padding: "20px", background: "var(--surface)", border: "1px solid var(--line)" }}>
+              <div style={{ fontSize: "0.82rem", color: "var(--ink-secondary)", textTransform: "uppercase", fontWeight: 700 }}>
                 Annual Tuition Fee
               </div>
-              <div style={{ fontSize: "1.35rem", fontWeight: 800, color: "#094754", marginTop: "4px" }}>
+              <div style={{ fontSize: "1.35rem", fontWeight: 800, color: "var(--brand-light, #48bbcc)", marginTop: "4px" }}>
                 {uni.tuitionRangeINR}
               </div>
-              <div style={{ fontSize: "0.8rem", color: "#64748b", marginTop: "4px" }}>
+              <div style={{ fontSize: "0.8rem", color: "var(--ink-secondary)", marginTop: "4px" }}>
                 {uni.currencySymbol}{uni.tuitionAnnual.toLocaleString()} {uni.currency}/yr
               </div>
             </div>
 
-            <div className="card text-center" style={{ padding: "20px" }}>
-              <div style={{ fontSize: "0.82rem", color: "#64748b", textTransform: "uppercase", fontWeight: 700 }}>
+            <div className="card text-center" style={{ padding: "20px", background: "var(--surface)", border: "1px solid var(--line)" }}>
+              <div style={{ fontSize: "0.82rem", color: "var(--ink-secondary)", textTransform: "uppercase", fontWeight: 700 }}>
                 Estimated Living Costs
               </div>
-              <div style={{ fontSize: "1.35rem", fontWeight: 800, color: "#094754", marginTop: "4px" }}>
+              <div style={{ fontSize: "1.35rem", fontWeight: 800, color: "var(--brand-light, #48bbcc)", marginTop: "4px" }}>
                 {uni.livingCostINR}
               </div>
-              <div style={{ fontSize: "0.8rem", color: "#64748b", marginTop: "4px" }}>
+              <div style={{ fontSize: "0.8rem", color: "var(--ink-secondary)", marginTop: "4px" }}>
                 {uni.currencySymbol}{uni.livingCostAnnual.toLocaleString()} {uni.currency}/yr
               </div>
             </div>
 
-            <div className="card text-center" style={{ padding: "20px" }}>
-              <div style={{ fontSize: "0.82rem", color: "#64748b", textTransform: "uppercase", fontWeight: 700 }}>
+            <div className="card text-center" style={{ padding: "20px", background: "var(--surface)", border: "1px solid var(--line)" }}>
+              <div style={{ fontSize: "0.82rem", color: "var(--ink-secondary)", textTransform: "uppercase", fontWeight: 700 }}>
                 Total Annual Budget
               </div>
-              <div style={{ fontSize: "1.35rem", fontWeight: 800, color: "#059669", marginTop: "4px" }}>
+              <div style={{ fontSize: "1.35rem", fontWeight: 800, color: "#10b981", marginTop: "4px" }}>
                 {uni.totalAnnualCostINR}
               </div>
-              <div style={{ fontSize: "0.8rem", color: "#059669", marginTop: "4px", fontWeight: 600 }}>
+              <div style={{ fontSize: "0.8rem", color: "#10b981", marginTop: "4px", fontWeight: 600 }}>
                 100% Loan Available
               </div>
             </div>
 
-            <div className="card text-center" style={{ padding: "20px" }}>
-              <div style={{ fontSize: "0.82rem", color: "#64748b", textTransform: "uppercase", fontWeight: 700 }}>
+            <div className="card text-center" style={{ padding: "20px", background: "var(--surface)", border: "1px solid var(--line)" }}>
+              <div style={{ fontSize: "0.82rem", color: "var(--ink-secondary)", textTransform: "uppercase", fontWeight: 700 }}>
                 Lender Prime Status
               </div>
-              <div style={{ fontSize: "1.05rem", fontWeight: 800, color: "#d97706", marginTop: "4px" }}>
+              <div style={{ fontSize: "1.05rem", fontWeight: 800, color: "var(--accent, #f59e0b)", marginTop: "4px" }}>
                 {uni.primeTierCategory}
               </div>
-              <div style={{ fontSize: "0.8rem", color: "#64748b", marginTop: "4px" }}>
+              <div style={{ fontSize: "0.8rem", color: "var(--ink-secondary)", marginTop: "4px" }}>
                 Lowest Interest Slabs
               </div>
             </div>
@@ -248,13 +248,13 @@ export default async function UniversityPage({ params }: PageProps) {
         <div className="wrap">
           <div className="section-head">
             <span className="badge">Lender Intelligence</span>
-            <h2>Partner Bank & NBFC Policies for {uni.name}</h2>
-            <p className="lead">
+            <h2 style={{ color: "var(--ink)" }}>Partner Bank & NBFC Policies for {uni.name}</h2>
+            <p className="lead" style={{ color: "var(--ink-secondary)" }}>
               Verified lender rules, interest rate concessions, and maximum sanction thresholds mapped for {uni.shortName} admits.
             </p>
           </div>
 
-          <div className="table-scroll" style={{ background: "#fff", borderRadius: "12px", boxShadow: "0 4px 16px rgba(0,0,0,0.06)", padding: "12px" }}>
+          <div className="table-scroll" style={{ background: "var(--surface)", border: "1px solid var(--line)", borderRadius: "12px", boxShadow: "var(--shadow-sm)", padding: "12px" }}>
             <table className="schedule-table">
               <thead>
                 <tr>
@@ -269,23 +269,23 @@ export default async function UniversityPage({ params }: PageProps) {
               <tbody>
                 {uni.lenderPolicies.map((policy) => (
                   <tr key={policy.name}>
-                    <td><strong>{policy.name}</strong></td>
+                    <td><strong style={{ color: "var(--ink)" }}>{policy.name}</strong></td>
                     <td>
                       <span className="badge badge-success" style={{ fontSize: "0.78rem" }}>
                         {policy.primeListStatus}
                       </span>
                     </td>
-                    <td><strong className="text-green">{policy.maxUnsecuredINR}</strong></td>
-                    <td>{policy.maxSecuredINR}</td>
-                    <td><strong className="text-amber">{policy.indicativeRate}</strong></td>
-                    <td style={{ fontSize: "0.85rem", color: "#475569" }}>{policy.specialBenefit}</td>
+                    <td><strong style={{ color: "#10b981" }}>{policy.maxUnsecuredINR}</strong></td>
+                    <td style={{ color: "var(--ink)" }}>{policy.maxSecuredINR}</td>
+                    <td><strong style={{ color: "var(--accent, #f59e0b)" }}>{policy.indicativeRate}</strong></td>
+                    <td style={{ fontSize: "0.85rem", color: "var(--ink-secondary)" }}>{policy.specialBenefit}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
 
-          <div style={{ marginTop: "16px", fontSize: "0.82rem", color: "#64748b" }}>
+          <div style={{ marginTop: "16px", fontSize: "0.82rem", color: "var(--ink-secondary)" }}>
             *Rates and loan caps are subject to co-applicant credit score (CIBIL 685+), student academic GPA, and lender underwriting audit as of {uni.verifiedDate}.
           </div>
         </div>
@@ -295,26 +295,26 @@ export default async function UniversityPage({ params }: PageProps) {
       <section style={{ padding: "50px 0 60px" }}>
         <div className="wrap">
           <div className="grid-2">
-            <div className="card">
+            <div className="card" style={{ background: "var(--surface)", border: "1px solid var(--line)" }}>
               <span className="badge badge-accent">Mandatory Visa Compliance</span>
-              <h3 style={{ marginTop: "10px" }}>{uni.visaRequirements.documentName}</h3>
-              <p style={{ color: "#64748b", margin: "10px 0 16px" }}>
+              <h3 style={{ marginTop: "10px", color: "var(--ink)" }}>{uni.visaRequirements.documentName}</h3>
+              <p style={{ color: "var(--ink-secondary)", margin: "10px 0 16px" }}>
                 <strong>Required Liquid Funds:</strong> {uni.visaRequirements.requiredFundsINR}
               </p>
-              <ul style={{ fontSize: "0.92rem", lineHeight: "1.7", paddingLeft: "18px" }}>
+              <ul style={{ fontSize: "0.92rem", lineHeight: "1.7", paddingLeft: "18px", color: "var(--ink)" }}>
                 {uni.visaRequirements.guidelines.map((g, idx) => (
                   <li key={idx} style={{ marginBottom: "8px" }}>{g}</li>
                 ))}
               </ul>
-              <div style={{ marginTop: "20px", background: "var(--soft)", padding: "12px 16px", borderRadius: "8px", fontSize: "0.85rem" }}>
+              <div style={{ marginTop: "20px", background: "var(--soft)", border: "1px solid var(--line)", padding: "12px 16px", borderRadius: "8px", fontSize: "0.85rem", color: "var(--ink)" }}>
                 💡 <strong>Udaan Assistance:</strong> We coordinate with banks to provide embassy-compliant pre-visa disbursement, Canadian GIC remittance, German Sperrkonto transfers, or unencumbered CAS/DHA/IND sanction letters within 3–5 working days.
               </div>
             </div>
 
-            <div className="card">
+            <div className="card" style={{ background: "var(--surface)", border: "1px solid var(--line)" }}>
               <span className="badge">High-ROI Programs</span>
-              <h3 style={{ marginTop: "10px" }}>Top Funded Programs at {uni.shortName}</h3>
-              <p style={{ color: "#64748b", margin: "10px 0 16px" }}>
+              <h3 style={{ marginTop: "10px", color: "var(--ink)" }}>Top Funded Programs at {uni.shortName}</h3>
+              <p style={{ color: "var(--ink-secondary)", margin: "10px 0 16px" }}>
                 Graduates from these programs command median starting salaries that enable accelerated loan repayment:
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
@@ -322,22 +322,22 @@ export default async function UniversityPage({ params }: PageProps) {
                   <div
                     key={idx}
                     style={{
-                      background: "#f8fafc",
+                      background: "var(--soft)",
                       padding: "12px 14px",
                       borderRadius: "8px",
-                      border: "1px solid #e2e8f0",
+                      border: "1px solid var(--line)",
                       display: "flex",
                       justifyContent: "space-between",
                       alignItems: "center"
                     }}
                   >
                     <div>
-                      <div style={{ fontWeight: 700, fontSize: "0.95rem", color: "#1e293b" }}>{prog.name}</div>
-                      <div style={{ fontSize: "0.8rem", color: "#64748b" }}>{prog.degree} • {prog.duration}</div>
+                      <div style={{ fontWeight: 700, fontSize: "0.95rem", color: "var(--ink)" }}>{prog.name}</div>
+                      <div style={{ fontSize: "0.8rem", color: "var(--ink-secondary)" }}>{prog.degree} • {prog.duration}</div>
                     </div>
                     <div style={{ textAlign: "right" }}>
-                      <div style={{ fontSize: "0.95rem", fontWeight: 800, color: "#094754" }}>{prog.estimatedCostINR}</div>
-                      <div style={{ fontSize: "0.75rem", color: "#059669" }}>Total Cost</div>
+                      <div style={{ fontSize: "0.95rem", fontWeight: 800, color: "var(--brand-light, #48bbcc)" }}>{prog.estimatedCostINR}</div>
+                      <div style={{ fontSize: "0.75rem", color: "#10b981" }}>Total Cost</div>
                     </div>
                   </div>
                 ))}

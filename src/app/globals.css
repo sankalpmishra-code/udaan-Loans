@@ -42,17 +42,17 @@
     --bg: #07151a;
     --surface: #0e2229;
     --surface-raised: #142e37;
-    --ink: #eaf3f5;
-    --ink-secondary: #bed4db;
-    --muted: #8ca7b1;
-    --line: #1c3842;
+    --ink: #f8fafc;
+    --ink-secondary: #cbd5e1;
+    --muted: #94a3b8;
+    --line: #1e3a45;
     --brand: #48bbcc;
     --brand-light: #6ad0df;
     --brand-ink: #041f26;
     --soft: #122b34;
     --soft-alt: #163642;
-    --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.35);
-    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.45);
+    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.6);
   }
 }
 
@@ -778,6 +778,82 @@ input[type="range"] {
 }
 
 /* ==========================================================================
+   Institution Type Badges with adaptive light/dark mode support
+   ========================================================================== */
+.inst-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 6px;
+  line-height: 1.2;
+}
+
+.inst-badge-russell {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid #bfdbfe;
+}
+.inst-badge-business {
+  background: #faf5ff;
+  color: #7e22ce;
+  border: 1px solid #e9d5ff;
+}
+.inst-badge-research {
+  background: #f0fdf4;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+}
+.inst-badge-applied {
+  background: #fff7ed;
+  color: #c2410c;
+  border: 1px solid #fed7aa;
+}
+.inst-badge-pathway {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+.inst-badge-default {
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .inst-badge-russell {
+    background: rgba(29, 78, 216, 0.25);
+    color: #93c5fd;
+    border-color: rgba(147, 197, 253, 0.35);
+  }
+  :root:not([data-theme="light"]) .inst-badge-business {
+    background: rgba(126, 34, 206, 0.25);
+    color: #d8b4fe;
+    border-color: rgba(216, 180, 254, 0.35);
+  }
+  :root:not([data-theme="light"]) .inst-badge-research {
+    background: rgba(21, 128, 61, 0.25);
+    color: #86efac;
+    border-color: rgba(134, 239, 172, 0.35);
+  }
+  :root:not([data-theme="light"]) .inst-badge-applied {
+    background: rgba(194, 65, 12, 0.25);
+    color: #fdba74;
+    border-color: rgba(253, 186, 116, 0.35);
+  }
+  :root:not([data-theme="light"]) .inst-badge-pathway {
+    background: rgba(146, 64, 14, 0.25);
+    color: #fde047;
+    border-color: rgba(253, 224, 71, 0.35);
+  }
+  :root:not([data-theme="light"]) .inst-badge-default {
+    background: rgba(51, 65, 85, 0.35);
+    color: #cbd5e1;
+    border-color: rgba(203, 213, 225, 0.25);
+  }
+}
+
+/* ==========================================================================
    Process Timeline (Steps)
    ========================================================================== */
 .timeline-steps {
@@ -942,6 +1018,11 @@ select {
   background: var(--bg);
   color: var(--ink);
   transition: var(--transition);
+}
+
+select option {
+  background: var(--surface);
+  color: var(--ink);
 }
 
 input:focus,
@@ -1550,5 +1631,147 @@ select.input-err {
     opacity: 0.08 !important;
   }
 }
+
+/* ==========================================================================
+   Unified Course, Country & University Search Bar (Accessible Light & Dark)
+   ========================================================================== */
+.unified-search-wrapper {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.unified-search-box {
+  background: var(--surface);
+  border: 2px solid var(--brand);
+  border-radius: var(--radius-lg);
+  padding: 8px 12px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  transition: var(--transition);
+}
+
+.search-field-university {
+  flex: 2;
+  min-width: 220px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-field-university input {
+  border: none !important;
+  background: transparent !important;
+  padding: 10px 10px 10px 36px !important;
+  font-size: 0.98rem !important;
+  color: var(--ink) !important;
+  width: 100% !important;
+  box-shadow: none !important;
+}
+
+.search-field-university input::placeholder {
+  color: var(--muted) !important;
+  opacity: 0.9;
+}
+
+.search-field-country,
+.search-field-course {
+  flex: 1.25;
+  min-width: 165px;
+  border-left: 1px solid var(--line);
+  padding-left: 8px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.search-field-country select,
+.search-field-course select {
+  border: none !important;
+  background: transparent !important;
+  padding: 10px 12px 10px 30px !important;
+  font-size: 0.92rem !important;
+  font-weight: 600 !important;
+  color: var(--ink) !important;
+  cursor: pointer !important;
+  width: 100% !important;
+  box-shadow: none !important;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.search-field-country select option,
+.search-field-course select option {
+  background-color: var(--surface) !important;
+  color: var(--ink) !important;
+}
+
+.search-action-btn {
+  white-space: nowrap;
+  padding: 12px 22px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  border: none;
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .unified-search-box {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 14px;
+    gap: 10px;
+  }
+  .search-field-country,
+  .search-field-course {
+    border-left: none;
+    border-top: 1px solid var(--line);
+    padding-left: 0;
+    padding-top: 8px;
+  }
+  .search-action-btn {
+    width: 100%;
+  }
+}
+
+.search-results-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.search-result-item {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.15s ease;
+}
+
+.search-result-item:hover {
+  background: var(--soft);
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
 
 

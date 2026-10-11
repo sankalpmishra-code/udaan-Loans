@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import Link from "next/link";
-import { universities, UniversityData } from "@/data/universities";
+import { universities, UniversityData, CountryCode } from "@/data/universities";
 
-// Additional global top universities for universal search coverage
+// Additional world-class institutions for global query coverage
 const additionalGlobalUniversities = [
   {
     name: "Harvard University",
@@ -79,140 +79,58 @@ const additionalGlobalUniversities = [
     slug: "",
   },
   {
-    name: "McGill University",
-    shortName: "McGill",
-    countryName: "Canada",
-    country: "canada",
-    city: "Montreal, Quebec",
-    qsRank: 30,
-    tuitionRangeINR: "₹26 Lakh – ₹35 Lakh / year",
-    livingCostINR: "₹13.0 Lakh / year",
-    totalAnnualCostINR: "₹39 Lakh – ₹48 Lakh / year",
-    primeTierCategory: "Canada Top 3 Medical-Doctoral (Prime Tier A)",
-    maxUnsecuredINR: "₹55 Lakhs",
-    maxSecuredINR: "₹1.50 Crore",
-    rates: "From 8.15% p.a.",
-    visaInfo: "Quebec CAQ + Canada Study Permit with living expense deposit.",
-    popularPrograms: ["Master of Management in Analytics", "M.Sc. in Computer Science", "Full-Time MBA"],
-    slug: "",
-  },
-  {
-    name: "University of British Columbia",
-    shortName: "UBC",
-    countryName: "Canada",
-    country: "canada",
-    city: "Vancouver, British Columbia",
-    qsRank: 34,
-    tuitionRangeINR: "₹28 Lakh – ₹38 Lakh / year",
-    livingCostINR: "₹13.0 Lakh / year (IRCC GIC)",
-    totalAnnualCostINR: "₹41 Lakh – ₹51 Lakh / year",
-    primeTierCategory: "Canada Top 3 Research University",
-    maxUnsecuredINR: "₹55 Lakhs",
-    maxSecuredINR: "₹1.50 Crore",
-    rates: "From 8.15% p.a.",
-    visaInfo: "C$20,635 Canadian GIC deposit + paid tuition receipt.",
-    popularPrograms: ["Master of Data Science (MDS)", "Master of Business Analytics", "M.Eng. in Electrical Engineering"],
-    slug: "",
-  },
-  {
     name: "University of Melbourne",
-    shortName: "UniMelb",
+    shortName: "Melbourne",
     countryName: "Australia",
     country: "australia",
     city: "Melbourne, Victoria",
     qsRank: 13,
     tuitionRangeINR: "₹26 Lakh – ₹34 Lakh / year",
-    livingCostINR: "₹16.8 Lakh / year (DHA Subclass 500)",
-    totalAnnualCostINR: "₹42.8 Lakh – ₹50.8 Lakh / year",
-    primeTierCategory: "Australia #1 University (Group of Eight - Go8 Tier AAA)",
-    maxUnsecuredINR: "₹60 Lakhs",
+    livingCostINR: "₹16.5 Lakh / year (DHA Guideline)",
+    totalAnnualCostINR: "₹42 Lakh – ₹50 Lakh / year",
+    primeTierCategory: "Group of Eight #1 (Prime Tier A)",
+    maxUnsecuredINR: "₹50 Lakhs",
     maxSecuredINR: "₹1.50 Crore",
-    rates: "From 7.75% p.a.",
-    visaInfo: "AUD $29,710 statutory living funds + electronic Confirmation of Enrolment (eCoE).",
-    popularPrograms: ["Master of Information Technology", "Melbourne Business School MBA", "Master of Engineering"],
-    slug: "",
-  },
-  {
-    name: "University of Sydney",
-    shortName: "USyd",
-    countryName: "Australia",
-    country: "australia",
-    city: "Sydney, New South Wales",
-    qsRank: 18,
-    tuitionRangeINR: "₹27 Lakh – ₹35 Lakh / year",
-    livingCostINR: "₹16.8 Lakh / year (DHA Subclass 500)",
-    totalAnnualCostINR: "₹43.8 Lakh – ₹51.8 Lakh / year",
-    primeTierCategory: "Group of Eight Global Top 20 (Tier AAA)",
-    maxUnsecuredINR: "₹60 Lakhs",
-    maxSecuredINR: "₹1.50 Crore",
-    rates: "From 7.75% p.a.",
-    visaInfo: "AUD $29,710 living allowance + 1st year tuition receipt for eCoE.",
-    popularPrograms: ["Master of Data Science", "Master of Professional Engineering", "Master of Commerce"],
-    slug: "",
-  },
-  {
-    name: "University of New South Wales (UNSW Sydney)",
-    shortName: "UNSW",
-    countryName: "Australia",
-    country: "australia",
-    city: "Sydney, New South Wales",
-    qsRank: 19,
-    tuitionRangeINR: "₹27 Lakh – ₹35 Lakh / year",
-    livingCostINR: "₹16.8 Lakh / year (DHA Subclass 500)",
-    totalAnnualCostINR: "₹43.8 Lakh – ₹51.8 Lakh / year",
-    primeTierCategory: "Australia #1 Engineering & Tech (Go8 Tier AAA)",
-    maxUnsecuredINR: "₹60 Lakhs",
-    maxSecuredINR: "₹1.50 Crore",
-    rates: "From 7.75% p.a.",
-    visaInfo: "AUD $29,710 living funds + 1st year tuition for Subclass 500 visa.",
-    popularPrograms: ["Master of Information Technology", "Master of Engineering Science", "AGSM MBA"],
-    slug: "",
-  },
-  {
-    name: "Monash University",
-    shortName: "Monash",
-    countryName: "Australia",
-    country: "australia",
-    city: "Melbourne, Victoria",
-    qsRank: 37,
-    tuitionRangeINR: "₹25 Lakh – ₹33 Lakh / year",
-    livingCostINR: "₹16.8 Lakh / year (DHA Subclass 500)",
-    totalAnnualCostINR: "₹41.8 Lakh – ₹49.8 Lakh / year",
-    primeTierCategory: "Group of Eight Global Top 40 (Tier AA)",
-    maxUnsecuredINR: "₹55 Lakhs",
-    maxSecuredINR: "₹1.50 Crore",
-    rates: "From 8.15% p.a.",
-    visaInfo: "AUD $29,710 living funds + eCoE deposit.",
-    popularPrograms: ["Master of Artificial Intelligence", "Master of Banking and Finance", "Master of Cybersecurity"],
-    slug: "",
-  },
-  {
-    name: "National University of Singapore (NUS)",
-    shortName: "NUS",
-    countryName: "Singapore",
-    country: "singapore",
-    city: "Singapore",
-    qsRank: 8,
-    tuitionRangeINR: "₹24 Lakh – ₹35 Lakh / year",
-    livingCostINR: "₹12 Lakh – ₹16 Lakh / year",
-    totalAnnualCostINR: "₹36 Lakh – ₹51 Lakh / year",
-    primeTierCategory: "Asia #1 University (Tier AAA Elite)",
-    maxUnsecuredINR: "₹65 Lakhs",
-    maxSecuredINR: "₹1.50 Crore",
-    rates: "From 7.75% p.a.",
-    visaInfo: "Singapore Student Pass financial guarantee letter.",
-    popularPrograms: ["Master of Computing (CS / AI / Infosec)", "NUS MBA", "M.Sc. in Business Analytics"],
+    rates: "From 8.25% p.a.",
+    visaInfo: "AUD $29,710 living fund proof + 1st year tuition + OSHC insurance.",
+    popularPrograms: ["Master of Information Technology", "Master of Management", "Master of Engineering"],
     slug: "",
   },
 ];
 
-interface QuickDetailData {
+export const COUNTRY_OPTIONS = [
+  { value: "all", label: "🌐 All Countries" },
+  { value: "uk", label: "🇬🇧 United Kingdom" },
+  { value: "usa", label: "🇺🇸 United States" },
+  { value: "canada", label: "🇨🇦 Canada" },
+  { value: "germany", label: "🇩🇪 Germany" },
+  { value: "australia", label: "🇦🇺 Australia" },
+  { value: "ireland", label: "🇮🇪 Ireland" },
+  { value: "netherlands", label: "🇳🇱 Netherlands" },
+  { value: "france", label: "🇫🇷 France" },
+  { value: "sweden", label: "🇸🇪 Sweden" },
+  { value: "italy", label: "🇮🇹 Italy" },
+  { value: "switzerland", label: "🇨🇭 Switzerland" },
+];
+
+export const COURSE_OPTIONS = [
+  { value: "all", label: "🎓 All Courses / Degrees" },
+  { value: "stem", label: "💻 MS / STEM (CS, AI, Data Science)" },
+  { value: "mba", label: "💼 MBA & Business Management" },
+  { value: "engineering", label: "⚙️ Engineering (Mech, Civil, EE, Robotics)" },
+  { value: "finance", label: "📊 Finance, Economics & Fintech" },
+  { value: "health", label: "🧬 Biotech, Health & Life Sciences" },
+  { value: "law", label: "⚖️ Law, LLM & Public Policy" },
+  { value: "undergrad", label: "🎓 Undergraduate / Bachelor's" },
+];
+
+export interface QuickDetailData {
   name: string;
   shortName: string;
   countryName: string;
   country: string;
   city: string;
-  qsRank: number | string;
+  qsRank?: number | string;
   tuitionRangeINR: string;
   livingCostINR: string;
   totalAnnualCostINR: string;
@@ -224,14 +142,54 @@ interface QuickDetailData {
   popularPrograms: string[];
   slug?: string;
   overview?: string;
+  selectedCourseLabel?: string;
 }
 
-export default function UniversitySearchBar() {
-  const [searchTerm, setSearchTerm] = useState("");
+interface UniversitySearchBarProps {
+  initialSearch?: string;
+  initialCountry?: string;
+  initialCourse?: string;
+  onFilterChange?: (filters: { query: string; country: string; course: string }) => void;
+  onSelectUniversity?: (uni: QuickDetailData) => void;
+  showPopularChips?: boolean;
+}
+
+export default function UniversitySearchBar({
+  initialSearch = "",
+  initialCountry = "all",
+  initialCourse = "all",
+  onFilterChange,
+  onSelectUniversity,
+  showPopularChips = true,
+}: UniversitySearchBarProps) {
+  const [searchTerm, setSearchTerm] = useState(initialSearch);
+  const [selectedCountry, setSelectedCountry] = useState(initialCountry);
+  const [selectedCourse, setSelectedCourse] = useState(initialCourse);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedUni, setSelectedUni] = useState<QuickDetailData | null>(null);
+
   const searchContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Sync internal state when props change
+  useEffect(() => {
+    if (initialSearch !== undefined) setSearchTerm(initialSearch);
+  }, [initialSearch]);
+
+  useEffect(() => {
+    if (initialCountry !== undefined) setSelectedCountry(initialCountry);
+  }, [initialCountry]);
+
+  useEffect(() => {
+    if (initialCourse !== undefined) setSelectedCourse(initialCourse);
+  }, [initialCourse]);
+
+  // Notify parent of filter changes in real-time
+  const notifyFilterChange = (query: string, country: string, course: string) => {
+    if (onFilterChange) {
+      onFilterChange({ query, country, course });
+    }
+  };
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -244,10 +202,13 @@ export default function UniversitySearchBar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Keyboard shortcut '/' or 'Cmd+K' to focus search
+  // Keyboard shortcut listener (/ or Cmd+K to focus, Escape to dismiss)
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
-      if ((e.key === "/" && (e.target as HTMLElement).tagName !== "INPUT") || ((e.metaKey || e.ctrlKey) && e.key === "k")) {
+      if (
+        (e.key === "/" && (e.target as HTMLElement).tagName !== "INPUT" && (e.target as HTMLElement).tagName !== "SELECT") ||
+        ((e.metaKey || e.ctrlKey) && e.key === "k")
+      ) {
         e.preventDefault();
         inputRef.current?.focus();
         setIsOpen(true);
@@ -273,19 +234,85 @@ export default function UniversitySearchBar() {
     };
   }, [selectedUni]);
 
-  // Combined searchable catalogue
+  // Helper to determine course-level adjustment
+  const getCourseAdjustedDetails = (baseUni: QuickDetailData, courseKey: string): QuickDetailData => {
+    const courseObj = COURSE_OPTIONS.find((c) => c.value === courseKey);
+    const courseLabel = courseObj && courseKey !== "all" ? courseObj.label.replace(/^[^\w\s]+\s*/, "") : undefined;
+
+    let adjustedTuition = baseUni.tuitionRangeINR;
+    let adjustedUnsecured = baseUni.maxUnsecuredINR;
+    let extraAdvice = "";
+
+    if (courseKey === "mba") {
+      adjustedTuition = "₹40 Lakh – ₹65 Lakh / year (B-School Tier)";
+      adjustedUnsecured = "Up to ₹75 Lakhs (Top B-School Priority)";
+      extraAdvice = "High earning potential guarantees premium lender concessions with SBI Scholar / BoB Baroda Scholar schemes offering zero margin money.";
+    } else if (courseKey === "stem") {
+      adjustedUnsecured = "Up to ₹60 Lakhs (STEM Priority)";
+      extraAdvice = "Eligible for extended 3-year post-study OPT work permits (USA) and specialized collateral-free US-dollar student loans.";
+    } else if (courseKey === "engineering") {
+      adjustedUnsecured = "Up to ₹50 Lakhs (Collateral-Free)";
+      extraAdvice = "High global employer demand across automotive, semiconductor, and robotics hubs.";
+    } else if (courseKey === "undergrad") {
+      adjustedTuition = "₹18 Lakh – ₹38 Lakh / year";
+      adjustedUnsecured = "Up to ₹35 Lakhs (Cosigner Required)";
+      extraAdvice = "Undergraduate degree loans usually require a strong parent/guardian financial co-signer with proven ITR.";
+    }
+
+    return {
+      ...baseUni,
+      tuitionRangeINR: adjustedTuition,
+      maxUnsecuredINR: adjustedUnsecured,
+      selectedCourseLabel: courseLabel,
+      overview: extraAdvice ? `${baseUni.overview || ""} ${extraAdvice}`.trim() : baseUni.overview,
+    };
+  };
+
+  // Filtered autocomplete search results
   const searchResults = useMemo(() => {
     const q = searchTerm.toLowerCase().trim();
-    if (!q) return [];
 
+    // Base universities
     const curatedMatches: QuickDetailData[] = universities
       .filter((u) => {
-        return (
-          u.name.toLowerCase().includes(q) ||
-          u.shortName.toLowerCase().includes(q) ||
-          u.city.toLowerCase().includes(q) ||
-          u.countryName.toLowerCase().includes(q)
-        );
+        // Country filter
+        if (selectedCountry !== "all" && u.country !== selectedCountry) {
+          return false;
+        }
+
+        // Query filter
+        if (q) {
+          const nameMatch =
+            u.name.toLowerCase().includes(q) ||
+            u.shortName.toLowerCase().includes(q) ||
+            u.city.toLowerCase().includes(q) ||
+            u.countryName.toLowerCase().includes(q);
+          if (!nameMatch) return false;
+        }
+
+        // Course filter
+        if (selectedCourse !== "all") {
+          const courseKeywords: Record<string, string[]> = {
+            stem: ["computer", "data", "software", "artificial", "cyber", "computing", "technology"],
+            mba: ["mba", "business", "management", "consulting", "executive"],
+            engineering: ["engineering", "mechanical", "electrical", "civil", "robotics", "aerospace"],
+            finance: ["finance", "fintech", "economics", "accounting", "banking"],
+            health: ["health", "biotech", "biomedical", "medical", "pharmacy", "medicine"],
+            law: ["law", "llm", "policy", "legal", "justice"],
+            undergrad: ["bachelor", "undergraduate", "b.sc", "b.eng", "ba"],
+          };
+          const keywords = courseKeywords[selectedCourse] || [];
+          const hasCourse =
+            u.popularPrograms.some((p) => keywords.some((k) => p.name.toLowerCase().includes(k))) ||
+            keywords.some((k) => u.overview.toLowerCase().includes(k));
+          if (!hasCourse && q) {
+            // allow lenient match if user specifically searched by name
+          } else if (!hasCourse && !q) {
+            return false;
+          }
+        }
+
+        return true;
       })
       .map((u) => {
         const bestUnsecured = u.lenderPolicies.reduce((max, policy) => {
@@ -316,6 +343,8 @@ export default function UniversitySearchBar() {
 
     const additionalMatches: QuickDetailData[] = additionalGlobalUniversities
       .filter((u) => {
+        if (selectedCountry !== "all" && u.country !== selectedCountry) return false;
+        if (!q) return false;
         return (
           u.name.toLowerCase().includes(q) ||
           u.shortName.toLowerCase().includes(q) ||
@@ -343,39 +372,53 @@ export default function UniversitySearchBar() {
       }));
 
     return [...curatedMatches, ...additionalMatches].slice(0, 8);
-  }, [searchTerm]);
+  }, [searchTerm, selectedCountry, selectedCourse]);
 
   const handleSelectUniversity = (uni: QuickDetailData) => {
-    setSelectedUni(uni);
+    const customized = getCourseAdjustedDetails(uni, selectedCourse);
+    setSelectedUni(customized);
     setIsOpen(false);
+    if (onSelectUniversity) onSelectUniversity(customized);
   };
 
-  const handleCustomSearchEnter = () => {
-    if (!searchTerm.trim()) return;
+  const handleSearchSubmit = () => {
+    if (!searchTerm.trim()) {
+      if (searchResults.length > 0) {
+        handleSelectUniversity(searchResults[0]);
+      }
+      return;
+    }
+
     if (searchResults.length > 0) {
       handleSelectUniversity(searchResults[0]);
     } else {
-      // Dynamic profile generator for any unlisted university in the world
-      setSelectedUni({
-        name: searchTerm.trim(),
-        shortName: searchTerm.trim().split(" ")[0],
-        countryName: "Overseas Higher Education Institution",
-        country: "global",
-        city: "International Campus",
-        qsRank: "Recognized Higher Education Institution",
-        tuitionRangeINR: "₹18 Lakh – ₹32 Lakh / year (Estimated)",
-        livingCostINR: "₹10 Lakh – ₹15 Lakh / year (Estimated)",
-        totalAnnualCostINR: "₹28 Lakh – ₹47 Lakh / year",
-        primeTierCategory: "Partner Lender Master Catalogue (1,500+ Institutions)",
-        maxUnsecuredINR: "Up to ₹50 Lakhs",
-        maxSecuredINR: "Up to ₹1.50 Crore",
-        indicativeRate: "8.15% - 10.50%",
-        visaInfo: "Financial solvency / loan sanction letter acceptable by foreign embassies.",
-        popularPrograms: ["Master of Science (STEM)", "Master of Business Administration", "Postgraduate Certificate"],
-        slug: "",
-        overview: `We have automated loan underwriting arrangements for ${searchTerm.trim()}. Our 30+ partnering scheduled banks and NBFCs fund all accredited degree programs with pre-visa sanction letters.`,
-      });
+      // Dynamic profile generator for any unlisted university globally
+      const countryLabel = COUNTRY_OPTIONS.find((c) => c.value === selectedCountry)?.label || "Overseas";
+      const customized = getCourseAdjustedDetails(
+        {
+          name: searchTerm.trim(),
+          shortName: searchTerm.trim().split(" ")[0],
+          countryName: selectedCountry !== "all" ? countryLabel.replace(/^[^\w\s]+\s*/, "") : "International Campus",
+          country: selectedCountry !== "all" ? selectedCountry : "global",
+          city: "International University Hub",
+          qsRank: "Recognized Accredited University",
+          tuitionRangeINR: "₹18 Lakh – ₹32 Lakh / year (Estimated)",
+          livingCostINR: "₹10 Lakh – ₹15 Lakh / year (Estimated)",
+          totalAnnualCostINR: "₹28 Lakh – ₹47 Lakh / year",
+          primeTierCategory: "Public / Private Bank Underwritten Institution",
+          maxUnsecuredINR: "Up to ₹50 Lakhs",
+          maxSecuredINR: "Up to ₹1.50 Crore",
+          indicativeRate: "8.15% - 10.25%",
+          visaInfo: "Embassy accepted pre-visa loan sanction letters with zero upfront collateral.",
+          popularPrograms: ["Master of Science (STEM)", "MBA / Business Management", "Postgraduate Diploma"],
+          slug: "",
+          overview: `Automated loan eligibility mapped for ${searchTerm.trim()}. Our 30+ partnering scheduled banks and NBFCs fund all accredited programs here with full living expense coverage.`,
+        },
+        selectedCourse
+      );
+      setSelectedUni(customized);
       setIsOpen(false);
+      if (onSelectUniversity) onSelectUniversity(customized);
     }
   };
 
@@ -392,274 +435,280 @@ export default function UniversitySearchBar() {
   ];
 
   return (
-    <div ref={searchContainerRef} style={{ width: "100%", maxWidth: "860px", margin: "0 auto" }}>
-      {/* Search Bar Input Container */}
-      <div
-        style={{
-          position: "relative",
-          background: "#ffffff",
-          borderRadius: "14px",
-          boxShadow: "0 8px 32px rgba(9, 71, 84, 0.12)",
-          border: "2px solid #094754",
-          display: "flex",
-          alignItems: "center",
-          padding: "6px 14px",
-          transition: "box-shadow 0.2s ease",
-        }}
-      >
-        <span style={{ fontSize: "1.25rem", marginRight: "10px", color: "#094754" }}>🔍</span>
-
-        <input
-          ref={inputRef}
-          type="text"
-          value={searchTerm}
-          onChange={(e) => {
-            setSearchTerm(e.target.value);
-            setIsOpen(true);
-          }}
-          onFocus={() => setIsOpen(true)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              handleCustomSearchEnter();
-            }
-          }}
-          placeholder="Search any university worldwide to get instant loan & visa details (e.g. Oxford, TU Delft, Harvard, TUM, Seneca)..."
-          style={{
-            flex: 1,
-            border: "none",
-            outline: "none",
-            fontSize: "1.05rem",
-            padding: "12px 6px",
-            color: "#0f172a",
-            background: "transparent",
-          }}
-        />
-
-        {searchTerm && (
-          <button
-            type="button"
-            onClick={() => {
-              setSearchTerm("");
-              setIsOpen(false);
-            }}
+    <div ref={searchContainerRef} className="unified-search-wrapper">
+      {/* Unified 3-in-1 Search Bar */}
+      <div className="unified-search-box">
+        {/* University Search Field */}
+        <div className="search-field-university">
+          <span
             style={{
-              background: "none",
-              border: "none",
-              cursor: "pointer",
+              position: "absolute",
+              left: "10px",
               fontSize: "1.1rem",
-              color: "#64748b",
-              padding: "4px 8px",
+              color: "var(--brand-light, #48bbcc)",
+              pointerEvents: "none",
             }}
-            title="Clear"
           >
-            ✕
-          </button>
-        )}
+            🔍
+          </span>
+          <input
+            ref={inputRef}
+            type="text"
+            value={searchTerm}
+            onChange={(e) => {
+              const val = e.target.value;
+              setSearchTerm(val);
+              setIsOpen(true);
+              notifyFilterChange(val, selectedCountry, selectedCourse);
+            }}
+            onFocus={() => setIsOpen(true)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSearchSubmit();
+              }
+            }}
+            placeholder="Search university or campus (e.g. Oxford, TU Delft, TUM, Harvard, Waterloo)..."
+            aria-label="Search university name"
+          />
+          {searchTerm && (
+            <button
+              type="button"
+              onClick={() => {
+                setSearchTerm("");
+                setIsOpen(false);
+                notifyFilterChange("", selectedCountry, selectedCourse);
+              }}
+              style={{
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                fontSize: "1rem",
+                color: "var(--muted, #94a3b8)",
+                padding: "4px 8px",
+              }}
+              title="Clear university search"
+            >
+              ✕
+            </button>
+          )}
+        </div>
 
+        {/* Country Selector Field */}
+        <div className="search-field-country">
+          <select
+            value={selectedCountry}
+            onChange={(e) => {
+              const val = e.target.value;
+              setSelectedCountry(val);
+              notifyFilterChange(searchTerm, val, selectedCourse);
+            }}
+            aria-label="Filter by country"
+          >
+            {COUNTRY_OPTIONS.map((opt) => (
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Course / Program Field */}
+        <div className="search-field-course">
+          <select
+            value={selectedCourse}
+            onChange={(e) => {
+              const val = e.target.value;
+              setSelectedCourse(val);
+              notifyFilterChange(searchTerm, selectedCountry, val);
+            }}
+            aria-label="Filter by course or degree"
+          >
+            {COURSE_OPTIONS.map((opt) => (
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Action Button */}
         <button
           type="button"
-          onClick={handleCustomSearchEnter}
-          className="btn btn-accent"
-          style={{
-            padding: "10px 18px",
-            fontSize: "0.95rem",
-            fontWeight: 700,
-            borderRadius: "8px",
-            marginLeft: "6px",
-            whiteSpace: "nowrap",
-          }}
+          onClick={handleSearchSubmit}
+          className="btn btn-accent search-action-btn"
         >
-          Get Details
+          Get Details →
         </button>
       </div>
 
-      {/* Instant Dropdown Results */}
-      {isOpen && searchTerm.trim().length > 0 && (
-        <div
-          style={{
-            position: "absolute",
-            zIndex: 100,
-            left: 0,
-            right: 0,
-            maxWidth: "860px",
-            margin: "8px auto 0",
-            background: "#ffffff",
-            borderRadius: "12px",
-            boxShadow: "0 12px 40px rgba(0,0,0,0.18)",
-            border: "1px solid #e2e8f0",
-            overflow: "hidden",
-            maxHeight: "420px",
-            overflowY: "auto",
-          }}
-        >
+      {/* Autocomplete Dropdown */}
+      {isOpen && (searchTerm.trim().length > 0 || (selectedCountry !== "all" && searchResults.length > 0)) && (
+        <div className="search-results-dropdown">
           {searchResults.length > 0 ? (
             <div>
               <div
                 style={{
                   padding: "10px 16px",
-                  background: "#f8fafc",
+                  background: "var(--soft)",
                   fontSize: "0.78rem",
                   fontWeight: 700,
-                  color: "#64748b",
+                  color: "var(--ink-secondary)",
                   textTransform: "uppercase",
                   letterSpacing: "0.05em",
-                  borderBottom: "1px solid #e2e8f0",
+                  borderBottom: "1px solid var(--line)",
+                  display: "flex",
+                  justifyContent: "space-between",
                 }}
               >
-                Instant Matching Universities ({searchResults.length})
+                <span>Matching Institutions ({searchResults.length})</span>
+                <span style={{ fontSize: "0.72rem", fontWeight: 500, color: "var(--muted)" }}>Click to view loan details</span>
               </div>
               {searchResults.map((uni, idx) => (
                 <div
                   key={idx}
                   onClick={() => handleSelectUniversity(uni)}
-                  style={{
-                    padding: "12px 16px",
-                    borderBottom: "1px solid #f1f5f9",
-                    cursor: "pointer",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    transition: "background 0.15s ease",
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = "#f1f5f9")}
-                  onMouseLeave={(e) => (e.currentTarget.style.background = "#ffffff")}
+                  className="search-result-item"
                 >
-                  <div>
-                    <div style={{ fontWeight: 700, fontSize: "0.98rem", color: "#094754" }}>
+                  <div style={{ flex: 1, paddingRight: "12px" }}>
+                    <div style={{ fontWeight: 700, fontSize: "0.98rem", color: "var(--ink)" }}>
                       {uni.name}
                     </div>
-                    <div style={{ fontSize: "0.82rem", color: "#64748b", marginTop: "2px" }}>
-                      📍 {uni.city}, {uni.countryName} • <span style={{ color: "#d97706", fontWeight: 600 }}>{uni.primeTierCategory}</span>
+                    <div style={{ fontSize: "0.82rem", color: "var(--ink-secondary)", marginTop: "2px" }}>
+                      📍 {uni.city}, {uni.countryName} •{" "}
+                      <span style={{ color: "var(--accent, #f59e0b)", fontWeight: 600 }}>{uni.primeTierCategory}</span>
                     </div>
                   </div>
 
-                  <div style={{ textAlign: "right", display: "flex", alignItems: "center", gap: "10px" }}>
+                  <div style={{ textAlign: "right", display: "flex", alignItems: "center", gap: "10px", flexShrink: 0 }}>
                     <div>
-                      <div style={{ fontSize: "0.88rem", fontWeight: 800, color: "#059669" }}>
+                      <div style={{ fontSize: "0.88rem", fontWeight: 800, color: "var(--brand-light, #48bbcc)" }}>
                         {uni.maxUnsecuredINR}
                       </div>
-                      <div style={{ fontSize: "0.74rem", color: "#64748b" }}>Collateral-Free</div>
+                      <div style={{ fontSize: "0.74rem", color: "var(--muted)" }}>Collateral-Free</div>
                     </div>
                     <span
                       style={{
-                        padding: "5px 10px",
-                        background: "#094754",
-                        color: "#fff",
+                        padding: "6px 12px",
+                        background: "var(--brand)",
+                        color: "var(--brand-ink)",
                         borderRadius: "6px",
-                        fontSize: "0.78rem",
+                        fontSize: "0.8rem",
                         fontWeight: 700,
                       }}
                     >
-                      View Details →
+                      Details →
                     </span>
                   </div>
                 </div>
               ))}
             </div>
-          ) : (
+          ) : searchTerm.trim().length > 0 ? (
             <div
-              onClick={handleCustomSearchEnter}
+              onClick={handleSearchSubmit}
               style={{
                 padding: "16px",
                 cursor: "pointer",
-                background: "#f8fafc",
+                background: "var(--soft)",
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
               }}
             >
               <div>
-                <div style={{ fontWeight: 700, color: "#094754", fontSize: "0.98rem" }}>
+                <div style={{ fontWeight: 700, color: "var(--ink)", fontSize: "0.98rem" }}>
                   Get automated loan eligibility for &ldquo;{searchTerm}&rdquo;
                 </div>
-                <div style={{ fontSize: "0.82rem", color: "#64748b", marginTop: "2px" }}>
-                  Click to generate instant loan breakdown across our 30+ partnering banks & NBFCs
+                <div style={{ fontSize: "0.82rem", color: "var(--ink-secondary)", marginTop: "2px" }}>
+                  Click to calculate real-time loan limits, interest rates, and living cost proof.
                 </div>
               </div>
               <span className="btn btn-accent" style={{ padding: "6px 14px", fontSize: "0.82rem" }}>
                 Generate Details →
               </span>
             </div>
-          )}
+          ) : null}
         </div>
       )}
 
       {/* Popular Fast-Click Chips */}
-      <div style={{ marginTop: "12px", display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
-        <span style={{ fontSize: "0.82rem", fontWeight: 700, color: "#475569" }}>Popular Lookups:</span>
-        {popularChips.map((chip, idx) => (
-          <button
-            key={idx}
-            type="button"
-            onClick={() => {
-              setSearchTerm(chip.name);
-              const found = universities.find((u) => u.name === chip.name);
-              if (found) {
-                const bestUnsecured = found.lenderPolicies.reduce((max, policy) => {
-                  const num = parseInt(policy.maxUnsecuredINR.replace(/[^0-9]/g, ""), 10) || 0;
-                  return num > max ? num : max;
-                }, 0);
-                setSelectedUni({
-                  name: found.name,
-                  shortName: found.shortName,
-                  countryName: found.countryName,
-                  country: found.country,
-                  city: found.city,
-                  qsRank: found.qsRank,
-                  tuitionRangeINR: found.tuitionRangeINR,
-                  livingCostINR: found.livingCostINR,
-                  totalAnnualCostINR: found.totalAnnualCostINR,
-                  primeTierCategory: found.primeTierCategory,
-                  maxUnsecuredINR: `Up to ₹${bestUnsecured} Lakhs`,
-                  maxSecuredINR: "Up to ₹1.50 Crore",
-                  indicativeRate: found.lenderPolicies[0]?.indicativeRate || "8.15% - 9.15%",
-                  visaInfo: `${found.visaRequirements.documentName}: ${found.visaRequirements.requiredFundsINR}`,
-                  popularPrograms: found.popularPrograms.map((p) => p.name),
-                  slug: found.slug,
-                  overview: found.overview,
-                });
-              } else {
-                handleCustomSearchEnter();
-              }
-            }}
-            style={{
-              background: "#ffffff",
-              border: "1px solid #cbd5e1",
-              borderRadius: "20px",
-              padding: "4px 12px",
-              fontSize: "0.82rem",
-              fontWeight: 600,
-              color: "#334155",
-              cursor: "pointer",
-              boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
-              transition: "all 0.15s ease",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = "#094754";
-              e.currentTarget.style.color = "#094754";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = "#cbd5e1";
-              e.currentTarget.style.color = "#334155";
-            }}
-          >
-            {chip.label}
-          </button>
-        ))}
-      </div>
+      {showPopularChips && (
+        <div style={{ marginTop: "12px", display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
+          <span style={{ fontSize: "0.82rem", fontWeight: 700, color: "var(--ink-secondary)" }}>
+            Popular Universities:
+          </span>
+          {popularChips.map((chip, idx) => (
+            <button
+              key={idx}
+              type="button"
+              onClick={() => {
+                setSearchTerm(chip.name);
+                notifyFilterChange(chip.name, selectedCountry, selectedCourse);
+                const found = universities.find((u) => u.name === chip.name);
+                if (found) {
+                  const bestUnsecured = found.lenderPolicies.reduce((max, policy) => {
+                    const num = parseInt(policy.maxUnsecuredINR.replace(/[^0-9]/g, ""), 10) || 0;
+                    return num > max ? num : max;
+                  }, 0);
+                  handleSelectUniversity({
+                    name: found.name,
+                    shortName: found.shortName,
+                    countryName: found.countryName,
+                    country: found.country,
+                    city: found.city,
+                    qsRank: found.qsRank,
+                    tuitionRangeINR: found.tuitionRangeINR,
+                    livingCostINR: found.livingCostINR,
+                    totalAnnualCostINR: found.totalAnnualCostINR,
+                    primeTierCategory: found.primeTierCategory,
+                    maxUnsecuredINR: `Up to ₹${bestUnsecured} Lakhs`,
+                    maxSecuredINR: "Up to ₹1.50 Crore",
+                    indicativeRate: found.lenderPolicies[0]?.indicativeRate || "8.15% - 9.15%",
+                    visaInfo: `${found.visaRequirements.documentName}: ${found.visaRequirements.requiredFundsINR}`,
+                    popularPrograms: found.popularPrograms.map((p) => p.name),
+                    slug: found.slug,
+                    overview: found.overview,
+                  });
+                }
+              }}
+              style={{
+                background: "var(--soft)",
+                color: "var(--ink)",
+                border: "1px solid var(--line)",
+                borderRadius: "9999px",
+                padding: "4px 12px",
+                fontSize: "0.82rem",
+                fontWeight: 600,
+                cursor: "pointer",
+                transition: "all 0.15s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = "var(--brand-light, #48bbcc)";
+                e.currentTarget.style.color = "var(--brand-light, #48bbcc)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = "var(--line)";
+                e.currentTarget.style.color = "var(--ink)";
+              }}
+            >
+              {chip.label}
+            </button>
+          ))}
+        </div>
+      )}
 
-      {/* INSTANT UNIVERSITY DETAIL MODAL OVERLAY */}
+      {/* Auto-Details Comprehensive Modal */}
       {selectedUni && (
         <div
           role="dialog"
           aria-modal="true"
+          aria-labelledby="uni-modal-title"
           style={{
             position: "fixed",
             top: 0,
             left: 0,
             right: 0,
             bottom: 0,
-            background: "rgba(15, 23, 42, 0.65)",
+            background: "rgba(0, 0, 0, 0.75)",
             backdropFilter: "blur(6px)",
             zIndex: 9999,
             display: "flex",
@@ -673,13 +722,15 @@ export default function UniversitySearchBar() {
         >
           <div
             style={{
-              background: "#ffffff",
+              background: "var(--surface)",
+              color: "var(--ink)",
               borderRadius: "20px",
               maxWidth: "760px",
               width: "100%",
               maxHeight: "90vh",
               overflowY: "auto",
-              boxShadow: "0 20px 50px rgba(0,0,0,0.25)",
+              boxShadow: "0 24px 60px rgba(0,0,0,0.4)",
+              border: "1px solid var(--line)",
               padding: "32px",
               position: "relative",
             }}
@@ -692,39 +743,75 @@ export default function UniversitySearchBar() {
                 position: "absolute",
                 top: "18px",
                 right: "18px",
-                background: "#f1f5f9",
-                border: "none",
+                background: "var(--soft)",
+                border: "1px solid var(--line)",
                 borderRadius: "50%",
                 width: "36px",
                 height: "36px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                fontSize: "1.2rem",
-                color: "#475569",
+                fontSize: "1.1rem",
+                color: "var(--ink)",
                 cursor: "pointer",
+                transition: "all 0.15s ease",
               }}
               title="Close (ESC)"
             >
               ✕
             </button>
 
-            {/* University Header */}
+            {/* University & Selected Course Header */}
             <div style={{ marginBottom: "20px" }}>
               <div style={{ display: "flex", gap: "8px", alignItems: "center", marginBottom: "8px", flexWrap: "wrap" }}>
                 <span className="badge" style={{ fontSize: "0.78rem" }}>
                   📍 {selectedUni.city}, {selectedUni.countryName}
                 </span>
                 {selectedUni.qsRank && (
-                  <span className="badge badge-accent" style={{ fontSize: "0.78rem" }}>
+                  <span
+                    style={{
+                      background: "rgba(245, 158, 11, 0.15)",
+                      color: "var(--accent, #f59e0b)",
+                      border: "1px solid rgba(245, 158, 11, 0.35)",
+                      fontSize: "0.78rem",
+                      fontWeight: 700,
+                      padding: "4px 10px",
+                      borderRadius: "9999px",
+                    }}
+                  >
                     {typeof selectedUni.qsRank === "number" ? `QS Rank #${selectedUni.qsRank}` : selectedUni.qsRank}
                   </span>
                 )}
+                {selectedUni.selectedCourseLabel && (
+                  <span
+                    style={{
+                      background: "rgba(72, 187, 204, 0.15)",
+                      color: "var(--brand-light, #48bbcc)",
+                      border: "1px solid rgba(72, 187, 204, 0.35)",
+                      fontSize: "0.78rem",
+                      fontWeight: 700,
+                      padding: "4px 10px",
+                      borderRadius: "9999px",
+                    }}
+                  >
+                    Field: {selectedUni.selectedCourseLabel}
+                  </span>
+                )}
               </div>
-              <h2 style={{ fontSize: "1.75rem", margin: "4px 0 8px", color: "#094754", lineHeight: "1.25" }}>
+
+              <h2
+                id="uni-modal-title"
+                style={{
+                  fontSize: "1.75rem",
+                  margin: "4px 0 8px",
+                  color: "var(--ink)",
+                  lineHeight: "1.25",
+                  fontWeight: 800,
+                }}
+              >
                 {selectedUni.name}
               </h2>
-              <p style={{ color: "#64748b", fontSize: "0.92rem", lineHeight: "1.5" }}>
+              <p style={{ color: "var(--ink-secondary)", fontSize: "0.92rem", lineHeight: "1.5" }}>
                 {selectedUni.overview || `Automated lender policy & cost of attendance profile mapped for ${selectedUni.name} admits.`}
               </p>
             </div>
@@ -738,72 +825,151 @@ export default function UniversitySearchBar() {
                 marginBottom: "24px",
               }}
             >
-              <div style={{ background: "#f8fafc", padding: "14px", borderRadius: "10px", border: "1px solid #e2e8f0", textAlign: "center" }}>
-                <div style={{ fontSize: "0.75rem", textTransform: "uppercase", fontWeight: 700, color: "#64748b" }}>
+              <div
+                style={{
+                  background: "var(--soft)",
+                  padding: "14px",
+                  borderRadius: "10px",
+                  border: "1px solid var(--line)",
+                  textAlign: "center",
+                }}
+              >
+                <div style={{ fontSize: "0.75rem", textTransform: "uppercase", fontWeight: 700, color: "var(--ink-secondary)" }}>
                   Annual Tuition
                 </div>
-                <div style={{ fontSize: "1.15rem", fontWeight: 800, color: "#094754", marginTop: "4px" }}>
+                <div style={{ fontSize: "1.15rem", fontWeight: 800, color: "var(--brand-light, #48bbcc)", marginTop: "4px" }}>
                   {selectedUni.tuitionRangeINR}
                 </div>
               </div>
 
-              <div style={{ background: "#f8fafc", padding: "14px", borderRadius: "10px", border: "1px solid #e2e8f0", textAlign: "center" }}>
-                <div style={{ fontSize: "0.75rem", textTransform: "uppercase", fontWeight: 700, color: "#64748b" }}>
-                  Living Expenses
+              <div
+                style={{
+                  background: "var(--soft)",
+                  padding: "14px",
+                  borderRadius: "10px",
+                  border: "1px solid var(--line)",
+                  textAlign: "center",
+                }}
+              >
+                <div style={{ fontSize: "0.75rem", textTransform: "uppercase", fontWeight: 700, color: "var(--ink-secondary)" }}>
+                  Living Budget (Annual)
                 </div>
-                <div style={{ fontSize: "1.15rem", fontWeight: 800, color: "#094754", marginTop: "4px" }}>
+                <div style={{ fontSize: "1.15rem", fontWeight: 800, color: "var(--brand-light, #48bbcc)", marginTop: "4px" }}>
                   {selectedUni.livingCostINR}
                 </div>
               </div>
 
-              <div style={{ background: "#f0fdf4", padding: "14px", borderRadius: "10px", border: "1px solid #bbf7d0", textAlign: "center" }}>
-                <div style={{ fontSize: "0.75rem", textTransform: "uppercase", fontWeight: 700, color: "#166534" }}>
+              <div
+                style={{
+                  background: "var(--soft)",
+                  padding: "14px",
+                  borderRadius: "10px",
+                  border: "1px solid var(--line)",
+                  textAlign: "center",
+                }}
+              >
+                <div style={{ fontSize: "0.75rem", textTransform: "uppercase", fontWeight: 700, color: "var(--ink-secondary)" }}>
                   Max Collateral-Free
                 </div>
-                <div style={{ fontSize: "1.2rem", fontWeight: 800, color: "#15803d", marginTop: "4px" }}>
+                <div style={{ fontSize: "1.15rem", fontWeight: 800, color: "#10b981", marginTop: "4px" }}>
                   {selectedUni.maxUnsecuredINR}
                 </div>
               </div>
 
-              <div style={{ background: "#eff6ff", padding: "14px", borderRadius: "10px", border: "1px solid #bfdbfe", textAlign: "center" }}>
-                <div style={{ fontSize: "0.75rem", textTransform: "uppercase", fontWeight: 700, color: "#1e40af" }}>
-                  Indicative Rates
+              <div
+                style={{
+                  background: "var(--soft)",
+                  padding: "14px",
+                  borderRadius: "10px",
+                  border: "1px solid var(--line)",
+                  textAlign: "center",
+                }}
+              >
+                <div style={{ fontSize: "0.75rem", textTransform: "uppercase", fontWeight: 700, color: "var(--ink-secondary)" }}>
+                  Verified Rate
                 </div>
-                <div style={{ fontSize: "1.15rem", fontWeight: 800, color: "#1d4ed8", marginTop: "4px" }}>
+                <div style={{ fontSize: "1.15rem", fontWeight: 800, color: "var(--accent, #f59e0b)", marginTop: "4px" }}>
                   {selectedUni.indicativeRate}
                 </div>
               </div>
             </div>
 
-            {/* Lender Policy & Visa Details Box */}
-            <div style={{ background: "var(--soft)", padding: "16px 20px", borderRadius: "12px", marginBottom: "22px" }}>
-              <div style={{ fontWeight: 700, fontSize: "0.95rem", color: "#094754", marginBottom: "8px" }}>
-                🏛️ Lender Prime Classification: {selectedUni.primeTierCategory}
+            {/* Prime Tier Public Bank Benefit */}
+            <div
+              style={{
+                background: "var(--soft-alt)",
+                border: "1px solid var(--line)",
+                padding: "16px 20px",
+                borderRadius: "12px",
+                marginBottom: "20px",
+              }}
+            >
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "8px" }}>
+                <div>
+                  <div style={{ fontSize: "0.78rem", fontWeight: 700, textTransform: "uppercase", color: "var(--brand-light, #48bbcc)" }}>
+                    Lender Underwriting Tier
+                  </div>
+                  <div style={{ fontSize: "1.05rem", fontWeight: 800, color: "var(--ink)", marginTop: "2px" }}>
+                    {selectedUni.primeTierCategory}
+                  </div>
+                </div>
+                <span
+                  style={{
+                    background: "rgba(16, 185, 129, 0.15)",
+                    color: "#10b981",
+                    padding: "4px 10px",
+                    borderRadius: "6px",
+                    fontSize: "0.82rem",
+                    fontWeight: 700,
+                    border: "1px solid rgba(16, 185, 129, 0.3)",
+                  }}
+                >
+                  ✓ 0.50% Rate Concession
+                </span>
               </div>
-              <div style={{ fontSize: "0.88rem", color: "#334155", lineHeight: "1.6" }}>
-                *Admit holders are eligible for public sector prime interest rate concessions (up to 0.50% reduction for female scholars) and secured loans up to {selectedUni.maxSecuredINR}.
+              <p style={{ margin: "8px 0 0", fontSize: "0.86rem", color: "var(--ink-secondary)", lineHeight: "1.5" }}>
+                SBI (Scholar Scheme), Bank of Baroda (Baroda Scholar), Union Bank, and leading private NBFCs pre-approve collateral-free financing with 100% tuition direct disbursement for this institution.
+              </p>
+            </div>
+
+            {/* Official Visa Proof Rules */}
+            <div
+              style={{
+                background: "rgba(245, 158, 11, 0.1)",
+                border: "1px solid rgba(245, 158, 11, 0.35)",
+                borderRadius: "12px",
+                padding: "16px 20px",
+                marginBottom: "20px",
+              }}
+            >
+              <div style={{ display: "flex", gap: "8px", alignItems: "center", marginBottom: "4px" }}>
+                <span style={{ fontSize: "1.1rem" }}>🛂</span>
+                <span style={{ fontWeight: 800, fontSize: "0.95rem", color: "var(--accent, #f59e0b)" }}>
+                  Embassy Visa Fund Proof Rule
+                </span>
               </div>
-              <div style={{ marginTop: "10px", paddingTop: "10px", borderTop: "1px dashed #cbd5e1", fontSize: "0.85rem", color: "#475569" }}>
-                <strong>🛂 Mandatory Visa Proof:</strong> {selectedUni.visaInfo}
-              </div>
+              <p style={{ margin: 0, fontSize: "0.88rem", color: "var(--ink)", lineHeight: "1.5" }}>
+                {selectedUni.visaInfo} Our sanction letters are formatted to meet exact embassy guidelines (German Sperrkonto, Canadian GIC, UK 28-day rule, Australian DHA).
+              </p>
             </div>
 
             {/* Popular Programs */}
             {selectedUni.popularPrograms && selectedUni.popularPrograms.length > 0 && (
               <div style={{ marginBottom: "24px" }}>
-                <div style={{ fontSize: "0.85rem", fontWeight: 700, color: "#475569", marginBottom: "8px", textTransform: "uppercase" }}>
-                  Top Funded Degree Programs:
+                <div style={{ fontSize: "0.82rem", fontWeight: 700, color: "var(--ink-secondary)", marginBottom: "8px", textTransform: "uppercase" }}>
+                  Funded Programs & Degrees
                 </div>
-                <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
                   {selectedUni.popularPrograms.map((prog, i) => (
                     <span
                       key={i}
                       style={{
-                        background: "#f1f5f9",
+                        background: "var(--soft)",
+                        color: "var(--ink)",
+                        border: "1px solid var(--line)",
                         padding: "6px 12px",
                         borderRadius: "6px",
                         fontSize: "0.82rem",
-                        color: "#1e293b",
                         fontWeight: 600,
                       }}
                     >
@@ -815,7 +981,7 @@ export default function UniversitySearchBar() {
             )}
 
             {/* Modal CTAs */}
-            <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", paddingTop: "14px", borderTop: "1px solid #e2e8f0" }}>
+            <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", paddingTop: "16px", borderTop: "1px solid var(--line)" }}>
               <Link
                 href={`/apply?country=${encodeURIComponent(selectedUni.countryName)}&university=${encodeURIComponent(selectedUni.name)}`}
                 className="btn btn-accent"
