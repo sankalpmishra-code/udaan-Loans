@@ -43,7 +43,7 @@ export default function Error({
           </div>
 
           <p style={{ fontSize: "0.85rem", color: "var(--muted)" }}>
-            Need urgent help? Call our toll-free student hotline at <a href={`tel:${siteConfig.telephone}`} style={{ color: "var(--brand)", fontWeight: "700" }}>{siteConfig.telephone}</a> or email <a href={`mailto:${siteConfig.email}`} style={{ color: "var(--brand)", fontWeight: "700" }}>{siteConfig.email}</a>.
+            Need urgent help? Call our student helpline at <a href={`tel:${siteConfig.phoneNumbers[0].replace(/\s+/g, "")}`} style={{ color: "var(--brand)", fontWeight: "700" }}>{siteConfig.phoneNumbers[0]}</a> / <a href={`tel:${siteConfig.phoneNumbers[1].replace(/\s+/g, "")}`} style={{ color: "var(--brand)", fontWeight: "700" }}>{siteConfig.phoneNumbers[1]}</a> or email <a href={`mailto:${siteConfig.email}`} style={{ color: "var(--brand)", fontWeight: "700" }}>{siteConfig.email}</a>.
           </p>
         </div>
       </div>

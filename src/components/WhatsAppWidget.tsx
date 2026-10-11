@@ -32,7 +32,7 @@ export default function WhatsAppWidget() {
       `Please connect me with a loan advisor.`
     );
 
-    const whatsappNumber = "9118005728326"; // Replace with verified WhatsApp Business number
+    const whatsappNumber = siteConfig.whatsappNumber || "917303200803";
     const url = `https://wa.me/${whatsappNumber}?text=${message}`;
 
     window.open(url, "_blank", "noopener,noreferrer");

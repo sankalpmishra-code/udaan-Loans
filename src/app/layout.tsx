@@ -109,6 +109,13 @@ export default function RootLayout({
         description: siteConfig.description,
         telephone: siteConfig.telephone,
         email: siteConfig.email,
+        contactPoint: siteConfig.phoneNumbers.map((num) => ({
+          "@type": "ContactPoint",
+          telephone: num,
+          contactType: "customer service",
+          areaServed: "IN",
+          availableLanguage: ["en", "hi"],
+        })),
         priceRange: "₹₹",
         foundingDate: siteConfig.foundingYear,
         address: {

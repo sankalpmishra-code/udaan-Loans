@@ -95,7 +95,7 @@ export default function AboutPage() {
 
           <div style={{ textAlign: "center", marginTop: "32px" }}>
             <p className="lead" style={{ fontSize: "1rem" }}>
-              Have questions? Connect with our team at <a href={`mailto:${siteConfig.email}`} style={{ color: "var(--brand)", fontWeight: "700" }}>{siteConfig.email}</a> or call <a href={`tel:${siteConfig.telephone}`} style={{ color: "var(--brand)", fontWeight: "700" }}>{siteConfig.telephone}</a>.
+              Have questions? Connect with our team at <a href={`mailto:${siteConfig.email}`} style={{ color: "var(--brand)", fontWeight: "700" }}>{siteConfig.email}</a> or call <a href={`tel:${siteConfig.phoneNumbers[0].replace(/\s+/g, "")}`} style={{ color: "var(--brand)", fontWeight: "700" }}>{siteConfig.phoneNumbers[0]}</a> / <a href={`tel:${siteConfig.phoneNumbers[1].replace(/\s+/g, "")}`} style={{ color: "var(--brand)", fontWeight: "700" }}>{siteConfig.phoneNumbers[1]}</a>.
             </p>
           </div>
         </div>

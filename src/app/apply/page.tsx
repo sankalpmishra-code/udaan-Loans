@@ -60,7 +60,7 @@ export default function ApplyPage() {
               <div style={{ fontSize: "2rem", marginBottom: "8px" }}>📞</div>
               <h3>Instant Telephone & WhatsApp Support</h3>
               <p style={{ fontSize: "0.9rem", color: "var(--muted)", margin: "0" }}>
-                Need immediate help? Call our toll-free student hotline at <strong>{siteConfig.telephone}</strong>.
+                Need immediate help? Call our student helpline at <strong>{siteConfig.phoneNumbers[0]}</strong> or <strong>{siteConfig.phoneNumbers[1]}</strong>.
               </p>
             </div>
           </div>

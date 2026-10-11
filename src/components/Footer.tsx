@@ -18,9 +18,18 @@ export default function Footer() {
               and secured loans up to ₹1.5 Crore.
             </p>
             <div className="contact-details">
-              <p><strong>Toll-Free:</strong> <a href={`tel:${siteConfig.telephone}`}>{siteConfig.telephone}</a></p>
-              <p><strong>Email:</strong> <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></p>
-              <p><strong>Headquarters:</strong> {siteConfig.address.streetAddress}, {siteConfig.address.addressLocality}, {siteConfig.address.addressRegion} - {siteConfig.address.postalCode}</p>
+              <p>
+                <strong>Mobile / Helpline:</strong>{" "}
+                <a href={`tel:${siteConfig.phoneNumbers[0].replace(/\s+/g, "")}`}>{siteConfig.phoneNumbers[0]}</a>,{" "}
+                <a href={`tel:${siteConfig.phoneNumbers[1].replace(/\s+/g, "")}`}>{siteConfig.phoneNumbers[1]}</a>
+              </p>
+              <p>
+                <strong>Email:</strong>{" "}
+                <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+              </p>
+              <p>
+                <strong>Headquarters:</strong> {siteConfig.address.streetAddress}, {siteConfig.address.addressLocality}, {siteConfig.address.addressRegion} - {siteConfig.address.postalCode}
+              </p>
             </div>
           </div>
 

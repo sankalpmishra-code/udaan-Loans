@@ -27,7 +27,7 @@ export default function PrivacyPage() {
     {
       question: "Can I request deletion of my uploaded documents?",
       answer:
-        "Yes. Under India's Digital Personal Data Protection Act (DPDP), you can request complete erasure of your data at any time by emailing our Grievance Redressal Officer at privacy@udaanloans.com."
+        "Yes. Under India's Digital Personal Data Protection Act (DPDP), you can request complete erasure of your data at any time by emailing our Grievance Redressal Officer at info@udaaneduloans.com."
     }
   ];
 
@@ -105,7 +105,7 @@ export default function PrivacyPage() {
                   <strong>Grievance Redressal Officer:</strong> Data Privacy Desk<br />
                   <strong>Entity:</strong> {siteConfig.legalName}<br />
                   <strong>Address:</strong> {siteConfig.address.streetAddress}, {siteConfig.address.addressLocality}, {siteConfig.address.addressRegion} - {siteConfig.address.postalCode}<br />
-                  <strong>Email:</strong> privacy@udaanloans.com<br />
+                  <strong>Email:</strong> info@udaaneduloans.com<br />
                   <strong>Response SLA:</strong> Within 48 working hours.
                 </div>
               </div>

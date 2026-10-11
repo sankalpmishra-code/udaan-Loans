@@ -12,8 +12,11 @@ export const siteConfig = {
   url: "https://udaanloans.com",
   ogImage: "https://udaanloans.com/opengraph-image",
   themeColor: "#094754",
-  telephone: "+91-1800-572-8326",
-  email: "support@udaanloans.com",
+  telephone: "+91 7303200803",
+  secondaryPhone: "+91 7303200804",
+  phoneNumbers: ["+91 7303200803", "+91 7303200804"],
+  email: "info@udaaneduloans.com",
+  whatsappNumber: "917303200803",
   foundingYear: "2021",
   locale: "en_IN",
   address: {
