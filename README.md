@@ -12,8 +12,19 @@ udaan-loans/
 │   ├── app/
 │   │   ├── layout.tsx            # Global layout, fonts, Organization & FinancialService Schema
 │   │   ├── page.tsx              # / - Home Page (Hero, Calculator, Stats, Trust, FAQ)
+│   │   ├── match/
+│   │   │   └── page.tsx          # /match - Two-Stage Transparent Bank Matcher Engine
 │   │   ├── calculator/
 │   │   │   └── page.tsx          # /calculator - Dedicated EMI & Moratorium Calculator + Schedule
+│   │   ├── tax-calculator/
+│   │   │   └── page.tsx          # /tax-calculator - Section 80E Tax Savings Engine (Old vs New Regime)
+│   │   ├── assessment/
+│   │   │   └── page.tsx          # /assessment - Printable Preliminary Funding Assessment with QR
+│   │   ├── partners/
+│   │   │   └── page.tsx          # /partners - Consultant Referral Pilot & Tracking Link Generator
+│   │   ├── universities/
+│   │   │   ├── page.tsx          # /universities - Curated 20 Universities Directory
+│   │   │   └── [country]/[slug]/ # Dynamic high-converting landing pages for 20 US & Germany Hubs
 │   │   ├── loans/
 │   │   │   └── page.tsx          # /loans - Secured vs Unsecured Loans, Expense Coverage & Matrix
 │   │   ├── destinations/
@@ -28,24 +39,20 @@ udaan-loans/
 │   │   │   └── page.tsx          # /apply - Multi-field Lead Capture & Callback Application
 │   │   ├── about/
 │   │   │   └── page.tsx          # /about - Company Mission, Ethical Advisory, Pan-India Hubs
-│   │   ├── sitemap.ts            # Dynamic Next.js XML Sitemap
-│   │   ├── robots.ts             # Dynamic Next.js robots.txt
-│   │   └── globals.css           # Modern design system, typography, light/dark themes
-│   ├── components/
-│   │   ├── Header.tsx            # Responsive desktop & mobile drawer navigation
-│   │   ├── Footer.tsx            # Comprehensive footer with GEO hubs & compliance disclaimers
-│   │   ├── Calculator.tsx        # Interactive EMI Calculator with amortization table
-│   │   ├── FAQSection.tsx        # Accordion FAQ with automatic Schema.org FAQPage injection
-│   │   ├── LeadForm.tsx          # Application form with validation & Google Sheets hook
-│   │   ├── Breadcrumbs.tsx       # Visual breadcrumbs + BreadcrumbList JSON-LD
-│   │   └── JsonLd.tsx            # Schema.org structured data injector
-│   └── data/
-│       ├── faqs.ts               # Page-specific, AEO-optimized FAQ data
-│       ├── lenders.ts            # 30+ Partner banks, rates, limits & processing times
-│       ├── destinations.ts       # Cost of study, currency, and visa proof rules
-│       └── siteConfig.ts         # Global SEO metadata, keywords, phone, email, and GEO cities
-├── public/                       # Static public assets
-├── legacy-static/                # Backup of original single-page HTML/CSS/JS
+│   │   ├── privacy/ & terms/     # DPDP Act 2025 & RBI Digital Lending Directions compliance
+│   │   ├── api/
+│   │   │   └── leads/route.ts    # Unified server-side lead ingestion API with Google Sheets sync
+│   │   ├── sitemap.ts            # Dynamic Next.js XML Sitemap (45 routes indexed)
+│   │   ├── robots.ts             # Dynamic Next.js robots.txt (AI crawler friendly)
+│   │   └── globals.css           # Modern design system, typography, light/dark themes, print CSS
+│   ├── components/               # Header, Footer, Calculator, TaxCalculator, LeadForm, WhatsAppWidget...
+│   ├── data/                     # lenderCatalogue, universities, faqs, lenders, destinations, siteConfig
+│   └── lib/
+│       └── googleSheets.ts       # Direct Google Cloud Service Account JWT integration
+├── google-sheets-script/
+│   └── Code.gs                   # Ready-to-paste Google Apps Script with dual-tab lead capture
+├── public/                       # Static public assets, icons, OG preview images
+├── .env.example                  # Environment configuration template
 ├── next.config.mjs
 ├── tsconfig.json
 └── package.json
@@ -56,11 +63,11 @@ udaan-loans/
 ## 🔍 SEO, GEO & AEO Optimizations
 
 ### 1. SEO (Search Engine Optimization)
-- **Granular Metadata on Every Route**: Unique, keyword-dense `<title>` and `<meta name="description">` on each route.
-- **Dynamic XML Sitemap (`/sitemap.xml`)**: Automatically indexes all 8+ subpages with priorities and update frequencies.
-- **Dynamic Robots (`/robots.txt`)**: Search engine directives allowing indexation.
+- **Granular Metadata on Every Route**: Unique, keyword-dense `<title>` and `<meta name="description">` across all 45 routes.
+- **Dynamic XML Sitemap (`/sitemap.xml`)**: Automatically indexes all 45 pages with priorities and update frequencies.
+- **Dynamic Robots (`/robots.txt`)**: Search engine and AI crawler directives allowing full indexation.
 - **Semantic HTML5 Hierarchy**: Proper `<h1>`, `<h2>`, `<article>`, `<section>`, and `<nav>` structure.
-- **Canonical URLs & Social Tags**: Complete OpenGraph and Twitter card metadata.
+- **Canonical URLs & Social Tags**: Complete OpenGraph (1200×630) and Twitter card metadata.
 
 ### 2. GEO (Generative Engine Optimization & Local GEO)
 - **Local GEO (Indian Metros to Global Study Hubs)**: Targeted pages associating Indian talent hubs (*Delhi NCR, Mumbai, Bengaluru, Hyderabad, Chennai, Pune, Kolkata, Ahmedabad*) with outbound destinations (*USA, UK, Canada, Germany, Australia, Ireland*).
@@ -90,11 +97,19 @@ npm start
 
 ---
 
-## 📊 Connecting the Lead Capture Form to Google Sheets
+## 📊 Live Lead Capture & Google Sheets Integration
 
-The application form in [LeadForm.tsx](file:///Users/sankalpmishra/.gemini/antigravity/scratch/udaan-loans/src/components/LeadForm.tsx) supports instant webhook lead capture:
+The application captures leads across three distinct channels and synchronizes them to Google Sheets in real time:
+1. **Student Applications** (`/apply`, `/loans`, `/universities`)
+2. **Consultant Partner Signups** (`/partners`)
+3. **Partner Tracking Referral Links** (`/apply?ref=PARTNER_CODE`)
 
-1. Create a [Google Sheet](https://sheets.new) with columns:
-   `Name | Phone | Email | Country | Course | Amount | LoanType | CoApplicant | Source | Timestamp`
-2. In Google Sheets, navigate to **Extensions > Apps Script** and deploy a Web App with `doPost(e)` function.
-3. Paste the Web App URL into `SHEET_URL` inside `src/components/LeadForm.tsx`.
+### Configuration Options:
+Set your preferred configuration in Vercel Environment Variables or `.env.local`:
+* **Option A (Google Apps Script Webhook):**
+  `GOOGLE_SHEET_WEBHOOK_URL="https://script.google.com/macros/s/.../exec"`
+* **Option B (Google Cloud Service Account Private Key):**
+  `GOOGLE_SERVICE_ACCOUNT_EMAIL="..."`
+  `GOOGLE_PRIVATE_KEY="..."`
+  `GOOGLE_SHEET_ID="..."`
+
