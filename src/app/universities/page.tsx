@@ -4,6 +4,7 @@ import React, { useState, useMemo } from "react";
 import Link from "next/link";
 import { universities, UniversityData, CountryCode, Region, InstitutionType } from "@/data/universities";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import UniversitySearchBar from "@/components/UniversitySearchBar";
 
 export default function UniversitiesDirectoryPage() {
   const [selectedRegion, setSelectedRegion] = useState<"all" | Region>("all");
@@ -112,6 +113,11 @@ export default function UniversitiesDirectoryPage() {
             <p className="lead" style={{ maxWidth: "840px", margin: "0 auto" }}>
               Explore lender-specific eligibility rules, public bank Prime Tier concessions (up to 0.50% interest discount), realistic cost-of-attendance budgets, and visa fund requirements across leading universities in the UK, Europe, North America, and Australia.
             </p>
+          </div>
+
+          {/* Universal Instant University Intelligence Search Bar */}
+          <div style={{ maxWidth: "860px", margin: "24px auto 8px" }}>
+            <UniversitySearchBar />
           </div>
 
           {/* Filter Bar */}
