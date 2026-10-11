@@ -1,4 +1,4 @@
-# Udaan Loans - Next.js Multi-Page Portal 🎓✈️
+# Udaan Edu Loans - Next.js Multi-Page Portal 🎓✈️
 
 India's premier education loan facilitation platform for students aspiring to study abroad. Built with **Next.js 16 (App Router)**, **React 19**, and **TypeScript**, engineered for peak performance, multi-page user journeys, and maximum **SEO**, **GEO**, and **AEO** visibility.
 
@@ -72,7 +72,7 @@ udaan-loans/
 ### 2. GEO (Generative Engine Optimization & Local GEO)
 - **Local GEO (Indian Metros to Global Study Hubs)**: Targeted pages associating Indian talent hubs (*Delhi NCR, Mumbai, Bengaluru, Hyderabad, Chennai, Pune, Kolkata, Ahmedabad*) with outbound destinations (*USA, UK, Canada, Germany, Australia, Ireland*).
 - **AI Search Citability (BLUF format)**: "Bottom-Line Up Front" direct answers and data-dense comparison tables designed for Google AI Overviews, Perplexity, Gemini, and ChatGPT Search.
-- **Entity Linking**: Structured data establishing Udaan Loans as a certified Indian Education Loan Facilitator matching students with RBI-registered lenders.
+- **Entity Linking**: Structured data establishing Udaan Edu Loans as a certified Indian Education Loan Facilitator matching students with RBI-registered lenders.
 
 ### 3. AEO (Answer Engine Optimization)
 - **Schema.org `FAQPage` Markup on All Key Pages**: Every single page includes comprehensive, contextual FAQs with automatic machine-readable JSON-LD schema injection.

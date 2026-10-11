@@ -32,7 +32,7 @@ export default function ProcessPage() {
             <h1>The Complete 5-Step Abroad Education Loan Roadmap</h1>
             <p className="lead">
               Applying for an overseas student loan does not have to be stressful.
-              Udaan Loans streamlines the entire lifecycle from early matchmaking to foreign currency remittance.
+              Udaan Edu Loans streamlines the entire lifecycle from early matchmaking to foreign currency remittance.
             </p>
           </div>
 

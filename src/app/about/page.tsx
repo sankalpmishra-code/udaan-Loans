@@ -6,11 +6,11 @@ import { aboutFaqs } from "@/data/faqs";
 import { siteConfig } from "@/data/siteConfig";
 
 export const metadata: Metadata = {
-  title: "About Udaan Loans: India's Premier Overseas Education Loan Facilitator",
+  title: "About Udaan Edu Loans: India's Premier Overseas Education Loan Facilitator",
   description:
-    "Learn about Udaan Loans mission to empower Indian students with transparent, low-cost study abroad loans through 30+ RBI-recognized banking partners. Free advisory across India.",
+    "Learn about Udaan Edu Loans mission to empower Indian students with transparent, low-cost study abroad loans through 30+ RBI-recognized banking partners. Free advisory across India.",
   keywords: [
-    "about Udaan Loans",
+    "about Udaan Edu Loans",
     "education loan facilitator India",
     "study abroad financing platform",
     "transparent student loan advisory",
@@ -31,7 +31,7 @@ export default function AboutPage() {
             <span className="badge">Our Purpose & Mission</span>
             <h1>Empowering Indian Talent to Reach Global Heights</h1>
             <p className="lead">
-              Udaan Loans was founded on a simple conviction: <em>Financial complexity and lack of transparent information should never prevent an ambitious student from taking flight.</em>
+              Udaan Edu Loans was founded on a simple conviction: <em>Financial complexity and lack of transparent information should never prevent an ambitious student from taking flight.</em>
             </p>
           </div>
 
@@ -39,12 +39,12 @@ export default function AboutPage() {
             <div>
               <h2>Who We Are</h2>
               <p>
-                Udaan Loans is India&apos;s leading digital overseas education loan facilitator.
+                Udaan Edu Loans is India&apos;s leading digital overseas education loan facilitator.
                 We bridge the gap between aspiring students admitted to top international universities
                 and India&apos;s top institutional lenders.
               </p>
               <p>
-                Unlike bank branch agents who can only pitch their own single product, Udaan Loans provides
+                Unlike bank branch agents who can only pitch their own single product, Udaan Edu Loans provides
                 <strong> 100% objective, lender-agnostic advisory</strong>. We analyze interest rates, processing fees,
                 margin money rules, and repayment terms across 30+ public sector banks, private commercial banks,
                 and specialized education NBFCs to secure you the best loan.
@@ -103,7 +103,7 @@ export default function AboutPage() {
 
       {/* About Page FAQ Section */}
       <FAQSection
-        title="Frequently Asked Questions About Udaan Loans"
+        title="Frequently Asked Questions About Udaan Edu Loans"
         subtitle="Licensing, business model, partner banks, and data security standards."
         faqs={aboutFaqs}
         id="about-faq"

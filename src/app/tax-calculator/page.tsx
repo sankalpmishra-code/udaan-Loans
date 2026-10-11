@@ -147,7 +147,7 @@ export default function TaxCalculatorPage() {
           <div className="result-highlight-box text-center" style={{ padding: "40px 24px", borderRadius: "var(--radius-lg)" }}>
             <h2>Find 80E-Eligible Institutional Lenders</h2>
             <p className="lead" style={{ color: "#fff", maxWidth: "620px", margin: "0 auto 20px" }}>
-              All 30+ banks and RBI-recognized NBFCs partnered with Udaan Loans issue formal Section 80E interest certificates to ensure seamless income tax deduction claims.
+              All 30+ banks and RBI-recognized NBFCs partnered with Udaan Edu Loans issue formal Section 80E interest certificates to ensure seamless income tax deduction claims.
             </p>
             <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
               <Link href="/match" className="btn btn-accent">

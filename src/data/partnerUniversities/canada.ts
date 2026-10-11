@@ -183,7 +183,7 @@ export const canadaUniversities: UniversityData[] = [
     faqs: [
       {
         question: "How quickly can I get a loan sanctioned for Humber Polytechnic?",
-        answer: "Udaan Loans processes Humber unsecured loan sanctions through HDFC Credila and ICICI Bank in 3 to 5 business days upon document submission.",
+        answer: "Udaan Edu Loans processes Humber unsecured loan sanctions through HDFC Credila and ICICI Bank in 3 to 5 business days upon document submission.",
       },
     ],
   },
@@ -282,7 +282,7 @@ export const canadaUniversities: UniversityData[] = [
     faqs: [
       {
         question: "What is the processing time for a Fanshawe student loan?",
-        answer: "Sanctions are typically completed within 3 to 4 working days with private lenders through Udaan.",
+        answer: "Sanctions are typically completed within 3 to 4 working days with private lenders through Udaan Edu Loans.",
       },
     ],
   },

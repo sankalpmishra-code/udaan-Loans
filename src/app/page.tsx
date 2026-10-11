@@ -25,7 +25,7 @@ export default function HomePage() {
             <span className="badge">100% Free Advisory for Indian Students</span>
             <h1>Your Admission Letter is In. Let’s Fund the Rest.</h1>
             <p className="lead">
-              Udaan Loans facilitates overseas education loans for students heading to the
+              Udaan Edu Loans facilitates overseas education loans for students heading to the
               <strong> USA, UK, Canada, Australia, Germany</strong>, and 40+ other countries.
               We match your profile with 30+ top banks and NBFCs, negotiate competitive interest rates
               starting from <strong>7.5% to 12.5%</strong>, and manage paperwork end-to-end.
@@ -277,14 +277,14 @@ export default function HomePage() {
           <div className="section-head text-center">
             <span className="badge">Student Success</span>
             <h2>Over 4,500+ Students Funded Worldwide</h2>
-            <p className="lead">Hear from students who successfully secured education loans through Udaan.</p>
+            <p className="lead">Hear from students who successfully secured education loans through Udaan Edu Loans.</p>
           </div>
 
           <div className="grid-4">
             <div className="card">
               <div style={{ color: "var(--accent)", fontSize: "1.2rem", marginBottom: "8px" }}>★★★★★</div>
               <p style={{ fontStyle: "italic", fontSize: "0.95rem" }}>
-                &ldquo;I had my SBI sanction letter well before my US F-1 visa appointment. Udaan handled all the branch coordination.&rdquo;
+                &ldquo;I had my SBI sanction letter well before my US F-1 visa appointment. Udaan Edu Loans handled all the branch coordination.&rdquo;
               </p>
               <strong>Rahul Sharma</strong>
               <div style={{ fontSize: "0.82rem", color: "var(--muted)" }}>MS in CS, Northeastern University (USA)</div>

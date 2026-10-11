@@ -132,7 +132,7 @@ function AssessmentContent() {
                     <path d="M26 12V18" stroke="#F59E0B" strokeWidth="1.5" strokeLinecap="round" />
                   </svg>
                   <span style={{ fontSize: "1.35rem", fontWeight: 800, color: "#094754" }}>
-                    Udaan<span style={{ color: "#f59e0b" }}>.</span>Loans
+                    Udaan <span style={{ color: "#f59e0b" }}>Edu</span> Loans
                   </span>
                 </div>
                 <div style={{ fontSize: "0.76rem", color: "#64748b", marginTop: "4px" }}>
@@ -285,7 +285,7 @@ function AssessmentContent() {
             lineHeight: "1.6"
           }}>
             <p style={{ margin: 0 }}>
-              <strong>⚖️ STATUTORY & REGULATORY DISCLAIMER:</strong> This Preliminary Funding Assessment is an indicative facilitation document issued by Udaan Loans in its capacity as a technology-enabled Lending Service Provider (LSP). <strong>This document is NOT a bank sanction letter, loan approval, guarantee of credit, or legally binding proof of funds for visa authorities.</strong> Udaan Loans does not underwrite or disburse loans. All sanctions, pricing, interest rates (7.5%–13.5%), and disbursements are at the sole discretion of our partnering RBI-regulated banks and NBFCs, subject to complete documentation and credit appraisal. Validity: 45 calendar days from date of issuance.
+              <strong>⚖️ STATUTORY & REGULATORY DISCLAIMER:</strong> This Preliminary Funding Assessment is an indicative facilitation document issued by Udaan Edu Loans in its capacity as a technology-enabled Lending Service Provider (LSP). <strong>This document is NOT a bank sanction letter, loan approval, guarantee of credit, or legally binding proof of funds for visa authorities.</strong> Udaan Edu Loans does not underwrite or disburse loans. All sanctions, pricing, interest rates (7.5%–13.5%), and disbursements are at the sole discretion of our partnering RBI-regulated banks and NBFCs, subject to complete documentation and credit appraisal. Validity: 45 calendar days from date of issuance.
             </p>
           </div>
 
@@ -303,9 +303,9 @@ function AssessmentContent() {
             color: "#64748b"
           }}>
             <div>
-              <strong>Udaan Loans Document Authentication System</strong><br />
+              <strong>Udaan Edu Loans Document Authentication System</strong><br />
               Digital Hash: <code>{refId}-SHA256-VERIFIED</code><br />
-              Authorized Signatory: <em>Udaan Loan Operations & Facilitation Desk</em>
+              Authorized Signatory: <em>Udaan Edu Loans Operations & Facilitation Desk</em>
             </div>
             <div style={{ textAlign: "right", display: "flex", alignItems: "center", gap: "10px" }}>
               <div style={{

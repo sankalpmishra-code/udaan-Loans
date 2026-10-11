@@ -680,7 +680,7 @@ export default function UniversitiesDirectoryPage() {
                   <div style={{ fontSize: "2rem", marginBottom: "8px" }}>ℹ️</div>
                   <h3 style={{ color: "#ef4444", marginBottom: "8px" }}>Domestic Indian Institutions Not Eligible</h3>
                   <p style={{ color: "var(--ink-secondary)", maxWidth: "580px", margin: "10px auto 20px", lineHeight: "1.6" }}>
-                    Udaan Loans facilitates collateral-free education loans exclusively for students admitted to recognized overseas / foreign universities (USA, UK, Canada, Australia, Germany, Ireland, Europe). Domestic Indian institutions are not eligible for our overseas study loan schemes.
+                    Udaan Edu Loans facilitates collateral-free education loans exclusively for students admitted to recognized overseas / foreign universities (USA, UK, Canada, Australia, Germany, Ireland, Europe). Domestic Indian institutions are not eligible for our overseas study loan schemes.
                   </p>
                   <button
                     type="button"

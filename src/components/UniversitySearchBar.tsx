@@ -650,7 +650,7 @@ export default function UniversitySearchBar({
                 ℹ️ Domestic Indian Institution Detected
               </div>
               <div style={{ fontSize: "0.82rem", color: "var(--ink-secondary)", lineHeight: "1.4" }}>
-                Udaan Loans provides financing exclusively for foreign/overseas education (USA, UK, Canada, Australia, Germany, Ireland, Europe). Domestic Indian institutions are not eligible for overseas education loan programs.
+                Udaan Edu Loans provides financing exclusively for foreign/overseas education (USA, UK, Canada, Australia, Germany, Ireland, Europe). Domestic Indian institutions are not eligible for overseas education loan programs.
               </div>
             </div>
           ) : searchTerm.trim().length >= 2 ? (
@@ -683,7 +683,7 @@ export default function UniversitySearchBar({
         >
           <span style={{ fontSize: "1.3rem" }}>ℹ️</span>
           <div style={{ fontSize: "0.88rem", lineHeight: "1.5" }}>
-            <strong>Overseas Studies Scope:</strong> Udaan Loans exclusively arranges collateral-free education loans for students admitted to recognized overseas / foreign institutions (USA, UK, Canada, Australia, Germany, Ireland, Europe). Domestic Indian institutions are not eligible for overseas education loan programs.
+            <strong>Overseas Studies Scope:</strong> Udaan Edu Loans exclusively arranges collateral-free education loans for students admitted to recognized overseas / foreign institutions (USA, UK, Canada, Australia, Germany, Ireland, Europe). Domestic Indian institutions are not eligible for overseas education loan programs.
           </div>
         </div>
       )}

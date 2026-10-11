@@ -7,7 +7,7 @@ import { siteConfig } from "@/data/siteConfig";
 export const metadata: Metadata = {
   title: "Apply for Study Abroad Education Loan: Free Profile Assessment",
   description:
-    "Submit your overseas education loan application with Udaan Loans. 100% free consultation, multi-lender comparison, and fast-track sanction letter in 3-7 days. Zero credit score impact.",
+    "Submit your overseas education loan application with Udaan Edu Loans. 100% free consultation, multi-lender comparison, and fast-track sanction letter in 3-7 days. Zero credit score impact.",
   keywords: [
     "apply abroad education loan online",
     "education loan application form India",
@@ -69,7 +69,7 @@ export default function ApplyPage() {
 
       {/* Apply Page FAQ Section */}
       <FAQSection
-        title="Frequently Asked Questions: Applying with Udaan Loans"
+        title="Frequently Asked Questions: Applying with Udaan Edu Loans"
         subtitle="Turnaround times, student charges, pan-India services, and digital security."
         faqs={applyFaqs}
         id="apply-faq"

@@ -1,5 +1,5 @@
 /**
- * Udaan Loans - Verified Lender Rules & Product Catalogue
+ * Udaan Edu Loans - Verified Lender Rules & Product Catalogue
  * Single source of truth for the Two-Stage Matcher Engine.
  * Every lender rule maintains audit metadata, hard eligibility constraints, and last-verified dates.
  */

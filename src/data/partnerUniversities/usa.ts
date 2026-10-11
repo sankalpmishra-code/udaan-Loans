@@ -57,7 +57,7 @@ export const usaUniversities: UniversityData[] = [
       requiredFundsINR: "₹55 Lakh – ₹65 Lakh liquid proof",
       guidelines: [
         "Northeastern requires financial documentation matching the exact 1-year total expense stated on the I-20 estimate before issuing the SEVIS document.",
-        "Udaan partner banks issue sanctioned loan letters that explicitly satisfy US Embassy financial adequacy criteria.",
+        "Udaan Edu Loans partner banks issue sanctioned loan letters that explicitly satisfy US Embassy financial adequacy criteria.",
         "Co-op earnings cannot be counted toward initial I-20 financial clearance.",
       ],
     },

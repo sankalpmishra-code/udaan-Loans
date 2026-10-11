@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "404 - Page Not Found | Udaan Loans",
+  title: "404 - Page Not Found | Udaan Edu Loans",
   description: "The page you are looking for does not exist. Explore our overseas education loan calculators, lender comparisons, and destination guides.",
   robots: {
     index: false,

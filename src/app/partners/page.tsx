@@ -125,7 +125,7 @@ export default function PartnersPage() {
           <div className="grid-2">
             {/* Value Proposition */}
             <div className="card">
-              <span className="badge badge-accent">Why Partner With Udaan</span>
+              <span className="badge badge-accent">Why Partner With Udaan Edu Loans</span>
               <h2 style={{ fontSize: "1.45rem", marginTop: "10px" }}>
                 Solve Your Students&apos; Financial Clearance Headache
               </h2>
@@ -235,7 +235,7 @@ export default function PartnersPage() {
                       {copied ? "✓ Copied to Clipboard!" : "Copy Link"}
                     </button>
                     <a
-                      href={`https://wa.me/?text=${encodeURIComponent(`Check your abroad education loan eligibility with Udaan Loans: ${generatedLink}`)}`}
+                      href={`https://wa.me/?text=${encodeURIComponent(`Check your abroad education loan eligibility with Udaan Edu Loans: ${generatedLink}`)}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn btn-outline"
@@ -281,76 +281,85 @@ export default function PartnersPage() {
               <form onSubmit={handleFormSubmit}>
                 <div className="grid-2" style={{ gap: "16px" }}>
                   <div className="form-group">
-                    <label style={{ fontSize: "0.85rem", fontWeight: 600 }}>Agency / Firm Legal Name *</label>
+                    <label style={{ fontSize: "0.85rem", fontWeight: 600, color: "#f8fafc" }}>Agency / Firm Legal Name *</label>
                     <input
                       type="text"
                       required
                       placeholder="e.g. Apex Global Education Pvt Ltd"
                       value={formData.agency}
                       onChange={(e) => setFormData({ ...formData, agency: e.target.value })}
-                      style={{ width: "100%", padding: "10px", borderRadius: "6px", border: "1px solid #cbd5e1" }}
+                      style={{ width: "100%", padding: "12px", borderRadius: "8px", border: "1px solid rgba(255, 255, 255, 0.2)", background: "#082c35", color: "#f8fafc", fontSize: "0.95rem" }}
                     />
                   </div>
 
                   <div className="form-group">
-                    <label style={{ fontSize: "0.85rem", fontWeight: 600 }}>Primary Contact Person *</label>
+                    <label style={{ fontSize: "0.85rem", fontWeight: 600, color: "#f8fafc" }}>Primary Contact Person *</label>
                     <input
                       type="text"
                       required
-                      placeholder="e.g. Vikram Malhotra (Director)"
+                      placeholder="e.g. John Smith (Director)"
                       value={formData.contactPerson}
                       onChange={(e) => setFormData({ ...formData, contactPerson: e.target.value })}
-                      style={{ width: "100%", padding: "10px", borderRadius: "6px", border: "1px solid #cbd5e1" }}
+                      style={{ width: "100%", padding: "12px", borderRadius: "8px", border: "1px solid rgba(255, 255, 255, 0.2)", background: "#082c35", color: "#f8fafc", fontSize: "0.95rem" }}
                     />
                   </div>
 
                   <div className="form-group">
-                    <label style={{ fontSize: "0.85rem", fontWeight: 600 }}>Official Email Address *</label>
+                    <label style={{ fontSize: "0.85rem", fontWeight: 600, color: "#f8fafc" }}>Official Email Address *</label>
                     <input
                       type="email"
                       required
                       placeholder="advising@apexeducation.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      style={{ width: "100%", padding: "10px", borderRadius: "6px", border: "1px solid #cbd5e1" }}
+                      style={{ width: "100%", padding: "12px", borderRadius: "8px", border: "1px solid rgba(255, 255, 255, 0.2)", background: "#082c35", color: "#f8fafc", fontSize: "0.95rem" }}
                     />
                   </div>
 
                   <div className="form-group">
-                    <label style={{ fontSize: "0.85rem", fontWeight: 600 }}>Direct WhatsApp / Mobile Number *</label>
+                    <label style={{ fontSize: "0.85rem", fontWeight: 600, color: "#f8fafc" }}>Direct WhatsApp / Mobile Number *</label>
                     <input
                       type="tel"
                       required
                       placeholder="+91 98765 43210"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      style={{ width: "100%", padding: "10px", borderRadius: "6px", border: "1px solid #cbd5e1" }}
+                      style={{ width: "100%", padding: "12px", borderRadius: "8px", border: "1px solid rgba(255, 255, 255, 0.2)", background: "#082c35", color: "#f8fafc", fontSize: "0.95rem" }}
                     />
                   </div>
 
                   <div className="form-group">
-                    <label style={{ fontSize: "0.85rem", fontWeight: 600 }}>Operating City / Headquarters *</label>
+                    <label style={{ fontSize: "0.85rem", fontWeight: 600, color: "#f8fafc" }}>Operating City / Headquarters *</label>
                     <input
                       type="text"
                       required
                       placeholder="e.g. Mumbai, Pune, Bangalore, Delhi"
                       value={formData.city}
                       onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                      style={{ width: "100%", padding: "10px", borderRadius: "6px", border: "1px solid #cbd5e1" }}
+                      style={{ width: "100%", padding: "12px", borderRadius: "8px", border: "1px solid rgba(255, 255, 255, 0.2)", background: "#082c35", color: "#f8fafc", fontSize: "0.95rem" }}
                     />
                   </div>
 
                   <div className="form-group">
-                    <label style={{ fontSize: "0.85rem", fontWeight: 600 }}>Expected Monthly Student Inquiries</label>
+                    <label style={{ fontSize: "0.85rem", fontWeight: 600, color: "#f8fafc" }}>Expected Monthly Student Inquiries</label>
                     <select
                       value={formData.monthlyStudents}
                       onChange={(e) => setFormData({ ...formData, monthlyStudents: e.target.value })}
-                      style={{ width: "100%", padding: "10px", borderRadius: "6px", border: "1px solid #cbd5e1", background: "#fff" }}
+                      style={{
+                        width: "100%",
+                        padding: "12px",
+                        borderRadius: "8px",
+                        border: "1px solid rgba(255, 255, 255, 0.2)",
+                        background: "#082c35",
+                        color: "#f8fafc",
+                        fontSize: "0.95rem",
+                        cursor: "pointer",
+                      }}
                     >
-                      <option value="5-10">5 – 10 students / month</option>
-                      <option value="10-25">10 – 25 students / month</option>
-                      <option value="25-50">25 – 50 students / month</option>
-                      <option value="50+">50+ students / month</option>
+                      <option style={{ background: "#082c35", color: "#f8fafc" }} value="5-10">5 – 10 students / month</option>
+                      <option style={{ background: "#082c35", color: "#f8fafc" }} value="10-25">10 – 25 students / month</option>
+                      <option style={{ background: "#082c35", color: "#f8fafc" }} value="25-50">25 – 50 students / month</option>
+                      <option style={{ background: "#082c35", color: "#f8fafc" }} value="50+">50+ students / month</option>
                     </select>
                   </div>
                 </div>

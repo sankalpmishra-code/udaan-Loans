@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Udaan Loans - Modern Responsive Design System & Stylesheet
+   Udaan Edu Loans - Modern Responsive Design System & Stylesheet
    Optimized for Fast Core Web Vitals, Light/Dark Modes, and Accessibility
    ========================================================================== */
 
@@ -1020,9 +1020,27 @@ select {
   transition: var(--transition);
 }
 
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2348bbcc' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px;
+  padding-right: 42px !important;
+  cursor: pointer;
+}
+
 select option {
-  background: var(--surface);
+  background-color: var(--surface);
   color: var(--ink);
+  padding: 8px 12px;
+}
+
+.card-dark select option {
+  background-color: #0b242c !important;
+  color: #f8fafc !important;
 }
 
 input:focus,

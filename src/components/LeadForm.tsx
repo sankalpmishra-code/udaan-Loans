@@ -145,7 +145,7 @@ export default function LeadForm() {
           <input
             id="name"
             type="text"
-            placeholder="e.g. Sankalp Mishra"
+            placeholder="e.g. John Doe"
             value={formData.name}
             onChange={(e) => updateField("name", e.target.value)}
             autoComplete="name"
@@ -175,7 +175,7 @@ export default function LeadForm() {
           <input
             id="email"
             type="email"
-            placeholder="e.g. sankalp@example.com"
+            placeholder="e.g. john.doe@example.com"
             value={formData.email}
             onChange={(e) => updateField("email", e.target.value)}
             autoComplete="email"
@@ -277,7 +277,7 @@ export default function LeadForm() {
               onChange={(e) => updateField("consent", e.target.checked)}
             />
             <span>
-              I authorize Udaan Loans to contact me via phone, WhatsApp, and email, and to share my
+              I authorize Udaan Edu Loans to contact me via phone, WhatsApp, and email, and to share my
               profile strictly with authorized RBI-partnered banks & NBFCs to process my loan quotes.
             </span>
           </label>

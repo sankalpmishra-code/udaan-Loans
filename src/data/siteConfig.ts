@@ -3,9 +3,9 @@
  */
 
 export const siteConfig = {
-  name: "Udaan Loans",
-  shortName: "Udaan",
-  legalName: "Udaan Overseas Education Loan Facilitators Pvt. Ltd.",
+  name: "Udaan Edu Loans",
+  shortName: "Udaan Edu Loans",
+  legalName: "Udaan Edu Loans Facilitators Pvt. Ltd.",
   tagline: "Fund Your Study Abroad Dream with India's Top Lenders",
   description:
     "India's premier education loan facilitator for study abroad. Compare 30+ public banks, private banks, and NBFCs for collateral-free and secured student loans up to ₹1.5 Crore for USA, UK, Canada, Germany, Australia, and 40+ countries.",

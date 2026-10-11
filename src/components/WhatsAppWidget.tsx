@@ -24,7 +24,7 @@ export default function WhatsAppWidget() {
 
     // Build prefilled query with page attribution
     const message = encodeURIComponent(
-      `Hi Udaan Loans, I need guidance on study abroad education loans.\n\n` +
+      `Hi Udaan Edu Loans, I need guidance on study abroad education loans.\n\n` +
       `• Destination: ${country}\n` +
       `• Program: ${degree}\n` +
       `• Estimated Loan: ${amount}\n` +

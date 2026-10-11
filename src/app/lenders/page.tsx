@@ -52,7 +52,7 @@ export default function LendersPage() {
             <span className="badge">Transparent Lending Network</span>
             <h1>Compare Education Loan Offers from 30+ Major Lenders</h1>
             <p className="lead">
-              Udaan Loans partners with leading Indian scheduled commercial banks and specialized education NBFCs.
+              Udaan Edu Loans partners with leading Indian scheduled commercial banks and specialized education NBFCs.
               Compare interest rates, loan ceilings, margin money rules, and speed to secure the ideal financial partner.
             </p>
           </div>
@@ -162,7 +162,7 @@ export default function LendersPage() {
           <div className="result-highlight-box text-center" style={{ padding: "40px 24px", borderRadius: "var(--radius-lg)" }}>
             <h2>Get Multi-Bank Sanction Letters in One Go</h2>
             <p className="lead" style={{ color: "#fff", maxWidth: "600px", margin: "0 auto 20px" }}>
-              Submit one application with Udaan. We negotiate with multiple lenders simultaneously to get you the lowest interest rate.
+              Submit one application with Udaan Edu Loans. We negotiate with multiple lenders simultaneously to get you the lowest interest rate.
             </p>
             <Link href="/apply" className="btn btn-accent">
               Compare Your Real Bank Quotes Free →

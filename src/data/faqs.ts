@@ -10,9 +10,9 @@ export interface FAQItem {
 
 export const homeFaqs: FAQItem[] = [
   {
-    question: "What is an overseas education loan facilitator, and how does Udaan Loans help?",
+    question: "What is an overseas education loan facilitator, and how does Udaan Edu Loans help?",
     answer:
-      "Udaan Loans is an education loan facilitation platform that partners with 30+ RBI-licensed public sector banks, private banks, and NBFCs. We do not lend money directly; instead, our loan experts analyze your academic profile and financial background, match you with the best lenders offering the lowest interest rates (starting from 7.5%), assist with document preparation, and accelerate sanction and overseas disbursal without charging students any upfront consultation fee."
+      "Udaan Edu Loans is an education loan facilitation platform that partners with 30+ RBI-licensed public sector banks, private banks, and NBFCs. We do not lend money directly; instead, our loan experts analyze your academic profile and financial background, match you with the best lenders offering the lowest interest rates (starting from 7.5%), assist with document preparation, and accelerate sanction and overseas disbursal without charging students any upfront consultation fee."
   },
   {
     question: "Can I get an education loan for study abroad without collateral?",
@@ -119,12 +119,12 @@ export const lendersFaqs: FAQItem[] = [
   {
     question: "Do public banks like SBI require in-person branch visits?",
     answer:
-      "While public banks traditionally required multiple branch visits, applying through Udaan Loans streamlines the entire process digitally. Our dedicated bank relationship managers assist with doorstep document pickup and fast-track processing through specialized retail asset branches (RACPC/SMECCC)."
+      "While public banks traditionally required multiple branch visits, applying through Udaan Edu Loans streamlines the entire process digitally. Our dedicated bank relationship managers assist with doorstep document pickup and fast-track processing through specialized retail asset branches (RACPC/SMECCC)."
   },
   {
     question: "Can I compare multiple bank offers without hurting my CIBIL credit score?",
     answer:
-      "Yes. When you check your eligibility with Udaan Loans, we perform a soft profile assessment that has zero impact on your CIBIL score. We only submit formal loan files to lenders you specifically choose to proceed with."
+      "Yes. When you check your eligibility with Udaan Edu Loans, we perform a soft profile assessment that has zero impact on your CIBIL score. We only submit formal loan files to lenders you specifically choose to proceed with."
   }
 ];
 
@@ -171,30 +171,30 @@ export const processFaqs: FAQItem[] = [
 
 export const applyFaqs: FAQItem[] = [
   {
-    question: "Does Udaan Loans charge students any processing or consultation fees?",
+    question: "Does Udaan Edu Loans charge students any processing or consultation fees?",
     answer:
-      "No. Udaan Loans provides 100% free consultation, profile assessment, bank comparison, and document assistance to students. We are compensated directly by institutional lending partners upon successful loan disbursement."
+      "No. Udaan Edu Loans provides 100% free consultation, profile assessment, bank comparison, and document assistance to students. We are compensated directly by institutional lending partners upon successful loan disbursement."
   },
   {
-    question: "How soon will an Udaan education loan advisor contact me after I apply?",
+    question: "How soon will an Udaan Edu Loans advisor contact me after I apply?",
     answer:
       "A dedicated overseas education loan specialist will contact you via phone or WhatsApp within 2 to 4 business hours to evaluate your profile, review your admit letter, and share customized loan options."
   },
   {
     question: "Can I apply from anywhere in India?",
     answer:
-      "Yes. Udaan Loans operates a completely digital, pan-India platform serving students from all states, tier-1 metros, tier-2 cities, and towns. Document collection and digital verifications are handled remotely."
+      "Yes. Udaan Edu Loans operates a completely digital, pan-India platform serving students from all states, tier-1 metros, tier-2 cities, and towns. Document collection and digital verifications are handled remotely."
   }
 ];
 
 export const aboutFaqs: FAQItem[] = [
   {
-    question: "Is Udaan Loans a licensed bank or NBFC?",
+    question: "Is Udaan Edu Loans a licensed bank or NBFC?",
     answer:
-      "No. Udaan Loans is a technology-driven loan facilitation and advisory platform, not a direct banking institution. We partner with Reserve Bank of India (RBI) registered scheduled commercial banks and non-banking financial companies (NBFCs) who underwrite, sanction, and disburse all loans."
+      "No. Udaan Edu Loans is a technology-driven loan facilitation and advisory platform, not a direct banking institution. We partner with Reserve Bank of India (RBI) registered scheduled commercial banks and non-banking financial companies (NBFCs) who underwrite, sanction, and disburse all loans."
   },
   {
-    question: "How does Udaan Loans protect student data privacy?",
+    question: "How does Udaan Edu Loans protect student data privacy?",
     answer:
       "We adhere to strict data security standards with 256-bit SSL encryption. Your personal, academic, and financial documents are shared only with the specific lenders you authorize after evaluating preliminary loan quotes."
   }

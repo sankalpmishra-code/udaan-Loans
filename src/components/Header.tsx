@@ -46,7 +46,7 @@ export default function Header() {
   return (
     <header className="site-header">
       <div className="wrap header-wrap">
-        <Link href="/" className="logo brand-logo-flex" aria-label="Udaan Loans Home">
+        <Link href="/" className="logo brand-logo-flex" aria-label="Udaan Edu Loans Home">
           <svg
             className="brand-icon-svg"
             viewBox="0 0 32 32"
@@ -62,7 +62,7 @@ export default function Header() {
             <path d="M26 12V18" stroke="#F59E0B" strokeWidth="1.5" strokeLinecap="round" />
           </svg>
           <span>
-            Udaan<span className="accent-dot">.</span>Loans
+            Udaan <span style={{ color: "var(--brand-light, #48bbcc)" }}>Edu</span> Loans
           </span>
         </Link>
 

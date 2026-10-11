@@ -4,9 +4,9 @@ import FAQSection from "@/components/FAQSection";
 import { siteConfig } from "@/data/siteConfig";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy & Data Protection | Udaan Loans",
+  title: "Privacy Policy & Data Protection | Udaan Edu Loans",
   description:
-    "Learn how Udaan Loans safeguards your personal, academic, and financial information under the Digital Personal Data Protection (DPDP) Act and RBI digital lending standards.",
+    "Learn how Udaan Edu Loans safeguards your personal, academic, and financial information under the Digital Personal Data Protection (DPDP) Act and RBI digital lending standards.",
   alternates: {
     canonical: "/privacy",
   },
@@ -15,9 +15,9 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   const privacyFaqs = [
     {
-      question: "Does Udaan Loans sell or trade student contact information?",
+      question: "Does Udaan Edu Loans sell or trade student contact information?",
       answer:
-        "No. Udaan Loans maintains a strict zero-tolerance policy against selling, leasing, or trading student personal data. Your contact and financial records are shared solely with the specific RBI-regulated banks or NBFCs you authorize for loan quotes."
+        "No. Udaan Edu Loans maintains a strict zero-tolerance policy against selling, leasing, or trading student personal data. Your contact and financial records are shared solely with the specific RBI-regulated banks or NBFCs you authorize for loan quotes."
     },
     {
       question: "How is my academic and co-applicant financial data secured?",
@@ -50,7 +50,7 @@ export default function PrivacyPage() {
               <div>
                 <h2>1. Introduction & Scope</h2>
                 <p>
-                  Udaan Loans (&ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;), operated by {siteConfig.legalName}, is committed to maintaining the confidentiality, integrity, and security of all personal, academic, and financial records entrusted to us by students, parents, and co-applicants. This Privacy Policy details how we collect, process, store, and protect your information when you use our website ({siteConfig.url}) and loan facilitation services.
+                  Udaan Edu Loans (&ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;), operated by {siteConfig.legalName}, is committed to maintaining the confidentiality, integrity, and security of all personal, academic, and financial records entrusted to us by students, parents, and co-applicants. This Privacy Policy details how we collect, process, store, and protect your information when you use our website ({siteConfig.url}) and loan facilitation services.
                 </p>
               </div>
 

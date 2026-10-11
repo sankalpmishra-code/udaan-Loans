@@ -4,9 +4,9 @@ import FAQSection from "@/components/FAQSection";
 import { siteConfig } from "@/data/siteConfig";
 
 export const metadata: Metadata = {
-  title: "Terms of Service & Facilitator Agreement | Udaan Loans",
+  title: "Terms of Service & Facilitator Agreement | Udaan Edu Loans",
   description:
-    "Read the terms and conditions governing the use of Udaan Loans facilitation services, student advisory, and partnership disclaimers.",
+    "Read the terms and conditions governing the use of Udaan Edu Loans facilitation services, student advisory, and partnership disclaimers.",
   alternates: {
     canonical: "/terms",
   },
@@ -15,14 +15,14 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   const termsFaqs = [
     {
-      question: "Does Udaan Loans decide whether my education loan is approved?",
+      question: "Does Udaan Edu Loans decide whether my education loan is approved?",
       answer:
         "No. Final credit sanction, interest rates, margin money requirements, and disbursal terms are determined solely by the underwriting credit committees of our partnering RBI-regulated banks and NBFCs."
     },
     {
       question: "Are there any hidden charges or penalties for applying through Udaan?",
       answer:
-        "No. Udaan Loans provides 100% free consultation and document assistance for students. Standard bank processing fees, legal search fees, or valuation fees (if applicable) are paid directly to the chosen bank upon sanction."
+        "No. Udaan Edu Loans provides 100% free consultation and document assistance for students. Standard bank processing fees, legal search fees, or valuation fees (if applicable) are paid directly to the chosen bank upon sanction."
     },
     {
       question: "Can I cancel my application after submitting my details?",
@@ -57,7 +57,7 @@ export default function TermsPage() {
               <div>
                 <h2>2. Nature of Service: Loan Facilitator Status</h2>
                 <p>
-                  <strong>Udaan Loans is an education loan facilitator and student advisory service, NOT a lender.</strong> We are not a banking institution, scheduled commercial bank, or non-banking financial company (NBFC) under the Reserve Bank of India Act. We do not issue loans, collect principal or interest payments, or make lending commitments. All credit products are originated, sanctioned, and disbursed by independent third-party financial institutions.
+                  <strong>Udaan Edu Loans is an education loan facilitator and student advisory service, NOT a lender.</strong> We are not a banking institution, scheduled commercial bank, or non-banking financial company (NBFC) under the Reserve Bank of India Act. We do not issue loans, collect principal or interest payments, or make lending commitments. All credit products are originated, sanctioned, and disbursed by independent third-party financial institutions.
                 </p>
               </div>
 
@@ -78,7 +78,7 @@ export default function TermsPage() {
               <div>
                 <h2>5. Limitation of Liability</h2>
                 <p>
-                  While we work diligently to negotiate favorable interest rates and accelerate file approvals, Udaan Loans does not guarantee loan sanction, visa issuance, or university admission. We shall not be liable for direct, indirect, or consequential damages resulting from loan rejections, delays in bank processing, university enrollment cancellations, or changes in overseas visa regulations.
+                  While we work diligently to negotiate favorable interest rates and accelerate file approvals, Udaan Edu Loans does not guarantee loan sanction, visa issuance, or university admission. We shall not be liable for direct, indirect, or consequential damages resulting from loan rejections, delays in bank processing, university enrollment cancellations, or changes in overseas visa regulations.
                 </p>
               </div>
 

@@ -29,7 +29,7 @@ export async function GET(request: Request) {
       return NextResponse.json({
         results: [],
         isIndianQuery: true,
-        notice: "Udaan Loans facilitates financing exclusively for foreign/overseas education (USA, UK, Canada, Australia, Germany, Ireland, Europe). Domestic Indian institutions are not eligible for overseas education loan programs."
+        notice: "Udaan Edu Loans facilitates financing exclusively for foreign/overseas education (USA, UK, Canada, Australia, Germany, Ireland, Europe). Domestic Indian institutions are not eligible for overseas education loan programs."
       });
     }
 

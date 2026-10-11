@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!uni) {
     return {
-      title: "University Education Loan Guide | Udaan Loans",
+      title: "University Education Loan Guide | Udaan Edu Loans",
     };
   }
 
