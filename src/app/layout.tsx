@@ -54,8 +54,19 @@ export const metadata: Metadata = {
     site: siteConfig.social.twitterHandle,
     creator: siteConfig.social.twitterHandle,
     title: `${siteConfig.name} | Overseas Education Loans Facilitator India`,
-    description: siteConfig.description,
     images: ["/twitter-image"],
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
   verification: {
     google: siteConfig.verification.google,
@@ -78,6 +89,7 @@ export const metadata: Metadata = {
 
 import WhatsAppWidget from "@/components/WhatsAppWidget";
 import Analytics from "@/components/Analytics";
+import TabVisibilityManager from "@/components/TabVisibilityManager";
 
 export default function RootLayout({
   children,
@@ -169,6 +181,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+        <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
+        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="manifest" href="/manifest.webmanifest" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
@@ -178,6 +197,7 @@ export default function RootLayout({
         <JsonLd data={graphSchema} />
       </head>
       <body>
+        <TabVisibilityManager />
         <Analytics />
         <Header />
         <main>{children}</main>
