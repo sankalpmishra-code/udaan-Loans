@@ -3,43 +3,52 @@
 import { useEffect } from "react";
 
 /**
- * TabVisibilityManager ensures the Udaan Edu Loans brand logo and messaging
- * remain completely visible and top-of-mind even when the user switches to
- * another site or background tab on their laptop or mobile browser.
+ * TabVisibilityManager ensures the official Udaan Edu Loans brand logo and title
+ * remain clean, professional, and visible without duplicate icons or placeholder letters
+ * when the user switches to another tab or website on their laptop.
  */
 export default function TabVisibilityManager() {
   useEffect(() => {
     let originalTitle = document.title;
 
-    const updateFavicon = (iconUrl: string) => {
-      let link: HTMLLinkElement | null = document.querySelector("link[rel~='icon']");
-      if (!link) {
-        link = document.createElement("link");
-        link.rel = "icon";
-        document.head.appendChild(link);
-      }
-      link.href = iconUrl;
+    const forceFavicon = () => {
+      // Force Safari and Chrome to bind the high-resolution logo icon
+      const iconSelectors = ["link[rel~='icon']", "link[rel='shortcut icon']", "link[rel='apple-touch-icon']"];
+      iconSelectors.forEach((selector) => {
+        const el = document.querySelector(selector) as HTMLLinkElement | null;
+        if (el) {
+          const baseHref = el.href.split("?")[0];
+          el.href = `${baseHref}?v=2`;
+        }
+      });
     };
 
     const handleVisibilityChange = () => {
       if (document.hidden) {
-        // User switched to another site or tab
+        // User switched to another site or tab - keep clean brand title WITHOUT any emojis
         originalTitle = document.title;
-        document.title = "🎓 Udaan Edu Loans | Master's Loan Without Co-Applicant";
-        updateFavicon("/favicon.ico?v=1");
+        document.title = "Udaan Edu Loans | Master's Loan Without Co-Applicant";
+        forceFavicon();
       } else {
-        // User returned to the tab
+        // User returned to Udaan Edu Loans
         if (originalTitle) {
           document.title = originalTitle;
         }
-        updateFavicon("/favicon.ico");
+        forceFavicon();
       }
     };
 
+    // Run on initial mount to ensure Safari binds the favicon immediately
+    forceFavicon();
+
     document.addEventListener("visibilitychange", handleVisibilityChange);
+    window.addEventListener("focus", handleVisibilityChange);
+    window.addEventListener("blur", handleVisibilityChange);
 
     return () => {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("focus", handleVisibilityChange);
+      window.removeEventListener("blur", handleVisibilityChange);
     };
   }, []);
 
