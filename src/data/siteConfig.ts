@@ -15,7 +15,7 @@ export const siteConfig = {
   telephone: "+91 7303200803",
   secondaryPhone: "+91 7303200804",
   phoneNumbers: ["+91 7303200803", "+91 7303200804"],
-  email: "info@udaaneduloans.com",
+  email: "connect@udaaneduloans.com",
   whatsappNumber: "917303200803",
   foundingYear: "2021",
   locale: "en_IN",

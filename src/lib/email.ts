@@ -32,13 +32,13 @@ export async function sendLeadAlertEmail(lead: LeadEmailPayload): Promise<{ succ
     return { success: false, error: "RESEND_API_KEY not configured" };
   }
 
-  const alertRecipientsRaw = process.env.RESEND_ALERT_EMAIL || "Anshulverma338@gmail.com";
+  const alertRecipientsRaw = process.env.RESEND_ALERT_EMAIL || "Anshulverma338@gmail.com, sankalp@udaaneduloans.com";
   const alertRecipients = alertRecipientsRaw
     .split(",")
     .map((e) => e.trim())
     .filter(Boolean);
 
-  const fromEmail = process.env.RESEND_FROM_EMAIL || "Udaan Edu Loans <onboarding@resend.dev>";
+  const fromEmail = process.env.RESEND_FROM_EMAIL || "Udaan Edu Loans <connect@udaaneduloans.com>";
   const isPartner = lead.leadType === "Partner Registration";
 
   const cleanPhone = lead.phone ? lead.phone.replace(/\D/g, "") : "";
@@ -187,7 +187,7 @@ export async function sendStudentConfirmationEmail(lead: LeadEmailPayload): Prom
     return { success: false, error: "No valid email or Resend not active" };
   }
 
-  const fromEmail = process.env.RESEND_FROM_EMAIL || "Udaan Edu Loans <onboarding@resend.dev>";
+  const fromEmail = process.env.RESEND_FROM_EMAIL || "Udaan Edu Loans <connect@udaaneduloans.com>";
   const firstName = (lead.name || "Student").split(" ")[0];
 
   const html = `
