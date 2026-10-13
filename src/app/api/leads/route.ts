@@ -170,6 +170,20 @@ export async function POST(request: Request) {
       }
     }
 
+    // 3. Resend Email Notifications (Instant Lead Alert + Student Confirmation)
+    try {
+      const { sendLeadAlertEmail, sendStudentConfirmationEmail } = await import("@/lib/email");
+      await sendLeadAlertEmail(payload);
+
+      if (email && email.includes("@") && leadType !== "Partner Registration") {
+        sendStudentConfirmationEmail(payload).catch((e) =>
+          console.warn("Student confirmation email notice:", e)
+        );
+      }
+    } catch (emailErr) {
+      console.error("Resend email error:", emailErr);
+    }
+
     return NextResponse.json({
       success: true,
       message: "Lead recorded successfully",
