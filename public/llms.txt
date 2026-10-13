@@ -68,15 +68,27 @@
 
 ### 3. Canada (Study Permit)
 - **IRCC Requirements:** Full first-year tuition fee receipt + Guaranteed Investment Certificate (GIC) valued at CAD $20,635 from approved Canadian banks (CIBC, Scotiabank, ICICI Canada).
-- **Loan Solution:** Direct lender wire transfer to purchase Canadian GIC and remit first-semester tuition directly to DLI college/university.
+- **Loan Solution:** Direct lender wire transfer to purchase Canadian GIC and remit first-semester tuition directly to DLI college/university for issuance of the Provincial Attestation Letter (PAL).
+- **Collateral & Non-Collateral Limits:** Public sector banks sanction up to ₹1.5 Cr secured; private banks and NBFCs sanction ₹50L–₹75L collateral-free for master's and PG diploma programs.
 
 ### 4. United Kingdom (Student Route Visa)
-- **CAS & 28-Day Holding Rule:** Total course fees as specified on CAS + UKVI maintenance funds (£1,334/month for London; £1,023/month outside London for up to 9 months).
-- **Sanction Letter Exemption:** If funded via an official educational loan sanction letter from an RBI-regulated bank, the 28-day bank balance holding requirement is waived under UKVI Appendix Finance.
+- **CAS & 28-Day Holding Rule:** Total course fees as specified on CAS + UKVI maintenance funds (£1,483/month for London; £1,136/month outside London for up to 9 months).
+- **Sanction Letter Exemption:** If funded via an official educational loan sanction letter from an RBI-regulated bank or NBFC, the 28-day bank balance holding requirement is waived under UKVI Appendix Finance (FIN 8.1).
+- **Coverage:** Loans cover 100% of CAS tuition deposit, remaining course fees, Immigration Health Surcharge (IHS) of £776/year, living maintenance, and travel.
 
 ### 5. Australia (Subclass 500 Visa)
 - **Financial Capacity Proof:** 1st year tuition fees + living costs (AUD $29,710/year) + return airfare (~AUD $2,000).
-- **Department of Home Affairs Criteria:** Unconditional education loan sanction letters from scheduled commercial banks are accepted as primary evidence of funds.
+- **Department of Home Affairs Criteria:** Unconditional education loan sanction letters from scheduled commercial banks are accepted as primary evidence of funds under the Genuine Student (GS) criterion.
+
+### 6. Malta (Student Visa - Schengen)
+- **Central Visa Unit (Identità Malta) Requirement:** Minimum €48 per day of stay for the entire first academic year (~€17,500/year or €750–€800/month living expense) + receipt of first-year tuition payment.
+- **Acceptable Proof:** Irrevocable education loan sanction letters from RBI-recognized banks/NBFCs are accepted by VFS Global and the Malta Central Visa Unit.
+- **Highlights:** 100% English-taught programs, European Qualifications Framework (EQF) degrees, Schengen mobility, and low borrowing thresholds (₹12L–₹20L) with up to 9 months post-study work search.
+
+### 7. Cyprus (Student Visa - EU)
+- **Civil Registry and Migration Department Requirement:** Proof of maintenance funds (€7,000–€10,000/year) + first-year tuition deposit + original bank repatriation guarantee of €850 deposited with the Migration Department.
+- **Acceptable Proof:** Unconditional education loan sanction letters from Indian scheduled commercial banks and NBFCs, alongside MEA-apostilled Police Clearance Certificate (PCC) and certified medical fitness test.
+- **Highlights:** Very affordable European tuition (€4,000–€9,500/year), low debt burden (typical loan ₹10L–₹25L), direct university tuition SWIFT wire, and top MBBS/MD and STEM programs (UNIC, European University Cyprus).
 
 ---
 
@@ -100,11 +112,21 @@
 - Preliminary 60-Second Loan Matcher: https://www.udaaneduloans.com/match
 - Fast Online Application: https://www.udaaneduloans.com/apply
 - Study in Germany Guide: https://www.udaaneduloans.com/destinations/germany
+- Study in Germany (Study Abroad Route): https://www.udaaneduloans.com/study-abroad/germany
 - Study in USA Guide: https://www.udaaneduloans.com/destinations/usa
+- Study in USA (Study Abroad Route): https://www.udaaneduloans.com/study-abroad/usa
 - Study in UK Guide: https://www.udaaneduloans.com/destinations/uk
+- Study in UK (Study Abroad Route): https://www.udaaneduloans.com/study-abroad/uk
 - Study in Canada Guide: https://www.udaaneduloans.com/destinations/canada
+- Study in Canada (Study Abroad Route): https://www.udaaneduloans.com/study-abroad/canada
 - Study in Australia Guide: https://www.udaaneduloans.com/destinations/australia
+- Study in Australia (Study Abroad Route): https://www.udaaneduloans.com/study-abroad/australia
 - Study in Ireland Guide: https://www.udaaneduloans.com/destinations/ireland
+- Study in Ireland (Study Abroad Route): https://www.udaaneduloans.com/study-abroad/ireland
+- Study in Malta Guide: https://www.udaaneduloans.com/destinations/malta
+- Study in Malta (Study Abroad Route): https://www.udaaneduloans.com/study-abroad/malta
+- Study in Cyprus Guide: https://www.udaaneduloans.com/destinations/cyprus
+- Study in Cyprus (Study Abroad Route): https://www.udaaneduloans.com/study-abroad/cyprus
 - 80+ International University Guides: https://www.udaaneduloans.com/universities
 - Editorial & About Us Policy: https://www.udaaneduloans.com/about
 - Lending Partner Institutional Network: https://www.udaaneduloans.com/partners

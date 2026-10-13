@@ -1,0 +1,405 @@
+import { UniversityData } from "./types";
+
+export const maltaUniversities: UniversityData[] = [
+  {
+    slug: "university-of-malta",
+    name: "University of Malta",
+    shortName: "UM",
+    country: "malta",
+    countryName: "Malta",
+    region: "europe",
+    city: "Msida",
+    qsRank: "Top Public State University",
+    currency: "EUR",
+    currencySymbol: "€",
+    tuitionAnnual: 8500,
+    tuitionRangeINR: "₹7.5 Lakh – ₹10 Lakh / year",
+    livingCostAnnual: 9000,
+    livingCostINR: "₹7.5 Lakh – ₹9.5 Lakh / year",
+    totalAnnualCostINR: "₹15 Lakh – ₹19 Lakh / year",
+    primeTierCategory: "Malta National Flagship University",
+    institutionType: "Top Public University",
+    partnerNetwork: "European University Association (EUA)",
+    verifiedDate: "2026-03-01",
+    overview:
+      "The University of Malta is the highest educational institution in Malta, offering internationally recognized undergraduate and postgraduate degrees in English under the European Qualifications Framework (EQF).",
+    lenderPolicies: [
+      {
+        name: "State Bank of India (SBI)",
+        maxUnsecuredINR: "₹20 Lakhs",
+        maxSecuredINR: "₹1.50 Crore",
+        indicativeRate: "8.15% - 9.15%",
+        primeListStatus: "SBI List B (Recognized Global Public University)",
+        specialBenefit: "Lowest floating interest rate if tangible property collateral is pledged.",
+      },
+      {
+        name: "HDFC Credila",
+        maxUnsecuredINR: "₹35 Lakhs",
+        maxSecuredINR: "₹60 Lakhs",
+        indicativeRate: "10.25% - 12.25%",
+        primeListStatus: "Credila Approved EU Institution",
+        specialBenefit: "100% cost of study with zero margin money and fast pre-visa sanction.",
+      },
+      {
+        name: "Avanse Financial Services",
+        maxUnsecuredINR: "₹35 Lakhs",
+        maxSecuredINR: "₹50 Lakhs",
+        indicativeRate: "10.50% - 12.50%",
+        primeListStatus: "Avanse Global Prime",
+        specialBenefit: "Living allowance and tuition fees disbursed directly into forex/escrow.",
+      },
+    ],
+    visaRequirements: {
+      documentName: "Malta National Long-Stay Student Visa (Identità Malta)",
+      requiredFundsINR: "€48/day (~€17,500/year living) + paid tuition fee receipt",
+      guidelines: [
+        "The Central Visa Unit (Identità Malta) and VFS Global accept official, unconditional education loan sanction letters from RBI-recognized lenders as proof of tuition and living expenses.",
+        "Applicants must show proof of first-year tuition fee payment and comprehensive Schengen travel medical insurance.",
+        "Lenders remit university tuition directly to the University of Malta bank account via SWIFT transfer.",
+      ],
+    },
+    popularPrograms: [
+      { name: "MSc in Computer Science / Artificial Intelligence", degree: "Master of Science", duration: "1.5 Years", estimatedCostINR: "₹10.5 Lakhs" },
+      { name: "Master of Business Administration (MBA)", degree: "Master of Business Administration", duration: "1 Year", estimatedCostINR: "₹9.5 Lakhs" },
+      { name: "MSc in Mechanical & Sustainable Engineering", degree: "Master of Science", duration: "1.5 Years", estimatedCostINR: "₹11.0 Lakhs" },
+      { name: "Doctor of Medicine and Surgery (MD)", degree: "Doctoral / Professional", duration: "5 Years", estimatedCostINR: "₹24.0 Lakhs / year" },
+    ],
+    faqs: [
+      {
+        question: "Can I get an education loan without collateral for the University of Malta?",
+        answer:
+          "Yes. Education NBFCs such as HDFC Credila and Avanse provide collateral-free loans up to ₹35 Lakhs for Master's and MBA programs at the University of Malta based on student academic merit and co-applicant salary.",
+      },
+      {
+        question: "Does the Malta visa office accept Indian loan sanction letters?",
+        answer:
+          "Yes. Identità Malta (Central Visa Unit) and VFS Global accept unconditional loan sanction letters from scheduled commercial banks and RBI-registered NBFCs as legitimate financial proof.",
+      },
+    ],
+  },
+  {
+    slug: "qmul-malta-barts",
+    name: "Queen Mary University of London (Malta Campus - Barts)",
+    shortName: "QMUL Malta",
+    country: "malta",
+    countryName: "Malta",
+    region: "europe",
+    city: "Victoria, Gozo",
+    qsRank: 120,
+    currency: "EUR",
+    currencySymbol: "€",
+    tuitionAnnual: 35000,
+    tuitionRangeINR: "₹30 Lakh – ₹35 Lakh / year",
+    livingCostAnnual: 9500,
+    livingCostINR: "₹8.0 Lakh – ₹10 Lakh / year",
+    totalAnnualCostINR: "₹38 Lakh – ₹45 Lakh / year",
+    primeTierCategory: "Russell Group Global Medical Campus",
+    institutionType: "Russell Group / Global Top 100",
+    partnerNetwork: "Russell Group UK / GMC Recognized",
+    verifiedDate: "2026-03-01",
+    overview:
+      "Queen Mary University of London (Malta Campus) offers a prestigious 5-year MBBS medicine program delivered in English in Gozo, Malta. Graduates receive an official Queen Mary University of London degree recognized by the General Medical Council (GMC) UK and World Directory of Medical Schools (WDOMS).",
+    lenderPolicies: [
+      {
+        name: "State Bank of India (SBI)",
+        maxUnsecuredINR: "₹35 Lakhs",
+        maxSecuredINR: "₹1.50 Crore",
+        indicativeRate: "8.15% - 9.15%",
+        primeListStatus: "SBI List A (Russell Group Affiliated)",
+        specialBenefit: "Preferential interest rate concession for premier medical degree.",
+      },
+      {
+        name: "Avanse Financial Services",
+        maxUnsecuredINR: "₹50 Lakhs",
+        maxSecuredINR: "₹1.00 Crore",
+        indicativeRate: "10.25% - 11.75%",
+        primeListStatus: "Avanse Premier Medical Hub",
+        specialBenefit: "Special medical multi-year disbursement schedule covering tuition and Gozo living costs.",
+      },
+      {
+        name: "HDFC Credila",
+        maxUnsecuredINR: "₹45 Lakhs",
+        maxSecuredINR: "₹1.00 Crore",
+        indicativeRate: "10.25% - 11.50%",
+        primeListStatus: "Credila Premier Medical List",
+        specialBenefit: "High unsecured limit for students with strong Class 12 NEET/PCB scores.",
+      },
+    ],
+    visaRequirements: {
+      documentName: "Malta National Long-Stay Student Visa (Identità Malta)",
+      requiredFundsINR: "Full first-year MBBS tuition + €48/day living expenses",
+      guidelines: [
+        "Unconditional education loan sanction letters from scheduled banks/NBFCs are accepted by Identità Malta.",
+        "Tuition fees are disbursed annually directly to Queen Mary University of London Malta bank account.",
+      ],
+    },
+    popularPrograms: [
+      { name: "Bachelor of Medicine, Bachelor of Surgery (MBBS)", degree: "Professional Medical", duration: "5 Years", estimatedCostINR: "₹32.0 Lakhs / year" },
+    ],
+    faqs: [
+      {
+        question: "Can Indian students get loans for MBBS at QMUL Malta?",
+        answer:
+          "Yes. Indian scheduled banks (SBI, BoB up to ₹1.5 Crore secured) and education NBFCs (Avanse, Credila up to ₹50 Lakhs unsecured) actively finance QMUL Malta's GMC-recognized MBBS program.",
+      },
+    ],
+  },
+  {
+    slug: "american-university-of-malta",
+    name: "American University of Malta",
+    shortName: "AUM",
+    country: "malta",
+    countryName: "Malta",
+    region: "europe",
+    city: "Cospicua",
+    qsRank: "Accredited American-Curriculum European Institution",
+    currency: "EUR",
+    currencySymbol: "€",
+    tuitionAnnual: 7000,
+    tuitionRangeINR: "₹6 Lakh – ₹8.5 Lakh / year",
+    livingCostAnnual: 8500,
+    livingCostINR: "₹7.0 Lakh – ₹8.5 Lakh / year",
+    totalAnnualCostINR: "₹13 Lakh – ₹17 Lakh / year",
+    primeTierCategory: "American Curriculum European Campus",
+    institutionType: "Applied Sciences & Polytechnic",
+    partnerNetwork: "Malta Further & Higher Education Authority (MFHEA)",
+    verifiedDate: "2026-03-01",
+    overview:
+      "The American University of Malta (AUM) is an American-style liberal arts university located in the historic Bormla harbor, offering undergraduate and graduate programs focused on engineering, business, and cybersecurity.",
+    lenderPolicies: [
+      {
+        name: "HDFC Credila",
+        maxUnsecuredINR: "₹30 Lakhs",
+        maxSecuredINR: "₹50 Lakhs",
+        indicativeRate: "10.50% - 12.50%",
+        primeListStatus: "Credila Standard List",
+        specialBenefit: "100% funding of tuition and accommodation with flexible cosigner norms.",
+      },
+      {
+        name: "Auxilo Finserve",
+        maxUnsecuredINR: "₹30 Lakhs",
+        maxSecuredINR: "₹45 Lakhs",
+        indicativeRate: "10.75% - 12.75%",
+        primeListStatus: "Auxilo European Tier",
+        specialBenefit: "Rapid 3-day pre-visa sanction letters for European admits.",
+      },
+    ],
+    visaRequirements: {
+      documentName: "Malta National Long-Stay Student Visa",
+      requiredFundsINR: "€48/day living expenses + tuition deposit receipt",
+      guidelines: [
+        "Tuition payment receipt and irrevocable sanction letter submitted during VFS Malta appointment.",
+      ],
+    },
+    popularPrograms: [
+      { name: "MBA in Global Business & Leadership", degree: "Master of Business Administration", duration: "1 Year", estimatedCostINR: "₹8.5 Lakhs" },
+      { name: "MS in Cyber Security & Networks", degree: "Master of Science", duration: "1.5 Years", estimatedCostINR: "₹9.5 Lakhs" },
+    ],
+    faqs: [
+      {
+        question: "How quickly can I get a loan sanction for AUM?",
+        answer:
+          "Sanction letters from partner NBFCs can be issued within 3 to 5 business days upon submitting income and academic documents.",
+      },
+    ],
+  },
+];
+
+export const cyprusUniversities: UniversityData[] = [
+  {
+    slug: "university-of-nicosia",
+    name: "University of Nicosia",
+    shortName: "UNIC",
+    country: "cyprus",
+    countryName: "Cyprus",
+    region: "europe",
+    city: "Nicosia",
+    qsRank: 501,
+    currency: "EUR",
+    currencySymbol: "€",
+    tuitionAnnual: 9500,
+    tuitionRangeINR: "₹8 Lakh – ₹18 Lakh / year (Higher for MD)",
+    livingCostAnnual: 7500,
+    livingCostINR: "₹6.5 Lakh – ₹8.0 Lakh / year",
+    totalAnnualCostINR: "₹14.5 Lakh – ₹26 Lakh / year",
+    primeTierCategory: "Cyprus #1 Global University (THE Top 500)",
+    institutionType: "Premier Research University",
+    partnerNetwork: "Times Higher Education Top 500 / EFQM",
+    verifiedDate: "2026-03-01",
+    overview:
+      "The University of Nicosia is the largest university in southern Europe teaching primarily in English. UNIC is globally renowned for its Medical School and is a pioneer in Blockchain and Digital Currency education.",
+    lenderPolicies: [
+      {
+        name: "State Bank of India (SBI)",
+        maxUnsecuredINR: "₹20 Lakhs",
+        maxSecuredINR: "₹1.50 Crore",
+        indicativeRate: "8.15% - 9.15%",
+        primeListStatus: "SBI List B Approved",
+        specialBenefit: "Secured property-backed loans for the 6-year Doctor of Medicine (MD) program.",
+      },
+      {
+        name: "Avanse Financial Services",
+        maxUnsecuredINR: "₹40 Lakhs",
+        maxSecuredINR: "₹75 Lakhs",
+        indicativeRate: "10.25% - 12.00%",
+        primeListStatus: "Avanse Premier Medical & Tech Hub",
+        specialBenefit: "Covers tuition, €850 migration bank guarantee, and living expenses with zero margin money.",
+      },
+      {
+        name: "HDFC Credila",
+        maxUnsecuredINR: "₹35 Lakhs",
+        maxSecuredINR: "₹60 Lakhs",
+        indicativeRate: "10.25% - 12.25%",
+        primeListStatus: "Credila Approved Global Institution",
+        specialBenefit: "Pre-visa sanction letters compliant with Cyprus Migration Department requirements.",
+      },
+    ],
+    visaRequirements: {
+      documentName: "Cyprus Student Entry Permit (Migration Department)",
+      requiredFundsINR: "€7,000–€10,000 living + €850 repatriation bank guarantee",
+      guidelines: [
+        "The Civil Registry and Migration Department of Cyprus accepts unconditional loan sanction letters from Indian banks/NBFCs.",
+        "Students must provide MEA-apostilled Police Clearance Certificate (PCC) and medical fitness test alongside financial proofs.",
+      ],
+    },
+    popularPrograms: [
+      { name: "Doctor of Medicine (MD)", degree: "Professional Medical", duration: "6 Years", estimatedCostINR: "₹18.0 Lakhs / year" },
+      { name: "MSc in Blockchain and Digital Currency", degree: "Master of Science", duration: "1.5 Years", estimatedCostINR: "₹10.5 Lakhs" },
+      { name: "Master of Business Administration (MBA)", degree: "Master of Business Administration", duration: "1.5 Years", estimatedCostINR: "₹9.0 Lakhs" },
+      { name: "MSc in Computer Science", degree: "Master of Science", duration: "1.5 Years", estimatedCostINR: "₹9.5 Lakhs" },
+    ],
+    faqs: [
+      {
+        question: "Can I get an education loan for the 6-year MD program at UNIC?",
+        answer:
+          "Yes. Indian public banks (SBI up to ₹1.5 Crore secured) and education NBFCs (Avanse up to ₹40 Lakhs unsecured) finance the 6-year Doctor of Medicine degree with staged annual disbursements.",
+      },
+      {
+        question: "Does UNIC require an original bank guarantee for the Cyprus visa?",
+        answer:
+          "Yes. An €850 bank guarantee is mandated by the Cyprus Migration Department for repatriation, which can be covered under the education loan sanctioned amount.",
+      },
+    ],
+  },
+  {
+    slug: "european-university-cyprus",
+    name: "European University Cyprus",
+    shortName: "EUC",
+    country: "cyprus",
+    countryName: "Cyprus",
+    region: "europe",
+    city: "Nicosia",
+    qsRank: "QS 5-Star Rated Institution",
+    currency: "EUR",
+    currencySymbol: "€",
+    tuitionAnnual: 9000,
+    tuitionRangeINR: "₹7.5 Lakh – ₹17.5 Lakh / year (Medicine/Dentistry)",
+    livingCostAnnual: 7000,
+    livingCostINR: "₹6.0 Lakh – ₹7.5 Lakh / year",
+    totalAnnualCostINR: "₹13.5 Lakh – ₹25 Lakh / year",
+    primeTierCategory: "Galileo Global Education Network",
+    institutionType: "Premier Research University",
+    partnerNetwork: "QS 5-Star / Galileo Global Education",
+    verifiedDate: "2026-03-01",
+    overview:
+      "European University Cyprus (EUC) is part of Galileo Global Education and houses an internationally accredited School of Medicine and School of Dentistry with students from over 80 countries.",
+    lenderPolicies: [
+      {
+        name: "Avanse Financial Services",
+        maxUnsecuredINR: "₹35 Lakhs",
+        maxSecuredINR: "₹60 Lakhs",
+        indicativeRate: "10.50% - 12.25%",
+        primeListStatus: "Avanse Preferred Medical Hub",
+        specialBenefit: "Structured multi-year disbursement for medicine and dental degrees.",
+      },
+      {
+        name: "Auxilo Finserve",
+        maxUnsecuredINR: "₹30 Lakhs",
+        maxSecuredINR: "₹50 Lakhs",
+        indicativeRate: "10.75% - 12.75%",
+        primeListStatus: "Auxilo Standard Global",
+        specialBenefit: "Fast 3-day turnaround and minimal paperwork for European admits.",
+      },
+    ],
+    visaRequirements: {
+      documentName: "Cyprus Student Entry Permit",
+      requiredFundsINR: "€7,000–€10,000 maintenance + €850 bank guarantee",
+      guidelines: [
+        "Unconditional education loan sanction letters from scheduled commercial banks and NBFCs satisfy Cyprus visa requirements.",
+      ],
+    },
+    popularPrograms: [
+      { name: "Doctor of Medicine (MD)", degree: "Professional Medical", duration: "6 Years", estimatedCostINR: "₹17.5 Lakhs / year" },
+      { name: "Bachelor of Dental Surgery (BDS)", degree: "Professional Dental", duration: "5 Years", estimatedCostINR: "₹18.5 Lakhs / year" },
+      { name: "MSc in Cybersecurity", degree: "Master of Science", duration: "1.5 Years", estimatedCostINR: "₹8.5 Lakhs" },
+      { name: "MBA in Management Information Systems", degree: "Master of Business Administration", duration: "1 Year", estimatedCostINR: "₹8.0 Lakhs" },
+    ],
+    faqs: [
+      {
+        question: "Does EUC medicine qualify for collateral-free loans?",
+        answer:
+          "Yes, up to ₹35 Lakhs collateral-free through NBFCs like Avanse and Auxilo for meritorious candidates with strong Class 12 PCB scores.",
+      },
+    ],
+  },
+  {
+    slug: "cyprus-international-university",
+    name: "Cyprus International University",
+    shortName: "CIU",
+    country: "cyprus",
+    countryName: "Cyprus",
+    region: "europe",
+    city: "Nicosia",
+    qsRank: "Accredited High-Impact Mediterranean Campus",
+    currency: "EUR",
+    currencySymbol: "€",
+    tuitionAnnual: 4500,
+    tuitionRangeINR: "₹3.8 Lakh – ₹5.5 Lakh / year",
+    livingCostAnnual: 5500,
+    livingCostINR: "₹4.5 Lakh – ₹6.0 Lakh / year",
+    totalAnnualCostINR: "₹8.5 Lakh – ₹11.5 Lakh / year",
+    primeTierCategory: "Affordable Mediterranean English Hub",
+    institutionType: "Top Public University",
+    partnerNetwork: "International Association of Universities (IAU)",
+    verifiedDate: "2026-03-01",
+    overview:
+      "Cyprus International University delivers modern English-medium education across engineering, business, and pharmacy with integrated campus accommodation packages.",
+    lenderPolicies: [
+      {
+        name: "Avanse Financial Services",
+        maxUnsecuredINR: "₹25 Lakhs",
+        maxSecuredINR: "₹40 Lakhs",
+        indicativeRate: "10.75% - 12.50%",
+        primeListStatus: "Avanse Standard List",
+        specialBenefit: "100% package funding including campus housing and living expenses.",
+      },
+      {
+        name: "Auxilo Finserve",
+        maxUnsecuredINR: "₹25 Lakhs",
+        maxSecuredINR: "₹40 Lakhs",
+        indicativeRate: "11.00% - 13.00%",
+        primeListStatus: "Auxilo Standard Global",
+        specialBenefit: "Low EMI structure during the course period with quick digital approval.",
+      },
+    ],
+    visaRequirements: {
+      documentName: "Cyprus Student Entry Permit",
+      requiredFundsINR: "€7,000 maintenance + €850 repatriation deposit",
+      guidelines: [
+        "Tuition payment receipt and loan sanction letter required for entry permit approval.",
+      ],
+    },
+    popularPrograms: [
+      { name: "Master of Business Administration (MBA)", degree: "Master of Business Administration", duration: "1.5 Years", estimatedCostINR: "₹5.5 Lakhs" },
+      { name: "MSc in Civil Engineering", degree: "Master of Science", duration: "1.5 Years", estimatedCostINR: "₹6.0 Lakhs" },
+      { name: "MSc in Computer Engineering", degree: "Master of Science", duration: "1.5 Years", estimatedCostINR: "₹6.0 Lakhs" },
+    ],
+    faqs: [
+      {
+        question: "What is the typical loan amount needed for CIU?",
+        answer:
+          "A loan of ₹8 Lakhs to ₹12 Lakhs comfortably covers the entire tuition, campus accommodation, and travel expenses for CIU programs.",
+      },
+    ],
+  },
+];

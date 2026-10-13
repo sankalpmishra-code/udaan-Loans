@@ -5,6 +5,7 @@ import { australiaUniversities } from "./partnerUniversities/australia";
 import { germanyUniversities } from "./partnerUniversities/germany";
 import { irelandUniversities } from "./partnerUniversities/ireland";
 import { europeUniversities } from "./partnerUniversities/europe";
+import { maltaUniversities, cyprusUniversities } from "./partnerUniversities/maltaAndCyprus";
 import {
   CountryCode,
   Region,
@@ -36,6 +37,8 @@ export const universities: UniversityData[] = [
   ...usaUniversities,
   ...canadaUniversities,
   ...australiaUniversities,
+  ...maltaUniversities,
+  ...cyprusUniversities,
 ];
 
 // Helper functions for easy lookup

@@ -112,19 +112,20 @@ export const destinationsList: Destination[] = [
     country: "United Kingdom",
     flag: "🇬🇧",
     tagline: "Exemption from the UKVI 28-Day Financial Rule with Official Bank Sanctions",
-    popularCourses: ["MSc Finance / Business", "Management", "Computer Science", "Law (LLM)", "Public Health", "Data Science"],
+    popularCourses: ["MSc Finance / Business Analytics", "Computer Science & AI", "Management & MBA", "Law (LLM)", "Public Health & Biotechnology", "Data Science"],
     avgTuition: "₹18L - ₹38L / year",
-    avgLivingCost: "₹10L - ₹15L / year",
-    typicalLoanAmount: "₹25 Lakhs - ₹60 Lakhs",
+    avgLivingCost: "₹10L - ₹15L / year (£1,483/mo London; £1,136/mo outside London)",
+    typicalLoanAmount: "₹25 Lakhs - ₹65 Lakhs",
     visaFundRequirements:
-      "Must show full 1st-year tuition plus 9 months of living expenses (£1,334/month in London, £1,023/month outside London). Official loan sanction letter waives the 28-day holding rule.",
+      "Must show full 1st-year tuition balance (as stated on CAS) plus UKVI maintenance funds (£1,483/month in London = £13,347; £1,136/month outside London = £10,224 for up to 9 months). Official bank loan sanction letters completely waive the 28-day holding requirement under UKVI Appendix Finance.",
     embassyFinancialOverview:
-      "Under UKVI Student Visa regulations, applicants must demonstrate sufficient maintenance funds held consecutively for 28 calendar days before application. However, under UKVI Immigration Rules Appendix Student (ST 12.3), official education loans from regulated financial institutions are exempt from this 28-day holding requirement, allowing expedited visa filing.",
+      "Under UK Visas and Immigration (UKVI) Student Route regulations, applicants must demonstrate sufficient course fees and maintenance funds. While personal bank accounts require funds to be held continuously for 28 consecutive days, official education loan sanction letters from RBI-regulated scheduled banks or NBFCs are explicitly exempt from this rule under UKVI Appendix Finance (FIN 8.1), allowing immediate visa submission upon sanction.",
     loanHighlights: [
-      "Exemption from the UKVI 28-day funds holding requirement",
-      "Direct remittance for CAS deposit and university tuition fees",
-      "Living allowance loaded on student multicurrency GBP forex cards",
-      "Tenure up to 15 years with flexible 1-year master's moratorium",
+      "100% exemption from the UKVI 28-day funds holding requirement",
+      "Direct foreign outward remittance for CAS deposit, IHS (Immigration Health Surcharge), and tuition fees",
+      "Living allowance loaded onto multi-currency GBP student forex cards",
+      "Up to ₹75 Lakhs collateral-free for premier Russell Group universities",
+      "Moratorium covering 1-year master's plus 6-month buffer aligned with the 2-year Graduate Route visa",
     ],
     workPermitYears: "2 Years (Graduate Route Post-Study Work Visa)",
     topLenders: [
@@ -132,40 +133,59 @@ export const destinationsList: Destination[] = [
         name: "State Bank of India (SBI)",
         category: "Public Bank",
         indicativeRate: "8.15% - 9.35%",
-        maxUnsecured: "₹40 Lakhs (Russell Group)",
+        maxUnsecured: "₹50 Lakhs (Russell Group)",
         maxSecured: "₹1.5 Crore",
         processingDays: "10 - 14 Days",
-        keyAdvantage: "Recognized Russell Group tier pricing with concessional rates.",
+        keyAdvantage: "Concessional interest rates and simple interest during moratorium for Russell Group admits.",
       },
       {
         name: "HDFC Credila",
         category: "NBFC / Fintech",
         indicativeRate: "10.25% - 12.25%",
-        maxUnsecured: "₹55 Lakhs",
+        maxUnsecured: "₹75 Lakhs",
         maxSecured: "₹1.0 Crore",
         processingDays: "3 - 5 Days",
-        keyAdvantage: "Formats sanction letter precisely to UKVI Appendix Student standards.",
+        keyAdvantage: "Formats sanction letter precisely to UKVI Appendix Finance standards with fast CAS wire transfer.",
+      },
+      {
+        name: "Axis Bank",
+        category: "Private Bank",
+        indicativeRate: "9.25% - 10.75%",
+        maxUnsecured: "₹50 Lakhs",
+        maxSecured: "₹1.5 Crore",
+        processingDays: "4 - 6 Days",
+        keyAdvantage: "Fast digital sanction letter and competitive GBP exchange rates for university remittances.",
       },
       {
         name: "Auxilo Finserve",
         category: "NBFC / Fintech",
         indicativeRate: "10.75% - 12.75%",
-        maxUnsecured: "₹50 Lakhs",
+        maxUnsecured: "₹55 Lakhs",
         maxSecured: "₹80 Lakhs",
-        processingDays: "4 - 6 Days",
-        keyAdvantage: "Covers 100% tuition, CAS deposit, health surcharge (IHS), and maintenance.",
+        processingDays: "3 - 5 Days",
+        keyAdvantage: "100% cost-of-study financing covering CAS deposit, health surcharge (IHS), flights, and maintenance.",
       },
     ],
     faqs: [
       {
         question: "How does an education loan waive the UKVI 28-day funds rule?",
         answer:
-          "According to UKVI student visa guidance (Appendix Student ST 12.3), financial requirements can be satisfied by a student loan provided by a government-regulated financial institution. Unlike personal bank savings which must mature for 28 consecutive days, a formal loan letter can be used immediately upon issuance.",
+          "Under UKVI Appendix Finance (FIN 8.1), an applicant using an educational loan provided by a government-regulated financial institution is completely exempt from the 28-day holding requirement. You can submit your official loan sanction letter immediately upon issuance without waiting for funds to mature in a savings account.",
       },
       {
-        question: "Are 1-year master's degrees in the UK eligible for full moratorium?",
+        question: "Can an education loan fund the UK CAS deposit and Immigration Health Surcharge (IHS)?",
         answer:
-          "Yes. Most partner banks provide a moratorium covering the 12-month course duration plus a 6-month post-study buffer before regular principal EMIs begin.",
+          "Yes. Our partner lenders disburse funds in stages, allowing you to pay your mandatory university CAS confirmation deposit (£2,000–£5,000) and the mandatory Immigration Health Surcharge (IHS) directly through the lender before your visa appointment.",
+      },
+      {
+        question: "Are 1-year Master's degrees in the UK eligible for full moratorium?",
+        answer:
+          "Yes. Partner banks and NBFCs structure loans for 1-year UK Master's programs with a moratorium covering the 12-month course duration plus a 6-month post-study buffer before regular principal EMIs begin.",
+      },
+      {
+        question: "Which lenders offer the highest collateral-free limits for Russell Group universities?",
+        answer:
+          "Specialized NBFCs like HDFC Credila and Avanse offer up to ₹75 Lakhs without collateral for Russell Group universities (e.g., Oxford, Cambridge, Imperial, UCL, Manchester). Private banks like Axis and ICICI offer up to ₹50 Lakhs collateral-free with competitive rates.",
       },
     ],
   },
@@ -174,19 +194,20 @@ export const destinationsList: Destination[] = [
     country: "Canada",
     flag: "🇨🇦",
     tagline: "Direct Financing for Tuition Fees and Mandatory CAD $20,635 Canadian GIC",
-    popularCourses: ["MS / Post-Graduate Diplomas in IT", "Supply Chain", "Business Analytics", "Mechanical Engineering", "Health Sciences"],
+    popularCourses: ["MS / Post-Graduate Diplomas in IT", "Supply Chain & Logistics", "Business Analytics", "Mechanical & Civil Engineering", "Health Sciences & Biotechnology"],
     avgTuition: "₹14L - ₹30L / year",
-    avgLivingCost: "₹10L - ₹14L / year",
-    typicalLoanAmount: "₹20 Lakhs - ₹50 Lakhs",
+    avgLivingCost: "₹10L - ₹14L / year (CAD $20,635/year mandatory GIC)",
+    typicalLoanAmount: "₹20 Lakhs - ₹55 Lakhs",
     visaFundRequirements:
-      "Full first-year tuition payment plus CAD $20,635 mandatory Guaranteed Investment Certificate (GIC) to prove living cost sufficiency.",
+      "Full first-year tuition payment receipt from a Designated Learning Institution (DLI) plus CAD $20,635 mandatory Guaranteed Investment Certificate (GIC) from an approved Canadian bank, and a Provincial Attestation Letter (PAL) where applicable.",
     embassyFinancialOverview:
-      "Immigration, Refugees and Citizenship Canada (IRCC) mandates that international students demonstrate financial self-sufficiency by presenting proof of 1st-year tuition fee receipt and purchase of a Guaranteed Investment Certificate (GIC) valued at CAD $20,635 from an approved financial institution (e.g., CIBC, Scotiabank, ICICI Canada).",
+      "Immigration, Refugees and Citizenship Canada (IRCC) mandates that international students demonstrate financial self-sufficiency by presenting proof of first-year tuition payment and purchase of a Guaranteed Investment Certificate (GIC) valued at CAD $20,635 from an approved financial institution (e.g., CIBC, Scotiabank, ICICI Bank Canada, RBC, TD). Under IRCC study permit guidelines, education loans from recognized Indian scheduled banks and NBFCs are fully accepted.",
     loanHighlights: [
-      "Direct loan disbursement for Canadian GIC purchase (CAD $20,635)",
-      "Unsecured loan limits up to ₹50 Lakhs for DLI universities and polytechnics",
-      "Pre-visa sanction letter compliant with IRCC visa criteria",
-      "Moratorium covers course duration plus Post-Graduation Work Permit (PGWP)",
+      "Direct two-tranche disbursement: Tranche 1 wires CAD $20,635 directly to Canadian bank GIC; Tranche 2 wires tuition to DLI",
+      "Unsecured loan limits up to ₹50 Lakhs for DLI universities and public colleges",
+      "Official pre-visa sanction letter compliant with IRCC visa criteria",
+      "Moratorium covers course duration plus 6-month buffer matching the Post-Graduation Work Permit (PGWP)",
+      "0% margin money loans available from specialized education NBFCs",
     ],
     workPermitYears: "Up to 3 Years (Post-Graduation Work Permit - PGWP)",
     topLenders: [
@@ -197,16 +218,16 @@ export const destinationsList: Destination[] = [
         maxUnsecured: "₹50 Lakhs",
         maxSecured: "₹1.0 Crore",
         processingDays: "3 - 5 Days",
-        keyAdvantage: "Seamless wire transfer into Canadian bank GIC accounts within 48 hours.",
+        keyAdvantage: "Market leader for Canadian DLIs; direct wire transfer into CIBC/Scotiabank GIC accounts within 48 hours.",
       },
       {
         name: "ICICI Bank",
         category: "Private Bank",
-        indicativeRate: "9.85% - 11.50%",
+        indicativeRate: "9.50% - 11.00%",
         maxUnsecured: "₹45 Lakhs",
         maxSecured: "₹1.0 Crore",
-        processingDays: "4 - 7 Days",
-        keyAdvantage: "Integrated ICICI Bank Canada Student GIC Program setup.",
+        processingDays: "4 - 6 Days",
+        keyAdvantage: "Seamless integrated setup with ICICI Bank Canada Student GIC Program.",
       },
       {
         name: "Bank of Baroda",
@@ -217,17 +238,36 @@ export const destinationsList: Destination[] = [
         processingDays: "10 - 15 Days",
         keyAdvantage: "Concessional Baroda Scholar interest rates for Canadian public universities.",
       },
+      {
+        name: "Avanse Financial Services",
+        category: "NBFC / Fintech",
+        indicativeRate: "10.50% - 12.50%",
+        maxUnsecured: "₹50 Lakhs",
+        maxSecured: "₹75 Lakhs",
+        processingDays: "3 - 5 Days",
+        keyAdvantage: "100% cost-of-study financing covering tuition fees, GIC living costs, and health coverage.",
+      },
     ],
     faqs: [
       {
-        question: "Can an education loan disburse funds directly to my Canadian GIC account?",
+        question: "How does the loan disbursement work for the Canadian GIC (CAD $20,635)?",
         answer:
-          "Yes. Our partner lenders disburse the required living expenses (CAD $20,635) directly into your designated Canadian GIC account with partner banks like CIBC, Scotiabank, or ICICI Bank Canada, providing the official GIC confirmation certificate needed for your study permit.",
+          "Upon formal loan sanction, your lender executes an outward wire transfer via RBI LRS directly to your Canadian bank GIC account (with CIBC, Scotiabank, or ICICI Bank Canada). Once credited, the Canadian bank issues your official GIC Confirmation Certificate for your IRCC study permit application.",
       },
       {
         question: "Can I get an education loan for Post-Graduate Certificate (PG Diploma) programs in Canada?",
         answer:
-          "Yes. Leading NBFCs and private banks finance 1-year and 2-year post-graduate certificates and diplomas at accredited Canadian public colleges (such as Fanshawe, Seneca, Humber, and George Brown).",
+          "Yes. Specialized NBFCs (HDFC Credila, Avanse, Auxilo) and private banks actively finance 1-year and 2-year post-graduate certificates and diplomas at accredited Canadian public colleges (such as Seneca, Humber, George Brown, and Sheridan).",
+      },
+      {
+        question: "Does an education loan cover the Provincial Attestation Letter (PAL) deposit?",
+        answer:
+          "Yes. Most Canadian institutions require an initial tuition deposit (typically CAD $5,000 to $10,000) before issuing the Provincial Attestation Letter (PAL). Our partner lenders can disburse this initial deposit directly against your conditional offer letter.",
+      },
+      {
+        question: "Is collateral required for Canada student loans above ₹40 Lakhs?",
+        answer:
+          "Not necessarily. If you are admitted to an accredited public university or leading DLI for a Master's degree, NBFCs provide up to ₹50 Lakhs without collateral based on student merit and co-applicant income. For loans above ₹50 Lakhs, property collateral or fixed deposits are required.",
       },
     ],
   },
@@ -425,6 +465,170 @@ export const destinationsList: Destination[] = [
         question: "How do I prove the mandatory €10,000 living expenses for Irish visa?",
         answer:
           "You can submit your official loan sanction letter indicating that €10,000 is earmarked for living expenses, or use the education bond mechanism recognized by Irish immigration.",
+      },
+    ],
+  },
+  {
+    id: "malta",
+    country: "Malta",
+    flag: "🇲🇹",
+    tagline: "Low-Cost European Education, 100% English Instruction & Fast Schengen Visa Approvals",
+    popularCourses: ["MBBS / Medicine (Queen Mary Barts)", "Information Technology & AI", "Global MBA & Leadership", "Hospitality & Tourism Management", "iGaming & Cyber Security"],
+    avgTuition: "₹5.5L - ₹11L / year (€6,000 - €12,000/year)",
+    avgLivingCost: "₹7L - ₹9L / year (€700 - €900/month)",
+    typicalLoanAmount: "₹12 Lakhs - ₹30 Lakhs",
+    visaFundRequirements:
+      "Proof of financial subsistence of minimum €48/day (approx. €17,500/year or €750-€800/month) for maintenance, plus receipt of first-year tuition fee payment and comprehensive Schengen medical insurance.",
+    embassyFinancialOverview:
+      "Malta is an English-speaking European Union and Schengen Area member. The Central Visa Unit (Identità Malta) and VFS Global require Indian applicants to demonstrate financial independence through verifiable liquid bank funds or an unconditional bank education loan sanction letter from an RBI-recognized financial institution covering tuition and living expenses.",
+    loanHighlights: [
+      "100% cost-of-study financing covering tuition fees, living costs, and Schengen health insurance",
+      "Collateral-free loans up to ₹35 Lakhs from specialized education NBFCs",
+      "Direct remittance to Maltese universities and tuition deposit accounts",
+      "Degrees awarded under the European Qualifications Framework (EQF) with 9-month post-study work rights",
+      "Pre-visa sanction letters accepted for VFS Malta National (D-type) visa filing",
+    ],
+    workPermitYears: "9 Months (Post-Study Third-Country National Job Search Visa) + EU Blue Card Pathway",
+    topLenders: [
+      {
+        name: "HDFC Credila",
+        category: "NBFC / Fintech",
+        indicativeRate: "10.25% - 12.25%",
+        maxUnsecured: "₹35 Lakhs",
+        maxSecured: "₹60 Lakhs",
+        processingDays: "3 - 5 Days",
+        keyAdvantage: "Fast-track pre-visa sanction letters formatted to Identità Malta visa standards.",
+      },
+      {
+        name: "Avanse Financial Services",
+        category: "NBFC / Fintech",
+        indicativeRate: "10.50% - 12.50%",
+        maxUnsecured: "₹35 Lakhs",
+        maxSecured: "₹50 Lakhs",
+        processingDays: "3 - 5 Days",
+        keyAdvantage: "Full living allowance and tuition deposit coverage with zero margin money.",
+      },
+      {
+        name: "Auxilo Finserve",
+        category: "NBFC / Fintech",
+        indicativeRate: "10.75% - 12.75%",
+        maxUnsecured: "₹30 Lakhs",
+        maxSecured: "₹50 Lakhs",
+        processingDays: "3 - 4 Days",
+        keyAdvantage: "Flexible doorstep documentation and rapid turnaround for European admits.",
+      },
+      {
+        name: "State Bank of India (SBI)",
+        category: "Public Bank",
+        indicativeRate: "8.15% - 9.15%",
+        maxUnsecured: "₹20 Lakhs",
+        maxSecured: "₹1.5 Crore",
+        processingDays: "10 - 15 Days",
+        keyAdvantage: "Lowest floating interest rates for premier programs like QMUL Barts Malta MBBS.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Can I get an education loan to study in Malta?",
+        answer:
+          "Yes. Leading Indian scheduled banks and education NBFCs actively fund study programs in Malta, providing collateral-free loans up to ₹35 Lakhs and property-backed loans up to ₹1.5 Crore for Master's, MBA, MBBS, and bachelor's degrees.",
+      },
+      {
+        question: "Does the Malta Central Visa Unit accept education loan sanction letters?",
+        answer:
+          "Yes. The Central Visa Unit (Identità Malta) and VFS Global accept official, unconditional education loan sanction letters issued by RBI-recognized banks and NBFCs as legitimate proof of tuition payment capability and living maintenance.",
+      },
+      {
+        question: "How much loan amount is typically needed for Malta?",
+        answer:
+          "Because Malta has very affordable European tuition fees (€6,000–€12,000/year), a loan of ₹12 Lakhs to ₹20 Lakhs is typically sufficient to cover 100% of university tuition, living expenses, Schengen health insurance, and flight tickets.",
+      },
+      {
+        question: "Is collateral required for Malta student visa loans?",
+        answer:
+          "No. For loans up to ₹35 Lakhs, specialized NBFCs (HDFC Credila, Avanse, Auxilo) approve collateral-free loans based on the student's academic background and co-applicant financial profile.",
+      },
+    ],
+  },
+  {
+    id: "cyprus",
+    country: "Cyprus",
+    flag: "🇨🇾",
+    tagline: "Affordable European Higher Education, Top English Programs & Simple Financial Proof",
+    popularCourses: ["Medicine (MBBS/MD)", "Computer Science & Blockchain", "Hotel & Tourism Management", "Business Administration (MBA)", "Civil & Electrical Engineering"],
+    avgTuition: "₹3.5L - ₹8.5L / year (€4,000 - €9,500/year)",
+    avgLivingCost: "₹5L - ₹7L / year (€500 - €700/month)",
+    typicalLoanAmount: "₹10 Lakhs - ₹25 Lakhs",
+    visaFundRequirements:
+      "Proof of maintenance funds (€7,000 - €10,000), receipt of first-year tuition payment, original bank repatriation guarantee of €850, Police Clearance Certificate (PCC), and certified medical fitness test.",
+    embassyFinancialOverview:
+      "Cyprus is a prominent European Union member state offering globally accredited English-taught degrees. The Civil Registry and Migration Department of Cyprus mandates that international students submit an official education loan sanction letter or verifiable bank statement demonstrating access to tuition fees and living expenses, alongside statutory police and medical clearances.",
+    loanHighlights: [
+      "Low borrowing amounts (₹10L - ₹20L) leading to minimal monthly post-graduation EMI burden",
+      "Direct remittance to Cypriot universities (University of Nicosia, EUC, CIU) for tuition and initial deposits",
+      "Collateral-free financing available up to ₹35 Lakhs through specialized NBFCs",
+      "Financing covers tuition, living costs, €850 migration repatriation guarantee, and flights",
+      "Quick 3 to 5 day sanction process aligned with Cyprus immigration deadlines",
+    ],
+    workPermitYears: "Up to 60 Days Post-Study Transition + Employment Permit Pathway",
+    topLenders: [
+      {
+        name: "Avanse Financial Services",
+        category: "NBFC / Fintech",
+        indicativeRate: "10.50% - 12.50%",
+        maxUnsecured: "₹35 Lakhs",
+        maxSecured: "₹50 Lakhs",
+        processingDays: "3 - 5 Days",
+        keyAdvantage: "Specialized underwriting for Cyprus medical, engineering, and MBA programs with 0% margin money.",
+      },
+      {
+        name: "Auxilo Finserve",
+        category: "NBFC / Fintech",
+        indicativeRate: "10.75% - 12.75%",
+        maxUnsecured: "₹30 Lakhs",
+        maxSecured: "₹50 Lakhs",
+        processingDays: "3 - 4 Days",
+        keyAdvantage: "Quick digital document verification and high approval rates for Mediterranean universities.",
+      },
+      {
+        name: "HDFC Credila",
+        category: "NBFC / Fintech",
+        indicativeRate: "10.25% - 12.25%",
+        maxUnsecured: "₹35 Lakhs",
+        maxSecured: "₹60 Lakhs",
+        processingDays: "3 - 5 Days",
+        keyAdvantage: "Pre-visa sanction letters compliant with Cyprus Migration Department requirements.",
+      },
+      {
+        name: "State Bank of India (SBI)",
+        category: "Public Bank",
+        indicativeRate: "8.15% - 9.15%",
+        maxUnsecured: "₹20 Lakhs",
+        maxSecured: "₹1.5 Crore",
+        processingDays: "10 - 15 Days",
+        keyAdvantage: "Subsidized floating interest rate if tangible property collateral is pledged.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Can I get an education loan for MBBS or Medicine in Cyprus?",
+        answer:
+          "Yes. Indian lenders actively finance 5-year and 6-year medical degrees (MD/MBBS) at premier institutions like the University of Nicosia (UNIC) and European University Cyprus (EUC). Loans can cover both annual tuition fees and living expenses.",
+      },
+      {
+        question: "What financial proof is required for a Cyprus student visa?",
+        answer:
+          "The Cyprus Civil Registry and Migration Department requires proof of first-year tuition payment, access to €7,000–€10,000 for living expenses, and an original bank guarantee of €850 for repatriation. An official education loan sanction letter satisfies the financial proof requirement.",
+      },
+      {
+        question: "Are collateral-free loans available for Cyprus universities?",
+        answer:
+          "Yes. Education NBFCs (Avanse, Auxilo, HDFC Credila) offer collateral-free loans up to ₹25 Lakhs to ₹35 Lakhs based on the student's academic credentials and co-applicant income.",
+      },
+      {
+        question: "How is the loan disbursed for Cyprus tuition fees and living costs?",
+        answer:
+          "Tuition fees are wired directly by the lender via SWIFT to the university's official bank account in Cyprus. Living allowances and the repatriation guarantee are disbursed into the student's forex card or bank account upon visa grant.",
       },
     ],
   },

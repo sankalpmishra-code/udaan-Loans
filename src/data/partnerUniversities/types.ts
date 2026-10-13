@@ -9,7 +9,9 @@ export type CountryCode =
   | "france"
   | "sweden"
   | "italy"
-  | "switzerland";
+  | "switzerland"
+  | "malta"
+  | "cyprus";
 
 export type Region = "uk" | "europe" | "north-america" | "australia";
 

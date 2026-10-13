@@ -1,6 +1,6 @@
 {
   "name": "udaan-loans",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "India's premier study abroad education loan facilitation platform",
   "scripts": {
     "dev": "next dev",

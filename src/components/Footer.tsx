@@ -59,6 +59,8 @@ export default function Footer() {
               <li><Link href="/destinations/germany">Education Loan for Germany (Blocked Account)</Link></li>
               <li><Link href="/destinations/australia">Education Loan for Australia (GS Rule)</Link></li>
               <li><Link href="/destinations/ireland">Education Loan for Ireland (Tech Hub)</Link></li>
+              <li><Link href="/destinations/malta">Education Loan for Malta (EU Schengen)</Link></li>
+              <li><Link href="/destinations/cyprus">Education Loan for Cyprus (EU Hub)</Link></li>
               <li><Link href="/destinations">All 40+ Supported Countries</Link></li>
             </ul>
           </div>
