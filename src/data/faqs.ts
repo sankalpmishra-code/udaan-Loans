@@ -20,6 +20,11 @@ export const homeFaqs: FAQItem[] = [
       "Yes, Indian students can secure collateral-free (unsecured) education loans up to ₹75 Lakhs for premier global universities in the US, UK, Canada, Germany, and Australia. Eligibility depends on your admission offer, undergraduate GPA, test scores (GRE/GMAT/IELTS), and your co-applicant's monthly disposable income and CIBIL score."
   },
   {
+    question: "Can Indian students get an education loan without a co-applicant for Masters courses abroad?",
+    answer:
+      "Yes. Qualified Indian students pursuing Masters degrees (such as MS in STEM fields, Computer Science, Engineering, or top MBA programs) in the USA, UK, Canada, and Germany can access education loans without a co-applicant, parent income proof, or collateral. Loans are underwritten based on your target university ranking, academic performance, and projected post-graduation salary."
+  },
+  {
     question: "What is the moratorium period in an overseas education loan?",
     answer:
       "A moratorium period is a repayment holiday extending throughout the course duration plus an additional 6 to 12 months after graduation or 6 months after securing employment (whichever is earlier). During this period, students are not required to pay full equated monthly installments (EMIs). Depending on the lender, simple interest or partial interest may accrue or be serviced monthly."

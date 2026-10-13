@@ -12,14 +12,14 @@ import { siteConfig } from "@/data/siteConfig";
 export const metadata: Metadata = {
   title: "Education Loan for Study Abroad | Compare Secured & Unsecured Options | Udaan Edu Loans",
   description:
-    "Explore study abroad education loan options for USA, UK, Canada, Germany & Australia. Compare public banks, private commercial banks, and NBFCs with 100% virtual guidance and zero service fees.",
+    "Explore education loans without co-applicant for Masters courses for Indian students. Compare 30+ lenders for USA, UK, Canada, Germany & Australia with 100% virtual guidance and zero service fees.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Find the Right Education Loan for Your Study Abroad Journey | Udaan Edu Loans",
+    title: "Education Loan Without Co-Applicant for Masters Courses | Udaan Edu Loans",
     description:
-      "Explore potential education loan options based on your destination, course, funding needs, and financial profile. 100% virtual guidance with zero advisory fees.",
+      "Explore education loans without co-applicant for Masters courses for Indian students. 100% virtual guidance, collateral-free options up to ₹75L, and zero advisory fees.",
     url: siteConfig.url,
     siteName: siteConfig.name,
     locale: siteConfig.locale,
@@ -93,13 +93,58 @@ export default function HomePage() {
       <section className="hero" id="hero-section">
         <div className="wrap hero-grid">
           <div className="hero-content">
-            <span className="badge">100% Free Guidance for Indian Students</span>
+            <div style={{ display: "flex", gap: "10px", alignItems: "center", flexWrap: "wrap", marginBottom: "12px" }}>
+              <span className="badge">100% Free Guidance for Indian Students</span>
+              <span
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  background: "linear-gradient(135deg, rgba(217, 119, 6, 0.16), rgba(9, 71, 84, 0.1))",
+                  border: "1.5px solid rgba(217, 119, 6, 0.45)",
+                  padding: "4px 14px",
+                  borderRadius: "999px",
+                  fontSize: "0.84rem",
+                  fontWeight: 700,
+                  color: "#92400e",
+                }}
+              >
+                🎓 Special Facility
+              </span>
+            </div>
+
             <h1>Find the Right Education Loan for Your Study Abroad Journey</h1>
+
+            {/* Major Line Highlight Box */}
+            <div
+              style={{
+                background: "linear-gradient(135deg, rgba(217, 119, 6, 0.12), rgba(9, 71, 84, 0.06))",
+                borderLeft: "4px solid var(--accent, #D97706)",
+                padding: "14px 18px",
+                borderRadius: "0 10px 10px 0",
+                margin: "18px 0 22px",
+                boxShadow: "0 2px 10px rgba(0, 0, 0, 0.04)",
+              }}
+            >
+              <p style={{ margin: 0, fontSize: "1.06rem", fontWeight: 700, color: "var(--ink)", lineHeight: 1.5 }}>
+                ⚡ Education Loan Without Co-Applicant for Masters Courses for Indian Students
+              </p>
+              <p style={{ margin: "4px 0 0", fontSize: "0.88rem", color: "var(--muted)", lineHeight: 1.4 }}>
+                Pursuing an MS, MBA, or STEM Masters abroad? Discover specialized lender options that evaluate your future earning potential with zero parent cosigner or Indian collateral required.
+              </p>
+            </div>
+
             <p className="lead">
               Explore potential education-loan options based on your destination, course, funding needs, and financial profile. Understand lender requirements and get guidance on your next steps.
             </p>
 
             <ul className="hero-checklist">
+              <li style={{ background: "rgba(217, 119, 6, 0.06)", padding: "10px 14px", borderRadius: "8px", border: "1px solid rgba(217, 119, 6, 0.2)" }}>
+                <span className="check-icon" aria-hidden="true" style={{ color: "#D97706" }}>✓</span>
+                <span>
+                  <strong>Loan Without Co-Applicant for Masters Courses:</strong> Special funding schemes for Indian students pursuing international Masters (MS/MBA/STEM) without requiring financial co-signers, parent income ITRs, or collateral.
+                </span>
+              </li>
               <li>
                 <span className="check-icon" aria-hidden="true">✓</span>
                 <span>
@@ -133,6 +178,9 @@ export default function HomePage() {
             </div>
 
             <ul className="trust-pills">
+              <li style={{ background: "rgba(217, 119, 6, 0.16)", color: "#b45309", borderColor: "rgba(217, 119, 6, 0.4)", fontWeight: 700 }}>
+                ⭐ Loans Without Co-Applicant for Masters
+              </li>
               <li>Rates from 7.5% - 12.5% p.a.</li>
               <li>Up to ₹1.5 Crore</li>
               <li>Collateral-Free up to ₹75L</li>
@@ -191,6 +239,14 @@ export default function HomePage() {
               <h3>Pre-Visa Sanction Letters</h3>
               <p>
                 Fast-track official, embassy-accepted sanction letters to satisfy liquid financial fund requirements for Form I-20, CAS, or German blocked account deposits.
+              </p>
+            </div>
+
+            <div className="value-card" style={{ border: "1.5px solid rgba(217, 119, 6, 0.4)", background: "linear-gradient(180deg, rgba(217, 119, 6, 0.06), var(--surface))" }}>
+              <span className="value-card-icon" aria-hidden="true">🎓</span>
+              <h3>No Co-Applicant Loans for Masters</h3>
+              <p>
+                Qualified Indian students pursuing STEM, MS, or MBA degrees abroad can access education loans without a co-applicant or financial cosigner, evaluated on academic merit and future earnings.
               </p>
             </div>
           </div>
