@@ -9,8 +9,8 @@ export const siteConfig = {
   tagline: "Fund Your Study Abroad Dream with India's Top Lenders",
   description:
     "India's premier education loan facilitator for study abroad. Compare 30+ public banks, private banks, and NBFCs for collateral-free and secured student loans up to ₹1.5 Crore for USA, UK, Canada, Germany, Australia, and 40+ countries.",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://udaan-loans.vercel.app",
-  ogImage: "https://udaan-loans.vercel.app/opengraph-image",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://udaaneduloans.com",
+  ogImage: "https://udaaneduloans.com/opengraph-image",
   themeColor: "#094754",
   telephone: "+91 7303200803",
   secondaryPhone: "+91 7303200804",
@@ -28,11 +28,11 @@ export const siteConfig = {
   },
   social: {
     twitterHandle: "@UdaanLoans",
-    twitterUrl: "https://twitter.com/udaanloans",
-    linkedinUrl: "https://www.linkedin.com/company/udaan-loans",
-    facebookUrl: "https://www.facebook.com/udaanloans",
-    instagramUrl: "https://www.instagram.com/udaanloans",
-    youtubeUrl: "https://www.youtube.com/@udaanloans",
+    twitterUrl: "https://twitter.com/udaaneduloans",
+    linkedinUrl: "https://www.linkedin.com/company/udaaneduloans",
+    facebookUrl: "https://www.facebook.com/udaaneduloans",
+    instagramUrl: "https://www.instagram.com/udaaneduloans",
+    youtubeUrl: "https://www.youtube.com/@udaaneduloans",
   },
   analytics: {
     gaMeasurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "",
