@@ -43,8 +43,8 @@ export default function Footer() {
               <li><Link href="/calculator">Overseas Loan EMI Calculator</Link></li>
               <li><Link href="/tax-calculator">Section 80E Tax Savings Calculator</Link></li>
               <li><Link href="/assessment">Preliminary Funding Assessment</Link></li>
-              <li><Link href="/eligibility">Eligibility & Documents Checklist</Link></li>
               <li><Link href="/lenders">Compare 30+ Banks & NBFCs</Link></li>
+              <li><Link href="/compare-lenders">Side-by-Side Lender Comparison</Link></li>
             </ul>
           </div>
 

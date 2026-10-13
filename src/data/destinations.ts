@@ -241,14 +241,15 @@ export const destinationsList: Destination[] = [
     avgLivingCost: "₹10L - ₹12L / year (€11,904/year blocked account)",
     typicalLoanAmount: "₹12 Lakhs - ₹25 Lakhs",
     visaFundRequirements:
-      "Mandatory Blocked Account (Sperrkonto) funded with €11,904 (~₹11 Lakhs) deposited into approved German providers before visa application.",
+      "Mandatory Blocked Account (Sperrkonto) funded with €11,904 (~₹11 Lakhs) deposited into approved German providers (Coracle, Expatrio, Fintiba), plus valid APS certificate and statutory health insurance proof.",
     embassyFinancialOverview:
-      "German public universities charge virtually zero tuition fees. However, the German Embassy and Consulates in India strictly require every international student to open and fund a Blocked Account (Sperrkonto) with €11,904 to cover first-year living expenses, alongside statutory health insurance and semester contributions.",
+      "German public universities charge zero tuition fees for domestic and international students. However, the German Embassy and VFS Global consulates across India strictly mandate that every student demonstrate financial means by funding a Blocked Account (Sperrkonto) with €11,904 to cover first-year living expenses. Furthermore, all Indian applicants with degrees from India must obtain an APS (Akademische Prüfstelle) verification certificate before filing their National Visa (Subclass D) appointment.",
     loanHighlights: [
-      "Custom low-principal loans (₹10L - ₹20L) specifically designed for Sperrkonto",
-      "Direct remittance to approved providers (Expatrio, Fintiba, Coracle, Deutsche Bank)",
-      "Covers health insurance, airfare, visa fees, and initial relocation buffer",
-      "Lowest monthly EMI burden due to low borrowing amounts",
+      "Specialized low-principal living expense loans (₹10L - ₹25L) specifically structured for Sperrkonto",
+      "Direct foreign outward remittance (RBI LRS) into approved providers (Expatrio, Coracle, Fintiba)",
+      "Covers mandatory German health insurance (TK / Barmer / DAK), flight booking, and visa fees",
+      "Lowest monthly EMI burden post-graduation due to small borrowing principal",
+      "Pre-visa sanction letters accepted by German consulates in New Delhi, Mumbai, Chennai, Bengaluru, and Kolkata",
     ],
     workPermitYears: "18 Months (Post-Study Job Seeker Visa / Residence Permit)",
     topLenders: [
@@ -259,7 +260,7 @@ export const destinationsList: Destination[] = [
         maxUnsecured: "₹30 Lakhs",
         maxSecured: "₹50 Lakhs",
         processingDays: "3 - 5 Days",
-        keyAdvantage: "Direct API remittance to Expatrio and Fintiba blocked accounts.",
+        keyAdvantage: "Direct API integration with Expatrio and Fintiba for 48h outward wire transfer.",
       },
       {
         name: "Avanse Financial Services",
@@ -268,7 +269,16 @@ export const destinationsList: Destination[] = [
         maxUnsecured: "₹35 Lakhs",
         maxSecured: "₹60 Lakhs",
         processingDays: "3 - 5 Days",
-        keyAdvantage: "Collateral-free living cost loans for TU9 and public technical universities.",
+        keyAdvantage: "100% collateral-free living cost loans for TU9 and state public universities.",
+      },
+      {
+        name: "ICICI Bank",
+        category: "Private Bank",
+        indicativeRate: "9.50% - 10.75%",
+        maxUnsecured: "₹40 Lakhs",
+        maxSecured: "₹1.0 Crore",
+        processingDays: "4 - 7 Days",
+        keyAdvantage: "Fast digital sanction letter and competitive forex rates for German remittances.",
       },
       {
         name: "State Bank of India (SBI)",
@@ -277,19 +287,29 @@ export const destinationsList: Destination[] = [
         maxUnsecured: "₹20 Lakhs",
         maxSecured: "₹1.5 Crore",
         processingDays: "10 - 15 Days",
-        keyAdvantage: "Subsidized public bank interest rate with minimal monthly interest service.",
+        keyAdvantage: "Lowest floating interest rate under Global Ed-Vantage if collateral property is provided.",
       },
     ],
     faqs: [
       {
         question: "Can I get an education loan if my German university charges zero tuition fees?",
         answer:
-          "Yes. Many students assume education loans only fund tuition fees. In reality, Indian lenders readily sanction loans of ₹12L to ₹20L strictly for living expenses, allowing students to fund the mandatory €11,904 German Sperrkonto (Blocked Account), travel tickets, and initial setup costs.",
+          "Yes. Indian scheduled banks and specialized NBFCs regularly approve education loans of ₹12 Lakhs to ₹20 Lakhs exclusively to finance living costs. These funds are disbursed directly into your mandatory German Blocked Account (Sperrkonto €11,904), alongside allowances for health insurance and flight tickets.",
       },
       {
-        question: "How long does it take to wire loan money to Expatrio or Fintiba?",
+        question: "Public Bank vs NBFC: Which is better for a Germany education loan?",
         answer:
-          "Once the loan is sanctioned, the bank executes the outward foreign exchange remittance via RBI LRS within 24 to 48 working hours. Expatrio or Fintiba then issues the 'Blocked Amount Confirmation 06' document for your visa appointment.",
+          "For Germany, specialized NBFCs (HDFC Credila, Avanse, Auxilo) are usually superior because they readily sanction collateral-free loans for living expenses and wire funds directly to Expatrio or Coracle within 48 hours. Public sector banks (like SBI) offer lower rates (8.15%–9.15%) but frequently hesitate to process living-cost-only loans without tangible property collateral.",
+      },
+      {
+        question: "How does loan disbursement work for German Sperrkonto (Expatrio / Coracle / Fintiba)?",
+        answer:
+          "Upon formal loan sanction, the lender creates an outward forex remittance under the RBI Liberalised Remittance Scheme (LRS). Funds are wired directly to your designated German IBAN with Expatrio, Coracle, or Fintiba, which automatically issues the '06 Blocked Amount Confirmation' required for your German student visa interview.",
+      },
+      {
+        question: "Is an APS Certificate required before applying for a Germany education loan?",
+        answer:
+          "No. You do not need the APS Certificate to initiate or obtain a conditional in-principle loan sanction letter from Udaan's partner lenders. However, you will need your APS Certificate when filing your formal German visa application at the VFS Global center.",
       },
     ],
   },

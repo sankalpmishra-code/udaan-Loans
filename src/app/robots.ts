@@ -32,7 +32,16 @@ export default function robots(): MetadataRoute.Robots {
       },
       // Generative AI / Answer Engine crawlers (GEO / AEO optimization)
       {
-        userAgent: ["GPTBot", "PerplexityBot", "ClaudeBot", "Google-Extended"],
+        userAgent: [
+          "GPTBot",
+          "PerplexityBot",
+          "ClaudeBot",
+          "Google-Extended",
+          "Applebot-Extended",
+          "Amazonbot",
+          "Bytespider",
+          "cohere-ai",
+        ],
         allow: "/",
         disallow: disallowedPaths,
       },

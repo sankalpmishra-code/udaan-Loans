@@ -55,6 +55,14 @@ export default function LendersPage() {
               Udaan Edu Loans partners with leading Indian scheduled commercial banks and specialized education NBFCs.
               Compare interest rates, loan ceilings, margin money rules, and speed to secure the ideal financial partner.
             </p>
+            <div style={{ display: "flex", gap: "14px", justifyContent: "center", marginTop: "20px", flexWrap: "wrap" }}>
+              <Link href="/compare-lenders" className="btn btn-primary" style={{ fontSize: "0.95rem" }}>
+                Public vs Private vs NBFC Side-by-Side Analysis →
+              </Link>
+              <Link href="/match" className="btn btn-outline" style={{ fontSize: "0.95rem" }}>
+                60-Second Lender Matcher
+              </Link>
+            </div>
           </div>
 
           {/* Master Comparison Table */}

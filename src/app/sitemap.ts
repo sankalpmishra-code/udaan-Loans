@@ -53,6 +53,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: changeFrequencies.lenders,
     },
     {
+      path: "/compare-lenders",
+      priority: 0.9,
+      changeFrequency: "weekly" as const,
+    },
+    {
       path: "/eligibility",
       priority: priorities.eligibility,
       changeFrequency: changeFrequencies.eligibility,
