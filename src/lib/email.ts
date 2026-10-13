@@ -32,7 +32,7 @@ export async function sendLeadAlertEmail(lead: LeadEmailPayload): Promise<{ succ
     return { success: false, error: "RESEND_API_KEY not configured" };
   }
 
-  const alertRecipientsRaw = process.env.RESEND_ALERT_EMAIL || "Anshulverma338@gmail.com, sankalp@udaaneduloans.com";
+  const alertRecipientsRaw = process.env.RESEND_ALERT_EMAIL || "sankalp@udaaneduloans.com";
   const alertRecipients = alertRecipientsRaw
     .split(",")
     .map((e) => e.trim())
