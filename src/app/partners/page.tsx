@@ -64,6 +64,7 @@ export default function PartnersPage() {
           phone: formData.phone.replace(/\D/g, ""),
           city: formData.city,
           monthlyStudents: formData.monthlyStudents,
+          sourceName: "Partner Registration",
           sourceUrl: typeof window !== "undefined" ? window.location.href : "/partners",
         }),
       });

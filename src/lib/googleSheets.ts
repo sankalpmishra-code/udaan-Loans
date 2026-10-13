@@ -16,6 +16,7 @@ interface LeadData {
   city?: string;
   monthlyStudents?: string;
   partnerRef?: string;
+  sourceName?: string;
   sourceUrl?: string;
   additionalNotes?: string;
 }
@@ -93,7 +94,7 @@ export async function appendLeadToGoogleSheet(data: LeadData): Promise<boolean> 
             "Email Address",
             "Operating City",
             "Monthly Student Volume",
-            "Source URL",
+            "Source Name",
             "Status",
           ]
         : [
@@ -107,7 +108,7 @@ export async function appendLeadToGoogleSheet(data: LeadData): Promise<boolean> 
             "Loan Preference",
             "Co-Applicant",
             "Partner Referral Code",
-            "Source URL",
+            "Source Name",
             "Lead Status",
           ];
 
@@ -119,6 +120,29 @@ export async function appendLeadToGoogleSheet(data: LeadData): Promise<boolean> 
           values: [headers],
         },
       });
+    } else {
+      // Auto-migrate existing header row if it contains "Source URL"
+      try {
+        const headerRes = await sheets.spreadsheets.values.get({
+          spreadsheetId,
+          range: `${sheetTabName}!1:1`,
+        });
+        const currentHeaders = headerRes.data.values?.[0] || [];
+        const sourceUrlIndex = currentHeaders.findIndex((h: string) => h === "Source URL");
+        if (sourceUrlIndex !== -1) {
+          const colLetter = String.fromCharCode(65 + sourceUrlIndex);
+          await sheets.spreadsheets.values.update({
+            spreadsheetId,
+            range: `${sheetTabName}!${colLetter}1`,
+            valueInputOption: "USER_ENTERED",
+            requestBody: {
+              values: [["Source Name"]],
+            },
+          });
+        }
+      } catch (migrateErr) {
+        console.warn("Could not auto-migrate header in sheet:", migrateErr);
+      }
     }
   } catch (sheetCheckErr) {
     console.error("Error checking/creating sheet tab:", sheetCheckErr);
@@ -126,6 +150,7 @@ export async function appendLeadToGoogleSheet(data: LeadData): Promise<boolean> 
 
   // Format row values
   const timestamp = data.timestamp || new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
+  const sourceDisplayName = data.sourceName || data.sourceUrl || "Website";
 
   const rowValues = isPartner
     ? [
@@ -136,7 +161,7 @@ export async function appendLeadToGoogleSheet(data: LeadData): Promise<boolean> 
         data.email || "",
         data.city || "",
         data.monthlyStudents || "",
-        data.sourceUrl || "",
+        sourceDisplayName,
         "New Partner",
       ]
     : [
@@ -150,7 +175,7 @@ export async function appendLeadToGoogleSheet(data: LeadData): Promise<boolean> 
         data.loanType || "",
         data.coApplicant || "",
         data.partnerRef || "Direct (Organic)",
-        data.sourceUrl || "",
+        sourceDisplayName,
         "New Lead",
       ];
 

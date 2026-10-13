@@ -116,6 +116,7 @@ function MatcherContent() {
           utmContent: attribution.utm_content || "",
           gclid: attribution.gclid || "",
           landingPage: window.location.pathname,
+          sourceName: "Loan Matcher",
           sourceUrl: window.location.href,
           additionalNotes: `Matched Lender: ${modalLender}. Student has admit: ${profile.hasAdmit ? "Yes" : "No"}.`,
         }),

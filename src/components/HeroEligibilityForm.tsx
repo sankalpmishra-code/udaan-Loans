@@ -83,6 +83,7 @@ export default function HeroEligibilityForm() {
           utmContent: attribution.utm_content || "",
           gclid: attribution.gclid || "",
           landingPage: typeof window !== "undefined" ? window.location.pathname : "/",
+          sourceName: "Homepage Hero Form",
           sourceUrl: typeof window !== "undefined" ? window.location.href : "Homepage Hero",
           additionalNotes: `Admission Status: ${formData.admitStatus}. Co-Applicant: ${formData.coApplicant}.`,
         }),

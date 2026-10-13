@@ -49,7 +49,7 @@ function doPost(e) {
         MailApp.sendEmail({
           to: NOTIFY_EMAIL,
           subject: `🔔 New Lead: ${data.name || data.agency || "Applicant"} (${data.country || data.city || "Overseas"})`,
-          body: `New lead received on Udaan Loans:\n\nType: ${leadType}\nName: ${data.name || data.contactPerson}\nPhone: ${data.phone}\nEmail: ${data.email}\nDetails: ${data.course || data.monthlyStudents || ""}\nSource: ${data.sourceUrl || "Website"}\nTimestamp: ${data.timestamp || new Date().toISOString()}`
+          body: `New lead received on Udaan Loans:\n\nType: ${leadType}\nName: ${data.name || data.contactPerson}\nPhone: ${data.phone}\nEmail: ${data.email}\nDetails: ${data.course || data.monthlyStudents || ""}\nSource: ${data.sourceName || data.sourceUrl || "Website"}\nTimestamp: ${data.timestamp || new Date().toISOString()}`
         });
       } catch (mailErr) {
         Logger.log("Email alert failed: " + mailErr.toString());
@@ -90,7 +90,8 @@ function testLead() {
         loanType: "collateral-free",
         coApplicant: "salaried-parent",
         partnerRef: "Direct (Organic)",
-        sourceUrl: "https://udaanloans.com/apply"
+        sourceName: "Homepage Hero Form",
+        sourceUrl: "Homepage Hero Form"
       })
     }
   };
@@ -115,12 +116,25 @@ function appendStudentLead(ss, data) {
       "Loan Preference",
       "Co-Applicant",
       "Partner Referral Code",
-      "Source URL",
+      "Source Name",
       "Lead Status"
     ];
     sheet.appendRow(headers);
     sheet.getRange(1, 1, 1, headers.length).setFontWeight("bold").setBackground("#094754").setFontColor("#FFFFFF");
     sheet.setFrozenRows(1);
+  } else {
+    // Auto-migrate existing sheet header from "Source URL" to "Source Name"
+    try {
+      const lastCol = Math.max(sheet.getLastColumn(), 1);
+      const headerRow = sheet.getRange(1, 1, 1, lastCol).getValues()[0];
+      for (let i = 0; i < headerRow.length; i++) {
+        if (headerRow[i] === "Source URL") {
+          sheet.getRange(1, i + 1).setValue("Source Name");
+        }
+      }
+    } catch (e) {
+      Logger.log("Auto-migration notice: " + e.toString());
+    }
   }
 
   const row = [
@@ -134,7 +148,7 @@ function appendStudentLead(ss, data) {
     data.loanType || "",
     data.coApplicant || "",
     data.partnerRef || "Direct (Organic)",
-    data.sourceUrl || "",
+    data.sourceName || data.sourceUrl || "Website",
     "New Lead"
   ];
 
@@ -155,12 +169,25 @@ function appendPartnerLead(ss, data) {
       "Email Address",
       "Operating City",
       "Monthly Student Volume",
-      "Source URL",
+      "Source Name",
       "Partner Status"
     ];
     sheet.appendRow(headers);
     sheet.getRange(1, 1, 1, headers.length).setFontWeight("bold").setBackground("#D97706").setFontColor("#FFFFFF");
     sheet.setFrozenRows(1);
+  } else {
+    // Auto-migrate existing sheet header from "Source URL" to "Source Name"
+    try {
+      const lastCol = Math.max(sheet.getLastColumn(), 1);
+      const headerRow = sheet.getRange(1, 1, 1, lastCol).getValues()[0];
+      for (let i = 0; i < headerRow.length; i++) {
+        if (headerRow[i] === "Source URL") {
+          sheet.getRange(1, i + 1).setValue("Source Name");
+        }
+      }
+    } catch (e) {
+      Logger.log("Auto-migration notice: " + e.toString());
+    }
   }
 
   const row = [
@@ -171,7 +198,7 @@ function appendPartnerLead(ss, data) {
     data.email || "",
     data.city || "",
     data.monthlyStudents || "",
-    data.sourceUrl || "",
+    data.sourceName || data.sourceUrl || "Website",
     "Pending Agreement"
   ];
 

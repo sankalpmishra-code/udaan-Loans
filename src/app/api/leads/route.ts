@@ -1,5 +1,70 @@
 import { NextResponse } from "next/server";
 
+function determineSourceName({
+  sourceName,
+  sourceUrl,
+  landingPage,
+  leadType,
+  utmSource,
+}: {
+  sourceName?: string;
+  sourceUrl?: string;
+  landingPage?: string;
+  leadType?: string;
+  utmSource?: string;
+}): string {
+  let resolved = sourceName?.trim() || "";
+
+  // If no explicit sourceName, derive from sourceUrl or landingPage
+  if (!resolved && (sourceUrl || landingPage)) {
+    const raw = sourceUrl || landingPage || "";
+    try {
+      const url = raw.startsWith("http") ? new URL(raw) : new URL(raw, "https://www.udaaneduloans.com");
+      const path = url.pathname.replace(/\/$/, "");
+      if (!path || path === "") {
+        resolved = "Homepage Hero Form";
+      } else if (path === "/match") {
+        resolved = "Loan Matcher";
+      } else if (path === "/apply") {
+        resolved = "Apply Page Form";
+      } else if (path === "/partners") {
+        resolved = "Partner Registration";
+      } else if (path === "/calculator") {
+        resolved = "EMI Calculator";
+      } else if (path === "/tax-calculator") {
+        resolved = "Tax Calculator";
+      } else if (path.startsWith("/destinations/")) {
+        const dest = path.split("/")[2] || "";
+        resolved = `Destination Guide (${dest.toUpperCase()})`;
+      } else if (path.startsWith("/universities/")) {
+        const uni = path.split("/")[2] || "";
+        resolved = `University Guide (${uni})`;
+      } else {
+        resolved = path.replace(/^\//, "").replace(/-/g, " ");
+      }
+    } catch {
+      if (!raw.startsWith("http")) {
+        resolved = raw;
+      }
+    }
+  }
+
+  // Fallback based on leadType if still unresolved
+  if (!resolved) {
+    if (leadType === "Partner Registration") resolved = "Partner Registration";
+    else if (leadType === "Hero Loan Options Assessment" || leadType === "Hero Quick Eligibility") resolved = "Homepage Hero Form";
+    else if (leadType === "Two-Stage Matcher Application") resolved = "Loan Matcher";
+    else resolved = "Website Direct";
+  }
+
+  // If UTM source exists and is not generic, append UTM info
+  if (utmSource && utmSource.trim() && !["direct", "none", "(direct)"].includes(utmSource.toLowerCase())) {
+    resolved = `${resolved} (${utmSource.trim()})`;
+  }
+
+  return resolved;
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -19,6 +84,7 @@ export async function POST(request: Request) {
       city = "",
       monthlyStudents = "",
       partnerRef = "",
+      sourceName = "",
       sourceUrl = "",
       additionalNotes = "",
       utmSource = "",
@@ -45,6 +111,14 @@ export async function POST(request: Request) {
       );
     }
 
+    const resolvedSourceName = determineSourceName({
+      sourceName,
+      sourceUrl,
+      landingPage,
+      leadType,
+      utmSource,
+    });
+
     const payload = {
       timestamp: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
       leadType,
@@ -60,7 +134,8 @@ export async function POST(request: Request) {
       city,
       monthlyStudents,
       partnerRef,
-      sourceUrl,
+      sourceName: resolvedSourceName,
+      sourceUrl: resolvedSourceName, // Keeps backward compatibility with deployed Google Apps Script webhooks
       additionalNotes,
       utmSource,
       utmMedium,
