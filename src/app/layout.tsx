@@ -89,7 +89,6 @@ export const metadata: Metadata = {
 
 import WhatsAppWidget from "@/components/WhatsAppWidget";
 import Analytics from "@/components/Analytics";
-import TabVisibilityManager from "@/components/TabVisibilityManager";
 
 export default function RootLayout({
   children,
@@ -199,7 +198,6 @@ export default function RootLayout({
         <JsonLd data={graphSchema} />
       </head>
       <body>
-        <TabVisibilityManager />
         <Analytics />
         <Header />
         <main>{children}</main>
