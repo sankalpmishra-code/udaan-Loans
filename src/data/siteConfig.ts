@@ -17,7 +17,7 @@ export const siteConfig = {
   phoneNumbers: ["+91 7303200803", "+91 7303200804"],
   email: "info@udaaneduloans.com",
   whatsappNumber: "917303200803",
-  foundingYear: "2021",
+  foundingYear: "2026",
   locale: "en_IN",
   address: {
     streetAddress: "Level 4, Cyber City, DLF Phase 2",
