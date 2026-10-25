@@ -11,9 +11,10 @@ export type CountryCode =
   | "italy"
   | "switzerland"
   | "malta"
-  | "cyprus";
+  | "cyprus"
+  | "uae";
 
-export type Region = "uk" | "europe" | "north-america" | "australia";
+export type Region = "uk" | "europe" | "north-america" | "australia" | "middle-east";
 
 export type InstitutionType =
   | "Russell Group / Global Top 100"
@@ -48,8 +49,8 @@ export interface UniversityData {
   region: Region;
   city: string;
   qsRank: number | string;
-  currency: "USD" | "EUR" | "CAD" | "GBP" | "AUD" | "CHF" | "SEK";
-  currencySymbol: "$" | "€" | "C$" | "£" | "A$" | "CHF" | "SEK";
+  currency: "USD" | "EUR" | "CAD" | "GBP" | "AUD" | "CHF" | "SEK" | "AED";
+  currencySymbol: "$" | "€" | "C$" | "£" | "A$" | "CHF" | "SEK" | "AED ";
   tuitionAnnual: number; // in native currency
   tuitionRangeINR: string;
   livingCostAnnual: number; // in native currency

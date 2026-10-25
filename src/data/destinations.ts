@@ -632,6 +632,95 @@ export const destinationsList: Destination[] = [
       },
     ],
   },
+  {
+    id: "uae",
+    country: "United Arab Emirates",
+    flag: "🇦🇪",
+    tagline: "Finance Global Branch Campuses & Executive Degrees in Dubai Knowledge Park & Academic City",
+    popularCourses: [
+      "MBA & Global Executive Management",
+      "MSc Artificial Intelligence & Robotics",
+      "MSc Data Science & Cyber Security",
+      "B.E. / B.Tech Computer Science",
+      "International Hospitality & Tourism",
+      "Logistics & Supply Chain Management",
+    ],
+    avgTuition: "₹11L - ₹18L / year (AED 50,000 - AED 80,000/year)",
+    avgLivingCost: "₹8L - ₹13L / year (AED 3,500 - AED 5,500/month)",
+    typicalLoanAmount: "₹15 Lakhs - ₹45 Lakhs",
+    visaFundRequirements:
+      "Official student residence visa sponsored directly by the university (GDRFA Dubai/ICP UAE). Requires first semester or annual tuition fee receipt, entry permit fee, and health insurance proof.",
+    embassyFinancialOverview:
+      "Higher education institutions situated within specialized free zones such as Dubai International Academic City (DIAC) and Dubai Knowledge Park (DKP)—including Heriot-Watt University Dubai, Middlesex University Dubai, BITS Pilani Dubai, and University of Wollongong in Dubai—act as licensed institutional visa sponsors under General Directorate of Residency and Foreigners Affairs (GDRFA) guidelines. Indian lenders recognize these branch campuses, disbursing funds directly in AED or USD via SWIFT telegraphic transfers to satisfy admission and visa clearances.",
+    loanHighlights: [
+      "Collateral-free unsecured loans up to ₹45 Lakhs for accredited UAE branch campuses",
+      "Pre-visa sanction letters accepted for unconditional university admission and entry permit sponsorship",
+      "Direct university tuition remittance in UAE Dirhams (AED) or USD with 0% margin money options",
+      "Moratorium period: Full course duration + 6 to 12 months grace period",
+      "Comprehensive coverage including tuition, campus accommodation, student visa fees, and medical insurance",
+    ],
+    workPermitYears: "Part-Time Student Internships Permitted + 1-2 Year Green Visa / 10-Year Golden Visa for Top Graduates",
+    topLenders: [
+      {
+        name: "HDFC Credila",
+        category: "NBFC / Fintech",
+        indicativeRate: "10.25% - 12.25%",
+        maxUnsecured: "₹45 Lakhs",
+        maxSecured: "₹75 Lakhs",
+        processingDays: "3 - 5 Days",
+        keyAdvantage: "Fast-track unsecured approvals with direct telegraphic AED remittance to UAE universities.",
+      },
+      {
+        name: "State Bank of India (SBI)",
+        category: "Public Bank",
+        indicativeRate: "8.15% - 9.15%",
+        maxUnsecured: "₹20 Lakhs",
+        maxSecured: "₹1.50 Crore",
+        processingDays: "10 - 15 Days",
+        keyAdvantage: "Concessional scholar rates under SBI Global Ed-Vantage against property collateral.",
+      },
+      {
+        name: "Avanse Financial Services",
+        category: "NBFC / Fintech",
+        indicativeRate: "10.50% - 12.50%",
+        maxUnsecured: "₹40 Lakhs",
+        maxSecured: "₹65 Lakhs",
+        processingDays: "3 - 5 Days",
+        keyAdvantage: "100% cost of study financing covering living expenses and campus housing.",
+      },
+      {
+        name: "Auxilo Finserve",
+        category: "NBFC / Fintech",
+        indicativeRate: "10.75% - 12.75%",
+        maxUnsecured: "₹35 Lakhs",
+        maxSecured: "₹50 Lakhs",
+        processingDays: "3 - 4 Days",
+        keyAdvantage: "Flexible underwriting tailored for 1-year UK and European Master's programs delivered in Dubai.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Can I get an Indian education loan to study in Dubai and the UAE?",
+        answer:
+          "Yes. Indian public sector banks (such as SBI and Bank of Baroda) and premier NBFCs (including HDFC Credila, Avanse, and Auxilo) actively finance degrees at accredited global branch campuses and universities licensed by KHDA/CAA in Dubai and across the UAE.",
+      },
+      {
+        question: "Does the UAE student visa require financial proof or a bank loan sanction letter?",
+        answer:
+          "UAE student residence visas are sponsored directly by the admitting university under GDRFA/ICP regulations. The university requires proof of tuition payment or an official education loan sanction letter before issuing the student entry permit and lodging the visa sponsorship application.",
+      },
+      {
+        question: "Can I get a collateral-free education loan for UAE universities?",
+        answer:
+          "Yes. For recognized branch campuses (such as Heriot-Watt Dubai, Middlesex Dubai, BITS Pilani Dubai, and UOWD), specialized education NBFCs offer unsecured collateral-free loans up to ₹40 Lakhs to ₹45 Lakhs based on academic merit and co-applicant income.",
+      },
+      {
+        question: "How are education loan funds disbursed for UAE universities?",
+        answer:
+          "Tuition fees are wired directly by the lender in UAE Dirhams (AED) or US Dollars (USD) via SWIFT telegraphic transfer to the university's official bank account. Living and hostel expenses are disbursed into the student's international forex card or local UAE bank account.",
+      },
+    ],
+  },
 ];
 
 export function getDestinationById(id: string): Destination | undefined {

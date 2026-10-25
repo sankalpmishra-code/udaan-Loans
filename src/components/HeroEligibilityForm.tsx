@@ -282,6 +282,9 @@ export default function HeroEligibilityForm() {
                 <option value="Germany">Germany</option>
                 <option value="Australia">Australia</option>
                 <option value="Ireland">Ireland</option>
+                <option value="United Arab Emirates">United Arab Emirates (UAE / Dubai)</option>
+                <option value="Malta">Malta</option>
+                <option value="Cyprus">Cyprus</option>
                 <option value="France">France</option>
                 <option value="Other Country">Other Country</option>
               </select>
