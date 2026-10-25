@@ -111,7 +111,6 @@ export default function LendersLogoShowcase() {
                     height: "36px",
                     maxWidth: "100%",
                     width: "auto",
-                    aspectRatio: "200 / 48",
                     objectFit: "contain",
                     display: "block",
                   }}

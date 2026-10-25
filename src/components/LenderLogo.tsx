@@ -42,8 +42,7 @@ export default function LenderLogo({
           display: "inline-block",
           height: heightVal,
           width: width ? (typeof width === "number" ? `${width}px` : width) : "auto",
-          aspectRatio: "200 / 48",
-          maxWidth: "100%",
+          maxWidth: "160px",
           objectFit: "contain",
           verticalAlign: "middle",
           ...imgStyle,
@@ -81,8 +80,7 @@ export default function LenderLogo({
           style={{
             height: heightVal,
             width: "auto",
-            aspectRatio: "200 / 48",
-            maxWidth: "100%",
+            maxWidth: "150px",
             objectFit: "contain",
             ...imgStyle,
           }}
@@ -118,7 +116,6 @@ export default function LenderLogo({
         style={{
           height: heightVal,
           width: "auto",
-          aspectRatio: "200 / 48",
           maxWidth: "140px",
           objectFit: "contain",
           display: "block",
