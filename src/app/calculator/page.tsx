@@ -3,12 +3,14 @@ import Link from "next/link";
 import Calculator from "@/components/Calculator";
 import FAQSection from "@/components/FAQSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import JsonLd from "@/components/JsonLd";
 import { calculatorFaqs } from "@/data/faqs";
+import { siteConfig } from "@/data/siteConfig";
 
 export const metadata: Metadata = {
-  title: "Education Loan EMI Calculator with Moratorium Period (Study Abroad)",
+  title: "Education Loan EMI Calculator with Moratorium | Udaan Edu Loans",
   description:
-    "Calculate your monthly EMI for overseas education loans with study moratorium period, simple interest accrual, total interest payable, and full year-by-year amortization schedule.",
+    "Calculate monthly EMI and moratorium period interest for study abroad education loans. Compare SBI, HDFC Credila, and NBFC repayment schedules.",
   keywords: [
     "education loan EMI calculator study abroad",
     "study abroad loan calculator with moratorium",
@@ -20,11 +22,40 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/calculator",
   },
+  openGraph: {
+    title: "Education Loan EMI Calculator with Moratorium | Udaan Edu Loans",
+    description:
+      "Calculate study abroad education loan EMI, simple interest during moratorium, and complete repayment schedules.",
+    url: `${siteConfig.url}/calculator`,
+    type: "website",
+  },
 };
 
 export default function CalculatorPage() {
+  const calculatorSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Study Abroad Education Loan EMI Calculator",
+    applicationCategory: "FinanceApplication",
+    operatingSystem: "All",
+    url: `${siteConfig.url}/calculator`,
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "INR",
+    },
+    description:
+      "Interactive financial planning calculator estimating monthly EMI, moratorium period simple interest accrual, and total repayment costs across Indian banks and NBFCs.",
+    provider: {
+      "@type": "FinancialService",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+  };
+
   return (
     <>
+      <JsonLd data={calculatorSchema} />
       <Breadcrumbs items={[{ name: "EMI Calculator", url: "/calculator" }]} />
 
       <section className="hero" style={{ padding: "40px 0 60px" }}>

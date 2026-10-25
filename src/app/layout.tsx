@@ -1,9 +1,24 @@
 import type { Metadata, Viewport } from "next";
+import { Bricolage_Grotesque, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 import { siteConfig } from "@/data/siteConfig";
+
+const bricolage = Bricolage_Grotesque({
+  subsets: ["latin"],
+  weight: ["500", "700", "800"],
+  variable: "--font-heading",
+  display: "swap",
+});
+
+const sourceSans = Source_Sans_3({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  variable: "--font-body",
+  display: "swap",
+});
 
 export const viewport: Viewport = {
   themeColor: siteConfig.themeColor,
@@ -189,7 +204,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en">
+    <html lang="en" className={`${bricolage.variable} ${sourceSans.variable}`}>
       <head>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=4" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=4" />
@@ -200,12 +215,6 @@ export default function RootLayout({
         <link rel="mask-icon" href="/safari-pinned-tab.svg?v=4" color="#094754" />
         <link rel="shortcut icon" href="/favicon.ico?v=4" />
         <link rel="manifest" href="/manifest.webmanifest" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Sans+3:wght@400;600;700&display=swap"
-          rel="stylesheet"
-        />
         <JsonLd data={graphSchema} />
       </head>
       <body>

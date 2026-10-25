@@ -2,6 +2,7 @@ import { MetadataRoute } from "next";
 import { siteConfig } from "@/data/siteConfig";
 import { universities } from "@/data/universities";
 import { destinationsList } from "@/data/destinations";
+import { lendersList } from "@/data/lenders";
 
 /**
  * Next.js Dynamic XML Sitemap Generator
@@ -36,6 +37,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       path: "/loans",
       priority: priorities.loans,
       changeFrequency: changeFrequencies.loans,
+    },
+    {
+      path: "/loans/without-collateral",
+      priority: 0.95,
+      changeFrequency: "weekly" as const,
     },
     {
       path: "/destinations",
@@ -98,6 +104,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   destinationsList.forEach((d) => {
     routes.push({
       path: `/destinations/${d.id}`,
+      priority: 0.9,
+      changeFrequency: "weekly" as const,
+    });
+  });
+
+  // Add all dedicated lender scheme landing pages
+  lendersList.forEach((l) => {
+    routes.push({
+      path: `/lenders/${l.slug}`,
       priority: 0.9,
       changeFrequency: "weekly" as const,
     });

@@ -39,7 +39,7 @@ export default function Footer() {
             <ul>
               <li><Link href="/match">60-Second Bank Matcher</Link></li>
               <li><Link href="/loans">Secured Loans (Property/FD)</Link></li>
-              <li><Link href="/loans">Collateral-Free Loans (up to ₹75L)</Link></li>
+              <li><Link href="/loans/without-collateral">Collateral-Free Loans (up to ₹75L)</Link></li>
               <li><Link href="/calculator">Overseas Loan EMI Calculator</Link></li>
               <li><Link href="/tax-calculator">Section 80E Tax Savings Calculator</Link></li>
               <li><Link href="/assessment">Preliminary Funding Assessment</Link></li>

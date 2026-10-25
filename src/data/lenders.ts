@@ -183,3 +183,7 @@ export const lendersList: Lender[] = [
     highlights: ["No Indian co-signer or collateral required", "Disbursed directly in USD/CAD"],
   }
 ];
+
+export function getLenderBySlug(slug: string): Lender | undefined {
+  return lendersList.find((l) => l.slug === slug);
+}

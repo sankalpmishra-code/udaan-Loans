@@ -3,9 +3,9 @@ import JsonLd from "@/components/JsonLd";
 import { siteConfig } from "@/data/siteConfig";
 
 export const metadata: Metadata = {
-  title: "Two-Stage Bank & Lender Matcher | Check Eligibility Across 30+ Lenders",
+  title: "60-Second Study Abroad Loan Matcher | Compare 30+ Banks | Udaan",
   description:
-    "Match your study abroad education loan profile against verified underwriting rules from 30+ Indian public banks, private banks, and NBFCs. Instant rule breakdown with zero CIBIL score impact.",
+    "Match your overseas education loan profile against 30+ Indian public banks, private banks, and NBFCs. Instant eligibility with zero CIBIL impact.",
   keywords: [
     "education loan bank matcher",
     "study abroad loan eligibility checker",

@@ -45,7 +45,7 @@ export const siteConfig = {
   },
   robotsSettings: {
     allowAll: true,
-    disallowedPaths: ["/api/", "/_next/", "/admin/", "/private/"],
+    disallowedPaths: ["/api/", "/admin/", "/private/"],
     crawlDelay: 1, // seconds for friendly crawlers
     aiBots: {
       gptBot: true,

@@ -3,12 +3,14 @@ import Link from "next/link";
 import TaxCalculator from "@/components/TaxCalculator";
 import FAQSection from "@/components/FAQSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import JsonLd from "@/components/JsonLd";
 import { taxFaqs } from "@/data/faqs";
+import { siteConfig } from "@/data/siteConfig";
 
 export const metadata: Metadata = {
-  title: "Section 80E Education Loan Tax Deduction Calculator (Old vs New Regime)",
+  title: "Section 80E Tax Deduction Calculator (Old vs New) | Udaan",
   description:
-    "Calculate your exact income tax savings under Section 80E of the Indian Income Tax Act on education loan interest. Compare Old vs New Tax Regime, 8-year statutory limit, and effective post-tax borrowing costs.",
+    "Calculate income tax savings under Section 80E on study abroad loan interest. Compare Old vs New Tax Regime and effective post-tax borrowing costs.",
   keywords: [
     "section 80E calculator",
     "education loan tax deduction calculator",
@@ -21,11 +23,40 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/tax-calculator",
   },
+  openGraph: {
+    title: "Section 80E Education Loan Tax Savings Calculator | Udaan",
+    description:
+      "Calculate 100% tax deductions on education loan interest under Section 80E for up to 8 years.",
+    url: `${siteConfig.url}/tax-calculator`,
+    type: "website",
+  },
 };
 
 export default function TaxCalculatorPage() {
+  const taxCalcSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Section 80E Education Loan Tax Deduction Calculator",
+    applicationCategory: "FinanceApplication",
+    operatingSystem: "All",
+    url: `${siteConfig.url}/tax-calculator`,
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "INR",
+    },
+    description:
+      "Calculates Indian Income Tax deductions on education loan interest paid under Section 80E across tax slabs and regimes.",
+    provider: {
+      "@type": "FinancialService",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+  };
+
   return (
     <>
+      <JsonLd data={taxCalcSchema} />
       <Breadcrumbs items={[{ name: "Section 80E Tax Calculator", url: "/tax-calculator" }]} />
 
       <section className="hero" style={{ padding: "40px 0 60px" }}>

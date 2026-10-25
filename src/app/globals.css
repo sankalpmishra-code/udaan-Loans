@@ -22,8 +22,8 @@
   --success: #059669;
   --danger: #dc2626;
 
-  --head: "Bricolage Grotesque", "Trebuchet MS", sans-serif;
-  --body: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --head: var(--font-heading), "Bricolage Grotesque", "Trebuchet MS", sans-serif;
+  --body: var(--font-body), "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   --radius-sm: 6px;
   --radius-md: 10px;

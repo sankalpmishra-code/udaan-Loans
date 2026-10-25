@@ -3,13 +3,16 @@ import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
 import LenderLogo from "@/components/LenderLogo";
+import JsonLd from "@/components/JsonLd";
+import EditorialByline from "@/components/EditorialByline";
 import { lendersList } from "@/data/lenders";
 import { lendersFaqs } from "@/data/faqs";
+import { siteConfig } from "@/data/siteConfig";
 
 export const metadata: Metadata = {
   title: "Compare 30+ Study Abroad Education Loan Lenders: SBI, HDFC Credila, Avanse",
   description:
-    "Compare education loan interest rates, collateral requirements, and processing times across 30+ Indian public banks, private banks, and NBFCs for overseas studies.",
+    "Compare education loan interest rates, collateral requirements, and processing times across 30+ Indian public banks, private banks, and NBFCs.",
   keywords: [
     "compare study abroad education loans India",
     "SBI vs HDFC Credila education loan",
@@ -20,6 +23,13 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: "/lenders",
+  },
+  openGraph: {
+    title: "Compare 30+ Study Abroad Education Loan Lenders | Udaan Edu Loans",
+    description:
+      "Compare interest rates, collateral terms, and turnaround times across 30+ verified Indian banks and NBFCs.",
+    url: `${siteConfig.url}/lenders`,
+    type: "website",
   },
 };
 
@@ -43,8 +53,22 @@ export default function LendersPage() {
     "MPOWER Financing", "Propelld", "Tata Capital", "Bajaj Finserv"
   ];
 
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Overseas Study Abroad Education Loan Lenders in India",
+    description: "Verified directory of 30+ public sector banks, private commercial banks, and education NBFCs in India.",
+    itemListElement: lendersList.map((lender, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: lender.name,
+      url: `${siteConfig.url}/lenders/${lender.slug}`,
+    })),
+  };
+
   return (
     <>
+      <JsonLd data={itemListSchema} />
       <Breadcrumbs items={[{ name: "Compare Lenders", url: "/lenders" }]} />
 
       <section className="hero" style={{ padding: "48px 0 64px" }}>
@@ -66,6 +90,12 @@ export default function LendersPage() {
             </div>
           </div>
 
+          <EditorialByline
+            reviewerName="Udaan Banking & Credit Advisory Committee"
+            reviewerTitle="Accredited Education Loan Underwriting Specialists"
+            lastUpdated="October 2026"
+          />
+
           {/* Master Comparison Table */}
           <div className="data-table-wrapper" style={{ marginTop: "20px" }}>
             <table className="data-table">
@@ -78,6 +108,7 @@ export default function LendersPage() {
                   <th>Secured Limit</th>
                   <th>Processing Time</th>
                   <th>Margin Money</th>
+                  <th>Scheme Details</th>
                 </tr>
               </thead>
               <tbody>
@@ -87,7 +118,12 @@ export default function LendersPage() {
                       <div style={{ display: "flex", alignItems: "center", gap: "12px", minWidth: "220px" }}>
                         <LenderLogo name={lender.name} logo={lender.logo} height={32} />
                         <div>
-                          <strong style={{ display: "block", color: "var(--ink)" }}>{lender.name}</strong>
+                          <Link
+                            href={`/lenders/${lender.slug}`}
+                            style={{ display: "block", color: "var(--brand)", fontWeight: 700, textDecoration: "underline" }}
+                          >
+                            {lender.name}
+                          </Link>
                           <div style={{ fontSize: "0.82rem", color: "var(--muted)", marginTop: "4px" }}>
                             {lender.highlights.join(" • ")}
                           </div>
@@ -100,6 +136,15 @@ export default function LendersPage() {
                     <td>{lender.maxSecured}</td>
                     <td>{lender.processingTime}</td>
                     <td>{lender.marginMoney}</td>
+                    <td>
+                      <Link
+                        href={`/lenders/${lender.slug}`}
+                        className="btn btn-outline"
+                        style={{ padding: "4px 10px", fontSize: "0.78rem", whiteSpace: "nowrap" }}
+                      >
+                        View Details →
+                      </Link>
+                    </td>
                   </tr>
                 ))}
               </tbody>

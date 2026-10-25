@@ -4,12 +4,13 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
 import JsonLd from "@/components/JsonLd";
 import LenderLogo from "@/components/LenderLogo";
+import EditorialByline from "@/components/EditorialByline";
 import { siteConfig } from "@/data/siteConfig";
 
 export const metadata: Metadata = {
-  title: "Compare Education Loans in India (2026): Public Banks vs Private Banks vs NBFCs vs Global Lenders",
+  title: "Compare Education Loans 2026: Public vs Private vs NBFCs | Udaan",
   description:
-    "Comprehensive side-by-side comparison of 30+ education loan lenders for study abroad. Compare SBI, BoB, Axis, ICICI, HDFC Credila, Avanse, and Prodigy on interest rates, processing fees, margin money, and CIBIL benchmarks.",
+    "Compare 30+ study abroad education loan lenders in India. Compare interest rates, processing fees, margin money, and collateral limits side-by-side.",
   keywords: [
     "compare education loan lenders India",
     "SBI vs HDFC Credila education loan",
@@ -22,6 +23,13 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: "/compare-lenders",
+  },
+  openGraph: {
+    title: "Compare Education Loans 2026: Public vs Private vs NBFCs | Udaan",
+    description:
+      "Compare 30+ study abroad education loan lenders in India side-by-side on interest rates, processing fees, and collateral terms.",
+    url: `${siteConfig.url}/compare-lenders`,
+    type: "website",
   },
 };
 
@@ -103,6 +111,12 @@ export default function CompareLendersPage() {
               Indian students financing overseas studies have four distinct lender categories: Public Sector Banks, Private Commercial Banks, Education NBFCs, and International USD Lenders. Compare real interest rates, processing fees, margin money, and underwriting benchmarks below.
             </p>
           </div>
+
+          <EditorialByline
+            reviewerName="Udaan Banking & Credit Advisory Committee"
+            reviewerTitle="Former Public Bank Scale-IV & NBFC Underwriting Specialists"
+            lastUpdated="October 2026"
+          />
 
           {/* Master 4-Way Comparison Table */}
           <div className="data-table-wrapper" style={{ marginTop: "32px" }}>

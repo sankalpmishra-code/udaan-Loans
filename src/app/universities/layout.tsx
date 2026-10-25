@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { siteConfig } from "@/data/siteConfig";
 
 export const metadata: Metadata = {
-  title: "Global Universities Education Loan Directory | UK, US, Europe, Canada & Australia",
+  title: "Global Universities Education Loan Directory (2,500+) | Udaan",
   description:
-    "Explore 2,500+ accredited international universities and pathway colleges. Check lender prime-list status, collateral-free loan limits up to ₹75 Lakhs, and living cost requirements.",
+    "Explore 2,500+ overseas universities with verified bank prime-tier discounts, collateral-free limits up to ₹75L, and living cost guidelines.",
   keywords: [
     "education loan for foreign universities",
     "SBI prime list universities abroad",

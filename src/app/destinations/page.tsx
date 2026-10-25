@@ -6,9 +6,9 @@ import { destinationsList } from "@/data/destinations";
 import { destinationsFaqs } from "@/data/faqs";
 
 export const metadata: Metadata = {
-  title: "Study Abroad Education Loans: USA, UK, Canada, Germany & 40+ Countries",
+  title: "Study Abroad Education Loans by Destination (2026) | Udaan",
   description:
-    "Explore education loan requirements, visa proof of funds rules, tuition and living cost estimates for studying in the USA, UK, Canada, Australia, Germany, and 40+ countries.",
+    "Compare education loan requirements and proof of funds rules for USA, UK, Canada, Germany, Australia, and 40+ countries with Udaan Edu Loans.",
   keywords: [
     "education loan for USA MS",
     "education loan for UK student visa",

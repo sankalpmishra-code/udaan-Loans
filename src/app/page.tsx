@@ -12,16 +12,16 @@ import { lendersList } from "@/data/lenders";
 import { siteConfig } from "@/data/siteConfig";
 
 export const metadata: Metadata = {
-  title: "Education Loan for Study Abroad | Compare Secured & Unsecured Options | Udaan Edu Loans",
+  title: "Education Loan for Study Abroad (2026) | Compare 30+ Banks | Udaan Edu Loans",
   description:
-    "Explore education loans without co-applicant for Masters courses for Indian students. Compare 30+ lenders for USA, UK, Canada, Germany & Australia with 100% virtual guidance and zero service fees.",
+    "Compare secured and collateral-free education loans for study abroad from 30+ top banks and NBFCs. Get pre-visa sanction letters with Udaan Edu Loans.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Education Loan Without Co-Applicant for Masters Courses | Udaan Edu Loans",
+    title: "Education Loan for Study Abroad | Compare 30+ Banks & NBFCs | Udaan",
     description:
-      "Explore education loans without co-applicant for Masters courses for Indian students. 100% virtual guidance, collateral-free options up to ₹75L, and zero advisory fees.",
+      "Compare secured and unsecured study abroad education loans from 30+ top banks and NBFCs. 100% free guidance and fast pre-visa sanctions.",
     url: siteConfig.url,
     siteName: siteConfig.name,
     locale: siteConfig.locale,
@@ -30,46 +30,7 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  // Structured Data Schemas
-  const organizationSchema = {
-    "@context": "https://schema.org",
-    "@type": ["FinancialService", "Organization"],
-    "@id": `${siteConfig.url}/#organization`,
-    name: siteConfig.name,
-    legalName: siteConfig.legalName,
-    url: siteConfig.url,
-    logo: `${siteConfig.url}/icon.svg`,
-    description: siteConfig.description,
-    telephone: siteConfig.telephone,
-    email: siteConfig.email,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: siteConfig.address.streetAddress,
-      addressLocality: siteConfig.address.addressLocality,
-      addressRegion: siteConfig.address.addressRegion,
-      postalCode: siteConfig.address.postalCode,
-      addressCountry: siteConfig.address.addressCountry,
-    },
-    sameAs: [
-      siteConfig.social.linkedinUrl,
-      siteConfig.social.twitterUrl,
-      siteConfig.social.instagramUrl,
-      siteConfig.social.facebookUrl,
-    ],
-  };
-
-  const webSiteSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "@id": `${siteConfig.url}/#website`,
-    url: siteConfig.url,
-    name: siteConfig.name,
-    description: siteConfig.description,
-    publisher: {
-      "@id": `${siteConfig.url}/#organization`,
-    },
-  };
-
+  // Page-specific Structured Data: FAQPage (Organization & WebSite schemas are globally provided by root layout)
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -85,7 +46,7 @@ export default function HomePage() {
 
   return (
     <>
-      <JsonLd data={[organizationSchema, webSiteSchema, faqSchema]} />
+      <JsonLd data={faqSchema} />
 
       {/* =================================================================
           SECTION A: HERO & CONVERSION FORM

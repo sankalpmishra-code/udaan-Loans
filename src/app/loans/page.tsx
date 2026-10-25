@@ -3,12 +3,13 @@ import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
 import LenderLogo from "@/components/LenderLogo";
+import EditorialByline from "@/components/EditorialByline";
 import { loansFaqs } from "@/data/faqs";
 
 export const metadata: Metadata = {
-  title: "Abroad Education Loan Types: Secured vs Collateral-Free Loans",
+  title: "Secured vs Collateral-Free Study Abroad Loans (2026) | Udaan",
   description:
-    "Compare secured and unsecured study abroad education loans in India. Learn about loan amounts up to ₹1.5 Crore, interest rates starting at 7.5%, covered expenses, and margin money rules.",
+    "Compare secured and unsecured study abroad education loans in India. Rates from 7.5%, limits up to ₹1.5 Cr, and 100% tuition plus living cost coverage.",
   keywords: [
     "secured education loan study abroad",
     "collateral free education loan India",
@@ -38,6 +39,12 @@ export default function LoansPage() {
               delivers the optimal balance of interest cost, speed, and flexibility.
             </p>
           </div>
+
+          <EditorialByline
+            reviewerName="Udaan Overseas Education Loan Research Team"
+            reviewerTitle="Accredited Student Lending Advisors"
+            lastUpdated="October 2026"
+          />
 
           <div className="grid-2">
             {/* Secured Loans Card */}
@@ -94,8 +101,11 @@ export default function LoansPage() {
                 <li><strong>Best For:</strong> Students admitted to top-tier universities who either do not own property or prefer not to mortgage ancestral assets.</li>
               </ul>
 
-              <div style={{ marginTop: "24px" }}>
-                <Link href="/apply" className="btn btn-accent full-width">
+              <div style={{ marginTop: "24px", display: "flex", flexDirection: "column", gap: "10px" }}>
+                <Link href="/loans/without-collateral" className="btn btn-accent full-width">
+                  View All Collateral-Free Lenders &amp; Limits →
+                </Link>
+                <Link href="/apply" className="btn btn-outline full-width">
                   Check Collateral-Free Eligibility
                 </Link>
               </div>

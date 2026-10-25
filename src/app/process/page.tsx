@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
+import JsonLd from "@/components/JsonLd";
 import { processFaqs } from "@/data/faqs";
+import { siteConfig } from "@/data/siteConfig";
 
 export const metadata: Metadata = {
-  title: "Step-by-Step Study Abroad Education Loan Process: From Apply to Disbursal",
+  title: "5-Step Study Abroad Education Loan Roadmap | Apply to Disbursal | Udaan",
   description:
-    "Learn the 5-step abroad education loan journey in India. From document submission to sanction letter in 3-7 days, visa interview proof of funds, and direct university SWIFT wire remittance.",
+    "Learn the 5-step abroad education loan journey in India. From document submission to sanction letter in 3-7 days and foreign university wire remittance.",
   keywords: [
     "education loan application process India",
     "how to get abroad education loan fast",
@@ -18,11 +20,58 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/process",
   },
+  openGraph: {
+    title: "5-Step Study Abroad Education Loan Roadmap | Udaan Edu Loans",
+    description:
+      "Step-by-step roadmap from profile assessment to sanction letter and foreign wire remittance.",
+    url: `${siteConfig.url}/process`,
+    type: "website",
+  },
 };
 
 export default function ProcessPage() {
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "How to Secure an Overseas Study Abroad Education Loan in India",
+    description: "A 5-step roadmap to obtaining an overseas education loan from top Indian banks and NBFCs, from documentation to foreign campus disbursement.",
+    step: [
+      {
+        "@type": "HowToStep",
+        position: 1,
+        name: "Profile Assessment & Lender Matchmaking",
+        text: "Analyze target destination, course level, co-applicant financial strength, and collateral availability to filter eligible banks and NBFCs.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 2,
+        name: "Digital Document Verification",
+        text: "Upload academic transcripts, admit letter, KYC documents, and co-applicant income proofs for doorstep or virtual verification.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 3,
+        name: "Underwriting & Credit Approval",
+        text: "Lenders evaluate debt-service ratio, course employability, and collateral valuation, issuing in-principle sanction in 3 to 7 working days.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 4,
+        name: "Pre-Visa Sanction Letter Issuance",
+        text: "Receive an official, unconditional loan sanction letter formatted specifically for embassy visa applications (USA I-20, UKVI, German Blocked Account).",
+      },
+      {
+        "@type": "HowToStep",
+        position: 5,
+        name: "Campus Tuition Disbursal & Forex Remittance",
+        text: "Direct wire transfer of tuition fees to the foreign university campus and release of living expenses into forex cards or blocked accounts.",
+      },
+    ],
+  };
+
   return (
     <>
+      <JsonLd data={howToSchema} />
       <Breadcrumbs items={[{ name: "Application Process", url: "/process" }]} />
 
       <section className="hero" style={{ padding: "48px 0 64px" }}>
