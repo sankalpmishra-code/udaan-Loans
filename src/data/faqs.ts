@@ -129,7 +129,7 @@ export const lendersFaqs: FAQItem[] = [
   {
     question: "Which bank is best for an education loan for study abroad in India?",
     answer:
-      "Public banks (State Bank of India, Bank of Baroda, Canara Bank) are best for low interest rates (7.5% - 9.5%) when you have property collateral. Private banks (Axis Bank, ICICI Bank, HDFC Bank) and NBFCs (HDFC Credila, Avanse, Auxilo, InCred) are best for quick 3 to 5-day approvals and collateral-free loans up to ₹75 Lakhs."
+      "Public banks (State Bank of India, Bank of Baroda, Canara Bank) are best for low interest rates (7.5% - 9.5%) when you have property collateral. Private commercial banks (Axis Bank, ICICI Bank, Kotak Mahindra Bank) and specialized NBFCs (HDFC Credila, Avanse, Auxilo, InCred, Poonawalla Fincorp) are best for quick 3 to 5-day approvals and collateral-free loans up to ₹75 Lakhs."
   },
   {
     question: "What are the current interest rates offered by top study abroad lenders in 2026?",

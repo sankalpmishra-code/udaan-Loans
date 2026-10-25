@@ -153,10 +153,10 @@ export default function CompareLendersPage() {
                     <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginBottom: "6px" }}>
                       <LenderLogo name="Axis Bank" height={20} />
                       <LenderLogo name="ICICI Bank" height={20} />
-                      <LenderLogo name="HDFC Bank" height={20} />
+                      <LenderLogo name="Kotak Mahindra Bank" height={20} />
                     </div>
                     <div style={{ fontSize: "0.84rem", color: "var(--ink-secondary)" }}>
-                      Axis Bank, ICICI Bank, HDFC Bank, IDFC FIRST
+                      Axis Bank, ICICI Bank, Kotak Mahindra Bank, IDFC FIRST
                     </div>
                   </td>
                   <td className="text-green" style={{ fontWeight: "700" }}>9.25% – 11.25%</td>
@@ -176,10 +176,10 @@ export default function CompareLendersPage() {
                     <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginBottom: "6px" }}>
                       <LenderLogo name="HDFC Credila" height={20} />
                       <LenderLogo name="Avanse" height={20} />
-                      <LenderLogo name="Auxilo" height={20} />
+                      <LenderLogo name="Poonawalla Fincorp" height={20} />
                     </div>
                     <div style={{ fontSize: "0.84rem", color: "var(--ink-secondary)" }}>
-                      HDFC Credila, Avanse, Auxilo, InCred
+                      HDFC Credila, Avanse, Auxilo, InCred, Poonawalla Fincorp
                     </div>
                   </td>
                   <td className="text-green" style={{ fontWeight: "700" }}>10.25% – 12.75%</td>

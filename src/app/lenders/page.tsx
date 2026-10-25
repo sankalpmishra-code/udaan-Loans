@@ -32,15 +32,15 @@ export default function LendersPage() {
   ];
 
   const privateBanks = [
-    "HDFC Bank", "ICICI Bank", "Axis Bank", "Kotak Mahindra Bank",
+    "ICICI Bank", "Axis Bank", "Kotak Mahindra Bank",
     "IDFC FIRST Bank", "Federal Bank", "South Indian Bank", "Karnataka Bank",
     "Yes Bank", "IndusInd Bank", "RBL Bank", "Bandhan Bank"
   ];
 
   const nbfcs = [
     "HDFC Credila", "Avanse Financial Services", "Auxilo Finserve",
-    "InCred Finance", "MPOWER Financing", "Propelld", "Tata Capital",
-    "Bajaj Finserv", "Poonawalla Fincorp"
+    "InCred Finance", "Poonawalla Fincorp", "Prodigy Finance",
+    "MPOWER Financing", "Propelld", "Tata Capital", "Bajaj Finserv"
   ];
 
   return (
@@ -138,7 +138,7 @@ export default function LendersPage() {
 
             <div className="card">
               <div className="card-icon">💼</div>
-              <h3>12 Private Commercial Banks</h3>
+              <h3>11 Private Commercial Banks</h3>
               <p style={{ fontSize: "0.92rem", color: "var(--muted)" }}>
                 Fast turnaround times, digital KYC, pre-visa sanction letters, and competitive unsecured limits:
               </p>
@@ -154,7 +154,7 @@ export default function LendersPage() {
 
             <div className="card">
               <div className="card-icon">🚀</div>
-              <h3>9 Leading NBFCs &amp; Fintechs</h3>
+              <h3>10 Leading NBFCs &amp; Fintechs</h3>
               <p style={{ fontSize: "0.92rem", color: "var(--muted)" }}>
                 Specialized overseas underwriting, up to ₹75L collateral-free loans, 0% margin money, and USD disbursement:
               </p>

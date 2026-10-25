@@ -185,12 +185,12 @@ export const FEATURED_LENDERS: LenderBrand[] = [
     highlight: "Affordable Interest Structure",
   },
   {
-    name: "HDFC Bank",
-    shortName: "HDFC Bank",
-    slug: "hdfc-bank",
-    logo: "/logos/lenders/hdfc-bank.svg",
-    category: "Private Bank",
-    highlight: "Fast Digital Sanction in 4-7 Days",
+    name: "Poonawalla Fincorp",
+    shortName: "Poonawalla Fincorp",
+    slug: "poonawalla-fincorp",
+    logo: "/logos/lenders/poonawalla-fincorp.svg",
+    category: "NBFC / Global Lender",
+    highlight: "Digital Approval & Flexible Repayment",
   },
   {
     name: "Auxilo Finserve",
