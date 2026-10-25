@@ -25,8 +25,35 @@ export default function LenderLogo({
   imgStyle = {},
 }: LenderLogoProps) {
   const [imgError, setImgError] = useState(false);
-  const logoUrl = !imgError ? (logo || getLenderLogo(name)) : "/logos/lenders/sbi.svg";
+  const logoUrl = logo || getLenderLogo(name);
   const heightVal = typeof height === "number" ? `${height}px` : height;
+
+  if (imgError) {
+    return (
+      <div
+        className={`lender-logo-fallback ${className}`}
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background: "#ffffff",
+          border: "1px solid rgba(0, 0, 0, 0.08)",
+          borderRadius: "8px",
+          padding: "4px 10px",
+          fontWeight: 700,
+          fontSize: "0.82rem",
+          color: "var(--ink-primary)",
+          letterSpacing: "0.01em",
+          height: heightVal,
+          minWidth: "90px",
+          boxShadow: "0 1px 3px rgba(0, 0, 0, 0.04)",
+          ...style,
+        }}
+      >
+        {name}
+      </div>
+    );
+  }
 
   if (variant === "plain") {
     return (

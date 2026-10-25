@@ -98,6 +98,12 @@ export const LENDER_SLUG_MAP: Record<string, string> = {
   "tata capital": "tata-capital",
   "bajaj finserv": "bajaj-finserv",
   "poonawalla fincorp": "poonawalla-fincorp",
+  "poonawalla": "poonawalla-fincorp",
+  "poonawalla fincorp limited": "poonawalla-fincorp",
+  "poonawala fincorp": "poonawalla-fincorp",
+  "poonawala": "poonawalla-fincorp",
+  "poonawala fincorp limited": "poonawalla-fincorp",
+  "pfl": "poonawalla-fincorp",
 };
 
 /**
