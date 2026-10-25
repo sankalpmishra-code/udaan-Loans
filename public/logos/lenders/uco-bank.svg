@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" width="100%" height="100%">
+  <g transform="translate(6, 6)">
+    <circle cx="18" cy="18" r="17" fill="#005BAA"/>
+    <path d="M11 12h14v12a7 7 0 0 1-14 0V12z" fill="#FFCC00"/>
+    <circle cx="18" cy="18" r="3.5" fill="#005BAA"/>
+  </g>
+  <text x="48" y="23" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="15" fill="#005BAA">UCO BANK</text>
+  <text x="48" y="35" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="8.5" fill="#D97706">Honours Your Trust</text>
+</svg>

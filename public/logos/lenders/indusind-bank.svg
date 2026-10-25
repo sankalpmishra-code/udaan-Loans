@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" width="100%" height="100%">
+  <!-- IndusInd Bull Emblem -->
+  <g transform="translate(6, 6)">
+    <circle cx="18" cy="18" r="17" fill="#8B1D2C"/>
+    <path d="M10 23c2-4 6-6 10-6s7 3 8 7c-2 2-6 3-10 3s-6-2-8-4z" fill="#FFFFFF"/>
+    <circle cx="21" cy="14" r="2.5" fill="#FFFFFF"/>
+  </g>
+  <!-- Text -->
+  <text x="48" y="23" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="13.5" fill="#8B1D2C">IndusInd Bank</text>
+  <text x="48" y="35" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="8.5" fill="#64748B">Global Education Loans</text>
+</svg>

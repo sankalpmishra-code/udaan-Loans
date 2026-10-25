@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" width="100%" height="100%">
+  <!-- HDFC Square Grid Emblem -->
+  <g transform="translate(6, 6)">
+    <rect width="36" height="36" rx="4" fill="#004C8F"/>
+    <rect x="5" y="5" width="26" height="26" fill="none" stroke="#FFFFFF" stroke-width="2.5"/>
+    <rect x="13.5" y="5" width="9" height="26" fill="#ED232A"/>
+    <rect x="5" y="13.5" width="26" height="9" fill="#ED232A"/>
+    <rect x="13.5" y="13.5" width="9" height="9" fill="#004C8F"/>
+  </g>
+  <!-- Text -->
+  <text x="48" y="24" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="14.5" fill="#004C8F" letter-spacing="0.6">HDFC BANK</text>
+  <text x="48" y="36" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="9" fill="#64748B">EDUCATION LOANS</text>
+</svg>

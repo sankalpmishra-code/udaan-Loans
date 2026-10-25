@@ -4,6 +4,8 @@ import HeroEligibilityForm from "@/components/HeroEligibilityForm";
 import Calculator from "@/components/Calculator";
 import FAQSection from "@/components/FAQSection";
 import JsonLd from "@/components/JsonLd";
+import LendersLogoShowcase from "@/components/LendersLogoShowcase";
+import LenderLogo from "@/components/LenderLogo";
 import { homeFaqs } from "@/data/faqs";
 import { destinationsList } from "@/data/destinations";
 import { lendersList } from "@/data/lenders";
@@ -195,6 +197,12 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* =================================================================
+          LENDERS LOGO SHOWCASE
+          Prominent partner network displaying official bank & NBFC logos
+          ================================================================= */}
+      <LendersLogoShowcase />
 
       {/* =================================================================
           SECTION B: TRUST & VALUE PROPOSITIONS (Nomad Credit Style Benefits)
@@ -409,6 +417,11 @@ export default function HomePage() {
               <p>
                 Backed by residential property, commercial plots, or fixed deposits. Delivers the lowest indicative interest rates (7.5% - 9.5%) and maximum limits up to ₹1.5 Crore with flexible 15-year tenures.
               </p>
+              <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", margin: "12px 0 16px" }}>
+                <LenderLogo name="SBI" height={24} />
+                <LenderLogo name="Bank of Baroda" height={24} />
+                <LenderLogo name="PNB" height={24} />
+              </div>
               <ul style={{ margin: "14px 0", fontSize: "0.9rem", color: "var(--ink-secondary)" }}>
                 <li>Public banks: SBI, Bank of Baroda, PNB</li>
                 <li>Up to ₹1.5 Crore sanction limit</li>
@@ -425,6 +438,11 @@ export default function HomePage() {
               <p>
                 Zero physical security required. Get sanctions up to ₹75 Lakhs based on university pedigree, STEM degree focus, test scores (GRE/GMAT/IELTS), and co-applicant income.
               </p>
+              <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", margin: "12px 0 16px" }}>
+                <LenderLogo name="HDFC Credila" height={24} />
+                <LenderLogo name="Avanse" height={24} />
+                <LenderLogo name="Auxilo" height={24} />
+              </div>
               <ul style={{ margin: "14px 0", fontSize: "0.9rem", color: "var(--ink-secondary)" }}>
                 <li>Leading NBFCs: HDFC Credila, Avanse, Auxilo</li>
                 <li>Fast digital sanctions in 3 - 5 business days</li>

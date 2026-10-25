@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" width="100%" height="100%">
+  <!-- Bajaj Finserv Emblem -->
+  <g transform="translate(6, 6)">
+    <circle cx="18" cy="18" r="17" fill="#004B87"/>
+    <path d="M12 11h7a4.5 4.5 0 0 1 0 9h-7V11z" fill="#FFFFFF"/>
+    <path d="M12 20h8a4.5 4.5 0 0 1 0 9h-8V20z" fill="#FFFFFF"/>
+    <circle cx="17" cy="15.5" r="1.8" fill="#004B87"/>
+    <circle cx="18" cy="24.5" r="1.8" fill="#004B87"/>
+  </g>
+  <!-- Text -->
+  <text x="48" y="22" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="13" fill="#004B87">BAJAJ</text>
+  <text x="92" y="22" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="13" fill="#004B87">FINSERV</text>
+  <text x="48" y="35" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="8.5" fill="#64748B">LENDING FOR EDUCATION</text>
+</svg>

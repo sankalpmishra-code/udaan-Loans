@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" width="100%" height="100%">
+  <!-- Canara Bank Interlocking Triangles -->
+  <g transform="translate(6, 6)">
+    <rect width="36" height="36" rx="8" fill="#EFF6FF"/>
+    <path d="M18 8l10 18H8l10-18z" fill="#0072BC" opacity="0.9"/>
+    <path d="M18 28L8 12h20L18 28z" fill="#F8B133" opacity="0.85"/>
+  </g>
+  <!-- Text -->
+  <text x="48" y="23" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="13.5" fill="#0072BC">Canara Bank</text>
+  <text x="48" y="35" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="8.5" fill="#B45309">A Govt of India Undertaking</text>
+</svg>

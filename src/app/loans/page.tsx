@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
+import LenderLogo from "@/components/LenderLogo";
 import { loansFaqs } from "@/data/faqs";
 
 export const metadata: Metadata = {
@@ -46,6 +47,13 @@ export default function LoansPage() {
               <p className="lead" style={{ fontSize: "1.05rem" }}>
                 Backed by tangible assets such as residential property, commercial buildings, fixed deposits, or LIC policies.
               </p>
+
+              <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", margin: "16px 0 12px" }}>
+                <LenderLogo name="SBI" height={26} />
+                <LenderLogo name="Bank of Baroda" height={26} />
+                <LenderLogo name="PNB" height={26} />
+                <LenderLogo name="Union Bank" height={26} />
+              </div>
               
               <ul style={{ margin: "20px 0", lineHeight: "1.8", fontSize: "0.95rem" }}>
                 <li><strong>Lowest Interest Rates:</strong> 7.50% to 9.50% floating per annum.</li>
@@ -69,6 +77,14 @@ export default function LoansPage() {
               <p className="lead" style={{ fontSize: "1.05rem" }}>
                 Sanctioned without pledging any physical asset, based purely on student academic credentials and co-applicant financial income.
               </p>
+
+              <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", margin: "16px 0 12px" }}>
+                <LenderLogo name="HDFC Credila" height={26} />
+                <LenderLogo name="Avanse" height={26} />
+                <LenderLogo name="Auxilo" height={26} />
+                <LenderLogo name="InCred" height={26} />
+                <LenderLogo name="MPOWER" height={26} />
+              </div>
 
               <ul style={{ margin: "20px 0", lineHeight: "1.8", fontSize: "0.95rem" }}>
                 <li><strong>Interest Rates:</strong> 10.25% to 13.50% floating per annum.</li>

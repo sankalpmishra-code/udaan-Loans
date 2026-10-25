@@ -1,5 +1,8 @@
 export interface Lender {
   name: string;
+  shortName?: string;
+  slug: string;
+  logo: string;
   category: "Public Sector Bank" | "Private Bank" | "NBFC / Global Lender";
   maxUnsecured: string;
   maxSecured: string;
@@ -12,6 +15,9 @@ export interface Lender {
 export const lendersList: Lender[] = [
   {
     name: "State Bank of India (SBI Global Ed-vantage)",
+    shortName: "SBI",
+    slug: "sbi",
+    logo: "/logos/lenders/sbi.svg",
     category: "Public Sector Bank",
     maxUnsecured: "Up to ₹7.5 Lakhs",
     maxSecured: "Up to ₹1.5 Crore",
@@ -22,6 +28,9 @@ export const lendersList: Lender[] = [
   },
   {
     name: "Bank of Baroda (Baroda Scholar)",
+    shortName: "Bank of Baroda",
+    slug: "bank-of-baroda",
+    logo: "/logos/lenders/bank-of-baroda.svg",
     category: "Public Sector Bank",
     maxUnsecured: "Up to ₹40 Lakhs (Premier Institutes)",
     maxSecured: "Up to ₹1.5 Crore",
@@ -32,6 +41,9 @@ export const lendersList: Lender[] = [
   },
   {
     name: "Punjab National Bank (PNB Udaan)",
+    shortName: "PNB",
+    slug: "punjab-national-bank",
+    logo: "/logos/lenders/punjab-national-bank.svg",
     category: "Public Sector Bank",
     maxUnsecured: "Up to ₹7.5 Lakhs",
     maxSecured: "Up to ₹1.25 Crore",
@@ -42,6 +54,9 @@ export const lendersList: Lender[] = [
   },
   {
     name: "HDFC Bank (Education Loans Abroad)",
+    shortName: "HDFC Bank",
+    slug: "hdfc-bank",
+    logo: "/logos/lenders/hdfc-bank.svg",
     category: "Private Bank",
     maxUnsecured: "Up to ₹50 Lakhs",
     maxSecured: "Up to ₹1.5 Crore",
@@ -52,6 +67,9 @@ export const lendersList: Lender[] = [
   },
   {
     name: "ICICI Bank (International Education Loan)",
+    shortName: "ICICI Bank",
+    slug: "icici-bank",
+    logo: "/logos/lenders/icici-bank.svg",
     category: "Private Bank",
     maxUnsecured: "Up to ₹50 Lakhs",
     maxSecured: "Up to ₹1.5 Crore",
@@ -62,6 +80,9 @@ export const lendersList: Lender[] = [
   },
   {
     name: "Axis Bank (Study Abroad Loan)",
+    shortName: "Axis Bank",
+    slug: "axis-bank",
+    logo: "/logos/lenders/axis-bank.svg",
     category: "Private Bank",
     maxUnsecured: "Up to ₹50 Lakhs",
     maxSecured: "Up to ₹1.25 Crore",
@@ -72,6 +93,9 @@ export const lendersList: Lender[] = [
   },
   {
     name: "HDFC Credila",
+    shortName: "HDFC Credila",
+    slug: "hdfc-credila",
+    logo: "/logos/lenders/hdfc-credila.svg",
     category: "NBFC / Global Lender",
     maxUnsecured: "Up to ₹75 Lakhs",
     maxSecured: "Up to ₹1.5 Crore+",
@@ -82,6 +106,9 @@ export const lendersList: Lender[] = [
   },
   {
     name: "Avanse Financial Services",
+    shortName: "Avanse",
+    slug: "avanse",
+    logo: "/logos/lenders/avanse.svg",
     category: "NBFC / Global Lender",
     maxUnsecured: "Up to ₹75 Lakhs",
     maxSecured: "Up to ₹1.5 Crore",
@@ -92,6 +119,9 @@ export const lendersList: Lender[] = [
   },
   {
     name: "Auxilo Finserve",
+    shortName: "Auxilo",
+    slug: "auxilo",
+    logo: "/logos/lenders/auxilo.svg",
     category: "NBFC / Global Lender",
     maxUnsecured: "Up to ₹60 Lakhs",
     maxSecured: "Up to ₹1.25 Crore",
@@ -102,6 +132,9 @@ export const lendersList: Lender[] = [
   },
   {
     name: "InCred Finance",
+    shortName: "InCred",
+    slug: "incred",
+    logo: "/logos/lenders/incred.svg",
     category: "NBFC / Global Lender",
     maxUnsecured: "Up to ₹60 Lakhs",
     maxSecured: "Up to ₹1 Crore",
@@ -112,6 +145,9 @@ export const lendersList: Lender[] = [
   },
   {
     name: "MPOWER Financing",
+    shortName: "MPOWER Financing",
+    slug: "mpower",
+    logo: "/logos/lenders/mpower.svg",
     category: "NBFC / Global Lender",
     maxUnsecured: "Up to $100,000 (USD)",
     maxSecured: "N/A (100% Collateral-Free)",

@@ -2024,6 +2024,35 @@ select.input-err {
   margin-top: 32px;
 }
 
+/* ==========================================================================
+   Lender Logos & Showcase Components
+   ========================================================================== */
+.lender-logo-badge {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.lender-logo-badge:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+.lender-logo-tile {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+}
+
+.lender-logo-tile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(9, 71, 84, 0.08);
+  border-color: var(--brand-light);
+}
+
+@media (max-width: 768px) {
+  .lenders-showcase-section {
+    padding: 40px 0 !important;
+  }
+}
+
+
 
 
 

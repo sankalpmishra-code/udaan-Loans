@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" width="100%" height="100%">
+  <g transform="translate(6, 6)">
+    <rect width="36" height="36" rx="8" fill="#F0FDF4"/>
+    <circle cx="18" cy="18" r="14" fill="#15803D"/>
+    <path d="M13 14l6 8 6-8" stroke="#FFFFFF" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  </g>
+  <text x="48" y="22" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="12" fill="#15803D">Poonawalla Fincorp</text>
+  <text x="48" y="35" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="8.5" fill="#4B5563">Passion for Perfection</text>
+</svg>

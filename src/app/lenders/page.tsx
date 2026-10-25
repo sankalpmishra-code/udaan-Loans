@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
+import LenderLogo from "@/components/LenderLogo";
 import { lendersList } from "@/data/lenders";
 import { lendersFaqs } from "@/data/faqs";
 
@@ -83,9 +84,14 @@ export default function LendersPage() {
                 {lendersList.map((lender) => (
                   <tr key={lender.name}>
                     <td>
-                      <strong>{lender.name}</strong>
-                      <div style={{ fontSize: "0.82rem", color: "var(--muted)", marginTop: "4px" }}>
-                        {lender.highlights.join(" • ")}
+                      <div style={{ display: "flex", alignItems: "center", gap: "12px", minWidth: "220px" }}>
+                        <LenderLogo name={lender.name} logo={lender.logo} height={32} />
+                        <div>
+                          <strong style={{ display: "block", color: "var(--ink)" }}>{lender.name}</strong>
+                          <div style={{ fontSize: "0.82rem", color: "var(--muted)", marginTop: "4px" }}>
+                            {lender.highlights.join(" • ")}
+                          </div>
+                        </div>
                       </div>
                     </td>
                     <td><span className="badge" style={{ marginBottom: "0", fontSize: "0.78rem" }}>{lender.category}</span></td>
@@ -122,7 +128,10 @@ export default function LendersPage() {
               </p>
               <ul className="badge-pill-list" style={{ marginTop: "16px" }}>
                 {publicBanks.map((b) => (
-                  <li key={b} className="badge-pill">{b}</li>
+                  <li key={b} className="badge-pill" style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
+                    <LenderLogo name={b} height={18} variant="plain" />
+                    <span>{b}</span>
+                  </li>
                 ))}
               </ul>
             </div>
@@ -135,20 +144,26 @@ export default function LendersPage() {
               </p>
               <ul className="badge-pill-list" style={{ marginTop: "16px" }}>
                 {privateBanks.map((b) => (
-                  <li key={b} className="badge-pill">{b}</li>
+                  <li key={b} className="badge-pill" style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
+                    <LenderLogo name={b} height={18} variant="plain" />
+                    <span>{b}</span>
+                  </li>
                 ))}
               </ul>
             </div>
 
             <div className="card">
               <div className="card-icon">🚀</div>
-              <h3>9 Leading NBFCs & Fintechs</h3>
+              <h3>9 Leading NBFCs &amp; Fintechs</h3>
               <p style={{ fontSize: "0.92rem", color: "var(--muted)" }}>
                 Specialized overseas underwriting, up to ₹75L collateral-free loans, 0% margin money, and USD disbursement:
               </p>
               <ul className="badge-pill-list" style={{ marginTop: "16px" }}>
                 {nbfcs.map((b) => (
-                  <li key={b} className="badge-pill">{b}</li>
+                  <li key={b} className="badge-pill" style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
+                    <LenderLogo name={b} height={18} variant="plain" />
+                    <span>{b}</span>
+                  </li>
                 ))}
               </ul>
             </div>

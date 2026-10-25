@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" width="100%" height="100%">
+  <!-- Baroda Sun Emblem -->
+  <g transform="translate(6, 6)">
+    <circle cx="18" cy="18" r="17" fill="#F26522"/>
+    <!-- Stylized Dual B / Sunrays -->
+    <path d="M12 9h7a5 5 0 0 1 4 8 5.5 5.5 0 0 1-4 10h-7V9z" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linejoin="round"/>
+    <path d="M12 18h6" stroke="#FFFFFF" stroke-width="2.6"/>
+    <path d="M25 11l4-4M28 17h5M26 23l4 3" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <!-- Text -->
+  <text x="48" y="22" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="13.5" fill="#00205B" letter-spacing="-0.3">Bank of Baroda</text>
+  <text x="48" y="35" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="9.5" fill="#F26522" letter-spacing="0.8">BARODA SCHOLAR</text>
+</svg>

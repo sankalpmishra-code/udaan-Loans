@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" width="100%" height="100%">
+  <!-- Credila Grad Cap / Wings Icon -->
+  <g transform="translate(6, 6)">
+    <rect width="36" height="36" rx="8" fill="#FFF7ED"/>
+    <!-- Cap & Scroll -->
+    <path d="M6 16l12-6 12 6-12 6-12-6z" fill="#F7941D"/>
+    <path d="M11 18.5v6c0 3.5 3.5 6 7 6s7-2.5 7-6v-6" fill="none" stroke="#004C8F" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M27 17.5v8" stroke="#F7941D" stroke-width="1.8" stroke-linecap="round"/>
+  </g>
+  <!-- Text -->
+  <text x="48" y="21" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="13" fill="#004C8F">HDFC <tspan fill="#F7941D">CREDILA</tspan></text>
+  <text x="48" y="34" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="8.5" fill="#475569">The Education Loan Specialist</text>
+</svg>

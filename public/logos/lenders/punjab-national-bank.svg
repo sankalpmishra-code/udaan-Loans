@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" width="100%" height="100%">
+  <!-- PNB Emblem -->
+  <g transform="translate(6, 6)">
+    <rect width="36" height="36" rx="8" fill="#A20032"/>
+    <circle cx="18" cy="18" r="11" fill="none" stroke="#FFC20E" stroke-width="2.8"/>
+    <circle cx="18" cy="18" r="5" fill="#FFC20E"/>
+    <path d="M18 10v7M23 15l-5 3" stroke="#A20032" stroke-width="1.8" stroke-linecap="round"/>
+  </g>
+  <!-- Text -->
+  <text x="48" y="22" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="16" fill="#A20032" letter-spacing="-0.5">pnb</text>
+  <text x="48" y="35" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="9.5" fill="#374151" letter-spacing="0.2">punjab national bank</text>
+</svg>

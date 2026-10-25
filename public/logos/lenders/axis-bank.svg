@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" width="100%" height="100%">
+  <!-- Axis Inverted Triangle Emblem -->
+  <g transform="translate(6, 6)">
+    <path d="M18 34L3 9h30L18 34z" fill="#97144D"/>
+    <!-- Chevron cutout -->
+    <path d="M18 25L9 11h7l2 4 2-4h7L18 25z" fill="#FFFFFF"/>
+  </g>
+  <!-- Text -->
+  <text x="48" y="24" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="14.5" fill="#97144D" letter-spacing="0.8">AXIS BANK</text>
+  <text x="48" y="36" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="9" fill="#64748B">EDUCATION LOAN</text>
+</svg>

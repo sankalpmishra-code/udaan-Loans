@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" width="100%" height="100%">
+  <!-- InCred Geometric Accent -->
+  <g transform="translate(6, 6)">
+    <rect width="36" height="36" rx="8" fill="#FFF1F2"/>
+    <path d="M10 26V10h6l7 10V10h5v16h-6l-7-10v10h-5z" fill="#FF3366"/>
+    <circle cx="27" cy="8" r="2.8" fill="#FF3366"/>
+  </g>
+  <!-- Text -->
+  <text x="48" y="23" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="16" fill="#18181B">In<tspan fill="#FF3366">Cred</tspan></text>
+  <text x="48" y="35" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="8.5" fill="#71717A">EDUCATION LOANS</text>
+</svg>

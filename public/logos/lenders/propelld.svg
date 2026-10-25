@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" width="100%" height="100%">
+  <!-- Propelld Dynamic Wing -->
+  <g transform="translate(6, 6)">
+    <rect width="36" height="36" rx="8" fill="#EEF2FF"/>
+    <path d="M8 20L28 8l-6 18-6-4-8-2z" fill="#6366F1"/>
+    <path d="M16 22l6-4-4 8-2-4z" fill="#4338CA"/>
+  </g>
+  <!-- Text -->
+  <text x="48" y="24" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="15" fill="#6366F1" letter-spacing="-0.3">propelld</text>
+  <text x="48" y="36" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="8.5" fill="#64748B">Higher Education Finance</text>
+</svg>

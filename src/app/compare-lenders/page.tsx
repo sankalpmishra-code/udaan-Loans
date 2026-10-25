@@ -3,6 +3,7 @@ import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
 import JsonLd from "@/components/JsonLd";
+import LenderLogo from "@/components/LenderLogo";
 import { siteConfig } from "@/data/siteConfig";
 
 export const metadata: Metadata = {
@@ -125,7 +126,16 @@ export default function CompareLendersPage() {
                     <strong>Public Sector Banks</strong>
                     <div style={{ fontSize: "0.8rem", color: "var(--muted)" }}>Lowest floating rates</div>
                   </td>
-                  <td>SBI, Bank of Baroda, PNB, Canara Bank, Union Bank</td>
+                  <td>
+                    <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginBottom: "6px" }}>
+                      <LenderLogo name="SBI" height={20} />
+                      <LenderLogo name="Bank of Baroda" height={20} />
+                      <LenderLogo name="PNB" height={20} />
+                    </div>
+                    <div style={{ fontSize: "0.84rem", color: "var(--ink-secondary)" }}>
+                      SBI, Bank of Baroda, PNB, Canara Bank, Union Bank
+                    </div>
+                  </td>
                   <td className="text-green" style={{ fontWeight: "700" }}>8.15% – 9.60%</td>
                   <td>Up to ₹50 Lakhs (Top Tier)</td>
                   <td>Up to ₹1.5 Crore</td>
@@ -139,7 +149,16 @@ export default function CompareLendersPage() {
                     <strong>Private Commercial Banks</strong>
                     <div style={{ fontSize: "0.8rem", color: "var(--muted)" }}>Speed + Competitive rates</div>
                   </td>
-                  <td>Axis Bank, ICICI Bank, HDFC Bank, IDFC FIRST</td>
+                  <td>
+                    <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginBottom: "6px" }}>
+                      <LenderLogo name="Axis Bank" height={20} />
+                      <LenderLogo name="ICICI Bank" height={20} />
+                      <LenderLogo name="HDFC Bank" height={20} />
+                    </div>
+                    <div style={{ fontSize: "0.84rem", color: "var(--ink-secondary)" }}>
+                      Axis Bank, ICICI Bank, HDFC Bank, IDFC FIRST
+                    </div>
+                  </td>
                   <td className="text-green" style={{ fontWeight: "700" }}>9.25% – 11.25%</td>
                   <td>Up to ₹60 Lakhs</td>
                   <td>Up to ₹1.5 Crore</td>
@@ -151,9 +170,18 @@ export default function CompareLendersPage() {
                 <tr>
                   <td>
                     <strong>Education NBFCs</strong>
-                    <div style={{ fontSize: "0.8rem", color: "var(--muted)" }}>Highest unsecured & 100% cost</div>
+                    <div style={{ fontSize: "0.8rem", color: "var(--muted)" }}>Highest unsecured &amp; 100% cost</div>
                   </td>
-                  <td>HDFC Credila, Avanse, Auxilo, InCred</td>
+                  <td>
+                    <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginBottom: "6px" }}>
+                      <LenderLogo name="HDFC Credila" height={20} />
+                      <LenderLogo name="Avanse" height={20} />
+                      <LenderLogo name="Auxilo" height={20} />
+                    </div>
+                    <div style={{ fontSize: "0.84rem", color: "var(--ink-secondary)" }}>
+                      HDFC Credila, Avanse, Auxilo, InCred
+                    </div>
+                  </td>
                   <td className="text-green" style={{ fontWeight: "700" }}>10.25% – 12.75%</td>
                   <td>Up to ₹75 Lakhs</td>
                   <td>Up to ₹1.0 Crore</td>
@@ -167,7 +195,15 @@ export default function CompareLendersPage() {
                     <strong>USD / Global Lenders</strong>
                     <div style={{ fontSize: "0.8rem", color: "var(--muted)" }}>No co-signer required</div>
                   </td>
-                  <td>Prodigy Finance, MPOWER Financing</td>
+                  <td>
+                    <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", marginBottom: "6px" }}>
+                      <LenderLogo name="MPOWER" height={20} />
+                      <LenderLogo name="Prodigy Finance" height={20} />
+                    </div>
+                    <div style={{ fontSize: "0.84rem", color: "var(--ink-secondary)" }}>
+                      Prodigy Finance, MPOWER Financing
+                    </div>
+                  </td>
                   <td style={{ color: "#d93025", fontWeight: "700" }}>11.99% – 14.50% USD</td>
                   <td>Up to $100,000 USD</td>
                   <td>N/A</td>
@@ -243,7 +279,12 @@ export default function CompareLendersPage() {
               </thead>
               <tbody>
                 <tr>
-                  <td><strong>SBI Global Ed-Vantage</strong></td>
+                  <td>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                      <LenderLogo name="SBI" height={22} />
+                      <strong>SBI Global Ed-Vantage</strong>
+                    </div>
+                  </td>
                   <td>8.15% – 9.15%</td>
                   <td>₹1.50 Crore (Secured) / ₹50L (Premier)</td>
                   <td>10% – 15%</td>
@@ -251,7 +292,12 @@ export default function CompareLendersPage() {
                   <td>Tangible collateral required for &gt;₹50L; 0.50% concession for female students.</td>
                 </tr>
                 <tr>
-                  <td><strong>Bank of Baroda (Baroda Scholar)</strong></td>
+                  <td>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                      <LenderLogo name="Bank of Baroda" height={22} />
+                      <strong>Bank of Baroda (Baroda Scholar)</strong>
+                    </div>
+                  </td>
                   <td>8.25% – 9.40%</td>
                   <td>₹1.25 Crore (Secured) / ₹40L (Top DLIs)</td>
                   <td>10%</td>
@@ -259,7 +305,12 @@ export default function CompareLendersPage() {
                   <td>Preferential rates for premier US/UK universities on BoB approved list.</td>
                 </tr>
                 <tr>
-                  <td><strong>Union Bank (Union Education Abroad)</strong></td>
+                  <td>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                      <LenderLogo name="Union Bank" height={22} />
+                      <strong>Union Bank (Union Education Abroad)</strong>
+                    </div>
+                  </td>
                   <td>8.50% – 9.60%</td>
                   <td>₹1.25 Crore (Secured) / ₹40L (Unsecured)</td>
                   <td>15%</td>
@@ -297,7 +348,12 @@ export default function CompareLendersPage() {
               </thead>
               <tbody>
                 <tr>
-                  <td><strong>Axis Bank</strong></td>
+                  <td>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                      <LenderLogo name="Axis Bank" height={22} />
+                      <strong>Axis Bank</strong>
+                    </div>
+                  </td>
                   <td>9.25% – 10.75%</td>
                   <td>Up to ₹50 Lakhs</td>
                   <td>5 – 7 Working Days</td>
@@ -305,15 +361,25 @@ export default function CompareLendersPage() {
                   <td>Covers living expenses, travel, and laptop allowances with no physical branch visit.</td>
                 </tr>
                 <tr>
-                  <td><strong>ICICI Bank</strong></td>
+                  <td>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                      <LenderLogo name="ICICI Bank" height={22} />
+                      <strong>ICICI Bank</strong>
+                    </div>
+                  </td>
                   <td>9.50% – 11.00%</td>
                   <td>Up to ₹50 Lakhs</td>
                   <td>4 – 6 Working Days</td>
-                  <td>Directly accepted by US & Canadian consulates</td>
+                  <td>Directly accepted by US &amp; Canadian consulates</td>
                   <td>Seamless integration with ICICI Bank Canada Student GIC program.</td>
                 </tr>
                 <tr>
-                  <td><strong>IDFC FIRST Bank</strong></td>
+                  <td>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                      <LenderLogo name="IDFC FIRST Bank" height={22} />
+                      <strong>IDFC FIRST Bank</strong>
+                    </div>
+                  </td>
                   <td>9.75% – 11.25%</td>
                   <td>Up to ₹60 Lakhs</td>
                   <td>5 – 7 Working Days</td>
@@ -351,7 +417,12 @@ export default function CompareLendersPage() {
               </thead>
               <tbody>
                 <tr>
-                  <td><strong>HDFC Credila</strong></td>
+                  <td>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                      <LenderLogo name="HDFC Credila" height={22} />
+                      <strong>HDFC Credila</strong>
+                    </div>
+                  </td>
                   <td>10.25% – 12.25%</td>
                   <td>₹50 Lakhs – ₹75 Lakhs</td>
                   <td>0% (100% Cost)</td>
@@ -359,7 +430,12 @@ export default function CompareLendersPage() {
                   <td>Market leader; accepts broader co-applicants (uncles/aunts); fast German Sperrkonto transfers.</td>
                 </tr>
                 <tr>
-                  <td><strong>Avanse Financial Services</strong></td>
+                  <td>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                      <LenderLogo name="Avanse" height={22} />
+                      <strong>Avanse Financial Services</strong>
+                    </div>
+                  </td>
                   <td>10.50% – 12.50%</td>
                   <td>Up to ₹75 Lakhs</td>
                   <td>0% (100% Cost)</td>
@@ -367,7 +443,12 @@ export default function CompareLendersPage() {
                   <td>Funds 100% of overseas living expenses, airfare, visa fees, and tuition deposits.</td>
                 </tr>
                 <tr>
-                  <td><strong>Auxilo Finserve</strong></td>
+                  <td>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                      <LenderLogo name="Auxilo" height={22} />
+                      <strong>Auxilo Finserve</strong>
+                    </div>
+                  </td>
                   <td>10.75% – 12.75%</td>
                   <td>Up to ₹60 Lakhs</td>
                   <td>0% (100% Cost)</td>
@@ -375,7 +456,12 @@ export default function CompareLendersPage() {
                   <td>Flexible debt servicing options during study period with rapid document doorstep pick-up.</td>
                 </tr>
                 <tr>
-                  <td><strong>InCred Finance</strong></td>
+                  <td>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                      <LenderLogo name="InCred" height={22} />
+                      <strong>InCred Finance</strong>
+                    </div>
+                  </td>
                   <td>10.50% – 12.50%</td>
                   <td>Up to ₹60 Lakhs</td>
                   <td>0% (100% Cost)</td>

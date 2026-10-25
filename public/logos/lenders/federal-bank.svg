@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" width="100%" height="100%">
+  <!-- Federal Bank Shield Emblem -->
+  <g transform="translate(6, 6)">
+    <rect width="36" height="36" rx="8" fill="#F8FAFC"/>
+    <path d="M18 8l10 4v8c0 6-5 10-10 12-5-2-10-6-10-12v-8l10-4z" fill="#00205B"/>
+    <path d="M14 16h8M14 20h6" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <!-- Text -->
+  <text x="48" y="23" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="13.5" fill="#00205B">FEDERAL BANK</text>
+  <text x="48" y="35" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="8.5" fill="#D4AF37">YOUR PERFECT BANKING PARTNER</text>
+</svg>

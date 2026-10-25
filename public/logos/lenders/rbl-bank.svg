@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" width="100%" height="100%">
+  <g transform="translate(6, 6)">
+    <rect width="36" height="36" rx="8" fill="#EFF6FF"/>
+    <path d="M8 12h12a6 6 0 0 1 6 6c0 4-3 6-6 6H8V12z" fill="#003974"/>
+    <path d="M16 24l9 8h-6l-7-8h4z" fill="#E31837"/>
+  </g>
+  <text x="48" y="23" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="15" fill="#003974">RBL <tspan fill="#E31837">BANK</tspan></text>
+  <text x="48" y="35" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="8.5" fill="#64748B">apno ka bank</text>
+</svg>

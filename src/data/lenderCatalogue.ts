@@ -7,6 +7,7 @@
 export interface LenderProduct {
   productId: string;
   lenderName: string;
+  logo?: string;
   category: "Public Sector Bank" | "Private Bank" | "NBFC / Global Lender";
   productName: string;
   lastVerifiedDate: string; // YYYY-MM-DD
@@ -42,6 +43,7 @@ export const lenderCatalogue: LenderProduct[] = [
   {
     productId: "sbi-global-edvantage",
     lenderName: "State Bank of India",
+    logo: "/logos/lenders/sbi.svg",
     category: "Public Sector Bank",
     productName: "SBI Global Ed-vantage",
     lastVerifiedDate: "2026-09-15",
@@ -76,6 +78,7 @@ export const lenderCatalogue: LenderProduct[] = [
   {
     productId: "bob-baroda-scholar",
     lenderName: "Bank of Baroda",
+    logo: "/logos/lenders/bank-of-baroda.svg",
     category: "Public Sector Bank",
     productName: "Baroda Scholar (Premier Institutes)",
     lastVerifiedDate: "2026-09-20",
@@ -110,6 +113,7 @@ export const lenderCatalogue: LenderProduct[] = [
   {
     productId: "hdfc-credila-custom",
     lenderName: "HDFC Credila",
+    logo: "/logos/lenders/hdfc-credila.svg",
     category: "NBFC / Global Lender",
     productName: "Customized Overseas Student Loan",
     lastVerifiedDate: "2026-10-01",
@@ -144,6 +148,7 @@ export const lenderCatalogue: LenderProduct[] = [
   {
     productId: "avanse-abroad-prime",
     lenderName: "Avanse Financial Services",
+    logo: "/logos/lenders/avanse.svg",
     category: "NBFC / Global Lender",
     productName: "Avanse Global Student Prime",
     lastVerifiedDate: "2026-09-28",
@@ -178,6 +183,7 @@ export const lenderCatalogue: LenderProduct[] = [
   {
     productId: "axis-bank-overseas",
     lenderName: "Axis Bank",
+    logo: "/logos/lenders/axis-bank.svg",
     category: "Private Bank",
     productName: "Axis Education Loan (Abroad)",
     lastVerifiedDate: "2026-09-18",
@@ -212,6 +218,7 @@ export const lenderCatalogue: LenderProduct[] = [
   {
     productId: "icici-bank-abroad",
     lenderName: "ICICI Bank",
+    logo: "/logos/lenders/icici-bank.svg",
     category: "Private Bank",
     productName: "International Education Loan",
     lastVerifiedDate: "2026-09-22",
@@ -246,6 +253,7 @@ export const lenderCatalogue: LenderProduct[] = [
   {
     productId: "mpower-usd-ncosigner",
     lenderName: "MPOWER Financing",
+    logo: "/logos/lenders/mpower.svg",
     category: "NBFC / Global Lender",
     productName: "No-Cosigner International Student Loan",
     lastVerifiedDate: "2026-10-05",

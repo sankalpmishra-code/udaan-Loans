@@ -3,6 +3,7 @@
 import React, { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import LenderLogo from "@/components/LenderLogo";
 import { evaluateStudentLenderMatches, MatchResultItem, StudentProfileInput } from "@/utils/matchingEngine";
 import {
   trackMatcherStart,
@@ -496,6 +497,7 @@ function MatcherContent() {
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "14px" }}>
                       <div>
                         <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
+                          <LenderLogo name={item.product.lenderName} logo={item.product.logo} height={32} />
                           <h3 style={{ margin: "0", fontSize: "1.3rem" }}>{item.product.lenderName}</h3>
                           <span
                             className="badge"

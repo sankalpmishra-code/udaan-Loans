@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" width="100%" height="100%">
+  <!-- Avanse Soaring Wings -->
+  <g transform="translate(6, 6)">
+    <rect width="36" height="36" rx="8" fill="#FFFBEB"/>
+    <path d="M7 26l11-17 4 7-8 10h-7z" fill="#F99B1D"/>
+    <path d="M16 26l7-10 6 10h-13z" fill="#D97706"/>
+    <circle cx="27" cy="11" r="3" fill="#F99B1D"/>
+  </g>
+  <!-- Text -->
+  <text x="48" y="23" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="14.5" fill="#1E293B" letter-spacing="0.8">AVANSE</text>
+  <text x="48" y="35" font-family="system-ui, -apple-system, sans-serif" font-weight="600" font-size="8.5" fill="#F99B1D" letter-spacing="0.5">FINANCIAL SERVICES</text>
+</svg>
