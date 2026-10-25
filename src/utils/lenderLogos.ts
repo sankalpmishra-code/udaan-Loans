@@ -96,6 +96,11 @@ export const LENDER_SLUG_MAP: Record<string, string> = {
 
   "propelld": "propelld",
   "tata capital": "tata-capital",
+  "tata capitals": "tata-capital",
+  "tata": "tata-capital",
+  "tata capital financial services": "tata-capital",
+  "tata capital limited": "tata-capital",
+  "tc": "tata-capital",
   "bajaj finserv": "bajaj-finserv",
   "poonawalla fincorp": "poonawalla-fincorp",
   "poonawalla": "poonawalla-fincorp",
@@ -229,5 +234,13 @@ export const FEATURED_LENDERS: LenderBrand[] = [
     logo: "/logos/lenders/prodigy-finance.svg",
     category: "NBFC / Global Lender",
     highlight: "Collateral-Free for Top Global B-Schools",
+  },
+  {
+    name: "Tata Capital",
+    shortName: "Tata Capital",
+    slug: "tata-capital",
+    logo: "/logos/lenders/tata-capital.svg",
+    category: "NBFC / Global Lender",
+    highlight: "Trusted Tata Brand & Fast Digital Sanction",
   },
 ];

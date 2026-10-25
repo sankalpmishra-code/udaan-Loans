@@ -177,9 +177,10 @@ export default function CompareLendersPage() {
                       <LenderLogo name="HDFC Credila" height={20} />
                       <LenderLogo name="Avanse" height={20} />
                       <LenderLogo name="Poonawalla Fincorp" height={20} />
+                      <LenderLogo name="Tata Capital" height={20} />
                     </div>
                     <div style={{ fontSize: "0.84rem", color: "var(--ink-secondary)" }}>
-                      HDFC Credila, Avanse, Auxilo, InCred, Poonawalla Fincorp
+                      HDFC Credila, Avanse, Auxilo, InCred, Poonawalla Fincorp, Tata Capital
                     </div>
                   </td>
                   <td className="text-green" style={{ fontWeight: "700" }}>10.25% – 12.75%</td>
