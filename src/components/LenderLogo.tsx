@@ -26,6 +26,7 @@ export default function LenderLogo({
 }: LenderLogoProps) {
   const [imgError, setImgError] = useState(false);
   const logoUrl = !imgError ? (logo || getLenderLogo(name)) : "/logos/lenders/sbi.svg";
+  const heightVal = typeof height === "number" ? `${height}px` : height;
 
   if (variant === "plain") {
     return (
@@ -39,8 +40,9 @@ export default function LenderLogo({
         className={className}
         style={{
           display: "inline-block",
-          maxHeight: typeof height === "number" ? `${height}px` : height,
+          height: heightVal,
           width: width ? (typeof width === "number" ? `${width}px` : width) : "auto",
+          aspectRatio: "200 / 48",
           maxWidth: "100%",
           objectFit: "contain",
           verticalAlign: "middle",
@@ -77,8 +79,9 @@ export default function LenderLogo({
           loading="lazy"
           onError={() => setImgError(true)}
           style={{
-            maxHeight: typeof height === "number" ? `${height}px` : height,
+            height: heightVal,
             width: "auto",
+            aspectRatio: "200 / 48",
             maxWidth: "100%",
             objectFit: "contain",
             ...imgStyle,
@@ -113,9 +116,10 @@ export default function LenderLogo({
         loading="lazy"
         onError={() => setImgError(true)}
         style={{
-          maxHeight: typeof height === "number" ? `${height}px` : height,
+          height: heightVal,
           width: "auto",
-          maxWidth: "130px",
+          aspectRatio: "200 / 48",
+          maxWidth: "140px",
           objectFit: "contain",
           display: "block",
           ...imgStyle,

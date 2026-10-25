@@ -108,9 +108,10 @@ export default function LendersLogoShowcase() {
                   src={lender.logo}
                   alt={`${lender.name} logo`}
                   style={{
-                    maxHeight: "36px",
+                    height: "36px",
                     maxWidth: "100%",
                     width: "auto",
+                    aspectRatio: "200 / 48",
                     objectFit: "contain",
                     display: "block",
                   }}
