@@ -156,14 +156,6 @@ export default function RootLayout({
         })),
         priceRange: "₹₹",
         foundingDate: siteConfig.foundingYear,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: siteConfig.address.streetAddress,
-          addressLocality: siteConfig.address.addressLocality,
-          addressRegion: siteConfig.address.addressRegion,
-          postalCode: siteConfig.address.postalCode,
-          addressCountry: siteConfig.address.addressCountry,
-        },
         areaServed: {
           "@type": "Country",
           name: "India",

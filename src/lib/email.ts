@@ -142,7 +142,7 @@ export async function sendLeadAlertEmail(lead: LeadEmailPayload): Promise<{ succ
           }
         </div>
         <div class="footer">
-          Udaan Edu Loans Facilitators Pvt. Ltd. • Gurugram, India • Confidential Student Lead Data
+          Udaan Edu Loans Facilitators Pvt. Ltd. • Confidential Student Lead Data
         </div>
       </div>
     </body>
@@ -239,7 +239,7 @@ export async function sendStudentConfirmationEmail(lead: LeadEmailPayload): Prom
           </p>
         </div>
         <div class="footer">
-          DLF Cyber City, Phase 2, Gurugram, India • Toll-Free / WhatsApp: +91 7303200803
+          Toll-Free / WhatsApp: +91 7303200803 • connect@udaaneduloans.com
         </div>
       </div>
     </body>

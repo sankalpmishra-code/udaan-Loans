@@ -19,13 +19,6 @@ export const siteConfig = {
   whatsappNumber: "917303200803",
   foundingYear: "2026",
   locale: "en_IN",
-  address: {
-    streetAddress: "Level 4, Cyber City, DLF Phase 2",
-    addressLocality: "Gurugram",
-    addressRegion: "Haryana",
-    postalCode: "122002",
-    addressCountry: "IN",
-  },
   social: {
     twitterHandle: "@UdaanLoans",
     twitterUrl: "https://twitter.com/udaaneduloans",

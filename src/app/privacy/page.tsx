@@ -104,7 +104,6 @@ export default function PrivacyPage() {
                 <div style={{ background: "var(--soft)", padding: "16px 20px", borderRadius: "8px", marginTop: "10px" }}>
                   <strong>Grievance Redressal Officer:</strong> Data Privacy Desk<br />
                   <strong>Entity:</strong> {siteConfig.legalName}<br />
-                  <strong>Address:</strong> {siteConfig.address.streetAddress}, {siteConfig.address.addressLocality}, {siteConfig.address.addressRegion} - {siteConfig.address.postalCode}<br />
                   <strong>Email:</strong> connect@udaaneduloans.com<br />
                   <strong>Response SLA:</strong> Within 48 working hours.
                 </div>

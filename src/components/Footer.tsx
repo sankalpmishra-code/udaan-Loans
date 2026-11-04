@@ -27,9 +27,6 @@ export default function Footer() {
                 <strong>Email:</strong>{" "}
                 <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
               </p>
-              <p>
-                <strong>Headquarters:</strong> {siteConfig.address.streetAddress}, {siteConfig.address.addressLocality}, {siteConfig.address.addressRegion} - {siteConfig.address.postalCode}
-              </p>
             </div>
           </div>
 
