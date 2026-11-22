@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
 import JsonLd from "@/components/JsonLd";
+import EditorialByline from "@/components/EditorialByline";
 import { destinationsList, getDestinationById } from "@/data/destinations";
 import { getUniversitiesByCountry, CountryCode } from "@/data/universities";
 import { siteConfig } from "@/data/siteConfig";
@@ -273,8 +274,13 @@ export default async function DestinationDetailPage({ params }: PageProps) {
             <span className="badge">Lender Network</span>
             <h2>Top Lenders Offering Education Loans for {dest.country}</h2>
             <p className="lead">
-              Verified borrowing rules, maximum loan limits, and interest rates published as of Q4 2025 - Q1 2026.
+              Verified borrowing rules, maximum loan limits, and interest rates audited and active for November 2026.
             </p>
+            <EditorialByline
+              reviewerName="Rajesh Sharma (Ex-SBI Scale-IV) & Ananya Sen (Ex-HDFC Credila)"
+              reviewerTitle={`Udaan ${dest.country} Education Finance Advisory Desk`}
+              lastUpdated="November 2026"
+            />
           </div>
 
           <div className="data-table-wrapper">

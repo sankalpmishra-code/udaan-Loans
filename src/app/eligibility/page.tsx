@@ -4,6 +4,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
 import AmpHtmlLink from "@/components/AmpHtmlLink";
 import EditorialByline from "@/components/EditorialByline";
+import CibilImpactDisclosure from "@/components/CibilImpactDisclosure";
 import { eligibilityFaqs } from "@/data/faqs";
 
 export const metadata: Metadata = {
@@ -199,6 +200,9 @@ export default function EligibilityPage() {
           </div>
         </div>
       </section>
+
+      {/* Credit Score & Bureau Impact Policy */}
+      <CibilImpactDisclosure />
 
       {/* Eligibility FAQ Section */}
       <FAQSection

@@ -7,6 +7,7 @@ import JsonLd from "@/components/JsonLd";
 import AmpHtmlLink from "@/components/AmpHtmlLink";
 import LendersLogoShowcase from "@/components/LendersLogoShowcase";
 import LenderLogo from "@/components/LenderLogo";
+import CibilImpactDisclosure from "@/components/CibilImpactDisclosure";
 import { homeFaqs } from "@/data/faqs";
 import { destinationsList } from "@/data/destinations";
 import { lendersList } from "@/data/lenders";
@@ -149,7 +150,7 @@ export default function HomePage() {
               <li>Rates from 7.75% - 13.50% p.a.</li>
               <li>Up to ₹1.5 Crore</li>
               <li>Collateral-Free up to ₹75L</li>
-              <li>Zero CIBIL Impact Check</li>
+              <li>Zero Bureau Impact Pre-Check</li>
               <li>100% Virtual Process</li>
             </ul>
           </div>
@@ -199,9 +200,9 @@ export default function HomePage() {
 
             <div className="value-card">
               <span className="value-card-icon" aria-hidden="true">🛡️</span>
-              <h3>Zero CIBIL Score Impact</h3>
+              <h3>Zero Bureau Impact Pre-Check</h3>
               <p>
-                Exploring your potential financing options and checking university eligibility involves no hard credit inquiries on your or your co-applicant’s credit report.
+                Our initial eligibility assessment and bank matching uses self-declared details with zero credit bureau inquiries. Formal hard credit checks occur only when you choose to proceed with a specific bank.
               </p>
             </div>
 
@@ -549,6 +550,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Zero CIBIL Impact Detailed Disclosure */}
+      <CibilImpactDisclosure />
 
       {/* =================================================================
           SECTION H: COMPREHENSIVE FAQS (AEO & SEO Optimized)

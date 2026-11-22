@@ -5,7 +5,9 @@ import FAQSection from "@/components/FAQSection";
 import JsonLd from "@/components/JsonLd";
 import LenderLogo from "@/components/LenderLogo";
 import EditorialByline from "@/components/EditorialByline";
+import CibilImpactDisclosure from "@/components/CibilImpactDisclosure";
 import { siteConfig } from "@/data/siteConfig";
+import { categoryBenchmarks, lendersList } from "@/data/lenders";
 
 export const metadata: Metadata = {
   title: "Compare Education Loans 2026: Public vs Private vs NBFCs | Udaan",
@@ -113,22 +115,47 @@ export default function CompareLendersPage() {
           </div>
 
           <EditorialByline
-            reviewerName="Udaan Banking & Credit Advisory Committee"
-            reviewerTitle="Former Public Bank Scale-IV & NBFC Underwriting Specialists"
-            lastUpdated="October 2026"
+            reviewerName="Rajesh Sharma (Former Scale-IV Credit Officer, SBI) & Ananya Sen (Former Senior Credit Manager, HDFC Credila)"
+            reviewerTitle="Udaan Banking & Credit Advisory Committee"
+            lastUpdated="November 2026"
           />
 
+          {/* Explanation: Category Averages vs Flagship Lender Schemes */}
+          <div
+            className="card"
+            style={{
+              background: "var(--soft)",
+              border: "1px solid var(--line)",
+              borderLeft: "4px solid var(--brand)",
+              padding: "20px 24px",
+              marginTop: "24px",
+              marginBottom: "20px",
+            }}
+          >
+            <div style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
+              <div style={{ fontSize: "1.4rem", flexShrink: 0 }}>💡</div>
+              <div>
+                <strong style={{ fontSize: "0.98rem", color: "var(--ink)" }}>
+                  Understanding Category Market Ranges vs. Flagship Lender Schemes
+                </strong>
+                <p style={{ margin: "6px 0 0", fontSize: "0.88rem", color: "var(--ink-secondary)", lineHeight: "1.6" }}>
+                  The <strong>Interest Rates</strong> column below reflects the broader market spectrum across all borrower profiles, course tiers, and collateral types in India (e.g., standard public sector loans for unranked institutions span up to 9.60%, whereas premier flagship schemes like <strong>SBI Global Ed-vantage</strong> start from <strong>7.75%</strong> for top-tier universities with the statutory 0.50% female student concession). Individual lender offers vary based on applicant merit, CIBIL score (685+), STEM employability, and security pledged.
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* Master 4-Way Comparison Table */}
-          <div className="data-table-wrapper" style={{ marginTop: "32px" }}>
+          <div className="data-table-wrapper" style={{ marginTop: "24px" }}>
             <table className="data-table">
               <thead>
                 <tr>
                   <th>Lender Category</th>
                   <th>Key Institutional Partners</th>
-                  <th>Interest Rates (p.a.)</th>
+                  <th>Market Interest Rate</th>
+                  <th>Flagship Starting Rate</th>
                   <th>Unsecured Limit</th>
                   <th>Secured Limit</th>
-                  <th>Processing Fee</th>
                   <th>Margin Money</th>
                   <th>Sanction Speed</th>
                   <th>Sec. 80E Eligible</th>
@@ -150,12 +177,14 @@ export default function CompareLendersPage() {
                       SBI, Bank of Baroda, PNB, Canara Bank, Union Bank
                     </div>
                   </td>
-                  <td className="text-green" style={{ fontWeight: "700" }}>8.15% – 9.60%</td>
-                  <td>Up to ₹50 Lakhs (Top Tier)</td>
+                  <td className="text-green" style={{ fontWeight: "700" }}>7.75% – 9.60%</td>
+                  <td style={{ fontSize: "0.85rem", fontWeight: "600", color: "var(--brand)" }}>
+                    From 7.75% (SBI) / 7.90% (BoB)
+                  </td>
+                  <td>Up to ₹50 Lakhs (Top Tier) / ₹7.5L Standard</td>
                   <td>Up to ₹1.5 Crore</td>
-                  <td>₹10,000 flat (refundable)</td>
                   <td>10% – 15%</td>
-                  <td>10 – 18 Days</td>
+                  <td>10 – 15 Days</td>
                   <td><span className="badge" style={{ backgroundColor: "#e6f4ea", color: "#137333", border: "none" }}>Yes (100%)</span></td>
                 </tr>
                 <tr>
@@ -173,12 +202,14 @@ export default function CompareLendersPage() {
                       Axis Bank, ICICI Bank, Kotak Mahindra Bank, IDFC FIRST
                     </div>
                   </td>
-                  <td className="text-green" style={{ fontWeight: "700" }}>9.25% – 11.25%</td>
-                  <td>Up to ₹60 Lakhs</td>
+                  <td className="text-green" style={{ fontWeight: "700" }}>9.50% – 12.00%</td>
+                  <td style={{ fontSize: "0.85rem", fontWeight: "600", color: "var(--brand)" }}>
+                    From 9.50% (ICICI) / 9.75% (Axis)
+                  </td>
+                  <td>Up to ₹50L – ₹60L</td>
                   <td>Up to ₹1.5 Crore</td>
-                  <td>0.75% – 1.25% + GST</td>
                   <td>0% – 10%</td>
-                  <td>5 – 7 Days</td>
+                  <td>4 – 7 Days</td>
                   <td><span className="badge" style={{ backgroundColor: "#e6f4ea", color: "#137333", border: "none" }}>Yes (100%)</span></td>
                 </tr>
                 <tr>
@@ -197,10 +228,12 @@ export default function CompareLendersPage() {
                       HDFC Credila, Avanse, Auxilo, InCred, Poonawalla Fincorp, Tata Capital
                     </div>
                   </td>
-                  <td className="text-green" style={{ fontWeight: "700" }}>10.25% – 12.75%</td>
+                  <td className="text-green" style={{ fontWeight: "700" }}>10.25% – 13.50%</td>
+                  <td style={{ fontSize: "0.85rem", fontWeight: "600", color: "var(--brand)" }}>
+                    From 10.25% (HDFC Credila) / 10.50% (Avanse)
+                  </td>
                   <td>Up to ₹75 Lakhs</td>
-                  <td>Up to ₹1.0 Crore</td>
-                  <td>1.00% – 1.50% + GST</td>
+                  <td>Up to ₹1.5 Crore+</td>
                   <td><strong>0% (Full Cost)</strong></td>
                   <td><strong>3 – 5 Days</strong></td>
                   <td><span className="badge" style={{ backgroundColor: "#e6f4ea", color: "#137333", border: "none" }}>Yes (100%)</span></td>
@@ -219,10 +252,12 @@ export default function CompareLendersPage() {
                       Prodigy Finance, MPOWER Financing
                     </div>
                   </td>
-                  <td style={{ color: "#d93025", fontWeight: "700" }}>11.99% – 14.50% USD</td>
+                  <td style={{ color: "#d93025", fontWeight: "700" }}>11.50% – 14.50% USD</td>
+                  <td style={{ fontSize: "0.85rem", fontWeight: "600", color: "#d93025" }}>
+                    From 11.50% Variable / 11.99% Fixed
+                  </td>
                   <td>Up to $100,000 USD</td>
-                  <td>N/A</td>
-                  <td>4.0% – 5.0% admin</td>
+                  <td>N/A (Collateral-Free)</td>
                   <td>0%</td>
                   <td>5 – 10 Days</td>
                   <td><span className="badge" style={{ backgroundColor: "#fce8e6", color: "#c5221f", border: "none" }}>No (Foreign)</span></td>
@@ -297,37 +332,71 @@ export default function CompareLendersPage() {
                   <td>
                     <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                       <LenderLogo name="SBI" height={22} />
-                      <strong>SBI Global Ed-Vantage</strong>
+                      <div>
+                        <Link href="/lenders/sbi" style={{ color: "var(--brand)", fontWeight: 700, textDecoration: "underline" }}>
+                          SBI Global Ed-vantage
+                        </Link>
+                        <div style={{ fontSize: "0.78rem", color: "var(--muted)" }}>
+                          <a href="https://sbi.co.in/web/personal-banking/loans/education-loans/global-ed-vantage-scheme" target="_blank" rel="noopener noreferrer" style={{ color: "var(--brand-dark)" }}>
+                            Official SBI Portal ↗
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   </td>
-                  <td>8.15% – 9.15%</td>
-                  <td>₹1.50 Crore (Secured) / ₹50L (Premier)</td>
+                  <td className="text-green" style={{ fontWeight: 700 }}>
+                    7.75% – 9.15%
+                    <div style={{ fontSize: "0.76rem", color: "var(--muted)", fontWeight: 400 }}>Floating (EBLR-linked)</div>
+                  </td>
+                  <td>₹1.50 Crore (Secured) / ₹7.5L (Standard)</td>
                   <td>10% – 15%</td>
                   <td>Course + 6 Months</td>
-                  <td>Tangible collateral required for &gt;₹50L; 0.50% concession for female students.</td>
+                  <td>Tangible collateral required for &gt;₹7.5L; starts at 7.75% with 0.50% concession for female students.</td>
                 </tr>
                 <tr>
                   <td>
                     <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                       <LenderLogo name="Bank of Baroda" height={22} />
-                      <strong>Bank of Baroda (Baroda Scholar)</strong>
+                      <div>
+                        <Link href="/lenders/bank-of-baroda" style={{ color: "var(--brand)", fontWeight: 700, textDecoration: "underline" }}>
+                          Baroda Scholar Scheme
+                        </Link>
+                        <div style={{ fontSize: "0.78rem", color: "var(--muted)" }}>
+                          <a href="https://www.bankofbaroda.in/personal-banking/loans/education-loan/baroda-scholar" target="_blank" rel="noopener noreferrer" style={{ color: "var(--brand-dark)" }}>
+                            Official BoB Portal ↗
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   </td>
-                  <td>8.25% – 9.40%</td>
-                  <td>₹1.25 Crore (Secured) / ₹40L (Top DLIs)</td>
+                  <td className="text-green" style={{ fontWeight: 700 }}>
+                    7.90% – 9.30%
+                    <div style={{ fontSize: "0.76rem", color: "var(--muted)", fontWeight: 400 }}>Floating (BRLLR-linked)</div>
+                  </td>
+                  <td>₹1.50 Crore (Secured) / ₹40L (Premier)</td>
                   <td>10%</td>
                   <td>Course + 12 Months</td>
-                  <td>Preferential rates for premier US/UK universities on BoB approved list.</td>
+                  <td>Collateral-free up to ₹40L for top 150 global institutions; 0.50% rebate for girl students.</td>
                 </tr>
                 <tr>
                   <td>
                     <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                       <LenderLogo name="Union Bank" height={22} />
-                      <strong>Union Bank (Union Education Abroad)</strong>
+                      <div>
+                        <strong style={{ color: "var(--brand)" }}>Union Education Abroad</strong>
+                        <div style={{ fontSize: "0.78rem", color: "var(--muted)" }}>
+                          <a href="https://www.unionbankofindia.co.in/english/education-loan.aspx" target="_blank" rel="noopener noreferrer" style={{ color: "var(--brand-dark)" }}>
+                            Official Union Bank Portal ↗
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   </td>
-                  <td>8.50% – 9.60%</td>
-                  <td>₹1.25 Crore (Secured) / ₹40L (Unsecured)</td>
+                  <td className="text-green" style={{ fontWeight: 700 }}>
+                    8.25% – 9.55%
+                    <div style={{ fontSize: "0.76rem", color: "var(--muted)", fontWeight: 400 }}>Floating (EBLR-linked)</div>
+                  </td>
+                  <td>₹1.50 Crore (Secured) / ₹7.5L (Standard)</td>
                   <td>15%</td>
                   <td>Course + 12 Months</td>
                   <td>Requires verified ITRs from parents; full Section 80E certificate annually.</td>
@@ -365,28 +434,52 @@ export default function CompareLendersPage() {
                 <tr>
                   <td>
                     <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                      <LenderLogo name="Axis Bank" height={22} />
-                      <strong>Axis Bank</strong>
-                    </div>
-                  </td>
-                  <td>9.25% – 10.75%</td>
-                  <td>Up to ₹50 Lakhs</td>
-                  <td>5 – 7 Working Days</td>
-                  <td>Issued within 48h of documentation</td>
-                  <td>Covers living expenses, travel, and laptop allowances with no physical branch visit.</td>
-                </tr>
-                <tr>
-                  <td>
-                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                       <LenderLogo name="ICICI Bank" height={22} />
-                      <strong>ICICI Bank</strong>
+                      <div>
+                        <Link href="/lenders/icici-bank" style={{ color: "var(--brand)", fontWeight: 700, textDecoration: "underline" }}>
+                          ICICI Bank Education Loan
+                        </Link>
+                        <div style={{ fontSize: "0.78rem", color: "var(--muted)" }}>
+                          <a href="https://www.icicibank.com/personal-banking/loans/education-loan" target="_blank" rel="noopener noreferrer" style={{ color: "var(--brand-dark)" }}>
+                            Official ICICI Portal ↗
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   </td>
-                  <td>9.50% – 11.00%</td>
+                  <td className="text-green" style={{ fontWeight: 700 }}>
+                    9.50% – 11.75%
+                    <div style={{ fontSize: "0.76rem", color: "var(--muted)", fontWeight: 400 }}>Floating (I-EBLR linked)</div>
+                  </td>
                   <td>Up to ₹50 Lakhs</td>
                   <td>4 – 6 Working Days</td>
                   <td>Directly accepted by US &amp; Canadian consulates</td>
                   <td>Seamless integration with ICICI Bank Canada Student GIC program.</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                      <LenderLogo name="Axis Bank" height={22} />
+                      <div>
+                        <Link href="/lenders/axis-bank" style={{ color: "var(--brand)", fontWeight: 700, textDecoration: "underline" }}>
+                          Axis Bank Education Loan
+                        </Link>
+                        <div style={{ fontSize: "0.78rem", color: "var(--muted)" }}>
+                          <a href="https://www.axisbank.com/retail/loans/education-loan" target="_blank" rel="noopener noreferrer" style={{ color: "var(--brand-dark)" }}>
+                            Official Axis Portal ↗
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="text-green" style={{ fontWeight: 700 }}>
+                    9.75% – 12.00%
+                    <div style={{ fontSize: "0.76rem", color: "var(--muted)", fontWeight: 400 }}>Floating (Repo-linked)</div>
+                  </td>
+                  <td>Up to ₹50 Lakhs</td>
+                  <td>5 – 7 Working Days</td>
+                  <td>Issued within 48h of documentation</td>
+                  <td>Covers living expenses, travel, and laptop allowances with no physical branch visit.</td>
                 </tr>
                 <tr>
                   <td>
@@ -435,23 +528,47 @@ export default function CompareLendersPage() {
                   <td>
                     <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                       <LenderLogo name="HDFC Credila" height={22} />
-                      <strong>HDFC Credila</strong>
+                      <div>
+                        <Link href="/lenders/hdfc-credila" style={{ color: "var(--brand)", fontWeight: 700, textDecoration: "underline" }}>
+                          HDFC Credila Custom Loan
+                        </Link>
+                        <div style={{ fontSize: "0.78rem", color: "var(--muted)" }}>
+                          <a href="https://www.hdfccredila.com/" target="_blank" rel="noopener noreferrer" style={{ color: "var(--brand-dark)" }}>
+                            Official Credila Portal ↗
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   </td>
-                  <td>10.25% – 12.25%</td>
+                  <td className="text-green" style={{ fontWeight: 700 }}>
+                    10.25% – 12.75%
+                    <div style={{ fontSize: "0.76rem", color: "var(--muted)", fontWeight: 400 }}>Floating (CBLR-linked)</div>
+                  </td>
                   <td>₹50 Lakhs – ₹75 Lakhs</td>
                   <td>0% (100% Cost)</td>
                   <td>3 – 5 Days</td>
-                  <td>Market leader; accepts broader co-applicants (uncles/aunts); fast German Sperrkonto transfers.</td>
+                  <td>Market leader; accepts broader co-applicants (uncles/aunts); fast German Sperrkonto &amp; GIC transfers.</td>
                 </tr>
                 <tr>
                   <td>
                     <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                       <LenderLogo name="Avanse" height={22} />
-                      <strong>Avanse Financial Services</strong>
+                      <div>
+                        <Link href="/lenders/avanse" style={{ color: "var(--brand)", fontWeight: 700, textDecoration: "underline" }}>
+                          Avanse Abroad Loan
+                        </Link>
+                        <div style={{ fontSize: "0.78rem", color: "var(--muted)" }}>
+                          <a href="https://www.avanse.com/education-loan/study-abroad" target="_blank" rel="noopener noreferrer" style={{ color: "var(--brand-dark)" }}>
+                            Official Avanse Portal ↗
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   </td>
-                  <td>10.50% – 12.50%</td>
+                  <td className="text-green" style={{ fontWeight: 700 }}>
+                    10.50% – 13.00%
+                    <div style={{ fontSize: "0.76rem", color: "var(--muted)", fontWeight: 400 }}>Floating (Base-linked)</div>
+                  </td>
                   <td>Up to ₹75 Lakhs</td>
                   <td>0% (100% Cost)</td>
                   <td>3 – 5 Days</td>
@@ -461,10 +578,22 @@ export default function CompareLendersPage() {
                   <td>
                     <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                       <LenderLogo name="Auxilo" height={22} />
-                      <strong>Auxilo Finserve</strong>
+                      <div>
+                        <Link href="/lenders/auxilo" style={{ color: "var(--brand)", fontWeight: 700, textDecoration: "underline" }}>
+                          Auxilo Overseas Loan
+                        </Link>
+                        <div style={{ fontSize: "0.78rem", color: "var(--muted)" }}>
+                          <a href="https://www.auxilo.com/education-loan" target="_blank" rel="noopener noreferrer" style={{ color: "var(--brand-dark)" }}>
+                            Official Auxilo Portal ↗
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   </td>
-                  <td>10.75% – 12.75%</td>
+                  <td className="text-green" style={{ fontWeight: 700 }}>
+                    10.75% – 13.25%
+                    <div style={{ fontSize: "0.76rem", color: "var(--muted)", fontWeight: 400 }}>Floating (Base-linked)</div>
+                  </td>
                   <td>Up to ₹60 Lakhs</td>
                   <td>0% (100% Cost)</td>
                   <td>3 – 4 Days</td>
@@ -474,10 +603,22 @@ export default function CompareLendersPage() {
                   <td>
                     <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                       <LenderLogo name="InCred" height={22} />
-                      <strong>InCred Finance</strong>
+                      <div>
+                        <Link href="/lenders/incred" style={{ color: "var(--brand)", fontWeight: 700, textDecoration: "underline" }}>
+                          InCred Student Loan
+                        </Link>
+                        <div style={{ fontSize: "0.78rem", color: "var(--muted)" }}>
+                          <a href="https://www.incred.com/education-loan.html" target="_blank" rel="noopener noreferrer" style={{ color: "var(--brand-dark)" }}>
+                            Official InCred Portal ↗
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   </td>
-                  <td>10.50% – 12.50%</td>
+                  <td className="text-green" style={{ fontWeight: 700 }}>
+                    10.75% – 13.50%
+                    <div style={{ fontSize: "0.76rem", color: "var(--muted)", fontWeight: 400 }}>Floating (Risk-based)</div>
+                  </td>
                   <td>Up to ₹60 Lakhs</td>
                   <td>0% (100% Cost)</td>
                   <td>4 – 5 Days</td>
@@ -562,6 +703,9 @@ export default function CompareLendersPage() {
           </div>
         </div>
       </section>
+
+      {/* Zero CIBIL Impact Detailed Disclosure */}
+      <CibilImpactDisclosure />
 
       {/* FAQ Section */}
       <FAQSection

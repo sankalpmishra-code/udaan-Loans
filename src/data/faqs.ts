@@ -40,9 +40,9 @@ export const homeFaqs: FAQItem[] = [
       "Yes, under Section 80E of the Indian Income Tax Act, you or your co-applicant can claim a 100% tax deduction on the entire interest amount paid on an education loan for up to 8 consecutive financial years with no upper cap. Loans must be sanctioned by recognized Indian commercial banks or designated financial institutions."
   },
   {
-    question: "Does checking my loan options with Udaan Edu Loans affect my CIBIL score?",
+    question: "How does checking my loan options with Udaan Edu Loans affect my CIBIL score?",
     answer:
-      "No. Exploring loan options and running our preliminary loan matcher does not trigger a hard credit check or affect your or your co-applicant's CIBIL score. A formal credit inquiry is initiated only when you choose to submit a complete loan application to a specific bank or NBFC."
+      "Udaan's initial eligibility evaluation and 60-second Bank Matcher rely strictly on your self-declared academic credentials and co-applicant financial inputs. We do NOT perform any credit bureau pull (neither soft nor hard), meaning your CIBIL score is 100% unaffected during the exploration phase. A formal credit enquiry (hard pull) occurs only at a later stage when you select a specific bank or NBFC and provide explicit digital or written consent for formal underwriting as required by RBI guidelines. Furthermore, by pre-underwriting your profile, Udaan protects your credit record from multiple parallel hard inquiries that would occur if you applied directly to multiple branches simultaneously."
   },
   {
     question: "How are living expenses and German Blocked Account (Sperrkonto) or Canada GIC disbursed?",
@@ -149,7 +149,7 @@ export const lendersFaqs: FAQItem[] = [
   {
     question: "Can I compare multiple bank offers without hurting my CIBIL credit score?",
     answer:
-      "Yes. When you check your eligibility with Udaan Edu Loans, we perform a soft profile assessment that has zero impact on your CIBIL score. We only submit formal loan files to lenders you specifically choose to proceed with."
+      "Yes. Comparing loan products across public banks, private commercial banks, and NBFCs on Udaan does not trigger credit bureau inquiries. We evaluate preliminary lender fit using self-declared metrics. A formal statutory credit report pull (hard enquiry) is initiated exclusively by the single chosen lender you decide to proceed with, and only after your explicit digital authorization."
   }
 ];
 

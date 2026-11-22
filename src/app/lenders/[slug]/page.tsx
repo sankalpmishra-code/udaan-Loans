@@ -7,6 +7,7 @@ import FAQSection from "@/components/FAQSection";
 import JsonLd from "@/components/JsonLd";
 import LenderLogo from "@/components/LenderLogo";
 import EditorialByline from "@/components/EditorialByline";
+import CibilImpactDisclosure from "@/components/CibilImpactDisclosure";
 import { siteConfig } from "@/data/siteConfig";
 
 interface PageProps {
@@ -166,10 +167,48 @@ export default async function LenderPage({ params }: PageProps) {
             </p>
 
             <EditorialByline
-              reviewerName="Udaan Institutional Credit Advisory Desk"
-              reviewerTitle="Specialized Bank Underwriting & Policy Analysts"
-              lastUpdated="October 2026"
+              reviewerName={lender.verifiedBy || "Rajesh Sharma (Former Scale-IV Credit Officer, SBI)"}
+              reviewerTitle="Udaan Banking & Credit Advisory Committee"
+              lastUpdated={lender.effectiveDate || "November 2026"}
             />
+
+            {/* Verified Scheme Official Documentation Banner */}
+            <div
+              className="card"
+              style={{
+                background: "var(--soft)",
+                border: "1px solid var(--line)",
+                borderLeft: "4px solid var(--brand)",
+                padding: "16px 20px",
+                marginBottom: "24px",
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: "12px",
+              }}
+            >
+              <div>
+                <div style={{ fontSize: "0.82rem", color: "var(--muted)", textTransform: "uppercase", fontWeight: 700 }}>
+                  Flagship Scheme &amp; Audit Reference
+                </div>
+                <div style={{ fontSize: "1.05rem", fontWeight: 800, color: "var(--ink)", marginTop: "2px" }}>
+                  {lender.schemeName}
+                </div>
+                <div style={{ fontSize: "0.78rem", color: "var(--ink-secondary)", marginTop: "2px" }}>
+                  Audit Code: <code>{lender.sourceAuditRef}</code> • Effective as of {lender.effectiveDate}
+                </div>
+              </div>
+              <a
+                href={lender.schemeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-outline"
+                style={{ fontSize: "0.82rem", padding: "8px 14px" }}
+              >
+                Official Scheme Guidelines ↗
+              </a>
+            </div>
 
             {/* Quick Specs Grid */}
             <div
@@ -177,7 +216,7 @@ export default async function LenderPage({ params }: PageProps) {
                 display: "grid",
                 gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
                 gap: "14px",
-                margin: "32px 0",
+                margin: "24px 0",
               }}
             >
               <div className="card" style={{ padding: "18px" }}>
@@ -188,7 +227,7 @@ export default async function LenderPage({ params }: PageProps) {
                   {lender.interestRate}
                 </div>
                 <div style={{ fontSize: "0.76rem", color: "var(--ink-secondary)", marginTop: "2px" }}>
-                  {isGlobalUSD ? "Variable USD Benchmark" : "Floating (EBLR/Spread)"}
+                  {lender.rateType}
                 </div>
               </div>
 
@@ -225,6 +264,30 @@ export default async function LenderPage({ params }: PageProps) {
                 </div>
                 <div style={{ fontSize: "0.76rem", color: "var(--ink-secondary)", marginTop: "2px" }}>
                   Fast digital sanction via Udaan
+                </div>
+              </div>
+            </div>
+
+            {/* Applicable Conditions & Concessions Box */}
+            <div
+              className="card"
+              style={{
+                background: "var(--surface)",
+                border: "1px solid var(--line)",
+                borderLeft: "4px solid var(--accent)",
+                padding: "20px 24px",
+                marginBottom: "24px",
+              }}
+            >
+              <div style={{ display: "flex", gap: "10px", alignItems: "flex-start" }}>
+                <div style={{ fontSize: "1.3rem", flexShrink: 0 }}>📋</div>
+                <div>
+                  <strong style={{ fontSize: "0.95rem", color: "var(--ink)" }}>
+                    Applicable Underwriting Conditions &amp; Statutory Concessions
+                  </strong>
+                  <p style={{ margin: "6px 0 0", fontSize: "0.88rem", color: "var(--ink-secondary)", lineHeight: "1.6" }}>
+                    {lender.applicableConditions}
+                  </p>
                 </div>
               </div>
             </div>
@@ -332,8 +395,11 @@ export default async function LenderPage({ params }: PageProps) {
               </div>
             </div>
 
+            {/* Credit Score & CIBIL Impact Policy */}
+            <CibilImpactDisclosure style={{ padding: "0 0 20px" }} />
+
             {/* Lender FAQs */}
-            <div style={{ marginTop: "40px" }}>
+            <div style={{ marginTop: "20px" }}>
               <FAQSection
                 faqs={lenderFaqs}
                 title={`Frequently Asked Questions About ${lender.shortName || lender.name}`}

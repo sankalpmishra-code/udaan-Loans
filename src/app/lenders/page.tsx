@@ -6,6 +6,7 @@ import LenderLogo from "@/components/LenderLogo";
 import JsonLd from "@/components/JsonLd";
 import AmpHtmlLink from "@/components/AmpHtmlLink";
 import EditorialByline from "@/components/EditorialByline";
+import CibilImpactDisclosure from "@/components/CibilImpactDisclosure";
 import { lendersList } from "@/data/lenders";
 import { lendersFaqs } from "@/data/faqs";
 import { siteConfig } from "@/data/siteConfig";
@@ -93,9 +94,9 @@ export default function LendersPage() {
           </div>
 
           <EditorialByline
-            reviewerName="Udaan Banking & Credit Advisory Committee"
-            reviewerTitle="Accredited Education Loan Underwriting Specialists"
-            lastUpdated="October 2026"
+            reviewerName="Rajesh Sharma (Ex-SBI Scale-IV) & Ananya Sen (Ex-HDFC Credila)"
+            reviewerTitle="Udaan Banking & Credit Advisory Committee"
+            lastUpdated="November 2026"
           />
 
           {/* Master Comparison Table */}
@@ -133,7 +134,10 @@ export default function LendersPage() {
                       </div>
                     </td>
                     <td><span className="badge" style={{ marginBottom: "0", fontSize: "0.78rem" }}>{lender.category}</span></td>
-                    <td className="text-green" style={{ fontWeight: "700" }}>{lender.interestRate}</td>
+                    <td className="text-green" style={{ fontWeight: "700" }}>
+                      {lender.interestRate}
+                      <div style={{ fontSize: "0.74rem", color: "var(--muted)", fontWeight: 400 }}>{lender.rateType}</div>
+                    </td>
                     <td>{lender.maxUnsecured}</td>
                     <td>{lender.maxSecured}</td>
                     <td>{lender.processingTime}</td>
@@ -217,6 +221,9 @@ export default function LendersPage() {
           </div>
         </div>
       </section>
+
+      {/* Zero CIBIL Impact Detailed Disclosure */}
+      <CibilImpactDisclosure />
 
       {/* Lenders FAQ Section */}
       <FAQSection

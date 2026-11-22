@@ -90,6 +90,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: changeFrequencies.about,
     },
     {
+      path: "/editorial-policy",
+      priority: 0.85,
+      changeFrequency: "weekly" as const,
+    },
+    {
       path: "/partners",
       priority: 0.8,
       changeFrequency: "weekly" as const,

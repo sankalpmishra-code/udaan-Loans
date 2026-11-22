@@ -10,9 +10,9 @@ interface EditorialBylineProps {
 }
 
 export default function EditorialByline({
-  lastUpdated = "October 2026",
-  reviewerName = "Udaan Overseas Financial Advisory Board",
-  reviewerTitle = "Certified Education Finance Specialists",
+  lastUpdated = "November 2026",
+  reviewerName = "Rajesh Sharma (Ex-SBI Scale-IV) & Udaan Advisory Committee",
+  reviewerTitle = "Accredited Banking & Credit Advisory Desk",
   className = "",
   style = {},
 }: EditorialBylineProps) {
@@ -67,8 +67,8 @@ export default function EditorialByline({
           <strong>Last Verified:</strong> {lastUpdated}
         </span>
         <span>•</span>
-        <Link href="/about" style={{ textDecoration: "underline", color: "var(--brand)" }}>
-          Editorial Standards
+        <Link href="/editorial-policy" style={{ textDecoration: "underline", color: "var(--brand)" }}>
+          Editorial &amp; Verification Policy
         </Link>
       </div>
     </aside>

@@ -89,7 +89,8 @@ export default function Footer() {
             <p>© {new Date().getFullYear()} Udaan Edu Loans. All Rights Reserved.</p>
             <div className="legal-links">
               <Link href="/about">About Us</Link>
-              <Link href="/blog">Blog & Guides</Link>
+              <Link href="/editorial-policy">Editorial Policy</Link>
+              <Link href="/blog">Blog &amp; Guides</Link>
               <Link href="/partners">Partner Program</Link>
               <Link href="/tax-calculator">Tax Benefits (80E)</Link>
               <Link href="/privacy">Privacy Policy</Link>
