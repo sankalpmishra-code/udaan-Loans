@@ -99,6 +99,11 @@ export const loansFaqs: FAQItem[] = [
     question: "Can I get an education loan for stem master's, MBA, or undergraduate courses?",
     answer:
       "Yes. Indian lenders actively fund STEM master's programs (MS in CS, Data Science, AI), MBA degrees, specialized post-graduate diplomas, healthcare courses (MBBS/MD), and 4-year undergraduate bachelor's degrees across accredited global institutions."
+  },
+  {
+    question: "Does an abroad education loan cover German Sperrkonto and Canadian living support (GIC)?",
+    answer:
+      "Yes. Partner banks and NBFCs execute outward foreign wire remittances directly to fund mandatory pre-visa living deposit accounts. This covers the German Blocked Account (€11,904 annual living requirement) and Canadian living expenses or GIC deposit (CAD $23,448 published by IRCC for students outside Quebec), ensuring full visa compliance without out-of-pocket strain."
   }
 ];
 

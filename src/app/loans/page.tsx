@@ -234,8 +234,8 @@ export default function LoansPage() {
             </div>
             <div className="card">
               <div className="card-icon">🏦</div>
-              <h3>Living Support Deposits (GIC & Blocked Accounts)</h3>
-              <p>Special direct transfers for German Blocked Accounts (€11,904) and Canadian living expenses or GIC (CAD $23,448 outside Quebec).</p>
+              <h3>Living Support Deposits (GIC &amp; Blocked Accounts)</h3>
+              <p>Special direct pre-visa transfers for German Blocked Accounts (€11,904) and Canadian living cost proof or GIC (CAD $23,448 outside Quebec under IRCC regulations).</p>
             </div>
           </div>
         </div>
