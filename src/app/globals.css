@@ -274,19 +274,26 @@ section {
   backdrop-filter: blur(8px);
 }
 
+.site-header .wrap.header-wrap,
 .header-wrap {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 72px;
+  max-width: 1400px;
+  width: 100%;
+  flex-wrap: nowrap !important;
+  white-space: nowrap !important;
 }
 
 .logo {
   font-family: var(--head);
   font-weight: 800;
-  font-size: 1.45rem;
+  font-size: 1.35rem;
   letter-spacing: -0.02em;
   color: var(--ink);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .logo span {
@@ -296,7 +303,9 @@ section {
 .brand-logo-flex {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .brand-icon-svg {
@@ -315,15 +324,21 @@ section {
 .desktop-nav {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 14px;
+  flex-wrap: nowrap !important;
+  white-space: nowrap !important;
+  flex-shrink: 0;
 }
 
 .desktop-nav a {
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   color: var(--ink-secondary);
   transition: color 0.15s ease;
   position: relative;
+  white-space: nowrap;
+  padding: 4px 2px;
+  flex-shrink: 0;
 }
 
 .desktop-nav a:hover,
@@ -340,6 +355,35 @@ section {
   height: 2px;
   background: var(--brand);
   border-radius: 2px;
+}
+
+.desktop-nav .nav-cta {
+  padding: 7px 14px;
+  font-size: 0.82rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+@media (min-width: 1081px) and (max-width: 1280px) {
+  .site-header .wrap.header-wrap,
+  .header-wrap {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .desktop-nav {
+    gap: 10px;
+  }
+  .desktop-nav a {
+    font-size: 0.82rem;
+    padding: 2px 1px;
+  }
+  .desktop-nav .nav-cta {
+    padding: 6px 11px;
+    font-size: 0.78rem;
+  }
+  .logo {
+    font-size: 1.2rem;
+  }
 }
 
 .mobile-toggle {
@@ -1298,17 +1342,17 @@ select.input-err {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1080px) {
   .desktop-nav {
-    display: none;
+    display: none !important;
   }
 
   .mobile-toggle {
-    display: flex;
+    display: flex !important;
   }
 
   .mobile-drawer {
-    display: block;
+    display: block !important;
     position: fixed;
     top: 72px;
     left: 0;
@@ -1332,7 +1376,9 @@ select.input-err {
     font-weight: 700;
     font-size: 1.05rem;
   }
+}
 
+@media (max-width: 768px) {
   .grid-2,
   .form-grid {
     grid-template-columns: 1fr;
