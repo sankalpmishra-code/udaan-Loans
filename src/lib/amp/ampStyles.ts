@@ -739,4 +739,21 @@ amp-accordion section[expanded] h3:after {
   color: #64748b;
   font-size: 0.74rem;
 }
+
+/* ================= DESKTOP RESPONSIVE ENHANCEMENTS ================= */
+@media (min-width: 768px) {
+  .amp-container {
+    max-width: 1040px;
+    padding: 36px 24px;
+  }
+  .amp-hero {
+    padding: 48px 32px 56px;
+  }
+  .amp-hero h1 {
+    font-size: 2.2rem;
+  }
+  .amp-sticky-bar {
+    display: none;
+  }
+}
 `;

@@ -42,6 +42,7 @@ export default function Footer() {
               <li><Link href="/assessment">Preliminary Funding Assessment</Link></li>
               <li><Link href="/lenders">Compare 30+ Banks & NBFCs</Link></li>
               <li><Link href="/compare-lenders">Side-by-Side Lender Comparison</Link></li>
+              <li><Link href="/blog">Education Loan Guides & Blog</Link></li>
             </ul>
           </div>
 
@@ -81,13 +82,14 @@ export default function Footer() {
         <div className="footer-bottom">
           <div className="disclaimer-box">
             <p>
-              <strong>Regulatory & Compliance Notice:</strong> Udaan Edu Loans ({siteConfig.legalName}) is a premier digital loan facilitation and student advisory service. We are not a bank, non-banking financial company (NBFC), or money lender under Indian law. We do not underwrite, sanction, or disburse loans. All loan applications are subject to the independent credit evaluation, underwriting policies, margin money rules, terms, and conditions of our partnering RBI-regulated scheduled commercial banks and NBFCs. Rates (7.5% - 13.5%), processing fees, and sanction amounts shown across the website are indicative and vary according to university ranking, student academic record, co-applicant financial strength, and collateral quality.
+              <strong>Regulatory & Compliance Notice:</strong> Udaan Edu Loans ({siteConfig.legalName}) is a premier digital loan facilitation and student advisory service. We are not a bank, non-banking financial company (NBFC), or money lender under Indian law. We do not underwrite, sanction, or disburse loans. All loan applications are subject to the independent credit evaluation, underwriting policies, margin money rules, terms, and conditions of our partnering RBI-regulated scheduled commercial banks and NBFCs. Rates (7.75% - 13.50%), processing fees, and sanction amounts shown across the website are indicative and vary according to university ranking, student academic record, co-applicant financial strength, and collateral quality.
             </p>
           </div>
           <div className="copyright-bar">
             <p>© {new Date().getFullYear()} Udaan Edu Loans. All Rights Reserved.</p>
             <div className="legal-links">
               <Link href="/about">About Us</Link>
+              <Link href="/blog">Blog & Guides</Link>
               <Link href="/partners">Partner Program</Link>
               <Link href="/tax-calculator">Tax Benefits (80E)</Link>
               <Link href="/privacy">Privacy Policy</Link>

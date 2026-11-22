@@ -3,6 +3,7 @@ import { siteConfig } from "@/data/siteConfig";
 import { universities } from "@/data/universities";
 import { destinationsList } from "@/data/destinations";
 import { lendersList } from "@/data/lenders";
+import { BLOG_POSTS } from "@/data/blogPosts";
 
 /**
  * Next.js Dynamic XML Sitemap Generator
@@ -99,6 +100,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
     },
     {
+      path: "/blog",
+      priority: 0.9,
+      changeFrequency: "weekly" as const,
+    },
+    {
       path: "/privacy",
       priority: 0.5,
       changeFrequency: "monthly" as const,
@@ -132,6 +138,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   universities.forEach((u) => {
     routes.push({
       path: `/universities/${u.country}/${u.slug}`,
+      priority: 0.85,
+      changeFrequency: "weekly" as const,
+    });
+  });
+
+  // Add all educational blog and advisory articles
+  BLOG_POSTS.forEach((post) => {
+    routes.push({
+      path: `/blog/${post.slug}`,
       priority: 0.85,
       changeFrequency: "weekly" as const,
     });

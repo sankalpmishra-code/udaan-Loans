@@ -16,6 +16,7 @@ export default function Header() {
     { name: "EMI Calc", href: "/calculator" },
     { name: "80E Tax", href: "/tax-calculator" },
     { name: "Lenders", href: "/lenders" },
+    { name: "Blog", href: "/blog" },
     { name: "Partners", href: "/partners" },
     { name: "About", href: "/about" },
   ];
