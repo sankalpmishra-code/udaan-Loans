@@ -110,7 +110,7 @@ export const siteConfig = {
     "study abroad loan interest rates 2026",
     "section 80E tax deduction education loan",
     "collateral free education loan up to 75 lakhs",
-    "study in UK student loan 28 day rule",
+    "study in UK student loan visa proof",
     "Australia genuine student visa loan proof",
     "study abroad loan without cosigner",
     "study loan facilitator India",

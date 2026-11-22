@@ -4,6 +4,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
 import LenderLogo from "@/components/LenderLogo";
 import JsonLd from "@/components/JsonLd";
+import AmpHtmlLink from "@/components/AmpHtmlLink";
 import EditorialByline from "@/components/EditorialByline";
 import { lendersList } from "@/data/lenders";
 import { lendersFaqs } from "@/data/faqs";
@@ -68,6 +69,7 @@ export default function LendersPage() {
 
   return (
     <>
+      <AmpHtmlLink ampPath="/amp/lenders" />
       <JsonLd data={itemListSchema} />
       <Breadcrumbs items={[{ name: "Compare Lenders", url: "/lenders" }]} />
 

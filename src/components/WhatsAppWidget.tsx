@@ -1,44 +1,135 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/data/siteConfig";
-import { trackWhatsAppClick } from "@/lib/analytics";
+import { trackWhatsAppClick, trackLeadSubmission, getStoredAttribution } from "@/lib/analytics";
 
 export default function WhatsAppWidget() {
   const [isOpen, setIsOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
   const [country, setCountry] = useState("United States");
   const [degree, setDegree] = useState("Master's");
   const [amount, setAmount] = useState("₹40 Lakhs");
   const [consent, setConsent] = useState(false);
-  const [consentError, setConsentError] = useState(false);
+
+  const [errors, setErrors] = useState<{ name?: string; phone?: string; consent?: string }>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const pathname = usePathname();
 
-  const handleOpenWhatsApp = (e: React.FormEvent) => {
-    e.preventDefault();
+  // Listen for clicks on elements with data-whatsapp-trigger or custom open events
+  useEffect(() => {
+    const handleGlobalTrigger = (e: MouseEvent) => {
+      const target = (e.target as HTMLElement).closest("[data-whatsapp-trigger]");
+      if (target) {
+        e.preventDefault();
+        setIsOpen(true);
+      }
+    };
+
+    const handleOpenEvent = () => setIsOpen(true);
+
+    document.addEventListener("click", handleGlobalTrigger);
+    window.addEventListener("open-whatsapp-widget", handleOpenEvent);
+
+    return () => {
+      document.removeEventListener("click", handleGlobalTrigger);
+      window.removeEventListener("open-whatsapp-widget", handleOpenEvent);
+    };
+  }, []);
+
+  const validate = (): boolean => {
+    const newErrors: { name?: string; phone?: string; consent?: string } = {};
+
+    if (!name.trim() || name.trim().length < 2) {
+      newErrors.name = "Please enter your name.";
+    }
+
+    const cleanPhone = phone.replace(/\D/g, "");
+    if (!cleanPhone || cleanPhone.length < 10) {
+      newErrors.phone = "Enter a valid 10-digit mobile number.";
+    }
+
     if (!consent) {
-      setConsentError(true);
+      newErrors.consent = "Please authorize contact on WhatsApp.";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleOpenWhatsApp = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!validate()) {
       return;
     }
-    setConsentError(false);
 
-    // Build prefilled query with page attribution
+    setIsSubmitting(true);
+
+    const cleanPhone = phone.replace(/\D/g, "");
+    const attribution = getStoredAttribution();
+
+    // 1. Ingest lead to Google Sheet & internal alert API
+    try {
+      await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          leadType: "WhatsApp Chat Lead",
+          name: name.trim(),
+          phone: cleanPhone,
+          email: "",
+          country,
+          course: degree,
+          amount,
+          loanType: "WhatsApp Consultation",
+          partnerRef: attribution.partnerRef || "",
+          utmSource: attribution.utm_source || "",
+          utmMedium: attribution.utm_medium || "",
+          utmCampaign: attribution.utm_campaign || "",
+          utmTerm: attribution.utm_term || "",
+          utmContent: attribution.utm_content || "",
+          gclid: attribution.gclid || "",
+          landingPage: pathname,
+          sourceName: `WhatsApp Widget (${pathname})`,
+          sourceUrl: typeof window !== "undefined" ? window.location.href : pathname,
+          additionalNotes: `Direct WhatsApp Chat initiated. Target: ${country} | Program: ${degree} | Amount: ${amount}`,
+        }),
+      });
+    } catch (err) {
+      console.warn("Unable to sync lead to API:", err);
+    }
+
+    // 2. Track conversion events for GA4 and Google Ads
+    trackWhatsAppClick(pathname, country);
+    trackLeadSubmission("WhatsApp Chat Lead", {
+      country,
+      amount,
+      degree,
+    });
+
+    // 3. Build personalized prefilled query with student details
     const message = encodeURIComponent(
-      `Hi Udaan Edu Loans, I need guidance on study abroad education loans.\n\n` +
+      `Hi Udaan Edu Loans, my name is ${name.trim()}.\n\n` +
+      `I need guidance on study abroad education loans:\n` +
       `• Destination: ${country}\n` +
       `• Program: ${degree}\n` +
       `• Estimated Loan: ${amount}\n` +
+      `• Mobile / WhatsApp: +91 ${cleanPhone}\n` +
       `• Referral Source: ${pathname}\n\n` +
-      `Please connect me with a loan advisor.`
+      `Please connect me with an education loan specialist.`
     );
 
     const whatsappNumber = siteConfig.whatsappNumber || "917303200803";
     const url = `https://wa.me/${whatsappNumber}?text=${message}`;
 
-    trackWhatsAppClick(pathname, country);
-
+    // 4. Open WhatsApp
     window.open(url, "_blank", "noopener,noreferrer");
+
+    setIsSubmitting(false);
     setIsOpen(false);
   };
 
@@ -89,24 +180,76 @@ export default function WhatsAppWidget() {
           </div>
 
           <form onSubmit={handleOpenWhatsApp} className="wa-body">
-            <p style={{ fontSize: "0.86rem", color: "var(--ink-secondary)", margin: "0 0 12px" }}>
-              Connect directly with a Senior Education Loan Specialist for instant lender eligibility advice:
+            <p style={{ fontSize: "0.85rem", color: "var(--ink-secondary)", margin: "0 0 12px", lineHeight: "1.4" }}>
+              Enter your details to initiate instant WhatsApp advisory with a senior specialist:
             </p>
 
             <div className="wa-field">
-              <label htmlFor="wa-country">Target Destination</label>
-              <select
-                id="wa-country"
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
-              >
-                <option value="United States">🇺🇸 United States</option>
-                <option value="Germany">🇩🇪 Germany</option>
-                <option value="United Kingdom">🇬🇧 United Kingdom</option>
-                <option value="Canada">🇨🇦 Canada</option>
-                <option value="Australia">🇦🇺 Australia</option>
-                <option value="Other">🌍 Other Destination</option>
-              </select>
+              <label htmlFor="wa-name">Student Full Name *</label>
+              <input
+                id="wa-name"
+                type="text"
+                placeholder="e.g. Rahul Sharma"
+                value={name}
+                onChange={(e) => {
+                  setName(e.target.value);
+                  if (errors.name) setErrors((prev) => ({ ...prev, name: undefined }));
+                }}
+                autoFocus
+              />
+              {errors.name && <span className="wa-field-error">{errors.name}</span>}
+            </div>
+
+            <div className="wa-field">
+              <label htmlFor="wa-phone">WhatsApp Number *</label>
+              <div className="wa-phone-group">
+                <span className="wa-phone-prefix">+91</span>
+                <input
+                  id="wa-phone"
+                  type="tel"
+                  className="wa-phone-input"
+                  placeholder="10-digit mobile number"
+                  value={phone}
+                  onChange={(e) => {
+                    setPhone(e.target.value);
+                    if (errors.phone) setErrors((prev) => ({ ...prev, phone: undefined }));
+                  }}
+                />
+              </div>
+              {errors.phone && <span className="wa-field-error">{errors.phone}</span>}
+            </div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
+              <div className="wa-field">
+                <label htmlFor="wa-country">Target Destination</label>
+                <select
+                  id="wa-country"
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}
+                >
+                  <option value="United States">🇺🇸 USA</option>
+                  <option value="Germany">🇩🇪 Germany</option>
+                  <option value="United Kingdom">🇬🇧 UK</option>
+                  <option value="Canada">🇨🇦 Canada</option>
+                  <option value="Australia">🇦🇺 Australia</option>
+                  <option value="Ireland">🇮🇪 Ireland</option>
+                  <option value="Other">🌍 Other</option>
+                </select>
+              </div>
+
+              <div className="wa-field">
+                <label htmlFor="wa-amount">Estimated Loan</label>
+                <select
+                  id="wa-amount"
+                  value={amount}
+                  onChange={(e) => setAmount(e.target.value)}
+                >
+                  <option value="₹25 Lakhs">Up to ₹25L</option>
+                  <option value="₹40 Lakhs">₹25L - ₹50L</option>
+                  <option value="₹75 Lakhs">₹50L - ₹75L</option>
+                  <option value="₹1 Crore+">₹75L - ₹1.5Cr+</option>
+                </select>
+              </div>
             </div>
 
             <div className="wa-field">
@@ -123,20 +266,6 @@ export default function WhatsAppWidget() {
               </select>
             </div>
 
-            <div className="wa-field">
-              <label htmlFor="wa-amount">Estimated Loan Needed</label>
-              <select
-                id="wa-amount"
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
-              >
-                <option value="₹25 Lakhs">Up to ₹25 Lakhs</option>
-                <option value="₹40 Lakhs">₹25L - ₹50 Lakhs</option>
-                <option value="₹75 Lakhs">₹50L - ₹75 Lakhs</option>
-                <option value="₹1 Crore+">₹75L - ₹1.5 Crore+</option>
-              </select>
-            </div>
-
             <div className="wa-consent-box">
               <label className="checkbox-label" style={{ fontSize: "0.78rem" }}>
                 <input
@@ -144,22 +273,21 @@ export default function WhatsAppWidget() {
                   checked={consent}
                   onChange={(e) => {
                     setConsent(e.target.checked);
-                    if (e.target.checked) setConsentError(false);
+                    if (e.target.checked && errors.consent) {
+                      setErrors((prev) => ({ ...prev, consent: undefined }));
+                    }
                   }}
                 />
                 <span>
-                  I consent to connect on WhatsApp for education loan advisory. No PII is shared.
+                  I authorize Udaan Edu Loans to connect with me on WhatsApp. Zero spam.
                 </span>
               </label>
-              {consentError && (
-                <div style={{ color: "var(--danger)", fontSize: "0.75rem", marginTop: "4px" }}>
-                  Please check the box to proceed to WhatsApp.
-                </div>
-              )}
+              {errors.consent && <span className="wa-field-error">{errors.consent}</span>}
             </div>
 
-            <button type="submit" className="wa-start-btn">
-              <span>Start WhatsApp Chat</span> →
+            <button type="submit" className="wa-start-btn" disabled={isSubmitting}>
+              <span>💬</span>
+              <span>{isSubmitting ? "Connecting to WhatsApp..." : "Start WhatsApp Chat"}</span> →
             </button>
           </form>
         </div>

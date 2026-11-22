@@ -4,12 +4,13 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
 import LenderLogo from "@/components/LenderLogo";
 import EditorialByline from "@/components/EditorialByline";
+import AmpHtmlLink from "@/components/AmpHtmlLink";
 import { loansFaqs } from "@/data/faqs";
 
 export const metadata: Metadata = {
   title: "Secured vs Collateral-Free Study Abroad Loans (2026) | Udaan",
   description:
-    "Compare secured and unsecured study abroad education loans in India. Rates from 7.5%, limits up to ₹1.5 Cr, and 100% tuition plus living cost coverage.",
+    "Compare secured and unsecured study abroad education loans in India. Rates from 7.75%, limits up to ₹1.5 Cr, and 100% tuition plus living cost coverage.",
   keywords: [
     "secured education loan study abroad",
     "collateral free education loan India",
@@ -26,6 +27,7 @@ export const metadata: Metadata = {
 export default function LoansPage() {
   return (
     <>
+      <AmpHtmlLink ampPath="/amp/loans" />
       <Breadcrumbs items={[{ name: "Loan Options", url: "/loans" }]} />
 
       <section className="hero" style={{ padding: "48px 0 64px" }}>
@@ -232,8 +234,8 @@ export default function LoansPage() {
             </div>
             <div className="card">
               <div className="card-icon">🏦</div>
-              <h3>Mandatory Deposits & GIC / Blocked Accounts</h3>
-              <p>Special direct transfers for German Blocked Accounts (€11,904) and Canadian GIC ($20,635 CAD).</p>
+              <h3>Living Support Deposits (GIC & Blocked Accounts)</h3>
+              <p>Special direct transfers for German Blocked Accounts (€11,904) and Canadian living expenses or GIC (CAD $23,448 outside Quebec).</p>
             </div>
           </div>
         </div>

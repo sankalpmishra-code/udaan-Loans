@@ -4,6 +4,8 @@ import Calculator from "@/components/Calculator";
 import FAQSection from "@/components/FAQSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import JsonLd from "@/components/JsonLd";
+import AmpHtmlLink from "@/components/AmpHtmlLink";
+import EditorialByline from "@/components/EditorialByline";
 import { calculatorFaqs } from "@/data/faqs";
 import { siteConfig } from "@/data/siteConfig";
 
@@ -55,6 +57,7 @@ export default function CalculatorPage() {
 
   return (
     <>
+      <AmpHtmlLink ampPath="/amp/calculator" />
       <JsonLd data={calculatorSchema} />
       <Breadcrumbs items={[{ name: "EMI Calculator", url: "/calculator" }]} />
 
@@ -68,6 +71,12 @@ export default function CalculatorPage() {
               Udaan&apos;s calculator factors in the <strong>course moratorium period</strong> and simple interest capitalization.
             </p>
           </div>
+
+          <EditorialByline
+            reviewerName="Udaan Financial Planning & Amortization Desk"
+            reviewerTitle="Senior Education Loan Structuring Analysts"
+            lastUpdated="November 2026"
+          />
 
           <Calculator
             initialAmount={4000000}

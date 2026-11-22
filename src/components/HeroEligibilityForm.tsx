@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Link from "next/link";
-import { getStoredAttribution, trackLeadSubmission } from "@/lib/analytics";
+import { getStoredAttribution, trackLeadSubmission, trackFormStart, trackFormSubmit } from "@/lib/analytics";
 
 export default function HeroEligibilityForm() {
   const [currentStep, setCurrentStep] = useState<1 | 2>(1);
@@ -22,8 +22,13 @@ export default function HeroEligibilityForm() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [serverError, setServerError] = useState("");
+  const hasTrackedStart = useRef(false);
 
   const updateField = (field: string, value: string | boolean) => {
+    if (!hasTrackedStart.current) {
+      hasTrackedStart.current = true;
+      trackFormStart("HeroEligibilityForm", typeof window !== "undefined" ? window.location.pathname : "/");
+    }
     setFormData((prev) => ({ ...prev, [field]: value }));
     if (errors[field]) {
       setErrors((prev) => {
@@ -115,6 +120,10 @@ export default function HeroEligibilityForm() {
       trackLeadSubmission("Hero Loan Options Assessment", {
         country: formData.country,
         amount: formData.amount,
+        degree: formData.degreeLevel,
+      });
+      trackFormSubmit("HeroEligibilityForm", {
+        country: formData.country,
         degree: formData.degreeLevel,
       });
 

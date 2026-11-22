@@ -1041,7 +1041,7 @@ export default function UniversitySearchBar({
                 </span>
               </div>
               <p style={{ margin: 0, fontSize: "0.88rem", color: "var(--ink)", lineHeight: "1.5" }}>
-                {selectedUni.visaInfo} Our sanction letters are formatted to meet exact embassy guidelines (German Sperrkonto, Canadian GIC, UK 28-day rule, Australian DHA).
+                {selectedUni.visaInfo} Our sanction letters are formatted to meet exact embassy guidelines (German Sperrkonto, Canadian living support, UKVI Appendix Finance, Australian DHA).
               </p>
             </div>
 

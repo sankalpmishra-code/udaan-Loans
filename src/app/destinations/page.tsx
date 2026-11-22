@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
+import AmpHtmlLink from "@/components/AmpHtmlLink";
 import { destinationsList } from "@/data/destinations";
 import { destinationsFaqs } from "@/data/faqs";
 
@@ -52,6 +53,7 @@ export default function DestinationsPage() {
 
   return (
     <>
+      <AmpHtmlLink ampPath="/amp/destinations" />
       <Breadcrumbs items={[{ name: "Study Destinations", url: "/destinations" }]} />
 
       <section className="hero" style={{ padding: "48px 0 64px" }}>
@@ -62,7 +64,7 @@ export default function DestinationsPage() {
             <p className="lead">
               Every country imposes distinct financial proof and visa guidelines.
               We ensure your education loan sanction letter strictly aligns with embassy criteria,
-              from <strong>US I-20 proof of funds</strong> to <strong>German Blocked Accounts</strong> and <strong>Canadian GIC deposits</strong>.
+              from <strong>US I-20 proof of funds</strong> to <strong>German Blocked Accounts</strong> and <strong>Canadian living cost proof</strong>.
             </p>
           </div>
 
@@ -117,6 +119,19 @@ export default function DestinationsPage() {
                   <p style={{ fontSize: "0.95rem", color: "var(--ink-secondary)", marginTop: "6px" }}>
                     {dest.visaFundRequirements}
                   </p>
+                  {dest.officialGuidanceUrl && (
+                    <div style={{ marginTop: "8px", fontSize: "0.85rem" }}>
+                      <strong>Official Reference:</strong>{" "}
+                      <a
+                        href={dest.officialGuidanceUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ color: "var(--brand)", textDecoration: "underline", fontWeight: 600 }}
+                      >
+                        {dest.officialGuidanceLabel || "View official guidance"} ↗
+                      </a>
+                    </div>
+                  )}
                 </div>
 
                 <div style={{ marginTop: "16px" }}>

@@ -116,12 +116,12 @@ export const destinationsFaqs: FAQItem[] = [
   {
     question: "How does an education loan help with the UK 28-day financial fund rule?",
     answer:
-      "For a UK Student Visa, applicants must show proof of tuition fees plus 9 months of living costs held for 28 consecutive days. However, an education loan sanction letter from an RBI-regulated bank exempts students from the 28-day cash holding requirement under UK Visas and Immigration (UKVI) guidelines."
+      "Under UK Visas and Immigration (UKVI) Appendix Finance (FIN 8.1 - FIN 8.3), an applicant can demonstrate financial capability using an official education loan letter issued by a government or regulated financial institution (such as an RBI-regulated bank). While personal savings must be held for at least 28 consecutive days before application, a qualifying loan letter does not require funds to sit in a bank account for 28 days prior. However, the loan letter must meet strict UKVI criteria: it must be in the student's name (or joint with a parent/legal guardian), confirm unconditional release of funds once the visa is granted, and cover the required living costs (£1,483/month in London up to £13,347; £1,136/month outside London up to £10,224) and unpaid tuition on your CAS. Conditional or in-principle letters do not qualify until fully sanctioned. Official UKVI Guidance: https://www.gov.uk/student-visa/money."
   },
   {
-    question: "Can an education loan cover Canada's GIC (Guaranteed Investment Certificate)?",
+    question: "Can an education loan cover Canada's living expense proof and GIC?",
     answer:
-      "Yes. Lenders can transfer funds directly to approved Canadian financial institutions (such as CIBC, Scotiabank, or ICICI Bank Canada) to purchase the mandatory GIC certificate required for the Canadian study permit application."
+      "Yes. Under IRCC guidelines, study permit applicants must demonstrate living funds published at CAD $23,448 for a single applicant outside Quebec (separate from tuition and travel). If you choose to use a Guaranteed Investment Certificate (GIC) to prove living funds, lenders can wire funds directly to eligible Canadian banks (such as CIBC, Scotiabank, or ICICI Bank Canada). A GIC is an accepted, widely utilized option, though not universally mandatory under standard study permit rules. Note that the Student Direct Stream (SDS) was discontinued on 8 November 2024. Official IRCC Guidance: https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents.html#doc3."
   }
 ];
 
@@ -129,12 +129,12 @@ export const lendersFaqs: FAQItem[] = [
   {
     question: "Which bank is best for an education loan for study abroad in India?",
     answer:
-      "Public banks (State Bank of India, Bank of Baroda, Canara Bank) are best for low interest rates (7.5% - 9.5%) when you have property collateral. Private commercial banks (Axis Bank, ICICI Bank, Kotak Mahindra Bank) and specialized NBFCs (HDFC Credila, Avanse, Auxilo, InCred, Poonawalla Fincorp, Tata Capital) are best for quick 3 to 5-day approvals and collateral-free loans up to ₹75 Lakhs."
+      "Public banks (State Bank of India, Bank of Baroda, Canara Bank) are best for low interest rates (7.75% - 9.50%) when you have property or fixed deposit collateral. Private commercial banks (Axis Bank, ICICI Bank, IDFC FIRST) and specialized NBFCs (HDFC Credila, Avanse, Auxilo, InCred) are best for quick 3 to 5-day approvals and collateral-free loans up to ₹75 Lakhs."
   },
   {
     question: "What are the current interest rates offered by top study abroad lenders in 2026?",
     answer:
-      "Public sector bank rates typically start at 7.50% to 9.25% (floating). Private banks offer secured loans at 8.75% to 10.5% and unsecured loans at 10.5% to 12.5%. NBFCs offer unsecured loans between 10.75% and 13.5% depending on GRE score, academic pedigree, and co-applicant income profile."
+      "Public sector bank rates start from 7.75% to 9.30% (floating, EBLR-linked, e.g. SBI Global Ed-vantage from 7.75% with 0.50% girl student concession). Private banks offer secured loans at 8.75% to 10.50% and unsecured loans at 9.75% to 12.00%. NBFCs offer unsecured loans between 10.25% and 13.50% depending on course employability, GRE score, and co-applicant income profile."
   },
   {
     question: "Do public banks like SBI require in-person branch visits?",

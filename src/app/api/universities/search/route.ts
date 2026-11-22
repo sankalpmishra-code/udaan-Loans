@@ -183,17 +183,17 @@ export async function GET(request: Request) {
                 total = "₹28 Lakh – ₹44 Lakh / year";
                 maxUnsec = "Up to ₹50 Lakhs";
                 rates = "From 8.15% p.a.";
-                visa = "UKVI 28-day bank balance maintenance rule (£9,207–£12,006).";
+                visa = "UKVI maintenance requirement (£1,136/mo outside London, £1,483/mo London) under Appendix Finance.";
                 tier = "UK Tier 4 / Student Visa Sponsor DLI";
               } else if (cNameLower.includes("canada") || r.alpha_two_code === "CA") {
                 derivedCountryCode = "canada";
                 const isCollege = r.name.toLowerCase().includes("college") || r.name.toLowerCase().includes("polytechnic");
                 tuition = isCollege ? "₹11 Lakh – ₹16 Lakh / year" : "₹18 Lakh – ₹32 Lakh / year";
-                living = "₹13.0 Lakh / year (IRCC GIC C$20,635)";
-                total = isCollege ? "₹24 Lakh – ₹29 Lakh / year" : "₹31 Lakh – ₹45 Lakh / year";
+                living = "₹14.5 Lakh / year (IRCC C$23,448 outside Quebec)";
+                total = isCollege ? "₹25.5 Lakh – ₹30.5 Lakh / year" : "₹32.5 Lakh – ₹46.5 Lakh / year";
                 maxUnsec = isCollege ? "Up to ₹45 Lakhs" : "Up to ₹50 Lakhs";
                 rates = "From 8.15% p.a.";
-                visa = "IRCC Canadian SDS / Study Permit: C$20,635 GIC deposit + 1st year tuition receipt.";
+                visa = "IRCC Study Permit: C$23,448 living expense proof (GIC or loan/bank evidence) + 1st year tuition receipt.";
                 tier = isCollege ? "Canadian Public DLI College (Post-Grad Work Permit Approved)" : "Canadian Designated Learning Institution (DLI)";
               } else if (cNameLower.includes("australia") || r.alpha_two_code === "AU") {
                 derivedCountryCode = "australia";

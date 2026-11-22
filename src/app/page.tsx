@@ -4,6 +4,7 @@ import HeroEligibilityForm from "@/components/HeroEligibilityForm";
 import Calculator from "@/components/Calculator";
 import FAQSection from "@/components/FAQSection";
 import JsonLd from "@/components/JsonLd";
+import AmpHtmlLink from "@/components/AmpHtmlLink";
 import LendersLogoShowcase from "@/components/LendersLogoShowcase";
 import LenderLogo from "@/components/LenderLogo";
 import { homeFaqs } from "@/data/faqs";
@@ -46,6 +47,7 @@ export default function HomePage() {
 
   return (
     <>
+      <AmpHtmlLink ampPath="/amp" />
       <JsonLd data={faqSchema} />
 
       {/* =================================================================
@@ -144,7 +146,7 @@ export default function HomePage() {
               <li style={{ background: "rgba(217, 119, 6, 0.16)", color: "#b45309", borderColor: "rgba(217, 119, 6, 0.4)", fontWeight: 700 }}>
                 ⭐ Loans Without Co-Applicant for Masters
               </li>
-              <li>Rates from 7.5% - 12.5% p.a.</li>
+              <li>Rates from 7.75% - 13.50% p.a.</li>
               <li>Up to ₹1.5 Crore</li>
               <li>Collateral-Free up to ₹75L</li>
               <li>Zero CIBIL Impact Check</li>
@@ -309,7 +311,7 @@ export default function HomePage() {
                 </li>
                 <li>
                   <span className="comparison-icon-cross">✕</span>
-                  <span><strong>Limited embassy expertise:</strong> Branch staff may not know specific visa financial guidelines (I-20, CAS, SDS).</span>
+                  <span><strong>Limited embassy expertise:</strong> Branch staff may not know specific visa financial guidelines (US I-20, UK CAS, Canadian study permit).</span>
                 </li>
                 <li>
                   <span className="comparison-icon-cross">✕</span>
@@ -342,7 +344,7 @@ export default function HomePage() {
                 </li>
                 <li>
                   <span className="comparison-icon-check">✓</span>
-                  <span><strong>Visa-ready sanction letters:</strong> Structuring customized to satisfy US F-1, UK CAS, Canada SDS, or German blocked accounts.</span>
+                  <span><strong>Visa-ready sanction letters:</strong> Structuring customized to satisfy US F-1, UK CAS, Canadian study permit, or German blocked accounts.</span>
                 </li>
                 <li>
                   <span className="comparison-icon-check">✓</span>
@@ -376,7 +378,7 @@ export default function HomePage() {
               <div className="card-icon" aria-hidden="true">🏛️</div>
               <h3>Secured Education Loans</h3>
               <p>
-                Backed by residential property, commercial plots, or fixed deposits. Delivers the lowest indicative interest rates (7.5% - 9.5%) and maximum limits up to ₹1.5 Crore with flexible 15-year tenures.
+                Backed by residential property, commercial plots, or fixed deposits. Delivers the lowest indicative interest rates (7.75% - 9.50%) and maximum limits up to ₹1.5 Crore with flexible 15-year tenures.
               </p>
               <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", margin: "12px 0 16px" }}>
                 <LenderLogo name="SBI" height={24} />
@@ -418,7 +420,7 @@ export default function HomePage() {
               <div className="card-icon" aria-hidden="true">🌐</div>
               <h3>Comprehensive Expense Coverage</h3>
               <p>
-                Full financing covering 100% of university tuition fees, living expenses, German Blocked Accounts (Sperrkonto ~€11,904), Canada GIC, health insurance, and return airfare.
+                Full financing covering 100% of university tuition fees, living expenses, German Blocked Accounts (Sperrkonto ~€11,904), Canadian living support / GIC (CAD $23,448), health insurance, and return airfare.
               </p>
               <ul style={{ margin: "14px 0", fontSize: "0.9rem", color: "var(--ink-secondary)" }}>
                 <li>Direct university tuition wire transfers</li>
@@ -626,6 +628,7 @@ export default function HomePage() {
                 href={`https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent("Hi, I am planning to study abroad and would like to explore my education loan options with Udaan Edu Loans.")}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-whatsapp-trigger="true"
                 className="btn btn-outline"
                 style={{
                   background: "#25D366",
@@ -636,6 +639,7 @@ export default function HomePage() {
                   display: "inline-flex",
                   alignItems: "center",
                   gap: "8px",
+                  cursor: "pointer",
                 }}
               >
                 <span>💬 WhatsApp Advisor</span>

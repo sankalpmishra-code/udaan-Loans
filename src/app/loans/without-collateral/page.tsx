@@ -3,6 +3,7 @@ import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
 import JsonLd from "@/components/JsonLd";
+import AmpHtmlLink from "@/components/AmpHtmlLink";
 import LenderLogo from "@/components/LenderLogo";
 import EditorialByline from "@/components/EditorialByline";
 import { siteConfig } from "@/data/siteConfig";
@@ -154,6 +155,7 @@ export default function CollateralFreeLoansPage() {
 
   return (
     <>
+      <AmpHtmlLink ampPath="/amp/loans/without-collateral" />
       <JsonLd data={productSchema} />
 
       <Breadcrumbs

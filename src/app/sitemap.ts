@@ -89,6 +89,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: changeFrequencies.about,
     },
     {
+      path: "/partners",
+      priority: 0.8,
+      changeFrequency: "weekly" as const,
+    },
+    {
+      path: "/assessment",
+      priority: 0.85,
+      changeFrequency: "weekly" as const,
+    },
+    {
       path: "/privacy",
       priority: 0.5,
       changeFrequency: "monthly" as const,
@@ -126,6 +136,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
     });
   });
+
+  // Accelerated Mobile Pages (AMP) routes for mobile web indexation
+  const ampRoutes: Array<{
+    path: string;
+    priority: number;
+    changeFrequency: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
+  }> = [
+    { path: "/amp", priority: 0.95, changeFrequency: "daily" },
+    { path: "/amp/calculator", priority: 0.9, changeFrequency: "weekly" },
+    { path: "/amp/loans", priority: 0.9, changeFrequency: "weekly" },
+    { path: "/amp/loans/without-collateral", priority: 0.9, changeFrequency: "weekly" },
+    { path: "/amp/lenders", priority: 0.9, changeFrequency: "weekly" },
+    { path: "/amp/destinations", priority: 0.85, changeFrequency: "weekly" },
+    { path: "/amp/eligibility", priority: 0.85, changeFrequency: "weekly" },
+    { path: "/amp/process", priority: 0.85, changeFrequency: "weekly" },
+    { path: "/amp/apply", priority: 0.95, changeFrequency: "daily" },
+  ];
+  routes.push(...ampRoutes);
 
   return routes.map((route) => ({
     url: `${baseUrl}${route.path}`,

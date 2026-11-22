@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { getStoredAttribution, trackLeadSubmission } from "@/lib/analytics";
+import React, { useState, useRef } from "react";
+import { getStoredAttribution, trackLeadSubmission, trackFormStart, trackFormSubmit } from "@/lib/analytics";
 
 export default function LeadForm() {
   const [formData, setFormData] = useState({
@@ -20,7 +20,7 @@ export default function LeadForm() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [serverError, setServerError] = useState("");
-
+  const hasTrackedStart = useRef(false);
 
   // Helper to format live amount preview
   const formatAmountPreview = (num: number) => {
@@ -32,6 +32,10 @@ export default function LeadForm() {
   };
 
   const updateField = (field: string, value: string | boolean) => {
+    if (!hasTrackedStart.current) {
+      hasTrackedStart.current = true;
+      trackFormStart("LeadForm", typeof window !== "undefined" ? window.location.pathname : "/apply");
+    }
     setFormData((prev) => ({ ...prev, [field]: value }));
     // Clear error immediately as user types
     if (errors[field]) {
@@ -118,6 +122,10 @@ export default function LeadForm() {
         loan_type: formData.loanType,
         utm_source: attribution.utm_source,
         utm_campaign: attribution.utm_campaign,
+      });
+      trackFormSubmit("LeadForm", {
+        lead_type: "Student Loan Application",
+        country: formData.country,
       });
 
       setSubmitted(true);

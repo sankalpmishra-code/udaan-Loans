@@ -51,8 +51,8 @@ export default function Footer() {
             <ul>
               <li><Link href="/universities">Global Universities Directory (2,500+)</Link></li>
               <li><Link href="/destinations/usa">Education Loan for USA (I-20 Support)</Link></li>
-              <li><Link href="/destinations/uk">Education Loan for UK (CAS & 28-Day Rule)</Link></li>
-              <li><Link href="/destinations/canada">Education Loan for Canada (GIC Coverage)</Link></li>
+              <li><Link href="/destinations/uk">Education Loan for UK (CAS & Visa Funds)</Link></li>
+              <li><Link href="/destinations/canada">Education Loan for Canada (Living & Tuition Funds)</Link></li>
               <li><Link href="/destinations/germany">Education Loan for Germany (Blocked Account)</Link></li>
               <li><Link href="/destinations/australia">Education Loan for Australia (GS Rule)</Link></li>
               <li><Link href="/destinations/ireland">Education Loan for Ireland (Tech Hub)</Link></li>

@@ -132,9 +132,53 @@ export function trackLeadSubmission(leadType: string, meta: Record<string, any> 
 }
 
 export function trackWhatsAppClick(sourcePage: string, country?: string) {
+  sendGAEvent("click_whatsapp", {
+    event_category: "Contact",
+    source_page: sourcePage,
+    destination_country: country,
+  });
   sendGAEvent("whatsapp_initiate", {
     event_category: "Contact",
     source_page: sourcePage,
+    destination_country: country,
+  });
+}
+
+export function trackPhoneClick(phoneNumber: string, sourcePage: string) {
+  sendGAEvent("click_phone", {
+    event_category: "Contact",
+    phone_number: phoneNumber,
+    source_page: sourcePage,
+  });
+}
+
+export function trackFormStart(formName: string, sourcePage?: string) {
+  sendGAEvent("form_start", {
+    event_category: "Form",
+    form_name: formName,
+    source_page: sourcePage || (typeof window !== "undefined" ? window.location.pathname : ""),
+  });
+}
+
+export function trackFormSubmit(formName: string, meta: Record<string, any> = {}) {
+  sendGAEvent("form_submit", {
+    event_category: "Form",
+    form_name: formName,
+    ...meta,
+  });
+}
+
+export function trackConsultationBooked(meta: Record<string, any> = {}) {
+  sendGAEvent("consultation_booked", {
+    event_category: "Conversion",
+    ...meta,
+  });
+}
+
+export function trackApplicationStarted(course?: string, country?: string) {
+  sendGAEvent("application_started", {
+    event_category: "Conversion",
+    course_name: course,
     destination_country: country,
   });
 }

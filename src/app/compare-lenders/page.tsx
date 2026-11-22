@@ -38,7 +38,7 @@ export default function CompareLendersPage() {
     {
       question: "Which lender type is best for an overseas education loan?",
       answer:
-        "Public Sector Banks (like SBI and Bank of Baroda) offer the lowest floating interest rates (8.15%–9.60%) and simple interest during moratorium, making them best if you have property collateral or high-income co-applicants. Education NBFCs (like HDFC Credila and Avanse) are best if you need fast 3-day approval, up to ₹75 Lakhs without collateral, or 0% margin money.",
+        "Public Sector Banks (like SBI and Bank of Baroda) offer the lowest floating interest rates (7.75%–9.50%) and simple interest during moratorium, making them best if you have property collateral or high-income co-applicants. Education NBFCs (like HDFC Credila and Avanse) are best if you need fast 3-day approval, up to ₹75 Lakhs without collateral, or 0% margin money.",
     },
     {
       question: "Do USD loans from Prodigy Finance or MPOWER qualify for Section 80E tax deductions in India?",

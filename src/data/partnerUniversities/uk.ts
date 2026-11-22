@@ -48,7 +48,7 @@ export const ukUniversities: UniversityData[] = [
       documentName: "UK Student Visa (CAS & Appendix Finance)",
       requiredFundsINR: "£9,207 Living Funds + Oxford Tuition on CAS",
       guidelines: [
-        "Formal bank loan sanction letter exempts students from the 28-day cash holding requirement under UKVI Appendix Finance.",
+        "Unconditional educational loan letter from a regulated bank satisfies UKVI Student Route Appendix Finance without requiring prior 28-day bank holding.",
         "Official CAS statement issued by the University of Oxford.",
       ],
     },
@@ -107,7 +107,7 @@ export const ukUniversities: UniversityData[] = [
     visaRequirements: {
       documentName: "UK Student Visa (CAS & Appendix Finance)",
       requiredFundsINR: "£9,207 Living Funds + Cambridge Tuition on CAS",
-      guidelines: ["UKVI 28-day holding rule or an unencumbered bank loan sanction letter.", "Cambridge CAS."],
+      guidelines: ["UKVI 28-day savings holding rule or an unconditional regulated loan letter under Appendix Finance.", "Cambridge CAS."],
     },
     popularPrograms: [
       { name: "M.Phil. in Advanced Computer Science", degree: "Master of Philosophy", duration: "9 Months", estimatedCostINR: "₹46.0 Lakhs" },
@@ -623,7 +623,7 @@ export const ukUniversities: UniversityData[] = [
     ],
     visaRequirements: {
       documentName: "UK Student Visa (CAS & Appendix Finance)",
-      requiredFundsINR: "£9,207 Living Funds (28-day rule) + Unpaid Tuition on CAS",
+      requiredFundsINR: "£1,136/mo Living Funds (UKVI outside London up to £10,224) + Unpaid Tuition on CAS",
       guidelines: [
         "UKVI requires proof of £1,023 per month for up to 9 months (£9,207 for outer London) plus unpaid 1st year tuition fees.",
         "Funds must be held continuously for 28 consecutive days in a recognized bank account OR demonstrated via an unencumbered education loan sanction letter under UKVI Appendix Finance rules.",
@@ -638,7 +638,7 @@ export const ukUniversities: UniversityData[] = [
     faqs: [
       {
         question: "Can an education loan letter be used for Coventry University CAS?",
-        answer: "Yes. Coventry University and UKVI accept education loan sanction letters from RBI-regulated banks without requiring the 28-day cash holding period.",
+        answer: "Yes. Coventry University and UKVI accept unconditional education loan letters from RBI-regulated banks under Appendix Finance without requiring a prior 28-day bank holding period.",
       },
     ],
   },
@@ -684,10 +684,10 @@ export const ukUniversities: UniversityData[] = [
     ],
     visaRequirements: {
       documentName: "UK Student Visa (Inner London CAS)",
-      requiredFundsINR: "£12,006 London Living Funds (28-day rule) + Unpaid Tuition",
+      requiredFundsINR: "£1,483/mo London Living Funds (UKVI up to £13,347) + Unpaid Tuition on CAS",
       guidelines: [
         "UKVI Inner London rate: £1,334/month for 9 months (£12,006) plus remaining course fee.",
-        "Acceptable as education loan sanction letter or 28-day verified bank statement.",
+        "Acceptable as unconditional education loan letter under Appendix Finance or 28-day verified bank statement.",
       ],
     },
     popularPrograms: [

@@ -3,6 +3,7 @@ import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
 import JsonLd from "@/components/JsonLd";
+import AmpHtmlLink from "@/components/AmpHtmlLink";
 import { processFaqs } from "@/data/faqs";
 import { siteConfig } from "@/data/siteConfig";
 
@@ -71,6 +72,7 @@ export default function ProcessPage() {
 
   return (
     <>
+      <AmpHtmlLink ampPath="/amp/process" />
       <JsonLd data={howToSchema} />
       <Breadcrumbs items={[{ name: "Application Process", url: "/process" }]} />
 

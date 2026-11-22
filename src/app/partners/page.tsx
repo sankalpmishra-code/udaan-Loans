@@ -145,7 +145,7 @@ export default function PartnersPage() {
                 <div style={{ display: "flex", gap: "10px", alignItems: "flex-start" }}>
                   <span style={{ fontSize: "1.2rem" }}>🎯</span>
                   <div>
-                    <strong>Visa Financial Compliance:</strong> We specialize in embassy-compliant pre-visa sanction letters, German blocked account deposits (€11,904), and UK 28-day rule exemptions.
+                    <strong>Visa Financial Compliance:</strong> We specialize in embassy-compliant pre-visa sanction letters, German blocked account deposits (€11,904), and UKVI Appendix Finance loan letter compliance.
                   </div>
                 </div>
 

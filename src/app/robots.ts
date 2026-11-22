@@ -30,6 +30,12 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
         disallow: disallowedPaths,
       },
+      // ChatGPT Search discovery crawler
+      {
+        userAgent: "OAI-SearchBot",
+        allow: "/",
+        disallow: disallowedPaths,
+      },
       // Generative AI / Answer Engine crawlers (GEO / AEO optimization)
       {
         userAgent: [

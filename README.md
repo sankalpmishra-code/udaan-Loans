@@ -79,6 +79,20 @@ udaan-loans/
 - **Real Student Queries**: Answers formatted to address high-intent conversational voice and search queries (e.g., *"Can I get an education loan for study abroad without collateral?"*, *"How does moratorium simple interest work?"*).
 - **Schema.org `BreadcrumbList` & `FinancialService`**: Rich snippets for enhanced SERP CTR.
 
+### 4. ⚡ Accelerated Mobile Pages (AMP)
+- **Pure Valid AMP Engine**: Zero client-side Next.js bundle scripts or runtime hydration in AMP routes to ensure 100% compliance with Google AMP Validator specifications.
+- **Dedicated AMP Routes**:
+  - `/amp` - Lightweight homepage with hero, lender matrix, process, lead form, and FAQs.
+  - `/amp/calculator` - Overseas loan EMI calculator and moratorium interest reference tables.
+  - `/amp/loans` & `/amp/loans/without-collateral` - Collateral-free vs secured financing comparison.
+  - `/amp/lenders` - Directory comparing 30+ Public Banks, Private Banks, and NBFCs.
+  - `/amp/destinations` - US I-20, German Blocked Account, and UK CAS loan guidelines.
+  - `/amp/eligibility` - Student and co-applicant criteria with complete document checklist.
+  - `/amp/process` - 5-step roadmap from profile review to foreign wire remittance.
+  - `/amp/apply` - High-converting mobile lead capture powered by `amp-form`.
+- **Bidirectional Linking**: Standard canonical pages include `<link rel="amphtml" href="https://www.udaaneduloans.com/amp/...">`, and AMP pages include `<link rel="canonical" href="...">`.
+- **AMP CORS Form Endpoint**: `/api/leads` handles `__amp_source_origin` and returns `AMP-Access-Control-Allow-Source-Origin` headers for seamless form submissions from Google AMP Cache.
+
 ---
 
 ## 🚀 Running the Project

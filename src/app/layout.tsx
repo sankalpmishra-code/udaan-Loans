@@ -185,7 +185,7 @@ export default function RootLayout({
               itemOffered: {
                 "@type": "FinancialProduct",
                 name: "Secured Property Backed Education Loan",
-                description: "Education loan backed by property or fixed deposits up to ₹1.5 Crore with rates from 7.5%.",
+                description: "Education loan backed by property or fixed deposits up to ₹1.5 Crore with rates from 7.75%.",
                 feesAndCommissionsSpecification: "100% Free Consultation for Students",
               },
             },
@@ -207,6 +207,7 @@ export default function RootLayout({
         <link rel="mask-icon" href="/safari-pinned-tab.svg?v=4" color="#094754" />
         <link rel="shortcut icon" href="/favicon.ico?v=4" />
         <link rel="manifest" href="/manifest.webmanifest" />
+        <link rel="amphtml" href={`${siteConfig.url}/amp`} />
         <JsonLd data={graphSchema} />
       </head>
       <body>

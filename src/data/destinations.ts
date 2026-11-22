@@ -28,6 +28,8 @@ export interface Destination {
   workPermitYears: string;
   topLenders: DestinationLender[];
   faqs: DestinationFAQ[];
+  officialGuidanceUrl?: string;
+  officialGuidanceLabel?: string;
 }
 
 export const destinationsList: Destination[] = [
@@ -43,14 +45,16 @@ export const destinationsList: Destination[] = [
     visaFundRequirements:
       "Must show liquid funds covering 1 full academic year of tuition and living expenses as stated on Form I-20 for the F-1 visa interview.",
     embassyFinancialOverview:
-      "For US F-1 student visas, US universities require verifiable liquid proof of funds matching the estimated 9-to-12-month cost before issuing Form I-20. At the consular visa interview, applicants must present a formal, unconditional bank sanction letter from an RBI-recognized bank or NBFC confirming sanction of tuition and living expenses.",
+      "For US F-1 student visas, US universities require verifiable liquid proof of funds matching the estimated 9-to-12-month cost before issuing Form I-20. At the consular visa interview, applicants must present a formal, unconditional bank sanction letter from an RBI-recognized bank or NBFC confirming sanction of tuition and living expenses. Post-graduation employment: Standard post-completion OPT allows up to 12 months of temporary work authorization; eligible graduates with qualifying degrees in designated STEM fields may apply for a 24-month STEM OPT extension (totaling up to 36 months), subject to USCIS rules and qualifying employment with an E-Verify employer.",
     loanHighlights: [
       "Official pre-visa sanction letters accepted for Form I-20 issuance",
       "Collateral-free loans up to ₹75 Lakhs for premier US universities",
       "USD-denominated co-signer-free loans available via global partners",
       "Moratorium period: Full course duration + 6 to 12 months grace period",
     ],
-    workPermitYears: "Up to 3 Years (OPT + 24-Month STEM Extension)",
+    workPermitYears: "Post-Completion OPT up to 12 Months; eligible STEM graduates may apply for 24-Month STEM Extension (Up to 36 Months)",
+    officialGuidanceUrl: "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-opt-for-f-1-students",
+    officialGuidanceLabel: "USCIS Optional Practical Training (OPT) Official Guidance",
     topLenders: [
       {
         name: "State Bank of India (SBI)",
@@ -111,23 +115,26 @@ export const destinationsList: Destination[] = [
     id: "uk",
     country: "United Kingdom",
     flag: "🇬🇧",
-    tagline: "Exemption from the UKVI 28-Day Financial Rule with Official Bank Sanctions",
+    tagline: "UKVI Appendix Finance Compliant Bank Loan Guidance",
     popularCourses: ["MSc Finance / Business Analytics", "Computer Science & AI", "Management & MBA", "Law (LLM)", "Public Health & Biotechnology", "Data Science"],
     avgTuition: "₹18L - ₹38L / year",
-    avgLivingCost: "₹10L - ₹15L / year (£1,483/mo London; £1,136/mo outside London)",
+    avgLivingCost: "₹10L - ₹15L / year (£1,483/mo London up to £13,347; £1,136/mo outside London up to £10,224 for 9 months)",
     typicalLoanAmount: "₹25 Lakhs - ₹65 Lakhs",
     visaFundRequirements:
-      "Must show full 1st-year tuition balance (as stated on CAS) plus UKVI maintenance funds (£1,483/month in London = £13,347; £1,136/month outside London = £10,224 for up to 9 months). Official bank loan sanction letters completely waive the 28-day holding requirement under UKVI Appendix Finance.",
+      "Must show unpaid 1st-year tuition balance (as stated on CAS) plus UKVI maintenance funds (£1,483/month in London up to 9 months = £13,347; £1,136/month outside London up to 9 months = £10,224). If relying on personal bank savings, funds must be held continuously for at least 28 consecutive days ending no more than 31 days before application. Qualifying education loan letters issued by regulated financial institutions (under UKVI Appendix Finance FIN 8.1–8.3) provide valid financial evidence without requiring prior 28-day bank holding, provided the loan letter is unconditional upon visa issuance.",
     embassyFinancialOverview:
-      "Under UK Visas and Immigration (UKVI) Student Route regulations, applicants must demonstrate sufficient course fees and maintenance funds. While personal bank accounts require funds to be held continuously for 28 consecutive days, official education loan sanction letters from RBI-regulated scheduled banks or NBFCs are explicitly exempt from this rule under UKVI Appendix Finance (FIN 8.1), allowing immediate visa submission upon sanction.",
+      "Under UK Visas and Immigration (UKVI) Student Route regulations, applicants must demonstrate sufficient course fees and maintenance funds. While personal savings or deposit accounts must strictly observe the 28-day continuous holding rule (ending within 31 days of application), an official educational loan letter from a government or regulated financial institution (such as an RBI-regulated bank in India) can be used as specified in UKVI Appendix Finance (FIN 8.1–8.3). The letter must confirm the loan is provided to the student (or jointly with a parent/legal guardian) with no conditions on release other than visa grant. Provisional or in-principle letters with outstanding documentation do not satisfy UKVI standards.",
     loanHighlights: [
-      "100% exemption from the UKVI 28-day funds holding requirement",
-      "Direct foreign outward remittance for CAS deposit, IHS (Immigration Health Surcharge), and tuition fees",
+      "Qualifies under UKVI Appendix Finance (FIN 8.1) for tuition and maintenance proof",
+      "Eliminates need for prior 28-day personal savings holding when using an unconditional regulated loan letter",
+      "Direct foreign outward remittance for CAS deposit, Immigration Health Surcharge (IHS), and tuition fees",
       "Living allowance loaded onto multi-currency GBP student forex cards",
-      "Up to ₹75 Lakhs collateral-free for premier Russell Group universities",
-      "Moratorium covering 1-year master's plus 6-month buffer aligned with the 2-year Graduate Route visa",
+      "Up to ₹75 Lakhs collateral-free for premier UK universities",
+      "Moratorium covering course duration plus 6-month buffer aligned with the 2-year Graduate Route visa",
     ],
     workPermitYears: "2 Years (Graduate Route Post-Study Work Visa)",
+    officialGuidanceUrl: "https://www.gov.uk/student-visa/money",
+    officialGuidanceLabel: "GOV.UK Student Visa Financial Evidence Guidance (Appendix Finance)",
     topLenders: [
       {
         name: "State Bank of India (SBI)",
@@ -168,9 +175,9 @@ export const destinationsList: Destination[] = [
     ],
     faqs: [
       {
-        question: "How does an education loan waive the UKVI 28-day funds rule?",
+        question: "How does an education loan letter work under the UKVI Student Route financial requirements?",
         answer:
-          "Under UKVI Appendix Finance (FIN 8.1), an applicant using an educational loan provided by a government-regulated financial institution is completely exempt from the 28-day holding requirement. You can submit your official loan sanction letter immediately upon issuance without waiting for funds to mature in a savings account.",
+          "Under UKVI Appendix Finance (FIN 8.1 - FIN 8.3), an applicant can rely on an education loan letter issued by a government or regulated financial institution (such as an RBI-regulated bank). While personal savings must be held for at least 28 consecutive days before application, a qualifying loan letter does not require funds to sit in a bank account for 28 days prior. However, the loan letter must be in your name (or joint with a parent/legal guardian), confirm that funds are available before travel, and be unconditional except for the visa grant. In-principle or conditional approval letters with pending collateral or co-applicant checks do not qualify.",
       },
       {
         question: "Can an education loan fund the UK CAS deposit and Immigration Health Surcharge (IHS)?",
@@ -193,23 +200,25 @@ export const destinationsList: Destination[] = [
     id: "canada",
     country: "Canada",
     flag: "🇨🇦",
-    tagline: "Direct Financing for Tuition Fees and Mandatory CAD $20,635 Canadian GIC",
+    tagline: "Financing for Tuition Fees & Living Support (CAD $23,448 Outside Quebec)",
     popularCourses: ["MS / Post-Graduate Diplomas in IT", "Supply Chain & Logistics", "Business Analytics", "Mechanical & Civil Engineering", "Health Sciences & Biotechnology"],
     avgTuition: "₹14L - ₹30L / year",
-    avgLivingCost: "₹10L - ₹14L / year (CAD $20,635/year mandatory GIC)",
+    avgLivingCost: "₹14L - ₹18L / year (CAD $23,448/year IRCC living requirement outside Quebec)",
     typicalLoanAmount: "₹20 Lakhs - ₹55 Lakhs",
     visaFundRequirements:
-      "Full first-year tuition payment receipt from a Designated Learning Institution (DLI) plus CAD $20,635 mandatory Guaranteed Investment Certificate (GIC) from an approved Canadian bank, and a Provincial Attestation Letter (PAL) where applicable.",
+      "First-year tuition payment proof from a Designated Learning Institution (DLI) plus proof of living expenses—published at CAD $23,448 for a single applicant outside Quebec (separate from tuition and transportation)—and a Provincial Attestation Letter (PAL) where applicable. A Canadian Guaranteed Investment Certificate (GIC) from an eligible financial institution is one common, accepted method to demonstrate financial capability, though not universally mandatory under general study permit rules.",
     embassyFinancialOverview:
-      "Immigration, Refugees and Citizenship Canada (IRCC) mandates that international students demonstrate financial self-sufficiency by presenting proof of first-year tuition payment and purchase of a Guaranteed Investment Certificate (GIC) valued at CAD $20,635 from an approved financial institution (e.g., CIBC, Scotiabank, ICICI Bank Canada, RBC, TD). Under IRCC study permit guidelines, education loans from recognized Indian scheduled banks and NBFCs are fully accepted.",
+      "Immigration, Refugees and Citizenship Canada (IRCC) requires international students to demonstrate sufficient financial resources covering first-year tuition, travel expenses, and annual living costs—published at CAD $23,448 for one applicant outside Quebec (for Quebec, requirements are established by MIFI). While purchasing a Guaranteed Investment Certificate (GIC) from an approved Canadian financial institution (e.g., CIBC, Scotiabank, ICICI Bank Canada, RBC, TD) is an established option to demonstrate liquid funds, applicants may also present other acceptable proof of funds, including official education loan sanction letters from recognized financial institutions. Note: The Student Direct Stream (SDS) was discontinued on 8 November 2024; all study permit applications are now processed under standard IRCC streams.",
     loanHighlights: [
-      "Direct two-tranche disbursement: Tranche 1 wires CAD $20,635 directly to Canadian bank GIC; Tranche 2 wires tuition to DLI",
+      "Direct disbursement options: Funds can cover tuition wired directly to your DLI and living expenses (including GIC purchase if elected)",
       "Unsecured loan limits up to ₹50 Lakhs for DLI universities and public colleges",
-      "Official pre-visa sanction letter compliant with IRCC visa criteria",
+      "Official pre-visa sanction letter compliant with current IRCC financial proof standards",
       "Moratorium covers course duration plus 6-month buffer matching the Post-Graduation Work Permit (PGWP)",
       "0% margin money loans available from specialized education NBFCs",
     ],
     workPermitYears: "Up to 3 Years (Post-Graduation Work Permit - PGWP)",
+    officialGuidanceUrl: "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents.html#doc3",
+    officialGuidanceLabel: "IRCC Proof of Financial Support Official Guidance",
     topLenders: [
       {
         name: "HDFC Credila",
@@ -218,7 +227,7 @@ export const destinationsList: Destination[] = [
         maxUnsecured: "₹50 Lakhs",
         maxSecured: "₹1.0 Crore",
         processingDays: "3 - 5 Days",
-        keyAdvantage: "Market leader for Canadian DLIs; direct wire transfer into CIBC/Scotiabank GIC accounts within 48 hours.",
+        keyAdvantage: "Market leader for Canadian DLIs; direct wire transfer into CIBC/Scotiabank GIC accounts within 48 hours if opted.",
       },
       {
         name: "ICICI Bank",
@@ -245,14 +254,14 @@ export const destinationsList: Destination[] = [
         maxUnsecured: "₹50 Lakhs",
         maxSecured: "₹75 Lakhs",
         processingDays: "3 - 5 Days",
-        keyAdvantage: "100% cost-of-study financing covering tuition fees, GIC living costs, and health coverage.",
+        keyAdvantage: "100% cost-of-study financing covering tuition fees, living costs, and health coverage.",
       },
     ],
     faqs: [
       {
-        question: "How does the loan disbursement work for the Canadian GIC (CAD $20,635)?",
+        question: "How does loan disbursement work for Canadian living expenses and a GIC (CAD $23,448)?",
         answer:
-          "Upon formal loan sanction, your lender executes an outward wire transfer via RBI LRS directly to your Canadian bank GIC account (with CIBC, Scotiabank, or ICICI Bank Canada). Once credited, the Canadian bank issues your official GIC Confirmation Certificate for your IRCC study permit application.",
+          "Under IRCC regulations, students outside Quebec must show CAD $23,448 in living support (separate from tuition and travel). If you choose to purchase a GIC to satisfy this proof, your lender executes an outward wire transfer via RBI LRS directly to your Canadian bank GIC account (with CIBC, Scotiabank, or ICICI Bank Canada). Once credited, the Canadian bank issues your GIC Confirmation Certificate for your study permit application. Alternatively, funds can be disbursed to cover tuition and maintenance directly according to institutional terms.",
       },
       {
         question: "Can I get an education loan for Post-Graduate Certificate (PG Diploma) programs in Canada?",
@@ -360,19 +369,21 @@ export const destinationsList: Destination[] = [
     tagline: "Genuine Student (GS) Financial Proof & Group of Eight (Go8) Preferred Rates",
     popularCourses: ["Master of Information Technology", "Civil & Mining Engineering", "Nursing & Healthcare", "Accounting & Finance", "Data Science"],
     avgTuition: "₹20L - ₹42L / year",
-    avgLivingCost: "₹12L - ₹16L / year (AUD $29,710/year)",
+    avgLivingCost: "₹14L - ₹18L / year (AUD $29,710/year living cost requirement)",
     typicalLoanAmount: "₹35 Lakhs - ₹80 Lakhs",
     visaFundRequirements:
-      "Proof of funds covering 12 months tuition, living expenses (AUD $29,710), and return airfare under Genuine Student (GS) assessment.",
+      "Proof of financial capacity covering 12 months living expenses (mandated at AUD $29,710 as of 10 May 2024 by Australia's Department of Home Affairs), plus 1st-year course tuition fees, return travel costs (~AUD $2,000), and Overseas Student Health Cover (OSHC) under Genuine Student (GS) assessment.",
     embassyFinancialOverview:
-      "Australia's Department of Home Affairs (Subclass 500) requires student applicants to meet the Genuine Student (GS) criterion, verifying access to genuine liquid financial support covering 1st-year tuition fees, living costs (mandated at AUD $29,710 per year), and travel costs.",
+      "Under the Australian Department of Home Affairs Subclass 500 Student Visa regulations, applicants must meet the Genuine Student (GS) financial capacity requirement. Effective 10 May 2024, the published 12-month living expense requirement for an individual student is AUD $29,710. Course tuition fees, living costs, and travel expenses are assessed separately. Formal loan sanction letters from scheduled commercial banks and RBI-recognized NBFCs are accepted by Australian universities and the Department of Home Affairs as evidence of genuine funds access.",
     loanHighlights: [
-      "Official sanction letters recognized by Australian Department of Home Affairs",
+      "Official sanction letters recognized by Australian Department of Home Affairs and universities",
       "0% margin money loans available from specialized NBFCs",
       "Fast-track processing for Group of Eight (Go8) university admits",
       "Covers Overseas Student Health Cover (OSHC) and travel allowance",
     ],
     workPermitYears: "2 to 4 Years (Temporary Graduate Subclass 485 Visa)",
+    officialGuidanceUrl: "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/student-500#Eligibility",
+    officialGuidanceLabel: "Australian Home Affairs Subclass 500 Financial Capacity Guidance",
     topLenders: [
       {
         name: "State Bank of India (SBI)",

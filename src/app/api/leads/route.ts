@@ -54,6 +54,7 @@ function determineSourceName({
     if (leadType === "Partner Registration") resolved = "Partner Registration";
     else if (leadType === "Hero Loan Options Assessment" || leadType === "Hero Quick Eligibility") resolved = "Homepage Hero Form";
     else if (leadType === "Two-Stage Matcher Application") resolved = "Loan Matcher";
+    else if (leadType === "WhatsApp Chat Lead" || leadType === "WhatsApp Inquiry") resolved = "WhatsApp Widget";
     else resolved = "Website Direct";
   }
 
@@ -65,9 +66,55 @@ function determineSourceName({
   return resolved;
 }
 
+function getCorsHeaders(request: Request): Record<string, string> {
+  const url = new URL(request.url);
+  const ampSourceOrigin = url.searchParams.get("__amp_source_origin");
+  const origin = request.headers.get("origin") || "*";
+
+  const headers: Record<string, string> = {
+    "Access-Control-Allow-Origin": origin,
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With",
+    "Access-Control-Allow-Credentials": "true",
+  };
+
+  if (ampSourceOrigin) {
+    headers["AMP-Access-Control-Allow-Source-Origin"] = ampSourceOrigin;
+    headers["Access-Control-Expose-Headers"] = "AMP-Access-Control-Allow-Source-Origin";
+  }
+
+  return headers;
+}
+
+export async function OPTIONS(request: Request) {
+  const corsHeaders = getCorsHeaders(request);
+  return new NextResponse(null, { status: 200, headers: corsHeaders });
+}
+
 export async function POST(request: Request) {
+  const corsHeaders = getCorsHeaders(request);
+
   try {
-    const body = await request.json();
+    let body: Record<string, any> = {};
+    const contentType = request.headers.get("content-type") || "";
+
+    if (contentType.includes("application/json")) {
+      body = await request.json();
+    } else if (
+      contentType.includes("application/x-www-form-urlencoded") ||
+      contentType.includes("multipart/form-data")
+    ) {
+      const formData = await request.formData();
+      formData.forEach((value, key) => {
+        body[key] = typeof value === "string" ? value : value.name;
+      });
+    } else {
+      try {
+        body = await request.json();
+      } catch {
+        body = {};
+      }
+    }
 
     const {
       leadType = "Student Loan Application",
@@ -100,14 +147,14 @@ export async function POST(request: Request) {
     if (!name && !agency && !contactPerson) {
       return NextResponse.json(
         { success: false, error: "Name or Agency Name is required." },
-        { status: 400 }
+        { status: 400, headers: corsHeaders }
       );
     }
 
     if (!phone && !email) {
       return NextResponse.json(
         { success: false, error: "At least one contact method (phone or email) is required." },
-        { status: 400 }
+        { status: 400, headers: corsHeaders }
       );
     }
 
@@ -119,6 +166,18 @@ export async function POST(request: Request) {
       utmSource,
     });
 
+    // Format amount safely without producing "₹NaN"
+    let formattedAmount = "";
+    if (amount) {
+      const strAmount = String(amount).trim();
+      const cleanDigits = strAmount.replace(/\D/g, "");
+      if (cleanDigits && !strAmount.toLowerCase().includes("lakh") && !strAmount.toLowerCase().includes("crore")) {
+        formattedAmount = `₹${Number(cleanDigits).toLocaleString("en-IN")}`;
+      } else {
+        formattedAmount = strAmount;
+      }
+    }
+
     const payload = {
       timestamp: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
       leadType,
@@ -127,7 +186,7 @@ export async function POST(request: Request) {
       email: email.trim(),
       country,
       course,
-      amount: amount ? `₹${Number(amount).toLocaleString("en-IN")}` : "",
+      amount: formattedAmount,
       loanType,
       coApplicant,
       agency,
@@ -159,12 +218,15 @@ export async function POST(request: Request) {
     const webhookUrl = process.env.GOOGLE_SHEET_WEBHOOK_URL;
     if (!sheetUpdated && webhookUrl) {
       try {
-        await fetch(webhookUrl, {
+        const webhookRes = await fetch(webhookUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
           redirect: "follow",
         });
+        if (!webhookRes.ok) {
+          console.warn("Google Sheet webhook returned status:", webhookRes.status);
+        }
       } catch (webhookErr) {
         console.error("Webhook fallback error:", webhookErr);
       }
@@ -184,15 +246,18 @@ export async function POST(request: Request) {
       console.error("Resend email error:", emailErr);
     }
 
-    return NextResponse.json({
-      success: true,
-      message: "Lead recorded successfully",
-    });
+    return NextResponse.json(
+      {
+        success: true,
+        message: "Lead recorded successfully",
+      },
+      { headers: corsHeaders }
+    );
   } catch (error) {
     console.error("Error processing lead submission:", error);
     return NextResponse.json(
       { success: false, error: "Internal server error processing application." },
-      { status: 500 }
+      { status: 500, headers: corsHeaders }
     );
   }
 }

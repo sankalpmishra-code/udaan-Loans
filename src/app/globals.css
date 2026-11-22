@@ -1401,7 +1401,11 @@ select.input-err {
 }
 
 .whatsapp-card {
-  width: 340px;
+  width: 360px;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
   background: var(--surface);
   border-radius: var(--radius-lg);
   border: 1px solid var(--line);
@@ -1461,6 +1465,8 @@ select.input-err {
 
 .wa-body {
   padding: 18px;
+  overflow-y: auto;
+  max-height: calc(100vh - 180px);
 }
 
 .wa-field {
@@ -1475,10 +1481,55 @@ select.input-err {
   margin-bottom: 4px;
 }
 
+.wa-field input,
 .wa-field select {
   width: 100%;
   padding: 8px 10px;
   font-size: 0.88rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--ink);
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.wa-field input:focus,
+.wa-field select:focus {
+  outline: none;
+  border-color: #25D366;
+  box-shadow: 0 0 0 2px rgba(37, 211, 102, 0.2);
+}
+
+.wa-phone-group {
+  display: flex;
+  align-items: stretch;
+}
+
+.wa-phone-prefix {
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-right: none;
+  padding: 8px 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-top-left-radius: var(--radius-sm);
+  border-bottom-left-radius: var(--radius-sm);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+}
+
+.wa-phone-input {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+.wa-field-error {
+  color: var(--danger);
+  font-size: 0.75rem;
+  margin-top: 3px;
+  display: block;
 }
 
 .wa-consent-box {
@@ -1503,11 +1554,16 @@ select.input-err {
   justify-content: center;
   align-items: center;
   gap: 8px;
-  transition: opacity 0.15s ease;
+  transition: opacity 0.15s ease, background 0.15s ease;
 }
 
-.wa-start-btn:hover {
+.wa-start-btn:hover:not(:disabled) {
   opacity: 0.92;
+}
+
+.wa-start-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 @media (max-width: 500px) {

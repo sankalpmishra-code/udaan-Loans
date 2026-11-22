@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import LeadForm from "@/components/LeadForm";
 import FAQSection from "@/components/FAQSection";
+import AmpHtmlLink from "@/components/AmpHtmlLink";
 import { applyFaqs } from "@/data/faqs";
 import { siteConfig } from "@/data/siteConfig";
 
@@ -23,6 +24,7 @@ export const metadata: Metadata = {
 export default function ApplyPage() {
   return (
     <>
+      <AmpHtmlLink ampPath="/amp/apply" />
 
       <section className="hero" style={{ padding: "40px 0 60px" }}>
         <div className="wrap">

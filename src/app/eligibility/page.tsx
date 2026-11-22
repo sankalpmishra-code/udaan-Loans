@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import FAQSection from "@/components/FAQSection";
+import AmpHtmlLink from "@/components/AmpHtmlLink";
+import EditorialByline from "@/components/EditorialByline";
 import { eligibilityFaqs } from "@/data/faqs";
 
 export const metadata: Metadata = {
@@ -24,6 +26,7 @@ export const metadata: Metadata = {
 export default function EligibilityPage() {
   return (
     <>
+      <AmpHtmlLink ampPath="/amp/eligibility" />
       <Breadcrumbs items={[{ name: "Eligibility & Documents", url: "/eligibility" }]} />
 
       <section className="hero" style={{ padding: "48px 0 64px" }}>
@@ -36,6 +39,12 @@ export default function EligibilityPage() {
               Review the complete criteria for students, co-applicants, and collateral assets below.
             </p>
           </div>
+
+          <EditorialByline
+            reviewerName="Udaan Credit Underwriting Advisory Panel"
+            reviewerTitle="Accredited Education Loan Underwriters"
+            lastUpdated="November 2026"
+          />
 
           {/* Student vs Co-applicant Criteria */}
           <div className="grid-2">

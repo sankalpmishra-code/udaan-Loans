@@ -125,7 +125,7 @@ export default async function LenderPage({ params }: PageProps) {
     },
     {
       question: `Does ${lender.name} issue pre-visa sanction letters for embassy financial proof?`,
-      answer: `Yes. An official ${lender.name} loan sanction letter is fully recognized for foreign student visa financial verification across the US Embassy (I-20), UKVI (CAS 28-day rule), German Consulates, and IRCC Canada.`,
+      answer: `Yes. An official ${lender.name} loan sanction letter is fully recognized for foreign student visa financial verification across the US Embassy (Form I-20), UKVI (Student Route Appendix Finance), German Consulates (Blocked Account / Sperrkonto), and IRCC Canada (Study Permit).`,
     },
     {
       question: `How fast can I get a loan sanction from ${lender.name} through Udaan?`,

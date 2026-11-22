@@ -220,6 +220,19 @@ export default async function DestinationDetailPage({ params }: PageProps) {
                 <p style={{ margin: "6px 0 0", fontSize: "0.92rem", color: "var(--ink-secondary)", lineHeight: "1.5" }}>
                   {dest.visaFundRequirements}
                 </p>
+                {dest.officialGuidanceUrl && (
+                  <div style={{ marginTop: "12px", paddingTop: "10px", borderTop: "1px dashed var(--line, #e2e8f0)", fontSize: "0.85rem" }}>
+                    <strong style={{ color: "var(--brand)" }}>Official Immigration Guidance:</strong>{" "}
+                    <a
+                      href={dest.officialGuidanceUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: "var(--brand)", textDecoration: "underline", fontWeight: 600 }}
+                    >
+                      {dest.officialGuidanceLabel || "View official government documentation"} ↗
+                    </a>
+                  </div>
+                )}
               </div>
 
               <div style={{ marginTop: "24px" }}>
